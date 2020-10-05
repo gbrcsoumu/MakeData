@@ -99,12 +99,12 @@ Partial Class Form1
         'TextBox_FileList1
         '
         Me.TextBox_FileList1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 108)
+        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 95)
         Me.TextBox_FileList1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FileList1.Multiline = True
         Me.TextBox_FileList1.Name = "TextBox_FileList1"
         Me.TextBox_FileList1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 207)
+        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 189)
         Me.TextBox_FileList1.TabIndex = 1
         '
         'TextBox_FilderName2
