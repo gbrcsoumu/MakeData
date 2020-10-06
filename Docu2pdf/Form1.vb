@@ -58,6 +58,49 @@ Public Class Form1
         RadioButton_pdf.Checked = False
         TextBox_FileMakerServer.Text = FileMakerServer1
         Cansel = False
+
+        Const C_width As Integer = 135
+        With Me.DataGridView1
+            .Width = 100 + C_width * 5 + 60
+            .Height = 160
+            .ColumnCount = 5
+            .ColumnHeadersVisible = True
+            .ColumnHeadersHeight = 18
+            .ScrollBars = ScrollBars.Both
+
+            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            columnHeaderStyle.BackColor = Color.White
+            columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
+            columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+            .ColumnHeadersDefaultCellStyle = columnHeaderStyle
+            .Columns(0).Name = "番号"
+            .Columns(1).Name = "X座標"
+            .Columns(2).Name = "Y座標"
+            .Columns(3).Name = "Z1座標"
+            .Columns(4).Name = "Z2座標"
+            '                  .Columns(5).Name = "On/Off"
+            .RowHeadersVisible = True
+            .Columns(0).Width = 100
+            .Columns(1).Width = C_width
+            .Columns(2).Width = C_width
+            .Columns(3).Width = C_width
+            .Columns(4).Width = C_width
+            '                    .Columns(5).Width = C_width
+
+        End With
+        Dim column1 As New DataGridViewCheckBoxColumn
+        DataGridView1.Columns.Add(column1)
+        DataGridView1.Columns(5).Name = "風向"
+        DataGridView1.Columns(5).Width = C_width / 2
+
+        Dim column2 As New DataGridViewCheckBoxColumn
+        DataGridView1.Columns.Add(column2)
+        DataGridView1.Columns(6).Name = "風速"
+        DataGridView1.Columns(6).Width = C_width / 2
+
+
+
+
         Me.CenterToScreen()
     End Sub
 
@@ -400,8 +443,6 @@ Public Class Form1
         End If
 
     End Sub
-
-
 
     Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
         Try

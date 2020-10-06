@@ -62,6 +62,7 @@ Partial Class Form1
         Me.Text_Read_Button = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -73,6 +74,7 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -99,12 +101,12 @@ Partial Class Form1
         'TextBox_FileList1
         '
         Me.TextBox_FileList1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 95)
+        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 282)
         Me.TextBox_FileList1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FileList1.Multiline = True
         Me.TextBox_FileList1.Name = "TextBox_FileList1"
         Me.TextBox_FileList1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 189)
+        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 21)
         Me.TextBox_FileList1.TabIndex = 1
         '
         'TextBox_FilderName2
@@ -495,6 +497,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.DataGridView1)
         Me.TabPage1.Controls.Add(Me.TextBox_FileLIst2)
         Me.TabPage1.Controls.Add(Me.TextBox_FolderName1)
         Me.TabPage1.Controls.Add(Me.TextBox_FileList1)
@@ -511,6 +514,15 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "フォルダーからの検索"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'DataGridView1
+        '
+        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 96)
+        Me.DataGridView1.Name = "DataGridView1"
+        Me.DataGridView1.RowTemplate.Height = 21
+        Me.DataGridView1.Size = New System.Drawing.Size(897, 181)
+        Me.DataGridView1.TabIndex = 8
         '
         'TabPage2
         '
@@ -649,6 +661,7 @@ Partial Class Form1
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
@@ -704,4 +717,5 @@ Partial Class Form1
     Friend WithEvents CheckBox_MakePdf As CheckBox
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox_FileMakerServer As TextBox
+    Friend WithEvents DataGridView1 As DataGridView
 End Class
