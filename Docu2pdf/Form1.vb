@@ -707,6 +707,18 @@ Public Class Form1
                                                 DataGridView1.CurrentRow.Cells(3).Value = True
                                                 DataGridView1.CurrentRow.Cells(4).Value = True
 
+                                                Dim columnHeaderStyle As New DataGridViewCellStyle()
+                                                columnHeaderStyle.BackColor = Color.White
+                                                columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
+                                                DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+                                                '       R1 = R1 + 1
+                                                '       no = R1.ToString
+                                                '       row1 = {no, "", "", ""}
+                                                '       DataGridView1.Rows.Add(row1)
+
+                                                DataGridView1.Rows(i).Height = 16
+                                                DataGridView1.FirstDisplayedScrollingRowIndex = i
+                                                DataGridView1.CurrentCell = DataGridView1(0, i)
 
                                                 'Dim RN = DataGridView1.Rows.Count - 2
                                                 'If RN >= 0 Then
@@ -769,11 +781,23 @@ Public Class Form1
                                                 Me.TextBox_FileLIst2.Focus()
                                                 Me.TextBox_FileLIst2.ScrollToCaret()
 
+                                                Dim columnHeaderStyle As New DataGridViewCellStyle()
+                                                columnHeaderStyle.BackColor = Color.White
+                                                columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
+                                                DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+
+                                                DataGridView1.Rows(i).Height = 16
+                                                DataGridView1.FirstDisplayedScrollingRowIndex = i
+                                                DataGridView1.CurrentCell = DataGridView1(0, i)
+
 
                                                 row1 = {Count.ToString, filename(i), st1}
                                                 DataGridView1.Rows.Add(row1)
                                                 DataGridView1.CurrentRow.Cells(3).Value = True
                                                 DataGridView1.CurrentRow.Cells(4).Value = True
+
+
+
                                             End If
                                         End If
 
@@ -800,6 +824,11 @@ Public Class Form1
                                         DataGridView1.Rows.Add(row1)
                                         DataGridView1.Rows(Count - 1).Cells(3).Value = True
                                         DataGridView1.Rows(Count - 1).Cells(4).Value = True
+
+                                        Dim columnHeaderStyle As New DataGridViewCellStyle()
+                                        columnHeaderStyle.BackColor = Color.White
+                                        columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Regular)
+                                        DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
                                     End If
                                 End If
                             End If
