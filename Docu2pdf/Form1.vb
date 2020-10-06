@@ -382,8 +382,75 @@ Public Class Form1
                                             Me.TextBox3.SelectionStart = Me.TextBox3.Text.Length
                                             Me.TextBox3.Focus()
                                             Me.TextBox3.ScrollToCaret()
+
+
+
+
+
+
+
                                         End If
                                     Next
+
+
+
+
+                                    'Dim RN = DataGridView1.Rows.Count - 2
+                                    'If RN >= 0 Then
+                                    '    For i As Integer = 0 To RN
+                                    '        DataGridView1.Rows.RemoveAt(0)
+                                    '    Next
+                                    'End If
+                                    'Dim row1() As String
+                                    'Dim _No As Integer, _X As Double, _Y As Double, _Z1 As Double, _Z2 As Double
+                                    'For i As Integer = 0 To n - 2
+                                    '    _No = Val(Data(i + 1, 0))
+                                    '    _X = Val(Data(i + 1, 1))
+                                    '    _Y = Val(Data(i + 1, 2))
+                                    '    _Z1 = Val(Data(i + 1, 3))
+                                    '    _Z2 = Val(Data(i + 1, 4))
+
+                                    '    loadAry(i) = New XYZData()
+                                    '    loadAry(i).No = _No
+                                    '    loadAry(i).X = _X
+                                    '    loadAry(i).Y = _Y
+                                    '    loadAry(i).Z1 = _Z1
+                                    '    loadAry(i).Z2 = _Z2
+
+                                    '    row1 = {_No.ToString, _X.ToString, _Y.ToString, _Z1.ToString, _Z2.ToString}
+                                    '    DataGridView1.Rows.Add(row1)
+
+                                    '    Dim columnHeaderStyle As New DataGridViewCellStyle()
+                                    '    columnHeaderStyle.BackColor = Color.White
+                                    '    columnHeaderStyle.Font = New Font("MSゴシック", 20, FontStyle.Bold)
+                                    '    DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+                                    '    '       R1 = R1 + 1
+                                    '    '       no = R1.ToString
+                                    '    '       row1 = {no, "", "", ""}
+                                    '    '       DataGridView1.Rows.Add(row1)
+
+                                    '    DataGridView1.Rows(i).Height = 30
+                                    '    DataGridView1.FirstDisplayedScrollingRowIndex = i
+                                    '    DataGridView1.CurrentCell = DataGridView1(0, i)
+                                    'Next
+                                    'loadAry2 = loadAry
+                                    'PointN = loadAry2.Length
+                                    'Me.EndPoint1.Text = PointN.ToString
+
+                                    'For i As Integer = 0 To loadAry.Length - 1
+                                    '    DataGridView1.Rows(i).Cells(5).Value = True
+                                    '    DataGridView1.Rows(i).Cells(6).Value = True
+                                    'Next
+
+
+
+
+
+
+
+
+
+
                                 End If
                             End If
                         End If
