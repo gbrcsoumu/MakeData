@@ -4,7 +4,7 @@ Imports System.Security.AccessControl
 Imports FujiXerox.DocuWorks.Toolkit
 'Imports Microsoft.VisualBasic
 ' test01
-
+' test02
 
 Public Class Form1
     Private filename() As String, fname() As String, dir1() As String
