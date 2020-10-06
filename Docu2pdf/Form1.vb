@@ -827,8 +827,12 @@ Public Class Form1
 
                                         Dim columnHeaderStyle As New DataGridViewCellStyle()
                                         columnHeaderStyle.BackColor = Color.White
-                                        columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Regular)
+                                        columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
                                         DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+                                        DataGridView1.Rows(Count - 1).Height = 18
+                                        DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
+                                        'DataGridView1.CurrentCell = DataGridView1(0, i)
+
                                     End If
                                 End If
                             End If
