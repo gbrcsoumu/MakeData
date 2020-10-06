@@ -6,6 +6,7 @@ Imports FujiXerox.DocuWorks.Toolkit
 ' test01
 ' test02
 ' test03
+' test04
 
 Public Class Form1
     Private filename() As String, fname() As String, dir1() As String
