@@ -8,6 +8,7 @@ Imports FujiXerox.DocuWorks.Toolkit
 ' test03
 ' test04
 ' test05 Mac
+' test06 Mouse
 
 Public Class Form1
     Private filename() As String, fname() As String, dir1() As String
