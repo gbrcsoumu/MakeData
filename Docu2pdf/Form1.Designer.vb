@@ -101,18 +101,18 @@ Partial Class Form1
         'TextBox_FileList1
         '
         Me.TextBox_FileList1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 282)
+        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 417)
         Me.TextBox_FileList1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FileList1.Multiline = True
         Me.TextBox_FileList1.Name = "TextBox_FileList1"
         Me.TextBox_FileList1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 21)
+        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 38)
         Me.TextBox_FileList1.TabIndex = 1
         '
         'TextBox_FilderName2
         '
         Me.TextBox_FilderName2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FilderName2.Location = New System.Drawing.Point(12, 360)
+        Me.TextBox_FilderName2.Location = New System.Drawing.Point(12, 512)
         Me.TextBox_FilderName2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FilderName2.Multiline = True
         Me.TextBox_FilderName2.Name = "TextBox_FilderName2"
@@ -122,18 +122,18 @@ Partial Class Form1
         'TextBox_FileLIst2
         '
         Me.TextBox_FileLIst2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(12, 396)
+        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(12, 544)
         Me.TextBox_FileLIst2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FileLIst2.Multiline = True
         Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
         Me.TextBox_FileLIst2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(897, 190)
+        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(897, 42)
         Me.TextBox_FileLIst2.TabIndex = 1
         '
         'Select_Save_Folder_Button
         '
         Me.Select_Save_Folder_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_Save_Folder_Button.Location = New System.Drawing.Point(15, 308)
+        Me.Select_Save_Folder_Button.Location = New System.Drawing.Point(15, 460)
         Me.Select_Save_Folder_Button.Name = "Select_Save_Folder_Button"
         Me.Select_Save_Folder_Button.Size = New System.Drawing.Size(128, 47)
         Me.Select_Save_Folder_Button.TabIndex = 2
@@ -153,7 +153,7 @@ Partial Class Form1
         'Save_PDF_Button
         '
         Me.Save_PDF_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Save_PDF_Button.Location = New System.Drawing.Point(602, 308)
+        Me.Save_PDF_Button.Location = New System.Drawing.Point(602, 460)
         Me.Save_PDF_Button.Name = "Save_PDF_Button"
         Me.Save_PDF_Button.Size = New System.Drawing.Size(163, 47)
         Me.Save_PDF_Button.TabIndex = 4
@@ -162,7 +162,7 @@ Partial Class Form1
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(172, 338)
+        Me.ProgressBar1.Location = New System.Drawing.Point(172, 490)
         Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(401, 18)
@@ -521,7 +521,7 @@ Partial Class Form1
         Me.DataGridView1.Location = New System.Drawing.Point(9, 96)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(897, 181)
+        Me.DataGridView1.Size = New System.Drawing.Size(897, 143)
         Me.DataGridView1.TabIndex = 8
         '
         'TabPage2

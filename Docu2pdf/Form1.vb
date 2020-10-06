@@ -59,13 +59,13 @@ Public Class Form1
         TextBox_FileMakerServer.Text = FileMakerServer1
         Cansel = False
 
-        Const C_width As Integer = 135
-        Dim Col_n As Integer
+        'Const C_width As Integer = 135
+        'Dim Col_n As Integer
         With Me.DataGridView1
-            .Width = 100 + C_width * 5 + 60
-            .Height = 160
+            .Width = 900
+            .Height = 300
             .ColumnCount = 3
-            Col_n = .ColumnCount
+            'Col_n = .ColumnCount
             .ColumnHeadersVisible = True
             .ColumnHeadersHeight = 18
             .ScrollBars = ScrollBars.Both
@@ -82,9 +82,9 @@ Public Class Form1
             '.Columns(4).Name = "Z2座標"
             '                  .Columns(5).Name = "On/Off"
             .RowHeadersVisible = True
-            .Columns(0).Width = 100
-            .Columns(1).Width = C_width
-            .Columns(2).Width = C_width * 3
+            .Columns(0).Width = 60
+            .Columns(1).Width = 140
+            .Columns(2).Width = 500
             '.Columns(3).Width = C_width
             '.Columns(4).Width = C_width
             '                    .Columns(5).Width = C_width
@@ -92,13 +92,13 @@ Public Class Form1
         End With
         Dim column1 As New DataGridViewCheckBoxColumn
         DataGridView1.Columns.Add(column1)
-        DataGridView1.Columns(Col_n).Name = "読込"
-        DataGridView1.Columns(Col_n).Width = C_width / 2
+        DataGridView1.Columns(3).Name = "読込"
+        DataGridView1.Columns(3).Width = 75
 
         Dim column2 As New DataGridViewCheckBoxColumn
         DataGridView1.Columns.Add(column2)
-        DataGridView1.Columns(Col_n + 1).Name = "変換"
-        DataGridView1.Columns(Col_n + 1).Width = C_width / 2
+        DataGridView1.Columns(4).Name = "変換"
+        DataGridView1.Columns(4).Width = 75
 
 
 
@@ -357,6 +357,7 @@ Public Class Form1
                                     Or System.Text.RegularExpressions.Regex.IsMatch(name2, s3 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(name2, s4 + w4) _
                                     Then
 
+
                                     For kk As Integer = 0 To WildCard1.Length - 1
                                         If System.Text.RegularExpressions.Regex.IsMatch(name2, WildCard1(kk)) Or System.Text.RegularExpressions.Regex.IsMatch(name2, WildCard2(kk)) Then
                                             Dim st1 As String = ""
@@ -583,6 +584,10 @@ Public Class Form1
                     System.Windows.Forms.Application.DoEvents()
                     'ReDim fname(n - 1), dir1(n - 1)
                     If n > 0 Then
+
+                        Dim row1() As String
+
+
                         For i As Integer = 0 To n - 1
 
                             'If filename(i).Contains(" '") Then
@@ -696,11 +701,79 @@ Public Class Form1
                                                 End If
                                                 'Sql_Command2 = "UPDATE """ + DateLogTable + """ SET ""出勤時刻"" = TIME '" + t1 + "' ,""出勤コード"" = " + code1
                                                 'Sql_Command2 += "  WHERE ""職員番号"" = '" + value + "' AND ""日付"" = DATE '" + D1 + "'"
+
+                                                row1 = {Count.ToString, filename(i), Path3}
+                                                DataGridView1.Rows.Add(row1)
+                                                DataGridView1.CurrentRow.Cells(3).Value = True
+                                                DataGridView1.CurrentRow.Cells(4).Value = True
+
+
+                                                'Dim RN = DataGridView1.Rows.Count - 2
+                                                'If RN >= 0 Then
+                                                '    For i As Integer = 0 To RN
+                                                '        DataGridView1.Rows.RemoveAt(0)
+                                                '    Next
+                                                'End If
+                                                'Dim row1() As String
+                                                'Dim _No As Integer, _X As Double, _Y As Double, _Z1 As Double, _Z2 As Double
+                                                'For i As Integer = 0 To n - 2
+                                                '    _No = Val(Data(i + 1, 0))
+                                                '    _X = Val(Data(i + 1, 1))
+                                                '    _Y = Val(Data(i + 1, 2))
+                                                '    _Z1 = Val(Data(i + 1, 3))
+                                                '    _Z2 = Val(Data(i + 1, 4))
+
+                                                '    loadAry(i) = New XYZData()
+                                                '    loadAry(i).No = _No
+                                                '    loadAry(i).X = _X
+                                                '    loadAry(i).Y = _Y
+                                                '    loadAry(i).Z1 = _Z1
+                                                '    loadAry(i).Z2 = _Z2
+
+                                                '    row1 = {_No.ToString, _X.ToString, _Y.ToString, _Z1.ToString, _Z2.ToString}
+                                                '    DataGridView1.Rows.Add(row1)
+
+                                                '    Dim columnHeaderStyle As New DataGridViewCellStyle()
+                                                '    columnHeaderStyle.BackColor = Color.White
+                                                '    columnHeaderStyle.Font = New Font("MSゴシック", 20, FontStyle.Bold)
+                                                '    DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+                                                '    '       R1 = R1 + 1
+                                                '    '       no = R1.ToString
+                                                '    '       row1 = {no, "", "", ""}
+                                                '    '       DataGridView1.Rows.Add(row1)
+
+                                                '    DataGridView1.Rows(i).Height = 30
+                                                '    DataGridView1.FirstDisplayedScrollingRowIndex = i
+                                                '    DataGridView1.CurrentCell = DataGridView1(0, i)
+                                                'Next
+                                                'loadAry2 = loadAry
+                                                'PointN = loadAry2.Length
+                                                'Me.EndPoint1.Text = PointN.ToString
+
+                                                'For i As Integer = 0 To loadAry.Length - 1
+                                                '    DataGridView1.Rows(i).Cells(5).Value = True
+                                                '    DataGridView1.Rows(i).Cells(6).Value = True
+                                                'Next
+
+
+
+
+
+
+
+
+
                                             Else
                                                 Me.TextBox_FileLIst2.Text += st1 + " (済)" + vbCrLf
                                                 Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
                                                 Me.TextBox_FileLIst2.Focus()
                                                 Me.TextBox_FileLIst2.ScrollToCaret()
+
+
+                                                row1 = {Count.ToString, filename(i), st1}
+                                                DataGridView1.Rows.Add(row1)
+                                                DataGridView1.CurrentRow.Cells(3).Value = True
+                                                DataGridView1.CurrentRow.Cells(4).Value = True
                                             End If
                                         End If
 
@@ -711,6 +784,9 @@ Public Class Form1
                                         'Sql_Command += "  WHERE ""FilePath0"" = '" + filename(i) + "'"
                                         'tb = db.ExecuteSql(Sql_Command)
                                     Else
+
+                                        ' FileMakerへの書込が無い場合
+
                                         Count += 1
                                         fname2.Add(f)
                                         dir2.Add(System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i))))
@@ -718,6 +794,12 @@ Public Class Form1
                                         Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
                                         Me.TextBox_FileList1.Focus()
                                         Me.TextBox_FileList1.ScrollToCaret()
+
+
+                                        row1 = {Count.ToString, f, filename(i)}
+                                        DataGridView1.Rows.Add(row1)
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = True
+                                        DataGridView1.Rows(Count - 1).Cells(4).Value = True
                                     End If
                                 End If
                             End If
