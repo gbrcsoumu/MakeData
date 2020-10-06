@@ -4,7 +4,6 @@ Imports System.Security.AccessControl
 Imports FujiXerox.DocuWorks.Toolkit
 'Imports Microsoft.VisualBasic
 ' test01
-' test02
 
 
 Public Class Form1
