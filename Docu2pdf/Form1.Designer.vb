@@ -57,6 +57,10 @@ Partial Class Form1
         Me.Text_Read_Button = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Select_Save_folder_Button = New System.Windows.Forms.Button()
+        Me.TextBox_FileLIst2 = New System.Windows.Forms.TextBox()
+        Me.TextBox_FilderName2 = New System.Windows.Forms.TextBox()
+        Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
@@ -64,10 +68,6 @@ Partial Class Form1
         Me.CheckBox_MakePdf = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
-        Me.DocuReadButton = New System.Windows.Forms.Button()
-        Me.TextBox_FilderName2 = New System.Windows.Forms.TextBox()
-        Me.TextBox_FileLIst2 = New System.Windows.Forms.TextBox()
-        Me.Select_Save_folder_Button = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,10 +106,10 @@ Partial Class Form1
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(172, 490)
+        Me.ProgressBar1.Location = New System.Drawing.Point(10, 401)
         Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(401, 18)
+        Me.ProgressBar1.Size = New System.Drawing.Size(573, 18)
         Me.ProgressBar1.TabIndex = 5
         '
         'CheckBox_3A
@@ -335,7 +335,7 @@ Partial Class Form1
         'Read_Button
         '
         Me.Read_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Read_Button.Location = New System.Drawing.Point(152, 17)
+        Me.Read_Button.Location = New System.Drawing.Point(741, 16)
         Me.Read_Button.Name = "Read_Button"
         Me.Read_Button.Size = New System.Drawing.Size(127, 46)
         Me.Read_Button.TabIndex = 7
@@ -458,13 +458,50 @@ Partial Class Form1
         Me.TabPage1.Text = "フォルダーからの検索"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'Select_Save_folder_Button
+        '
+        Me.Select_Save_folder_Button.Location = New System.Drawing.Point(662, 402)
+        Me.Select_Save_folder_Button.Name = "Select_Save_folder_Button"
+        Me.Select_Save_folder_Button.Size = New System.Drawing.Size(144, 43)
+        Me.Select_Save_folder_Button.TabIndex = 12
+        Me.Select_Save_folder_Button.Text = "Button2"
+        Me.Select_Save_folder_Button.UseVisualStyleBackColor = True
+        '
+        'TextBox_FileLIst2
+        '
+        Me.TextBox_FileLIst2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 494)
+        Me.TextBox_FileLIst2.Multiline = True
+        Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
+        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 93)
+        Me.TextBox_FileLIst2.TabIndex = 11
+        '
+        'TextBox_FilderName2
+        '
+        Me.TextBox_FilderName2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox_FilderName2.Location = New System.Drawing.Point(9, 451)
+        Me.TextBox_FilderName2.Multiline = True
+        Me.TextBox_FilderName2.Name = "TextBox_FilderName2"
+        Me.TextBox_FilderName2.Size = New System.Drawing.Size(896, 23)
+        Me.TextBox_FilderName2.TabIndex = 10
+        '
+        'DocuReadButton
+        '
+        Me.DocuReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.DocuReadButton.Location = New System.Drawing.Point(143, 17)
+        Me.DocuReadButton.Name = "DocuReadButton"
+        Me.DocuReadButton.Size = New System.Drawing.Size(136, 47)
+        Me.DocuReadButton.TabIndex = 9
+        Me.DocuReadButton.Text = "報告書(xdw)リスト作成"
+        Me.DocuReadButton.UseVisualStyleBackColor = True
+        '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Location = New System.Drawing.Point(9, 96)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(897, 143)
+        Me.DataGridView1.Size = New System.Drawing.Size(900, 300)
         Me.DataGridView1.TabIndex = 8
         '
         'TabPage2
@@ -525,40 +562,6 @@ Partial Class Form1
         Me.TextBox_FileMakerServer.Name = "TextBox_FileMakerServer"
         Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(143, 19)
         Me.TextBox_FileMakerServer.TabIndex = 14
-        '
-        'DocuReadButton
-        '
-        Me.DocuReadButton.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.DocuReadButton.Location = New System.Drawing.Point(290, 17)
-        Me.DocuReadButton.Name = "DocuReadButton"
-        Me.DocuReadButton.Size = New System.Drawing.Size(136, 45)
-        Me.DocuReadButton.TabIndex = 9
-        Me.DocuReadButton.Text = "報告書(xdw)の読込"
-        Me.DocuReadButton.UseVisualStyleBackColor = True
-        '
-        'TextBox_FilderName2
-        '
-        Me.TextBox_FilderName2.Location = New System.Drawing.Point(10, 513)
-        Me.TextBox_FilderName2.Name = "TextBox_FilderName2"
-        Me.TextBox_FilderName2.Size = New System.Drawing.Size(896, 26)
-        Me.TextBox_FilderName2.TabIndex = 10
-        '
-        'TextBox_FileLIst2
-        '
-        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 551)
-        Me.TextBox_FileLIst2.Multiline = True
-        Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
-        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 36)
-        Me.TextBox_FileLIst2.TabIndex = 11
-        '
-        'Select_Save_folder_Button
-        '
-        Me.Select_Save_folder_Button.Location = New System.Drawing.Point(625, 464)
-        Me.Select_Save_folder_Button.Name = "Select_Save_folder_Button"
-        Me.Select_Save_folder_Button.Size = New System.Drawing.Size(144, 43)
-        Me.Select_Save_folder_Button.TabIndex = 12
-        Me.Select_Save_folder_Button.Text = "Button2"
-        Me.Select_Save_folder_Button.UseVisualStyleBackColor = True
         '
         'Form1
         '

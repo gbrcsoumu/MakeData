@@ -903,6 +903,7 @@ Public Class Form1
 
     End Sub
 
+
     Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
         Try
             Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
