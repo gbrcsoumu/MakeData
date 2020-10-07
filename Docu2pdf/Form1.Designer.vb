@@ -24,12 +24,7 @@ Partial Class Form1
     Private Sub InitializeComponent()
         Me.Select_Read_Folder_Button = New System.Windows.Forms.Button()
         Me.TextBox_FolderName1 = New System.Windows.Forms.TextBox()
-        Me.TextBox_FileList1 = New System.Windows.Forms.TextBox()
-        Me.TextBox_FilderName2 = New System.Windows.Forms.TextBox()
-        Me.TextBox_FileLIst2 = New System.Windows.Forms.TextBox()
-        Me.Select_Save_Folder_Button = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.Save_PDF_Button = New System.Windows.Forms.Button()
         Me.ProgressBar1 = New System.Windows.Forms.ProgressBar()
         Me.CheckBox_3A = New System.Windows.Forms.CheckBox()
         Me.CheckBox_3C = New System.Windows.Forms.CheckBox()
@@ -65,13 +60,11 @@ Partial Class Form1
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.CheckBox_MakePdf = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
+        Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,67 +91,15 @@ Partial Class Form1
         Me.TextBox_FolderName1.Size = New System.Drawing.Size(897, 23)
         Me.TextBox_FolderName1.TabIndex = 1
         '
-        'TextBox_FileList1
-        '
-        Me.TextBox_FileList1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileList1.Location = New System.Drawing.Point(9, 417)
-        Me.TextBox_FileList1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox_FileList1.Multiline = True
-        Me.TextBox_FileList1.Name = "TextBox_FileList1"
-        Me.TextBox_FileList1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileList1.Size = New System.Drawing.Size(897, 38)
-        Me.TextBox_FileList1.TabIndex = 1
-        '
-        'TextBox_FilderName2
-        '
-        Me.TextBox_FilderName2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FilderName2.Location = New System.Drawing.Point(12, 512)
-        Me.TextBox_FilderName2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox_FilderName2.Multiline = True
-        Me.TextBox_FilderName2.Name = "TextBox_FilderName2"
-        Me.TextBox_FilderName2.Size = New System.Drawing.Size(897, 23)
-        Me.TextBox_FilderName2.TabIndex = 1
-        '
-        'TextBox_FileLIst2
-        '
-        Me.TextBox_FileLIst2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(12, 544)
-        Me.TextBox_FileLIst2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox_FileLIst2.Multiline = True
-        Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
-        Me.TextBox_FileLIst2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(897, 42)
-        Me.TextBox_FileLIst2.TabIndex = 1
-        '
-        'Select_Save_Folder_Button
-        '
-        Me.Select_Save_Folder_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_Save_Folder_Button.Location = New System.Drawing.Point(15, 460)
-        Me.Select_Save_Folder_Button.Name = "Select_Save_Folder_Button"
-        Me.Select_Save_Folder_Button.Size = New System.Drawing.Size(128, 47)
-        Me.Select_Save_Folder_Button.TabIndex = 2
-        Me.Select_Save_Folder_Button.Text = "保存フォルダー"
-        Me.Select_Save_Folder_Button.UseVisualStyleBackColor = True
-        '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(42, 0)
+        Me.Label1.Location = New System.Drawing.Point(26, 6)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(349, 22)
+        Me.Label1.Size = New System.Drawing.Size(435, 22)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "DocuWorksをPDFに変換するプログラム"
-        '
-        'Save_PDF_Button
-        '
-        Me.Save_PDF_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Save_PDF_Button.Location = New System.Drawing.Point(602, 460)
-        Me.Save_PDF_Button.Name = "Save_PDF_Button"
-        Me.Save_PDF_Button.Size = New System.Drawing.Size(163, 47)
-        Me.Save_PDF_Button.TabIndex = 4
-        Me.Save_PDF_Button.Text = "PDFに変換"
-        Me.Save_PDF_Button.UseVisualStyleBackColor = True
+        Me.Label1.Text = "報告書および資料をデータベース化するプログラム"
         '
         'ProgressBar1
         '
@@ -497,14 +438,10 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.DocuReadButton)
         Me.TabPage1.Controls.Add(Me.DataGridView1)
-        Me.TabPage1.Controls.Add(Me.TextBox_FileLIst2)
         Me.TabPage1.Controls.Add(Me.TextBox_FolderName1)
-        Me.TabPage1.Controls.Add(Me.TextBox_FileList1)
-        Me.TabPage1.Controls.Add(Me.TextBox_FilderName2)
-        Me.TabPage1.Controls.Add(Me.Select_Save_Folder_Button)
         Me.TabPage1.Controls.Add(Me.Read_Button)
-        Me.TabPage1.Controls.Add(Me.Save_PDF_Button)
         Me.TabPage1.Controls.Add(Me.ProgressBar1)
         Me.TabPage1.Controls.Add(Me.Select_Read_Folder_Button)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
@@ -528,10 +465,7 @@ Partial Class Form1
         '
         Me.TabPage2.Controls.Add(Me.Button1)
         Me.TabPage2.Controls.Add(Me.Text_Read_Button)
-        Me.TabPage2.Controls.Add(Me.TextBox1)
         Me.TabPage2.Controls.Add(Me.TextBox2)
-        Me.TabPage2.Controls.Add(Me.TextBox3)
-        Me.TabPage2.Controls.Add(Me.TextBox4)
         Me.TabPage2.Location = New System.Drawing.Point(4, 29)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
@@ -550,17 +484,6 @@ Partial Class Form1
         Me.Button1.Text = "テキストファイルの選択"
         Me.Button1.UseVisualStyleBackColor = True
         '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(15, 393)
-        Me.TextBox1.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(897, 190)
-        Me.TextBox1.TabIndex = 2
-        '
         'TextBox2
         '
         Me.TextBox2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -570,27 +493,6 @@ Partial Class Form1
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(897, 23)
         Me.TextBox2.TabIndex = 3
-        '
-        'TextBox3
-        '
-        Me.TextBox3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(12, 108)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox3.Multiline = True
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox3.Size = New System.Drawing.Size(897, 192)
-        Me.TextBox3.TabIndex = 4
-        '
-        'TextBox4
-        '
-        Me.TextBox4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox4.Location = New System.Drawing.Point(15, 357)
-        Me.TextBox4.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox4.Multiline = True
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(897, 23)
-        Me.TextBox4.TabIndex = 5
         '
         'CheckBox_MakePdf
         '
@@ -617,6 +519,16 @@ Partial Class Form1
         Me.TextBox_FileMakerServer.Name = "TextBox_FileMakerServer"
         Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(143, 19)
         Me.TextBox_FileMakerServer.TabIndex = 14
+        '
+        'DocuReadButton
+        '
+        Me.DocuReadButton.Font = New System.Drawing.Font("MS UI Gothic", 10.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.DocuReadButton.Location = New System.Drawing.Point(290, 17)
+        Me.DocuReadButton.Name = "DocuReadButton"
+        Me.DocuReadButton.Size = New System.Drawing.Size(136, 45)
+        Me.DocuReadButton.TabIndex = 9
+        Me.DocuReadButton.Text = "報告書(xdw)の読込"
+        Me.DocuReadButton.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -670,12 +582,7 @@ Partial Class Form1
     End Sub
     Friend WithEvents Select_Read_Folder_Button As Button
     Friend WithEvents TextBox_FolderName1 As TextBox
-    Friend WithEvents TextBox_FileList1 As TextBox
-    Friend WithEvents TextBox_FilderName2 As TextBox
-    Friend WithEvents TextBox_FileLIst2 As TextBox
-    Friend WithEvents Select_Save_Folder_Button As Button
     Friend WithEvents Label1 As Label
-    Friend WithEvents Save_PDF_Button As Button
     Friend WithEvents ProgressBar1 As ProgressBar
     Friend WithEvents CheckBox_3A As CheckBox
     Friend WithEvents CheckBox_3C As CheckBox
@@ -709,13 +616,11 @@ Partial Class Form1
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
     Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents TextBox1 As TextBox
     Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents TextBox3 As TextBox
-    Friend WithEvents TextBox4 As TextBox
     Friend WithEvents Button1 As Button
     Friend WithEvents CheckBox_MakePdf As CheckBox
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox_FileMakerServer As TextBox
     Friend WithEvents DataGridView1 As DataGridView
+    Friend WithEvents DocuReadButton As Button
 End Class
