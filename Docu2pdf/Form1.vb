@@ -598,17 +598,18 @@ Public Class Form1
 
                             If fname.Substring(0, 1) <> "." Then    ' 隠しファイルを除外する。
 
-                                If System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w1) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w2) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w3) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w4) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w1) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w2) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w3) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w4) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w2) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w4) _
-                                Then
+                                'If System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w1) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w2) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w3) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w4) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w1) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w2) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w3) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w4) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w2) _
+                                'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w4) _
+                                'Then
+                                If IsTestNumber(fname, Check(j).Text) Then
 
                                     Count += 1
                                     row1 = {Count.ToString, fname, filename(i)}
@@ -903,22 +904,28 @@ Public Class Form1
 
     End Sub
 
-    Private Function TestNumber(ByVal fname As String, ByVal checkChr As String) As Boolean
+    Private Function IsTestNumber(ByVal fname As String, ByVal checkChr As String) As Boolean
 
-        Dim s1 As String = checkChr.ToUpper.Replace("3", "")
-        Dim s2 As String = checkChr.ToLower.Replace("3", "")
-        Dim s3 As String = StrConv(s1, VbStrConv.Wide)
-        Dim s4 As String = StrConv(s2, VbStrConv.Wide)
-        Dim s5 As String = checkChr.ToLower.Replace("Ⅲ", "")
-        Dim s6 As String = checkChr.ToUpper.Replace("8", "")
-        Dim s7 As String = checkChr.ToLower.Replace("8", "")
-        Dim s8 As String = StrConv(s6, VbStrConv.Wide)
-        Dim s9 As String = StrConv(s7, VbStrConv.Wide)
-        Dim s10 As String = checkChr.ToLower.Replace("Ⅷ", "")
-        Dim w1 As String = "\d\d\d\d\d\d"
-        Dim w2 As String = "-\d\d-\d\d\d"
-        Dim w3 As String = "-\d\d-\d\d"
-        Dim w4 As String = "-\d\d-\d\d\d\d"
+        Dim s(3) As String, w(3) As String
+
+        s(0) = checkChr.Substring(1, 1)                 ' 3A ->A
+        s(1) = s(0).ToLower                             ' 3A -> A -> a
+        s(2) = StrConv(s(0), VbStrConv.Wide)            ' A -> Ａ（全角）
+        s(3) = StrConv(s(1), VbStrConv.Wide)            ' a -> ａ（全角）
+        w(0) = "\d\d\d\d\d\d"
+        w(1) = "-\d\d-\d\d\d"
+        w(2) = "-\d\d-\d\d"
+        w(3) = "-\d\d-\d\d\d\d"
+
+        IsTestNumber = False
+
+        For i As Integer = 0 To s.Length - 1
+            For j As Integer = 0 To w.Length - 1
+                IsTestNumber = System.Text.RegularExpressions.Regex.IsMatch(fname, s(i) + w(j)) Or IsTestNumber
+            Next
+        Next
+
+
     End Function
 
     Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
