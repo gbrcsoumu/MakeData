@@ -152,19 +152,19 @@ Public Class Form1
 
                 Ok = DocuToPdf(file1, file2, 600)
                 If Ok = 0 Then
-                    'Me.TextBox_FileLIst2.Text += file2 + vbCrLf
-                    'Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-                    'Me.TextBox_FileLIst2.Focus()
-                    'Me.TextBox_FileLIst2.ScrollToCaret()
+                    Me.TextBox_FileLIst2.Text += file2 + vbCrLf
+                    Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+                    Me.TextBox_FileLIst2.Focus()
+                    Me.TextBox_FileLIst2.ScrollToCaret()
                 End If
 
             Next
 
             Dim t2 As DateTime = DateTime.Now
-            'Me.TextBox_FileLIst2.Text += "処理時間：" + (t2 - t1).ToString + vbCrLf
-            'Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-            'Me.TextBox_FileLIst2.Focus()
-            'Me.TextBox_FileLIst2.ScrollToCaret()
+            Me.TextBox_FileLIst2.Text += "処理時間：" + (t2 - t1).ToString + vbCrLf
+            Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+            Me.TextBox_FileLIst2.Focus()
+            Me.TextBox_FileLIst2.ScrollToCaret()
             Me.ProgressBar1.Visible = False
         End If
     End Sub
@@ -1079,10 +1079,10 @@ Public Class Form1
                                                 End If
 
                                                 If Ok = 0 Then
-                                                    'Me.TextBox_FileLIst2.Text += Path4 + vbCrLf
-                                                    'Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-                                                    'Me.TextBox_FileLIst2.Focus()
-                                                    'Me.TextBox_FileLIst2.ScrollToCaret()
+                                                    Me.TextBox_FileLIst2.Text += Path4 + vbCrLf
+                                                    Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+                                                    Me.TextBox_FileLIst2.Focus()
+                                                    Me.TextBox_FileLIst2.ScrollToCaret()
 
                                                     Sql_Command = "UPDATE """ + Table + """ SET ""PdfPath"" = '" + Path4.Replace("'", "''") + "'"
                                                     Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
@@ -1323,12 +1323,12 @@ Public Class Form1
             Path1 = fbd.SelectedPath
 
             Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
-            'TextBox_FilderName2.Text = Path2
+            TextBox_FilderName2.Text = Path2
         End If
 
     End Sub
 
-    Private Sub Select_Save_folder_Button_Click(sender As Object, e As EventArgs)
+    Private Sub Select_Save_folder_Button_Click(sender As Object, e As EventArgs) Handles Select_Save_folder_Button.Click
         Dim fbd As New FolderBrowserDialog
 
         '上部に表示する説明テキストを指定する
@@ -1338,11 +1338,11 @@ Public Class Form1
         fbd.RootFolder = Environment.SpecialFolder.Desktop
         '最初に選択するフォルダを指定する
         'RootFolder以下にあるフォルダである必要がある
-        'If TextBox_FilderName2.Text <> "" Then
-        '    fbd.SelectedPath = TextBox_FilderName2.Text
-        'Else
-        '    fbd.SelectedPath = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
-        'End If
+        If TextBox_FilderName2.Text <> "" Then
+            fbd.SelectedPath = TextBox_FilderName2.Text
+        Else
+            fbd.SelectedPath = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
+        End If
 
         'ユーザーが新しいフォルダを作成できるようにする
         'デフォルトでTrue
@@ -1351,7 +1351,7 @@ Public Class Form1
         'ダイアログを表示する
         If fbd.ShowDialog(Me) = DialogResult.OK Then
             '選択されたフォルダを表示する
-            'Me.TextBox_FilderName2.Text = fbd.SelectedPath
+            Me.TextBox_FilderName2.Text = fbd.SelectedPath
             Path2 = fbd.SelectedPath
             'Me.TextBox_FileLIst2.Text = ""
 

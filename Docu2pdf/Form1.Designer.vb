@@ -65,6 +65,9 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.DocuReadButton = New System.Windows.Forms.Button()
+        Me.TextBox_FilderName2 = New System.Windows.Forms.TextBox()
+        Me.TextBox_FileLIst2 = New System.Windows.Forms.TextBox()
+        Me.Select_Save_folder_Button = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -438,6 +441,9 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Select_Save_folder_Button)
+        Me.TabPage1.Controls.Add(Me.TextBox_FileLIst2)
+        Me.TabPage1.Controls.Add(Me.TextBox_FilderName2)
         Me.TabPage1.Controls.Add(Me.DocuReadButton)
         Me.TabPage1.Controls.Add(Me.DataGridView1)
         Me.TabPage1.Controls.Add(Me.TextBox_FolderName1)
@@ -529,6 +535,30 @@ Partial Class Form1
         Me.DocuReadButton.TabIndex = 9
         Me.DocuReadButton.Text = "報告書(xdw)の読込"
         Me.DocuReadButton.UseVisualStyleBackColor = True
+        '
+        'TextBox_FilderName2
+        '
+        Me.TextBox_FilderName2.Location = New System.Drawing.Point(10, 513)
+        Me.TextBox_FilderName2.Name = "TextBox_FilderName2"
+        Me.TextBox_FilderName2.Size = New System.Drawing.Size(896, 26)
+        Me.TextBox_FilderName2.TabIndex = 10
+        '
+        'TextBox_FileLIst2
+        '
+        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 551)
+        Me.TextBox_FileLIst2.Multiline = True
+        Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
+        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 36)
+        Me.TextBox_FileLIst2.TabIndex = 11
+        '
+        'Select_Save_folder_Button
+        '
+        Me.Select_Save_folder_Button.Location = New System.Drawing.Point(625, 464)
+        Me.Select_Save_folder_Button.Name = "Select_Save_folder_Button"
+        Me.Select_Save_folder_Button.Size = New System.Drawing.Size(144, 43)
+        Me.Select_Save_folder_Button.TabIndex = 12
+        Me.Select_Save_folder_Button.Text = "Button2"
+        Me.Select_Save_folder_Button.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -623,4 +653,7 @@ Partial Class Form1
     Friend WithEvents TextBox_FileMakerServer As TextBox
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents DocuReadButton As Button
+    Friend WithEvents TextBox_FilderName2 As TextBox
+    Friend WithEvents TextBox_FileLIst2 As TextBox
+    Friend WithEvents Select_Save_folder_Button As Button
 End Class
