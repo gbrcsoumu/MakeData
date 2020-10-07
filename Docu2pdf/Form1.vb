@@ -903,6 +903,23 @@ Public Class Form1
 
     End Sub
 
+    Private Function TestNumber(ByVal fname As String, ByVal checkChr As String) As Boolean
+
+        Dim s1 As String = checkChr.ToUpper.Replace("3", "")
+        Dim s2 As String = checkChr.ToLower.Replace("3", "")
+        Dim s3 As String = StrConv(s1, VbStrConv.Wide)
+        Dim s4 As String = StrConv(s2, VbStrConv.Wide)
+        Dim s5 As String = checkChr.ToLower.Replace("Ⅲ", "")
+        Dim s6 As String = checkChr.ToUpper.Replace("8", "")
+        Dim s7 As String = checkChr.ToLower.Replace("8", "")
+        Dim s8 As String = StrConv(s6, VbStrConv.Wide)
+        Dim s9 As String = StrConv(s7, VbStrConv.Wide)
+        Dim s10 As String = checkChr.ToLower.Replace("Ⅷ", "")
+        Dim w1 As String = "\d\d\d\d\d\d"
+        Dim w2 As String = "-\d\d-\d\d\d"
+        Dim w3 As String = "-\d\d-\d\d"
+        Dim w4 As String = "-\d\d-\d\d\d\d"
+    End Function
 
     Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
         Try
