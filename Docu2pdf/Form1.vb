@@ -652,7 +652,7 @@ Public Class Form1
                                 End If
                                 'Console.WriteLine(a)
                             End If
-                            Application.DoEvents()
+                            'Application.DoEvents()
 
                         Next
 
