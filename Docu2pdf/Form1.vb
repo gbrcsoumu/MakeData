@@ -3,12 +3,7 @@ Imports System.IO
 Imports System.Security.AccessControl
 Imports FujiXerox.DocuWorks.Toolkit
 'Imports Microsoft.VisualBasic
-' test01
-' test02
-' test03
-' test04
-' test05 Mac
-' test06 Mouse
+
 
 Public Class Form1
     Private filename() As String, fname() As String, dir1() As String
@@ -92,16 +87,23 @@ Public Class Form1
         End With
         Dim column1 As New DataGridViewCheckBoxColumn
         DataGridView1.Columns.Add(column1)
-        DataGridView1.Columns(3).Name = "読込"
-        DataGridView1.Columns(3).Width = 75
+        DataGridView1.Columns(3).Name = "入力"
+        DataGridView1.Columns(3).Width = 50
 
         Dim column2 As New DataGridViewCheckBoxColumn
         DataGridView1.Columns.Add(column2)
         DataGridView1.Columns(4).Name = "変換"
-        DataGridView1.Columns(4).Width = 75
+        DataGridView1.Columns(4).Width = 50
 
+        Dim column3 As New DataGridViewCheckBoxColumn
+        DataGridView1.Columns.Add(column3)
+        DataGridView1.Columns(5).Name = "読込"
+        DataGridView1.Columns(5).Width = 50
 
+        TextBox_FilderName2.Text = PdfSaveFolder
 
+        TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
+        Path2 = TextBox_FolderName1.Text
 
         Me.CenterToScreen()
     End Sub
@@ -577,21 +579,6 @@ Public Class Form1
             For j As Integer = 0 To checkbox_n - 1
                 If Check(j).Checked = True Then
 
-
-
-
-                    'Dim s1 As String = Check(j).Text.ToUpper.Replace("3", "")
-                    'Dim s2 As String = Check(j).Text.ToLower.Replace("3", "")
-                    'Dim s3 As String = StrConv(s1, VbStrConv.Wide)
-                    'Dim s4 As String = StrConv(s2, VbStrConv.Wide)
-                    'Dim s5 As String = Check(j).Text.ToLower.Replace("Ⅲ", "")
-                    'Dim w1 As String = "\d\d\d\d\d\d"
-                    'Dim w2 As String = "-\d\d-\d\d\d"
-                    'Dim w3 As String = "-\d\d-\d\d"
-                    'Dim w4 As String = "-\d\d-\d\d\d\d"
-
-                    'Application.DoEvents()
-
                     If n > 0 Then
 
                         For i As Integer = 0 To n - 1
@@ -600,57 +587,47 @@ Public Class Form1
 
                                 Dim fname As String = System.IO.Path.GetFileName(filename(i))
 
-                                If fname.Substring(0, 1) <> "." Then    ' 隠しファイルを除外する。
 
-                                    'If System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w1) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w2) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w3) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w4) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w1) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w2) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w3) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w4) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w2) _
-                                    'Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s5 + w4) _
-                                    'Then
-                                    If IsTestNumber(fname, Check(j).Text) Then
+                                If IsTestNumber(fname, Check(j).Text) Then
 
-                                        Count += 1
-                                        Dim row1() As String
-                                        row1 = {Count.ToString, fname, filename(i)}
-                                        DataGridView1.Rows.Add(row1)
+                                    Count += 1
+                                    Dim row1() As String
+                                    row1 = {Count.ToString, fname, filename(i)}
+                                    DataGridView1.Rows.Add(row1)
 
-                                        Sql_Command = "SELECT ""FilePath"",""PdfPath"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
-                                        tb = db.ExecuteSql(Sql_Command)
-                                        Dim n2 As Integer = tb.Rows.Count
-                                        Dim st1 As String
-                                        If n2 > 0 Then
-                                            DataGridView1.Rows(Count - 1).Cells(3).Value = True
-                                            st1 = tb.Rows(0).Item("PdfPath").ToString()
-                                            If st1 <> "" Then
-                                                DataGridView1.Rows(Count - 1).Cells(4).Value = True
-                                            Else
-                                                DataGridView1.Rows(Count - 1).Cells(4).Value = False
-                                            End If
-
+                                    Sql_Command = "SELECT ""FilePath"",""PdfPath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+                                    tb = db.ExecuteSql(Sql_Command)
+                                    Dim n2 As Integer = tb.Rows.Count
+                                    Dim st1 As String
+                                    If n2 > 0 Then
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = True
+                                        st1 = tb.Rows(0).Item("PdfPath").ToString()
+                                        If st1 <> "" Then
+                                            DataGridView1.Rows(Count - 1).Cells(4).Value = True
                                         Else
-                                            DataGridView1.Rows(Count - 1).Cells(3).Value = False
                                             DataGridView1.Rows(Count - 1).Cells(4).Value = False
-                                            st1 = ""
                                         End If
-
-                                        DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
-                                        DataGridView1.CurrentCell = DataGridView1(0, Count - 1)
-
-                                        flag(i) = True
-
-
-
+                                        st1 = tb.Rows(0).Item("入力").ToString()
+                                        If st1 <> "未読" Then
+                                            DataGridView1.Rows(Count - 1).Cells(5).Value = True
+                                        Else
+                                            DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                        End If
+                                    Else
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = False
+                                        DataGridView1.Rows(Count - 1).Cells(4).Value = False
+                                        DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                        st1 = ""
                                     End If
-                                Else
+
+                                    DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
+                                    DataGridView1.CurrentCell = DataGridView1(0, Count - 1)
+
                                     flag(i) = True
+
+
+
                                 End If
-                                'Console.WriteLine(a)
                             End If
                             'Application.DoEvents()
 
@@ -682,6 +659,149 @@ Public Class Form1
 
     End Sub
 
+
+    Private Sub PdfReadButton_Click(sender As Object, e As EventArgs) Handles PdfReadButton.Click
+        '
+        '　資料（pdf）を読み込んでFileMakerに登録する。
+        '
+
+        Try
+            Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
+            Dim db As New OdbcDbIf
+            Dim tb As DataTable
+            Dim Sql_Command As String
+
+
+
+            'If FileMakerOn = True Then
+            FileMakerServer = TextBox_FileMakerServer.Text
+            db.Connect()
+            'End If
+
+            Dim fname2 As New List(Of String)
+            Dim dir2 As New List(Of String)
+            Dim WildCard1() As String   ', WildCard2 As String
+            'Me.TextBox_FileList1.Text = ""
+            Dim Count As Integer = 0
+            Dim ff()() As String, flag() As Boolean
+
+            ReDim WildCard1(0), ff(0)
+            WildCard1(0) = "*.pdf"
+            'WildCard1(1) = "*.xbd"
+
+            'WildCard2 = WildCard1.ToUpper
+
+            Dim nn As Integer = 0
+
+            For i As Integer = 0 To WildCard1.Length - 1
+                ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                nn += ff(i).Length
+            Next
+
+            ReDim filename(nn - 1)
+
+            For i As Integer = 0 To WildCard1.Length - 1
+                If i = 0 Then
+                    ff(i).CopyTo(filename, 0)
+                Else
+                    ff(i).CopyTo(filename, ff(i - 1).Length)
+                End If
+            Next
+
+            Dim n As Integer = filename.Length
+            ReDim flag(n - 1)
+            For i As Integer = 0 To n - 1
+                flag(i) = False
+            Next
+
+            DataGridView1.Rows.Clear()
+            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            columnHeaderStyle.BackColor = Color.White
+            columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+            DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+
+            For j As Integer = 0 To checkbox_n - 1
+                If Check(j).Checked = True Then
+
+                    If n > 0 Then
+
+                        For i As Integer = 0 To n - 1
+                            If flag(i) = False Then
+                                Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
+
+                                Dim fname As String = System.IO.Path.GetFileName(filename(i))
+
+
+                                If IsTestNumber(fname, Check(j).Text) Then
+
+                                    Count += 1
+                                    Dim row1() As String
+                                    row1 = {Count.ToString, fname, filename(i)}
+                                    DataGridView1.Rows.Add(row1)
+
+                                    Sql_Command = "SELECT ""FilePath"",""FilePath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+                                    tb = db.ExecuteSql(Sql_Command)
+                                    Dim n2 As Integer = tb.Rows.Count
+                                    Dim st1 As String
+                                    If n2 > 0 Then
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = True
+                                        st1 = tb.Rows(0).Item("FilePath").ToString()
+                                        If st1 <> "" Then
+                                            DataGridView1.Rows(Count - 1).Cells(4).Value = True
+                                        Else
+                                            DataGridView1.Rows(Count - 1).Cells(4).Value = False
+                                        End If
+                                        st1 = tb.Rows(0).Item("入力").ToString()
+                                        If st1 <> "未読" Then
+                                            DataGridView1.Rows(Count - 1).Cells(5).Value = True
+                                        Else
+                                            DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                        End If
+                                    Else
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = False
+                                        DataGridView1.Rows(Count - 1).Cells(4).Value = False
+                                        DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                        st1 = ""
+                                    End If
+
+                                    DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
+                                    DataGridView1.CurrentCell = DataGridView1(0, Count - 1)
+
+                                    flag(i) = True
+
+
+
+                                End If
+                            End If
+                            'Application.DoEvents()
+
+                        Next
+
+                    End If
+                End If
+
+                Application.DoEvents()
+
+            Next
+
+            'Me.TextBox_FileList1.Text += "=== END ===" + vbCrLf
+            'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
+            'Me.TextBox_FileList1.Focus()
+            'Me.TextBox_FileList1.ScrollToCaret()
+
+            'If FileMakerOn = True Then
+            db.Disconnect()
+            'End If
+            fname = fname2.ToArray
+            dir1 = dir2.ToArray
+        Catch e1 As Exception
+            'Console.WriteLine(e1.Message)
+        End Try
+
+
+    End Sub
+
+
     Private Function IsTestNumber(ByVal fname As String, ByVal checkChr As String) As Boolean
 
         Dim s(3) As String, w(3) As String
@@ -696,15 +816,16 @@ Public Class Form1
         w(3) = "-\d\d-\d\d\d\d"
 
         IsTestNumber = False
-
-        For i As Integer = 0 To s.Length - 1
-            For j As Integer = 0 To w.Length - 1
-                IsTestNumber = System.Text.RegularExpressions.Regex.IsMatch(fname, s(i) + w(j)) Or IsTestNumber
+        If fname.Substring(0, 1) <> "." Then    ' 隠しファイルを除外する。
+            For i As Integer = 0 To s.Length - 1
+                For j As Integer = 0 To w.Length - 1
+                    IsTestNumber = System.Text.RegularExpressions.Regex.IsMatch(fname, s(i) + w(j)) Or IsTestNumber
+                Next
             Next
-        Next
-
-
+        End If
     End Function
+
+
 
     Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
         Try
@@ -1160,4 +1281,50 @@ Public Class Form1
 
         End If
     End Sub
+
+    Private Sub Data_Input_Button_Click(sender As Object, e As EventArgs) Handles Data_Input_Button.Click
+
+        If DataGridView1.RowCount > 1 Then
+
+            Dim n As Integer = DataGridView1.RowCount - 1
+            Dim Count As Integer = 0
+            For i As Integer = 0 To n - 1
+                If DataGridView1.Rows(i).Cells(3).Value = False Then
+                    Count += 1
+                End If
+            Next
+
+            If Count > 0 Then
+
+                ' メッセージボックスに表示するテキスト
+                Dim message As String = "未入力のデータが" + Count.ToString + "個あります。" + vbCrLf + "入力しますか？"
+
+                ' タイトルバーに表示するテキスト
+                Dim caption As String = "確認"
+
+                ' 表示するボタン([OK]ボタンと[キャンセル]ボタン)
+                Dim buttons As MessageBoxButtons = MessageBoxButtons.OKCancel
+
+                Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
+
+                If result = vbOK Then
+
+                    Debug.Print("OK")
+
+                End If
+
+
+
+            Else
+                MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
+            End If
+
+
+
+        Else
+            MessageBox.Show("データがありません!!", "警告", MessageBoxButtons.OK)
+
+        End If
+    End Sub
+
 End Class

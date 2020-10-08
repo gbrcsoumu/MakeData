@@ -3,4 +3,5 @@
     Public FileMakerServer As String
     Public Const Table = "ファイル情報"
     Public Const PdfSaveFolder = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
+    'Public Const PdfSaveFolder = "\\192.168.32.90\Win共有\PDF"
 End Module
