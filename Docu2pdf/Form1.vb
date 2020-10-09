@@ -56,49 +56,49 @@ Public Class Form1
 
         'Const C_width As Integer = 135
         'Dim Col_n As Integer
-        With Me.DataGridView1
-            .Width = 900
-            .Height = 300
-            .ColumnCount = 3
-            'Col_n = .ColumnCount
-            .ColumnHeadersVisible = True
-            .ColumnHeadersHeight = 18
-            .ScrollBars = ScrollBars.Both
+        'With Me.DataGridView1
+        '    .Width = 900
+        '    .Height = 300
+        '    .ColumnCount = 3
+        '    'Col_n = .ColumnCount
+        '    .ColumnHeadersVisible = True
+        '    .ColumnHeadersHeight = 18
+        '    .ScrollBars = ScrollBars.Both
 
-            Dim columnHeaderStyle As New DataGridViewCellStyle()
-            columnHeaderStyle.BackColor = Color.White
-            columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
-            columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .ColumnHeadersDefaultCellStyle = columnHeaderStyle
-            .Columns(0).Name = "番号"
-            .Columns(1).Name = "ファイル名"
-            .Columns(2).Name = "Path"
-            '.Columns(3).Name = "Z1座標"
-            '.Columns(4).Name = "Z2座標"
-            '                  .Columns(5).Name = "On/Off"
-            .RowHeadersVisible = True
-            .Columns(0).Width = 60
-            .Columns(1).Width = 140
-            .Columns(2).Width = 500
-            '.Columns(3).Width = C_width
-            '.Columns(4).Width = C_width
-            '                    .Columns(5).Width = C_width
+        '    Dim columnHeaderStyle As New DataGridViewCellStyle()
+        '    columnHeaderStyle.BackColor = Color.White
+        '    columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
+        '    columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+        '    .ColumnHeadersDefaultCellStyle = columnHeaderStyle
+        '    .Columns(0).Name = "番号"
+        '    .Columns(1).Name = "ファイル名"
+        '    .Columns(2).Name = "Path"
+        '    '.Columns(3).Name = "Z1座標"
+        '    '.Columns(4).Name = "Z2座標"
+        '    '                  .Columns(5).Name = "On/Off"
+        '    .RowHeadersVisible = True
+        '    .Columns(0).Width = 60
+        '    .Columns(1).Width = 140
+        '    .Columns(2).Width = 500
+        '    '.Columns(3).Width = C_width
+        '    '.Columns(4).Width = C_width
+        '    '                    .Columns(5).Width = C_width
 
-        End With
-        Dim column1 As New DataGridViewCheckBoxColumn
-        DataGridView1.Columns.Add(column1)
-        DataGridView1.Columns(3).Name = "入力"
-        DataGridView1.Columns(3).Width = 50
+        'End With
+        'Dim column1 As New DataGridViewCheckBoxColumn
+        'DataGridView1.Columns.Add(column1)
+        'DataGridView1.Columns(3).Name = "入力"
+        'DataGridView1.Columns(3).Width = 50
 
-        Dim column2 As New DataGridViewCheckBoxColumn
-        DataGridView1.Columns.Add(column2)
-        DataGridView1.Columns(4).Name = "変換"
-        DataGridView1.Columns(4).Width = 50
+        'Dim column2 As New DataGridViewCheckBoxColumn
+        'DataGridView1.Columns.Add(column2)
+        'DataGridView1.Columns(4).Name = "変換"
+        'DataGridView1.Columns(4).Width = 50
 
-        Dim column3 As New DataGridViewCheckBoxColumn
-        DataGridView1.Columns.Add(column3)
-        DataGridView1.Columns(5).Name = "読込"
-        DataGridView1.Columns(5).Width = 50
+        'Dim column3 As New DataGridViewCheckBoxColumn
+        'DataGridView1.Columns.Add(column3)
+        'DataGridView1.Columns(5).Name = "読込"
+        'DataGridView1.Columns(5).Width = 50
 
         TextBox_FilderName2.Text = PdfSaveFolder
 
@@ -522,6 +522,58 @@ Public Class Form1
         '
 
         Try
+
+            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            With Me.DataGridView1
+                .Rows.Clear()
+                .Columns.Clear()
+                .Width = 900
+                .Height = 300
+                .ColumnCount = 3
+                'Col_n = .ColumnCount
+                .ColumnHeadersVisible = True
+                .ColumnHeadersHeight = 18
+                .ScrollBars = ScrollBars.Both
+
+
+                columnHeaderStyle.BackColor = Color.White
+                columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+                columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .ColumnHeadersDefaultCellStyle = columnHeaderStyle
+                .Columns(0).Name = "番号"
+                .Columns(1).Name = "ファイル名"
+                .Columns(2).Name = "Path"
+                '.Columns(3).Name = "Z1座標"
+                '.Columns(4).Name = "Z2座標"
+                '                  .Columns(5).Name = "On/Off"
+                .RowHeadersVisible = True
+                .Columns(0).Width = 60
+                .Columns(1).Width = 140
+                .Columns(2).Width = 500
+                '.Columns(3).Width = C_width
+                '.Columns(4).Width = C_width
+                '                    .Columns(5).Width = C_width
+
+
+                Dim column1 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column1)
+                .Columns(3).Name = "入力"
+                .Columns(3).Width = 50
+
+                Dim column2 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column2)
+                .Columns(4).Name = "変換"
+                .Columns(4).Width = 50
+
+                Dim column3 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column3)
+                .Columns(5).Name = "読込"
+                .Columns(5).Width = 50
+            End With
+
+
+
+
             Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
             Dim db As New OdbcDbIf
             Dim tb As DataTable
@@ -571,7 +623,7 @@ Public Class Form1
             Next
 
             DataGridView1.Rows.Clear()
-            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            'Dim columnHeaderStyle As New DataGridViewCellStyle()
             columnHeaderStyle.BackColor = Color.White
             columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
@@ -666,6 +718,59 @@ Public Class Form1
         '
 
         Try
+
+            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            With Me.DataGridView1
+                .Rows.Clear()
+                .Columns.Clear()
+                .Width = 900
+                .Height = 300
+                .ColumnCount = 3
+                'Col_n = .ColumnCount
+                .ColumnHeadersVisible = True
+                .ColumnHeadersHeight = 18
+                .ScrollBars = ScrollBars.Both
+
+
+                columnHeaderStyle.BackColor = Color.White
+                columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+                columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .ColumnHeadersDefaultCellStyle = columnHeaderStyle
+                .Columns(0).Name = "番号"
+                .Columns(1).Name = "ファイル名"
+                .Columns(2).Name = "Path"
+                '.Columns(3).Name = "Z1座標"
+                '.Columns(4).Name = "Z2座標"
+                '                  .Columns(5).Name = "On/Off"
+                .RowHeadersVisible = True
+                .Columns(0).Width = 60
+                .Columns(1).Width = 200
+                .Columns(2).Width = 440
+                '.Columns(3).Width = C_width
+                '.Columns(4).Width = C_width
+                '                    .Columns(5).Width = C_width
+
+
+                Dim column1 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column1)
+                .Columns(3).Name = "入力"
+                .Columns(3).Width = 50
+
+                Dim column2 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column2)
+                .Columns(4).Name = "変換"
+                .Columns(4).Width = 50
+
+                Dim column3 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column3)
+                .Columns(5).Name = "読込"
+                .Columns(5).Width = 50
+            End With
+
+
+
+
+
             Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
             Dim db As New OdbcDbIf
             Dim tb As DataTable
@@ -715,7 +820,7 @@ Public Class Form1
             Next
 
             DataGridView1.Rows.Clear()
-            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            'Dim columnHeaderStyle As New DataGridViewCellStyle()
             columnHeaderStyle.BackColor = Color.White
             columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
