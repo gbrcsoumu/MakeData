@@ -1286,6 +1286,11 @@ Public Class Form1
 
         If DataGridView1.RowCount > 1 Then
 
+            Dim db As New OdbcDbIf
+            Dim tb As DataTable
+            Dim Sql_Command As String
+
+
             Dim n As Integer = DataGridView1.RowCount - 1
             Dim Count As Integer = 0
             For i As Integer = 0 To n - 1
@@ -1293,6 +1298,10 @@ Public Class Form1
                     Count += 1
                 End If
             Next
+
+
+
+
 
             If Count > 0 Then
 
@@ -1310,11 +1319,46 @@ Public Class Form1
                 If result = vbOK Then
 
                     Debug.Print("OK")
+                    Try
+                        FileMakerServer = TextBox_FileMakerServer.Text
+                        db.Connect()
+
+                        If System.IO.File.Exists(CmdFile) = False Then
+                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
+                        End If
+                        Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
+                        sw.WriteLine("1")  ' コマンド番号
+
+                        For i As Integer = 0 To n - 1
+                            If DataGridView1.Rows(i).Cells(3).Value = False Then
+
+                                Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
+                                Dim filename As String = DataGridView1.Rows(i).Cells(2).Value
+                                Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+                                Sql_Command += " VALUES ('" + filename.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+                                tb = db.ExecuteSql(Sql_Command)
+                                DataGridView1.Rows(i).Cells(3).Value = True
+
+                                sw.WriteLine(fname)
+                                'Count += 1
+                            End If
+                            Application.DoEvents()
+                        Next
+                        db.Disconnect()
+
+                        ' Shift-Jisでファイルを作成
+
+
+                        '２行書き込み
+
+
+                        'ストリームを閉じる
+                        sw.Close()
+                    Catch e1 As Exception
+
+                    End Try
 
                 End If
-
-
-
             Else
                 MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
             End If
