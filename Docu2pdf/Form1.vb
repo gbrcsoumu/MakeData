@@ -583,6 +583,7 @@ Public Class Form1
                 Dim column1_2 As New DataGridViewCheckBoxColumn
                 .Columns.Add(column1_2)
                 .Columns(4).Name = "☑️"
+                .Columns(4).Width = 25
 
                 Dim textColumn2 As New DataGridViewTextBoxColumn()
                 textColumn2.DataPropertyName = "変換"
