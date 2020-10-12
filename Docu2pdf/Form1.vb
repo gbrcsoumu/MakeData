@@ -100,8 +100,11 @@ Public Class Form1
         'DataGridView1.Columns(5).Name = "読込"
         'DataGridView1.Columns(5).Width = 50
 
-        TextBox_FilderName2.Text = PdfSaveFolder
+        'TextBox_FilderName2.Text = PdfSaveFolder
 
+
+        'RadioButton_SameFolder.Checked = True
+        'RadioButton_OtherFolder.Checked = False
         TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
         Path2 = TextBox_FolderName1.Text
 
@@ -523,11 +526,25 @@ Public Class Form1
 
         Try
 
-            Dim columnHeaderStyle As New DataGridViewCellStyle()
+            Dim Style1 As New DataGridViewCellStyle()
+            Style1.BackColor = Color.White
+            Style1.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            Dim Style2 As New DataGridViewCellStyle()
+            Style2.BackColor = Color.White
+            Style2.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            Dim Style3 As New DataGridViewCellStyle()
+            Style3.BackColor = Color.White
+            Style3.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style3.Alignment = DataGridViewContentAlignment.MiddleRight
+
             With Me.DataGridView1
                 .Rows.Clear()
                 .Columns.Clear()
-                .Width = 900
+                .Width = 920
                 .Height = 300
                 .ColumnCount = 3
                 'Col_n = .ColumnCount
@@ -536,10 +553,10 @@ Public Class Form1
                 .ScrollBars = ScrollBars.Both
 
 
-                columnHeaderStyle.BackColor = Color.White
-                columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Bold)
-                columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .ColumnHeadersDefaultCellStyle = columnHeaderStyle
+                'columnHeaderStyle.BackColor = Color.White
+                'columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+                'columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .ColumnHeadersDefaultCellStyle = Style1
                 .Columns(0).Name = "番号"
                 .Columns(1).Name = "ファイル名"
                 .Columns(2).Name = "Path"
@@ -555,24 +572,57 @@ Public Class Form1
                 '                    .Columns(5).Width = C_width
 
 
-                Dim column1 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column1)
-                .Columns(3).Name = "入力"
-                .Columns(3).Width = 50
+                'Dim column1 As New DataGridViewCheckBoxColumn
+                '.Columns.Add(column1)
+                Dim textColumn1 As New DataGridViewTextBoxColumn()
+                textColumn1.DataPropertyName = "入力"
+                textColumn1.Name = "入力"
+                textColumn1.HeaderText = "入力"
+                DataGridView1.Columns.Add(textColumn1)
 
-                Dim column2 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column2)
-                .Columns(4).Name = "変換"
-                .Columns(4).Width = 50
+                '.Columns(3).Name = "入力"
+                .Columns(3).Width = 40
+                .Columns(3).DefaultCellStyle = Style2
 
-                Dim column3 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column3)
-                .Columns(5).Name = "読込"
-                .Columns(5).Width = 50
+                Dim column1_2 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column1_2)
+                .Columns(4).Name = "☑️"
+                .Columns(4).Width = 25
+                '.Columns(4).DefaultCellStyle = Style1
+
+                'Dim column2 As New DataGridViewCheckBoxColumn
+                '.Columns.Add(column2)
+                Dim textColumn2 As New DataGridViewTextBoxColumn()
+                textColumn2.DataPropertyName = "変換"
+                textColumn2.Name = "変換"
+                textColumn2.HeaderText = "変換"
+                DataGridView1.Columns.Add(textColumn2)
+                '.Columns(5).Name = "変換"
+                .Columns(5).Width = 40
+                .Columns(5).DefaultCellStyle = Style2
+
+                Dim column2_2 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column2_2)
+                .Columns(6).Name = "☑️"
+                .Columns(6).Width = 25
+                '.Columns(6).DefaultCellStyle = Style1
+
+                'Dim column3 As New DataGridViewCheckBoxColumn
+                '.Columns.Add(column3)
+                '.Columns(7).Name = "読込"
+                Dim textColumn3 As New DataGridViewTextBoxColumn()
+                textColumn3.DataPropertyName = "読込"
+                textColumn3.Name = "読込"
+                textColumn3.HeaderText = "読込"
+                DataGridView1.Columns.Add(textColumn3)
+                .Columns(7).Width = 40
+                .Columns(7).DefaultCellStyle = Style2
+
+
             End With
 
 
-
+            'Application.DoEvents()
 
             Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
             Dim db As New OdbcDbIf
@@ -624,9 +674,9 @@ Public Class Form1
 
             DataGridView1.Rows.Clear()
             'Dim columnHeaderStyle As New DataGridViewCellStyle()
-            columnHeaderStyle.BackColor = Color.White
-            columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+            Style1.BackColor = Color.White
+            Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+            DataGridView1.RowsDefaultCellStyle = Style1
 
             For j As Integer = 0 To checkbox_n - 1
                 If Check(j).Checked = True Then
@@ -652,23 +702,28 @@ Public Class Form1
                                     Dim n2 As Integer = tb.Rows.Count
                                     Dim st1 As String
                                     If n2 > 0 Then
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = True
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = "済"
+                                        DataGridView1.Rows(Count - 1).Cells(4).Value = False
                                         st1 = tb.Rows(0).Item("PdfPath").ToString()
                                         If st1 <> "" Then
-                                            DataGridView1.Rows(Count - 1).Cells(4).Value = True
+                                            DataGridView1.Rows(Count - 1).Cells(5).Value = "済"
+                                            DataGridView1.Rows(Count - 1).Cells(6).Value = False
                                         Else
-                                            DataGridView1.Rows(Count - 1).Cells(4).Value = False
+                                            DataGridView1.Rows(Count - 1).Cells(5).Value = "未"
+                                            DataGridView1.Rows(Count - 1).Cells(6).Value = True
                                         End If
                                         st1 = tb.Rows(0).Item("入力").ToString()
                                         If st1 <> "未読" Then
-                                            DataGridView1.Rows(Count - 1).Cells(5).Value = True
+                                            DataGridView1.Rows(Count - 1).Cells(7).Value = "済"
                                         Else
-                                            DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                            DataGridView1.Rows(Count - 1).Cells(7).Value = "未"
                                         End If
                                     Else
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = False
-                                        DataGridView1.Rows(Count - 1).Cells(4).Value = False
-                                        DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                        DataGridView1.Rows(Count - 1).Cells(3).Value = "未"
+                                        DataGridView1.Rows(Count - 1).Cells(4).Value = True
+                                        DataGridView1.Rows(Count - 1).Cells(5).Value = "未"
+                                        DataGridView1.Rows(Count - 1).Cells(6).Value = True
+                                        DataGridView1.Rows(Count - 1).Cells(7).Value = "未"
                                         st1 = ""
                                     End If
 
@@ -1281,6 +1336,13 @@ Public Class Form1
         End Try
     End Sub
 
+    Private Sub CheckBox_Input_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Input.CheckedChanged
+
+    End Sub
+
+    Private Sub CheckBox_Convert_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Convert.CheckedChanged
+
+    End Sub
 
     Private Function DocuToPdf(ByVal file1 As String, ByVal file2 As String, ByVal Dpi As Integer) As Integer
 
@@ -1352,40 +1414,40 @@ Public Class Form1
             Path1 = fbd.SelectedPath
 
             Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
-            TextBox_FilderName2.Text = Path2
+            'TextBox_FilderName2.Text = Path2
         End If
 
     End Sub
 
-    Private Sub Select_Save_folder_Button_Click(sender As Object, e As EventArgs) Handles Select_Save_folder_Button.Click
-        Dim fbd As New FolderBrowserDialog
+    'Private Sub Select_Save_folder_Button_Click(sender As Object, e As EventArgs)
+    '    Dim fbd As New FolderBrowserDialog
 
-        '上部に表示する説明テキストを指定する
-        fbd.Description = "読み込むフォルダを指定してください。"
-        'ルートフォルダを指定する
-        'デフォルトでDesktop
-        fbd.RootFolder = Environment.SpecialFolder.Desktop
-        '最初に選択するフォルダを指定する
-        'RootFolder以下にあるフォルダである必要がある
-        If TextBox_FilderName2.Text <> "" Then
-            fbd.SelectedPath = TextBox_FilderName2.Text
-        Else
-            fbd.SelectedPath = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
-        End If
+    '    '上部に表示する説明テキストを指定する
+    '    fbd.Description = "読み込むフォルダを指定してください。"
+    '    'ルートフォルダを指定する
+    '    'デフォルトでDesktop
+    '    fbd.RootFolder = Environment.SpecialFolder.Desktop
+    '    '最初に選択するフォルダを指定する
+    '    'RootFolder以下にあるフォルダである必要がある
+    '    If TextBox_FilderName2.Text <> "" Then
+    '        fbd.SelectedPath = TextBox_FilderName2.Text
+    '    Else
+    '        fbd.SelectedPath = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
+    '    End If
 
-        'ユーザーが新しいフォルダを作成できるようにする
-        'デフォルトでTrue
-        fbd.ShowNewFolderButton = True
+    '    'ユーザーが新しいフォルダを作成できるようにする
+    '    'デフォルトでTrue
+    '    fbd.ShowNewFolderButton = True
 
-        'ダイアログを表示する
-        If fbd.ShowDialog(Me) = DialogResult.OK Then
-            '選択されたフォルダを表示する
-            Me.TextBox_FilderName2.Text = fbd.SelectedPath
-            Path2 = fbd.SelectedPath
-            'Me.TextBox_FileLIst2.Text = ""
+    '    'ダイアログを表示する
+    '    If fbd.ShowDialog(Me) = DialogResult.OK Then
+    '        '選択されたフォルダを表示する
+    '        Me.TextBox_FilderName2.Text = fbd.SelectedPath
+    '        Path2 = fbd.SelectedPath
+    '        'Me.TextBox_FileLIst2.Text = ""
 
-        End If
-    End Sub
+    '    End If
+    'End Sub
 
     Private Sub Data_Input_Button_Click(sender As Object, e As EventArgs) Handles Data_Input_Button.Click
 
@@ -1399,7 +1461,7 @@ Public Class Form1
             Dim n As Integer = DataGridView1.RowCount - 1
             Dim Count As Integer = 0
             For i As Integer = 0 To n - 1
-                If DataGridView1.Rows(i).Cells(3).Value = False Then
+                If DataGridView1.Rows(i).Cells(4).Value = True Then
                     Count += 1
                 End If
             Next
@@ -1435,14 +1497,15 @@ Public Class Form1
                         sw.WriteLine("1")  ' コマンド番号
 
                         For i As Integer = 0 To n - 1
-                            If DataGridView1.Rows(i).Cells(3).Value = False Then
+                            If DataGridView1.Rows(i).Cells(4).Value = True Then
 
                                 Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
-                                Dim filename As String = DataGridView1.Rows(i).Cells(2).Value
+                                Dim filename1 As String = DataGridView1.Rows(i).Cells(2).Value
                                 Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
-                                Sql_Command += " VALUES ('" + filename.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+                                Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
                                 tb = db.ExecuteSql(Sql_Command)
-                                DataGridView1.Rows(i).Cells(3).Value = True
+                                DataGridView1.Rows(i).Cells(3).Value = "済"
+                                DataGridView1.Rows(i).Cells(4).Value = False
 
                                 sw.WriteLine(fname)
                                 'Count += 1
@@ -1466,6 +1529,142 @@ Public Class Form1
                 End If
             Else
                 MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
+            End If
+
+
+
+        Else
+            MessageBox.Show("データがありません!!", "警告", MessageBoxButtons.OK)
+
+        End If
+    End Sub
+
+
+    Private Sub PDF_Convert_Button_Click(sender As Object, e As EventArgs) Handles PDF_Convert_Button.Click
+        If DataGridView1.RowCount > 1 Then
+
+            Dim db As New OdbcDbIf
+            Dim tb As DataTable
+            Dim Sql_Command As String
+
+
+            Dim n As Integer = DataGridView1.RowCount - 1
+            Dim Count As Integer = 0
+            For i As Integer = 0 To n - 1
+                If DataGridView1.Rows(i).Cells(6).Value = False Then
+                    Count += 1
+                End If
+            Next
+
+
+
+
+
+            If Count > 0 Then
+
+                ' メッセージボックスに表示するテキスト
+                Dim message As String = "PDF未変換のデータが" + Count.ToString + "個あります。" + vbCrLf + "入力しますか？"
+
+                ' タイトルバーに表示するテキスト
+                Dim caption As String = "確認"
+
+                ' 表示するボタン([OK]ボタンと[キャンセル]ボタン)
+                Dim buttons As MessageBoxButtons = MessageBoxButtons.OKCancel
+
+                Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
+
+                If result = vbOK Then
+
+                    TextBox_FileLIst2.Text = ""
+                    Debug.Print("OK")
+                    Try
+                        FileMakerServer = TextBox_FileMakerServer.Text
+                        db.Connect()
+
+                        If System.IO.File.Exists(CmdFile) = False Then
+                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
+                        End If
+                        Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
+                        sw.WriteLine("2")  ' コマンド番号
+
+                        For i As Integer = 0 To n - 1
+                            If DataGridView1.Rows(i).Cells(6).Value = True Then
+
+                                Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
+                                Dim filename1 As String = DataGridView1.Rows(i).Cells(2).Value
+
+                                Dim FolderPath As String = Path.GetDirectoryName(filename1)
+                                Dim PdfFilename As String = Path.GetFileNameWithoutExtension(filename1) + ".pdf"
+
+                                Dim PdfPath = FolderPath + "\" + PdfFilename
+
+                                Dim fileInfo As New FileInfo(FolderPath)
+                                Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
+
+                                ' アクセス権限をEveryoneに対しフルコントロール許可
+                                Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+                                fileSec.AddAccessRule(accessRule)
+                                fileInfo.SetAccessControl(fileSec)
+
+                                ' ファイルの読み取り専用属性を削除
+                                If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
+                                    fileInfo.Attributes = FileAttributes.Normal
+                                End If
+
+                                Dim Ok As Integer = -1
+                                If System.IO.File.Exists(PdfPath) = False Then
+                                    Ok = DocuToPdf(filename1, PdfPath, 600)
+                                Else
+                                    Ok = 0
+                                End If
+
+                                If Ok = 0 Then
+                                    Me.TextBox_FileLIst2.Text += PdfPath + vbCrLf
+                                    Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+                                    Me.TextBox_FileLIst2.Focus()
+                                    Me.TextBox_FileLIst2.ScrollToCaret()
+
+                                    Sql_Command = "UPDATE """ + Table + """ SET ""PdfPath"" = '" + PdfPath.Replace("'", "''") + "'"
+                                    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                    tb = db.ExecuteSql(Sql_Command)
+                                    DataGridView1.Rows(i).Cells(5).Value = "済"
+                                    DataGridView1.Rows(i).Cells(6).Value = False
+
+                                    sw.WriteLine(fname)
+
+                                End If
+
+
+
+                                'Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
+                                'Dim filename As String = DataGridView1.Rows(i).Cells(2).Value
+                                'Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+                                'Sql_Command += " VALUES ('" + filename.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+                                'tb = db.ExecuteSql(Sql_Command)
+                                'DataGridView1.Rows(i).Cells(4).Value = True
+
+                                'sw.WriteLine(fname)
+                                'Count += 1
+                            End If
+                            Application.DoEvents()
+                        Next
+                        db.Disconnect()
+
+                        ' Shift-Jisでファイルを作成
+
+
+                        '２行書き込み
+
+
+                        'ストリームを閉じる
+                        sw.Close()
+                    Catch e1 As Exception
+
+                    End Try
+
+                End If
+            Else
+                MessageBox.Show("未変換のデータはありません", "警告", MessageBoxButtons.OK)
             End If
 
 
