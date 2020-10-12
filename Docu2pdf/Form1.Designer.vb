@@ -46,7 +46,6 @@ Partial Class Form1
         Me.CheckBox_zairyou = New System.Windows.Forms.CheckBox()
         Me.CheckBox_tobihi = New System.Windows.Forms.CheckBox()
         Me.CheckBox_ALL = New System.Windows.Forms.CheckBox()
-        Me.Read_Button = New System.Windows.Forms.Button()
         Me.RadioButton_xdw = New System.Windows.Forms.RadioButton()
         Me.RadioButton_pdf = New System.Windows.Forms.RadioButton()
         Me.FileMakerCheckBox = New System.Windows.Forms.CheckBox()
@@ -57,23 +56,35 @@ Partial Class Form1
         Me.Text_Read_Button = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.CheckBox_Convert = New System.Windows.Forms.CheckBox()
+        Me.CheckBox_Input = New System.Windows.Forms.CheckBox()
         Me.PDF_Convert_Button = New System.Windows.Forms.Button()
         Me.Data_Input_Button = New System.Windows.Forms.Button()
         Me.TextBox_FileLIst2 = New System.Windows.Forms.TextBox()
-        Me.PdfReadButton = New System.Windows.Forms.Button()
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.TextBox_FileLIst3 = New System.Windows.Forms.TextBox()
+        Me.PdfReadButton = New System.Windows.Forms.Button()
+        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
+        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
+        Me.Select_Read_Folder_Button2 = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.CheckBox_MakePdf = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
-        Me.CheckBox_Input = New System.Windows.Forms.CheckBox()
-        Me.CheckBox_Convert = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage3.SuspendLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -335,16 +346,6 @@ Partial Class Form1
         Me.CheckBox_ALL.Text = "ALL"
         Me.CheckBox_ALL.UseVisualStyleBackColor = True
         '
-        'Read_Button
-        '
-        Me.Read_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Read_Button.Location = New System.Drawing.Point(498, 17)
-        Me.Read_Button.Name = "Read_Button"
-        Me.Read_Button.Size = New System.Drawing.Size(127, 46)
-        Me.Read_Button.TabIndex = 7
-        Me.Read_Button.Text = "ファイル名読込＆変換"
-        Me.Read_Button.UseVisualStyleBackColor = True
-        '
         'RadioButton_xdw
         '
         Me.RadioButton_xdw.AutoSize = True
@@ -434,6 +435,7 @@ Partial Class Form1
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
+        Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(30, 99)
@@ -449,11 +451,9 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.PDF_Convert_Button)
         Me.TabPage1.Controls.Add(Me.Data_Input_Button)
         Me.TabPage1.Controls.Add(Me.TextBox_FileLIst2)
-        Me.TabPage1.Controls.Add(Me.PdfReadButton)
         Me.TabPage1.Controls.Add(Me.DocuReadButton)
         Me.TabPage1.Controls.Add(Me.DataGridView1)
         Me.TabPage1.Controls.Add(Me.TextBox_FolderName1)
-        Me.TabPage1.Controls.Add(Me.Read_Button)
         Me.TabPage1.Controls.Add(Me.ProgressBar1)
         Me.TabPage1.Controls.Add(Me.Select_Read_Folder_Button)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
@@ -461,8 +461,26 @@ Partial Class Form1
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(939, 598)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "フォルダーからの検索"
+        Me.TabPage1.Text = "フォルダーから報告書の検索"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'CheckBox_Convert
+        '
+        Me.CheckBox_Convert.AutoSize = True
+        Me.CheckBox_Convert.Location = New System.Drawing.Point(886, 40)
+        Me.CheckBox_Convert.Name = "CheckBox_Convert"
+        Me.CheckBox_Convert.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Convert.TabIndex = 15
+        Me.CheckBox_Convert.UseVisualStyleBackColor = True
+        '
+        'CheckBox_Input
+        '
+        Me.CheckBox_Input.AutoSize = True
+        Me.CheckBox_Input.Location = New System.Drawing.Point(799, 41)
+        Me.CheckBox_Input.Name = "CheckBox_Input"
+        Me.CheckBox_Input.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input.TabIndex = 14
+        Me.CheckBox_Input.UseVisualStyleBackColor = True
         '
         'PDF_Convert_Button
         '
@@ -493,16 +511,6 @@ Partial Class Form1
         Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 163)
         Me.TextBox_FileLIst2.TabIndex = 11
         '
-        'PdfReadButton
-        '
-        Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PdfReadButton.Location = New System.Drawing.Point(285, 17)
-        Me.PdfReadButton.Name = "PdfReadButton"
-        Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
-        Me.PdfReadButton.TabIndex = 9
-        Me.PdfReadButton.Text = "資料(pdf)リスト作成"
-        Me.PdfReadButton.UseVisualStyleBackColor = True
-        '
         'DocuReadButton
         '
         Me.DocuReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -521,6 +529,120 @@ Partial Class Form1
         Me.DataGridView1.RowTemplate.Height = 21
         Me.DataGridView1.Size = New System.Drawing.Size(900, 300)
         Me.DataGridView1.TabIndex = 8
+        '
+        'TabPage3
+        '
+        Me.TabPage3.Controls.Add(Me.CheckBox1)
+        Me.TabPage3.Controls.Add(Me.CheckBox2)
+        Me.TabPage3.Controls.Add(Me.Button2)
+        Me.TabPage3.Controls.Add(Me.Button3)
+        Me.TabPage3.Controls.Add(Me.TextBox_FileLIst3)
+        Me.TabPage3.Controls.Add(Me.PdfReadButton)
+        Me.TabPage3.Controls.Add(Me.DataGridView2)
+        Me.TabPage3.Controls.Add(Me.TextBox3)
+        Me.TabPage3.Controls.Add(Me.ProgressBar2)
+        Me.TabPage3.Controls.Add(Me.Select_Read_Folder_Button2)
+        Me.TabPage3.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage3.Name = "TabPage3"
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage3.Size = New System.Drawing.Size(939, 598)
+        Me.TabPage3.TabIndex = 2
+        Me.TabPage3.Text = "フォルダーから資料の検索"
+        Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'CheckBox1
+        '
+        Me.CheckBox1.AutoSize = True
+        Me.CheckBox1.Location = New System.Drawing.Point(896, 37)
+        Me.CheckBox1.Name = "CheckBox1"
+        Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox1.TabIndex = 26
+        Me.CheckBox1.UseVisualStyleBackColor = True
+        '
+        'CheckBox2
+        '
+        Me.CheckBox2.AutoSize = True
+        Me.CheckBox2.Location = New System.Drawing.Point(809, 38)
+        Me.CheckBox2.Name = "CheckBox2"
+        Me.CheckBox2.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox2.TabIndex = 25
+        Me.CheckBox2.UseVisualStyleBackColor = True
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Location = New System.Drawing.Point(843, 29)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(48, 32)
+        Me.Button2.TabIndex = 23
+        Me.Button2.Text = "変換"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'Button3
+        '
+        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button3.Location = New System.Drawing.Point(754, 29)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(48, 32)
+        Me.Button3.TabIndex = 24
+        Me.Button3.Text = "入力"
+        Me.Button3.UseVisualStyleBackColor = True
+        '
+        'TextBox_FileLIst3
+        '
+        Me.TextBox_FileLIst3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(20, 421)
+        Me.TextBox_FileLIst3.Multiline = True
+        Me.TextBox_FileLIst3.Name = "TextBox_FileLIst3"
+        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 163)
+        Me.TextBox_FileLIst3.TabIndex = 22
+        '
+        'PdfReadButton
+        '
+        Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.PdfReadButton.Location = New System.Drawing.Point(153, 14)
+        Me.PdfReadButton.Name = "PdfReadButton"
+        Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
+        Me.PdfReadButton.TabIndex = 20
+        Me.PdfReadButton.Text = "資料(pdf)リスト作成"
+        Me.PdfReadButton.UseVisualStyleBackColor = True
+        '
+        'DataGridView2
+        '
+        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView2.Location = New System.Drawing.Point(19, 93)
+        Me.DataGridView2.Name = "DataGridView2"
+        Me.DataGridView2.RowTemplate.Height = 21
+        Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
+        Me.DataGridView2.TabIndex = 19
+        '
+        'TextBox3
+        '
+        Me.TextBox3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox3.Location = New System.Drawing.Point(19, 65)
+        Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox3.Multiline = True
+        Me.TextBox3.Name = "TextBox3"
+        Me.TextBox3.Size = New System.Drawing.Size(897, 23)
+        Me.TextBox3.TabIndex = 16
+        '
+        'ProgressBar2
+        '
+        Me.ProgressBar2.Location = New System.Drawing.Point(20, 398)
+        Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2)
+        Me.ProgressBar2.Name = "ProgressBar2"
+        Me.ProgressBar2.Size = New System.Drawing.Size(573, 18)
+        Me.ProgressBar2.TabIndex = 18
+        '
+        'Select_Read_Folder_Button2
+        '
+        Me.Select_Read_Folder_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(19, 14)
+        Me.Select_Read_Folder_Button2.Name = "Select_Read_Folder_Button2"
+        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(128, 47)
+        Me.Select_Read_Folder_Button2.TabIndex = 17
+        Me.Select_Read_Folder_Button2.Text = "読み込みフォルダー選択"
+        Me.Select_Read_Folder_Button2.UseVisualStyleBackColor = True
         '
         'TabPage2
         '
@@ -581,24 +703,6 @@ Partial Class Form1
         Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(143, 19)
         Me.TextBox_FileMakerServer.TabIndex = 14
         '
-        'CheckBox_Input
-        '
-        Me.CheckBox_Input.AutoSize = True
-        Me.CheckBox_Input.Location = New System.Drawing.Point(799, 41)
-        Me.CheckBox_Input.Name = "CheckBox_Input"
-        Me.CheckBox_Input.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox_Input.TabIndex = 14
-        Me.CheckBox_Input.UseVisualStyleBackColor = True
-        '
-        'CheckBox_Convert
-        '
-        Me.CheckBox_Convert.AutoSize = True
-        Me.CheckBox_Convert.Location = New System.Drawing.Point(886, 40)
-        Me.CheckBox_Convert.Name = "CheckBox_Convert"
-        Me.CheckBox_Convert.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox_Convert.TabIndex = 15
-        Me.CheckBox_Convert.UseVisualStyleBackColor = True
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -643,6 +747,9 @@ Partial Class Form1
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
         Me.ResumeLayout(False)
@@ -673,7 +780,6 @@ Partial Class Form1
     Friend WithEvents CheckBox_zairyou As CheckBox
     Friend WithEvents CheckBox_tobihi As CheckBox
     Friend WithEvents CheckBox_ALL As CheckBox
-    Friend WithEvents Read_Button As Button
     Friend WithEvents RadioButton_xdw As RadioButton
     Friend WithEvents RadioButton_pdf As RadioButton
     Friend WithEvents FileMakerCheckBox As CheckBox
@@ -695,7 +801,17 @@ Partial Class Form1
     Friend WithEvents TextBox_FileLIst2 As TextBox
     Friend WithEvents PDF_Convert_Button As Button
     Friend WithEvents Data_Input_Button As Button
-    Friend WithEvents PdfReadButton As Button
     Friend WithEvents CheckBox_Convert As CheckBox
     Friend WithEvents CheckBox_Input As CheckBox
+    Friend WithEvents TabPage3 As TabPage
+    Friend WithEvents CheckBox1 As CheckBox
+    Friend WithEvents CheckBox2 As CheckBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents Button3 As Button
+    Friend WithEvents TextBox_FileLIst3 As TextBox
+    Friend WithEvents PdfReadButton As Button
+    Friend WithEvents DataGridView2 As DataGridView
+    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents ProgressBar2 As ProgressBar
+    Friend WithEvents Select_Read_Folder_Button2 As Button
 End Class

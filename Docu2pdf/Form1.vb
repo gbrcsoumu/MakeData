@@ -108,6 +108,9 @@ Public Class Form1
         TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
         Path2 = TextBox_FolderName1.Text
 
+        CheckBox_Input.Checked = True
+        CheckBox_Convert.Checked = True
+
         Me.CenterToScreen()
     End Sub
 
@@ -567,37 +570,25 @@ Public Class Form1
                 .Columns(0).Width = 60
                 .Columns(1).Width = 140
                 .Columns(2).Width = 500
-                '.Columns(3).Width = C_width
-                '.Columns(4).Width = C_width
-                '                    .Columns(5).Width = C_width
 
-
-                'Dim column1 As New DataGridViewCheckBoxColumn
-                '.Columns.Add(column1)
                 Dim textColumn1 As New DataGridViewTextBoxColumn()
                 textColumn1.DataPropertyName = "入力"
                 textColumn1.Name = "入力"
                 textColumn1.HeaderText = "入力"
-                DataGridView1.Columns.Add(textColumn1)
+                .Columns.Add(textColumn1)
 
-                '.Columns(3).Name = "入力"
                 .Columns(3).Width = 40
                 .Columns(3).DefaultCellStyle = Style2
 
                 Dim column1_2 As New DataGridViewCheckBoxColumn
                 .Columns.Add(column1_2)
                 .Columns(4).Name = "☑️"
-                .Columns(4).Width = 25
-                '.Columns(4).DefaultCellStyle = Style1
 
-                'Dim column2 As New DataGridViewCheckBoxColumn
-                '.Columns.Add(column2)
                 Dim textColumn2 As New DataGridViewTextBoxColumn()
                 textColumn2.DataPropertyName = "変換"
                 textColumn2.Name = "変換"
                 textColumn2.HeaderText = "変換"
-                DataGridView1.Columns.Add(textColumn2)
-                '.Columns(5).Name = "変換"
+                .Columns.Add(textColumn2)
                 .Columns(5).Width = 40
                 .Columns(5).DefaultCellStyle = Style2
 
@@ -605,16 +596,12 @@ Public Class Form1
                 .Columns.Add(column2_2)
                 .Columns(6).Name = "☑️"
                 .Columns(6).Width = 25
-                '.Columns(6).DefaultCellStyle = Style1
 
-                'Dim column3 As New DataGridViewCheckBoxColumn
-                '.Columns.Add(column3)
-                '.Columns(7).Name = "読込"
                 Dim textColumn3 As New DataGridViewTextBoxColumn()
                 textColumn3.DataPropertyName = "読込"
                 textColumn3.Name = "読込"
                 textColumn3.HeaderText = "読込"
-                DataGridView1.Columns.Add(textColumn3)
+                .Columns.Add(textColumn3)
                 .Columns(7).Width = 40
                 .Columns(7).DefaultCellStyle = Style2
 
@@ -629,17 +616,12 @@ Public Class Form1
             Dim tb As DataTable
             Dim Sql_Command As String
 
-
-
-            'If FileMakerOn = True Then
             FileMakerServer = TextBox_FileMakerServer.Text
             db.Connect()
-            'End If
 
             Dim fname2 As New List(Of String)
             Dim dir2 As New List(Of String)
-            Dim WildCard1() As String   ', WildCard2 As String
-            'Me.TextBox_FileList1.Text = ""
+            Dim WildCard1() As String
             Dim Count As Integer = 0
             Dim ff()() As String, flag() As Boolean
 
@@ -647,7 +629,6 @@ Public Class Form1
             WildCard1(0) = "*.xdw"
             WildCard1(1) = "*.xbd"
 
-            'WildCard2 = WildCard1.ToUpper
 
             Dim nn As Integer = 0
 
@@ -673,7 +654,6 @@ Public Class Form1
             Next
 
             DataGridView1.Rows.Clear()
-            'Dim columnHeaderStyle As New DataGridViewCellStyle()
             Style1.BackColor = Color.White
             Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             DataGridView1.RowsDefaultCellStyle = Style1
@@ -747,14 +727,9 @@ Public Class Form1
 
             Next
 
-            'Me.TextBox_FileList1.Text += "=== END ===" + vbCrLf
-            'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
-            'Me.TextBox_FileList1.Focus()
-            'Me.TextBox_FileList1.ScrollToCaret()
 
-            'If FileMakerOn = True Then
             db.Disconnect()
-            'End If
+
             fname = fname2.ToArray
             dir1 = dir2.ToArray
         Catch e1 As Exception
@@ -774,14 +749,27 @@ Public Class Form1
 
         Try
 
+            Dim Style1 As New DataGridViewCellStyle()
+            Style1.BackColor = Color.White
+            Style1.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+            Dim Style2 As New DataGridViewCellStyle()
+            Style2.BackColor = Color.White
+            Style2.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            Dim Style3 As New DataGridViewCellStyle()
+            Style3.BackColor = Color.White
+            Style3.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style3.Alignment = DataGridViewContentAlignment.MiddleRight
             Dim columnHeaderStyle As New DataGridViewCellStyle()
-            With Me.DataGridView1
+            With Me.DataGridView2
                 .Rows.Clear()
                 .Columns.Clear()
-                .Width = 900
+                .Width = 920
                 .Height = 300
                 .ColumnCount = 3
-                'Col_n = .ColumnCount
                 .ColumnHeadersVisible = True
                 .ColumnHeadersHeight = 18
                 .ScrollBars = ScrollBars.Both
@@ -794,32 +782,33 @@ Public Class Form1
                 .Columns(0).Name = "番号"
                 .Columns(1).Name = "ファイル名"
                 .Columns(2).Name = "Path"
-                '.Columns(3).Name = "Z1座標"
-                '.Columns(4).Name = "Z2座標"
-                '                  .Columns(5).Name = "On/Off"
+
                 .RowHeadersVisible = True
                 .Columns(0).Width = 60
-                .Columns(1).Width = 200
+                .Columns(1).Width = 240
                 .Columns(2).Width = 440
-                '.Columns(3).Width = C_width
-                '.Columns(4).Width = C_width
-                '                    .Columns(5).Width = C_width
 
+                Dim textColumn1 As New DataGridViewTextBoxColumn()
+                textColumn1.DataPropertyName = "入力"
+                textColumn1.Name = "入力"
+                textColumn1.HeaderText = "入力"
+                .Columns.Add(textColumn1)
+                .Columns(3).Width = 40
+                .Columns(3).DefaultCellStyle = Style2
 
-                Dim column1 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column1)
-                .Columns(3).Name = "入力"
-                .Columns(3).Width = 50
+                Dim column1_2 As New DataGridViewCheckBoxColumn
+                .Columns.Add(column1_2)
+                .Columns(4).Name = "☑️"
+                .Columns(4).Width = 25
 
-                Dim column2 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column2)
-                .Columns(4).Name = "変換"
-                .Columns(4).Width = 50
+                Dim textColumn3 As New DataGridViewTextBoxColumn()
+                textColumn3.DataPropertyName = "読込"
+                textColumn3.Name = "読込"
+                textColumn3.HeaderText = "読込"
+                .Columns.Add(textColumn3)
+                .Columns(5).Width = 40
+                .Columns(5).DefaultCellStyle = Style2
 
-                Dim column3 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column3)
-                .Columns(5).Name = "読込"
-                .Columns(5).Width = 50
             End With
 
 
@@ -831,30 +820,23 @@ Public Class Form1
             Dim tb As DataTable
             Dim Sql_Command As String
 
-
-
-            'If FileMakerOn = True Then
             FileMakerServer = TextBox_FileMakerServer.Text
             db.Connect()
-            'End If
 
             Dim fname2 As New List(Of String)
             Dim dir2 As New List(Of String)
-            Dim WildCard1() As String   ', WildCard2 As String
-            'Me.TextBox_FileList1.Text = ""
+            Dim WildCard1() As String
+
             Dim Count As Integer = 0
             Dim ff()() As String, flag() As Boolean
 
             ReDim WildCard1(0), ff(0)
             WildCard1(0) = "*.pdf"
-            'WildCard1(1) = "*.xbd"
-
-            'WildCard2 = WildCard1.ToUpper
 
             Dim nn As Integer = 0
 
             For i As Integer = 0 To WildCard1.Length - 1
-                ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                ff(i) = System.IO.Directory.GetFiles(Path2, WildCard1(i), System.IO.SearchOption.AllDirectories)
                 nn += ff(i).Length
             Next
 
@@ -874,11 +856,9 @@ Public Class Form1
                 flag(i) = False
             Next
 
-            DataGridView1.Rows.Clear()
-            'Dim columnHeaderStyle As New DataGridViewCellStyle()
-            columnHeaderStyle.BackColor = Color.White
-            columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+            DataGridView2.Rows.Clear()
+
+            DataGridView2.RowsDefaultCellStyle = Style1
 
             For j As Integer = 0 To checkbox_n - 1
                 If Check(j).Checked = True Then
@@ -897,35 +877,31 @@ Public Class Form1
                                     Count += 1
                                     Dim row1() As String
                                     row1 = {Count.ToString, fname, filename(i)}
-                                    DataGridView1.Rows.Add(row1)
+                                    DataGridView2.Rows.Add(row1)
 
                                     Sql_Command = "SELECT ""FilePath"",""FilePath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
                                     tb = db.ExecuteSql(Sql_Command)
                                     Dim n2 As Integer = tb.Rows.Count
                                     Dim st1 As String
                                     If n2 > 0 Then
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = True
-                                        st1 = tb.Rows(0).Item("FilePath").ToString()
-                                        If st1 <> "" Then
-                                            DataGridView1.Rows(Count - 1).Cells(4).Value = True
-                                        Else
-                                            DataGridView1.Rows(Count - 1).Cells(4).Value = False
-                                        End If
+                                        DataGridView2.Rows(Count - 1).Cells(3).Value = "済"
+                                        DataGridView2.Rows(Count - 1).Cells(4).Value = False
+
                                         st1 = tb.Rows(0).Item("入力").ToString()
                                         If st1 <> "未読" Then
-                                            DataGridView1.Rows(Count - 1).Cells(5).Value = True
+                                            DataGridView2.Rows(Count - 1).Cells(5).Value = "済"
                                         Else
-                                            DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                            DataGridView2.Rows(Count - 1).Cells(5).Value = "未"
                                         End If
                                     Else
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = False
-                                        DataGridView1.Rows(Count - 1).Cells(4).Value = False
-                                        DataGridView1.Rows(Count - 1).Cells(5).Value = False
+                                        DataGridView2.Rows(Count - 1).Cells(3).Value = "未"
+                                        DataGridView2.Rows(Count - 1).Cells(4).Value = True
+                                        DataGridView2.Rows(Count - 1).Cells(5).Value = "未"
                                         st1 = ""
                                     End If
 
-                                    DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
-                                    DataGridView1.CurrentCell = DataGridView1(0, Count - 1)
+                                    DataGridView2.FirstDisplayedScrollingRowIndex = Count - 1
+                                    DataGridView2.CurrentCell = DataGridView2(0, Count - 1)
 
                                     flag(i) = True
 
@@ -944,14 +920,9 @@ Public Class Form1
 
             Next
 
-            'Me.TextBox_FileList1.Text += "=== END ===" + vbCrLf
-            'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
-            'Me.TextBox_FileList1.Focus()
-            'Me.TextBox_FileList1.ScrollToCaret()
 
-            'If FileMakerOn = True Then
             db.Disconnect()
-            'End If
+
             fname = fname2.ToArray
             dir1 = dir2.ToArray
         Catch e1 As Exception
@@ -987,362 +958,423 @@ Public Class Form1
 
 
 
-    Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
-        Try
-            Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
-            Dim db As New OdbcDbIf
-            Dim tb As DataTable
-            Dim Sql_Command As String
+    'Private Sub Read_Button_Click(sender As Object, e As EventArgs) Handles Read_Button.Click
+    '    Try
+    '        Dim FileMakerOn As Boolean = FileMakerCheckBox.Checked
+    '        Dim db As New OdbcDbIf
+    '        Dim tb As DataTable
+    '        Dim Sql_Command As String
 
 
 
-            If FileMakerOn = True Then
-                FileMakerServer = TextBox_FileMakerServer.Text
-                db.Connect()
-            End If
+    '        If FileMakerOn = True Then
+    '            FileMakerServer = TextBox_FileMakerServer.Text
+    '            db.Connect()
+    '        End If
 
-            Dim fname2 As New List(Of String)
-            Dim dir2 As New List(Of String)
-            Dim WildCard1() As String   ', WildCard2 As String
-            'Me.TextBox_FileList1.Text = ""
-            Dim Count As Integer = 0
-            Dim ff()() As String
-            If RadioButton_xdw.Checked = True Then
-                ReDim WildCard1(1), ff(1)
-                WildCard1(0) = "*.xdw"
-                WildCard1(1) = "*.xbd"
-            Else
-                ReDim WildCard1(0), ff(0)
-                WildCard1(0) = "*.pdf"
-            End If
-            'WildCard2 = WildCard1.ToUpper
+    '        Dim fname2 As New List(Of String)
+    '        Dim dir2 As New List(Of String)
+    '        Dim WildCard1() As String   ', WildCard2 As String
+    '        'Me.TextBox_FileList1.Text = ""
+    '        Dim Count As Integer = 0
+    '        Dim ff()() As String
+    '        If RadioButton_xdw.Checked = True Then
+    '            ReDim WildCard1(1), ff(1)
+    '            WildCard1(0) = "*.xdw"
+    '            WildCard1(1) = "*.xbd"
+    '        Else
+    '            ReDim WildCard1(0), ff(0)
+    '            WildCard1(0) = "*.pdf"
+    '        End If
+    '        'WildCard2 = WildCard1.ToUpper
 
-            Dim nn As Integer = 0
+    '        Dim nn As Integer = 0
 
-            For i As Integer = 0 To WildCard1.Length - 1
-                ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
-                nn += ff(i).Length
-            Next
+    '        For i As Integer = 0 To WildCard1.Length - 1
+    '            ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
+    '            nn += ff(i).Length
+    '        Next
 
-            ReDim filename(nn - 1)
+    '        ReDim filename(nn - 1)
 
-            For i As Integer = 0 To WildCard1.Length - 1
-                If i = 0 Then
-                    ff(i).CopyTo(filename, 0)
+    '        For i As Integer = 0 To WildCard1.Length - 1
+    '            If i = 0 Then
+    '                ff(i).CopyTo(filename, 0)
+    '            Else
+    '                ff(i).CopyTo(filename, ff(i - 1).Length)
+    '            End If
+    '        Next
+
+    '        Dim n As Integer = filename.Length
+
+    '        For j As Integer = 0 To checkbox_n - 1
+    '            If Check(j).Checked = True Then
+
+
+    '                Dim s1 As String = Check(j).Text.ToUpper.Replace("3", "")
+    '                Dim s2 As String = Check(j).Text.ToLower.Replace("3", "")
+    '                Dim s3 As String = StrConv(s1, VbStrConv.Wide)
+    '                Dim s4 As String = StrConv(s2, VbStrConv.Wide)
+    '                Dim w1 As String = "\d\d\d\d\d\d"
+    '                Dim w2 As String = "-\d\d-\d\d\d"
+    '                Dim w3 As String = "-\d\d-\d\d"
+    '                Dim w4 As String = "-\d\d-\d\d\d\d"
+    '                'Dim s1 As String = Check(j).Text.Substring(1, 1).ToUpper
+    '                'Dim s2 As String = Check(j).Text.ToLower
+    '                'Dim w0 As String = WildCard1
+    '                'filename = System.IO.Directory.GetFiles(Path1, w0, System.IO.SearchOption.AllDirectories)
+    '                'Dim n As Integer = filename.Length
+    '                'Me.TextBox3.Text = ""
+    '                System.Windows.Forms.Application.DoEvents()
+    '                'ReDim fname(n - 1), dir1(n - 1)
+    '                If n > 0 Then
+
+    '                    Dim row1() As String
+
+
+    '                    For i As Integer = 0 To n - 1
+
+    '                        'If filename(i).Contains(" '") Then
+    '                        '    Dim a As String = filename(i).Replace("'", "''")
+    '                        '    'File.Move(filename(i), a)
+    '                        '    filename(i) = a
+    '                        'End If
+    '                        'fname(i) = System.IO.Path.GetFileNameWithoutExtension(filename(i))
+    '                        'dir1(i) = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i)))
+    '                        Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
+    '                        'If f.Substring(0, 2) = s1 Or f.Substring(0, 2) = s2 Then
+
+    '                        Dim fname As String = System.IO.Path.GetFileName(filename(i))
+
+    '                        If fname.Substring(0, 1) <> "." Then    ' 隠しファイルを除外する。
+
+    '                            If System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w1) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w2) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w3) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w4) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w1) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w2) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w3) _
+    '                            Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w4) _
+    '                            Then
+
+    '                                'If System.Text.RegularExpressions.Regex.IsMatch(fname, WildCard1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, WildCard2) Then
+
+    '                                If FileMakerOn = True Then
+    '                                    'Dim fname As String = System.IO.Path.GetFileName(filename(i))
+
+    '                                    'Sql_Command = "SELECT ""FilePath"" FROM """ + Table + """ WHERE ""FilePath"" = '" & filename(i) & "'"
+    '                                    Sql_Command = "SELECT ""FilePath"",""PdfPath"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+    '                                    tb = db.ExecuteSql(Sql_Command)
+    '                                    Dim n2 As Integer = tb.Rows.Count
+    '                                    Dim st1 As String
+    '                                    If n2 > 0 Then
+    '                                        st1 = tb.Rows(0).Item("PdfPath").ToString()
+    '                                    Else
+    '                                        st1 = ""
+    '                                    End If
+    '                                    Count += 1
+
+    '                                    If n2 = 0 Then
+
+    '                                        fname2.Add(f)
+    '                                        dir2.Add(System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i))))
+    '                                        'Me.TextBox_FileList1.Text += Count.ToString("000") + " : " + filename(i) + vbCrLf
+    '                                        'Me.TextBox3.SelectionStart = Me.TextBox3.Text.Length
+    '                                        'Me.TextBox3.Focus()
+    '                                        'Me.TextBox3.ScrollToCaret()
+
+    '                                        Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+    '                                        Sql_Command += " VALUES ('" + filename(i).Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+    '                                        tb = db.ExecuteSql(Sql_Command)
+    '                                    Else
+    '                                        'Me.TextBox_FileList1.Text += Count.ToString("000") + " : " + filename(i) + ":(済)" + vbCrLf
+    '                                    End If
+
+    '                                    Application.DoEvents()
+
+    '                                    If RadioButton_xdw.Checked = True And CheckBox_MakePdf.Checked = True Then
+
+    '                                        If st1 = "" Then
+
+    '                                            Dim p1 As String = Path.GetFileName(Path1)
+    '                                            Dim p2 As String
+    '                                            Dim d1 As String = ""
+    '                                            Dim f2 As String = Path.GetDirectoryName(filename(i))
+    '                                            Dim f3 As String = Path.GetFileNameWithoutExtension(filename(i)) + ".pdf"
+    '                                            Do
+    '                                                p2 = Path.GetFileName(f2)
+    '                                                If p2 = p1 Then Exit Do
+    '                                                d1 = p2 + "\" + d1
+    '                                                f2 = Path.GetDirectoryName(f2)
+    '                                            Loop
+    '                                            Dim Path3 = Path2 + "\" + d1
+    '                                            If System.IO.File.Exists(Path3) = False Then
+    '                                                System.IO.Directory.CreateDirectory(Path3)
+    '                                            End If
+    '                                            Dim Path4 = Path3 + f3
+
+    '                                            Dim fileInfo As New FileInfo(Path3)
+    '                                            Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
+
+    '                                            ' アクセス権限をEveryoneに対しフルコントロール許可
+    '                                            Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+    '                                            fileSec.AddAccessRule(accessRule)
+    '                                            fileInfo.SetAccessControl(fileSec)
+
+    '                                            ' ファイルの読み取り専用属性を削除
+    '                                            If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
+    '                                                fileInfo.Attributes = FileAttributes.Normal
+    '                                            End If
+
+    '                                            Dim Ok As Integer
+    '                                            If System.IO.File.Exists(Path4) = False Then
+
+    '                                                Ok = DocuToPdf(filename(i), Path4, 600)
+    '                                            End If
+
+    '                                            If Ok = 0 Then
+    '                                                Me.TextBox_FileLIst2.Text += Path4 + vbCrLf
+    '                                                Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+    '                                                Me.TextBox_FileLIst2.Focus()
+    '                                                Me.TextBox_FileLIst2.ScrollToCaret()
+
+    '                                                Sql_Command = "UPDATE """ + Table + """ SET ""PdfPath"" = '" + Path4.Replace("'", "''") + "'"
+    '                                                Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+    '                                                tb = db.ExecuteSql(Sql_Command)
+    '                                            End If
+    '                                            'Sql_Command2 = "UPDATE """ + DateLogTable + """ SET ""出勤時刻"" = TIME '" + t1 + "' ,""出勤コード"" = " + code1
+    '                                            'Sql_Command2 += "  WHERE ""職員番号"" = '" + value + "' AND ""日付"" = DATE '" + D1 + "'"
+
+    '                                            row1 = {Count.ToString, filename(i), Path3}
+    '                                            DataGridView1.Rows.Add(row1)
+    '                                            DataGridView1.CurrentRow.Cells(3).Value = True
+    '                                            DataGridView1.CurrentRow.Cells(4).Value = True
+
+    '                                            Dim columnHeaderStyle As New DataGridViewCellStyle()
+    '                                            columnHeaderStyle.BackColor = Color.White
+    '                                            columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
+    '                                            DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+    '                                            '       R1 = R1 + 1
+    '                                            '       no = R1.ToString
+    '                                            '       row1 = {no, "", "", ""}
+    '                                            '       DataGridView1.Rows.Add(row1)
+
+    '                                            DataGridView1.Rows(i).Height = 16
+    '                                            DataGridView1.FirstDisplayedScrollingRowIndex = i
+    '                                            DataGridView1.CurrentCell = DataGridView1(0, i)
+
+    '                                            'Dim RN = DataGridView1.Rows.Count - 2
+    '                                            'If RN >= 0 Then
+    '                                            '    For i As Integer = 0 To RN
+    '                                            '        DataGridView1.Rows.RemoveAt(0)
+    '                                            '    Next
+    '                                            'End If
+    '                                            'Dim row1() As String
+    '                                            'Dim _No As Integer, _X As Double, _Y As Double, _Z1 As Double, _Z2 As Double
+    '                                            'For i As Integer = 0 To n - 2
+    '                                            '    _No = Val(Data(i + 1, 0))
+    '                                            '    _X = Val(Data(i + 1, 1))
+    '                                            '    _Y = Val(Data(i + 1, 2))
+    '                                            '    _Z1 = Val(Data(i + 1, 3))
+    '                                            '    _Z2 = Val(Data(i + 1, 4))
+
+    '                                            '    loadAry(i) = New XYZData()
+    '                                            '    loadAry(i).No = _No
+    '                                            '    loadAry(i).X = _X
+    '                                            '    loadAry(i).Y = _Y
+    '                                            '    loadAry(i).Z1 = _Z1
+    '                                            '    loadAry(i).Z2 = _Z2
+
+    '                                            '    row1 = {_No.ToString, _X.ToString, _Y.ToString, _Z1.ToString, _Z2.ToString}
+    '                                            '    DataGridView1.Rows.Add(row1)
+
+    '                                            '    Dim columnHeaderStyle As New DataGridViewCellStyle()
+    '                                            '    columnHeaderStyle.BackColor = Color.White
+    '                                            '    columnHeaderStyle.Font = New Font("MSゴシック", 20, FontStyle.Bold)
+    '                                            '    DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+    '                                            '    '       R1 = R1 + 1
+    '                                            '    '       no = R1.ToString
+    '                                            '    '       row1 = {no, "", "", ""}
+    '                                            '    '       DataGridView1.Rows.Add(row1)
+
+    '                                            '    DataGridView1.Rows(i).Height = 30
+    '                                            '    DataGridView1.FirstDisplayedScrollingRowIndex = i
+    '                                            '    DataGridView1.CurrentCell = DataGridView1(0, i)
+    '                                            'Next
+    '                                            'loadAry2 = loadAry
+    '                                            'PointN = loadAry2.Length
+    '                                            'Me.EndPoint1.Text = PointN.ToString
+
+    '                                            'For i As Integer = 0 To loadAry.Length - 1
+    '                                            '    DataGridView1.Rows(i).Cells(5).Value = True
+    '                                            '    DataGridView1.Rows(i).Cells(6).Value = True
+    '                                            'Next
+
+
+
+
+
+
+
+
+
+    '                                        Else
+    '                                            'Me.TextBox_FileLIst2.Text += st1 + " (済)" + vbCrLf
+    '                                            'Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+    '                                            'Me.TextBox_FileLIst2.Focus()
+    '                                            'Me.TextBox_FileLIst2.ScrollToCaret()
+
+    '                                            Dim columnHeaderStyle As New DataGridViewCellStyle()
+    '                                            columnHeaderStyle.BackColor = Color.White
+    '                                            columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
+    '                                            DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+
+    '                                            DataGridView1.Rows(i).Height = 18
+    '                                            DataGridView1.FirstDisplayedScrollingRowIndex = i
+    '                                            DataGridView1.CurrentCell = DataGridView1(0, i)
+
+
+    '                                            row1 = {Count.ToString, filename(i), st1}
+    '                                            DataGridView1.Rows.Add(row1)
+    '                                            DataGridView1.CurrentRow.Cells(3).Value = True
+    '                                            DataGridView1.CurrentRow.Cells(4).Value = True
+
+
+
+    '                                        End If
+    '                                    End If
+
+    '                                    'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
+    '                                    'Me.TextBox_FileList1.Focus()
+    '                                    'Me.TextBox_FileList1.ScrollToCaret()
+    '                                    'Sql_Command = "UPDATE """ + Table + """ SET ""FilePath0"" = '" + filename(i) + "'"
+    '                                    'Sql_Command += "  WHERE ""FilePath0"" = '" + filename(i) + "'"
+    '                                    'tb = db.ExecuteSql(Sql_Command)
+    '                                Else
+
+    '                                    ' FileMakerへの書込が無い場合
+
+    '                                    Count += 1
+    '                                    fname2.Add(f)
+    '                                    dir2.Add(System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i))))
+    '                                    'Me.TextBox_FileList1.Text += Count.ToString("000") + " : " + filename(i) + vbCrLf
+    '                                    'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
+    '                                    'Me.TextBox_FileList1.Focus()
+    '                                    'Me.TextBox_FileList1.ScrollToCaret()
+
+
+    '                                    row1 = {Count.ToString, f, filename(i)}
+    '                                    DataGridView1.Rows.Add(row1)
+    '                                    DataGridView1.Rows(Count - 1).Cells(3).Value = True
+    '                                    DataGridView1.Rows(Count - 1).Cells(4).Value = True
+
+    '                                    Dim columnHeaderStyle As New DataGridViewCellStyle()
+    '                                    columnHeaderStyle.BackColor = Color.White
+    '                                    columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+    '                                    DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
+    '                                    DataGridView1.Rows(Count - 1).Height = 18
+    '                                    DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
+    '                                    'DataGridView1.CurrentCell = DataGridView1(0, i)
+
+    '                                End If
+    '                            End If
+    '                        End If
+    '                        'Console.WriteLine(a)
+    '                        Application.DoEvents()
+
+    '                    Next
+
+    '                End If
+    '            End If
+
+    '            Application.DoEvents()
+
+    '        Next
+
+    '        'Me.TextBox_FileList1.Text += "=== END ===" + vbCrLf
+    '        'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
+    '        'Me.TextBox_FileList1.Focus()
+    '        'Me.TextBox_FileList1.ScrollToCaret()
+
+    '        If FileMakerOn = True Then
+    '            db.Disconnect()
+    '        End If
+    '        fname = fname2.ToArray
+    '        dir1 = dir2.ToArray
+    '    Catch e1 As Exception
+    '        'Console.WriteLine(e1.Message)
+    '    End Try
+    'End Sub
+
+    Private Sub CheckBox_Input_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Input.CheckedChanged
+        Dim n As Integer = DataGridView1.RowCount - 1
+        If n > 0 Then
+            For i As Integer = 0 To n - 1
+                If CheckBox_Input.Checked = True Then
+                    If DataGridView1.Rows(i).Cells(3).Value = "未" Then
+                        DataGridView1.Rows(i).Cells(4).Value = True
+                    End If
                 Else
-                    ff(i).CopyTo(filename, ff(i - 1).Length)
-                End If
-            Next
-
-            Dim n As Integer = filename.Length
-
-            For j As Integer = 0 To checkbox_n - 1
-                If Check(j).Checked = True Then
-
-
-                    Dim s1 As String = Check(j).Text.ToUpper.Replace("3", "")
-                    Dim s2 As String = Check(j).Text.ToLower.Replace("3", "")
-                    Dim s3 As String = StrConv(s1, VbStrConv.Wide)
-                    Dim s4 As String = StrConv(s2, VbStrConv.Wide)
-                    Dim w1 As String = "\d\d\d\d\d\d"
-                    Dim w2 As String = "-\d\d-\d\d\d"
-                    Dim w3 As String = "-\d\d-\d\d"
-                    Dim w4 As String = "-\d\d-\d\d\d\d"
-                    'Dim s1 As String = Check(j).Text.Substring(1, 1).ToUpper
-                    'Dim s2 As String = Check(j).Text.ToLower
-                    'Dim w0 As String = WildCard1
-                    'filename = System.IO.Directory.GetFiles(Path1, w0, System.IO.SearchOption.AllDirectories)
-                    'Dim n As Integer = filename.Length
-                    'Me.TextBox3.Text = ""
-                    System.Windows.Forms.Application.DoEvents()
-                    'ReDim fname(n - 1), dir1(n - 1)
-                    If n > 0 Then
-
-                        Dim row1() As String
-
-
-                        For i As Integer = 0 To n - 1
-
-                            'If filename(i).Contains(" '") Then
-                            '    Dim a As String = filename(i).Replace("'", "''")
-                            '    'File.Move(filename(i), a)
-                            '    filename(i) = a
-                            'End If
-                            'fname(i) = System.IO.Path.GetFileNameWithoutExtension(filename(i))
-                            'dir1(i) = System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i)))
-                            Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
-                            'If f.Substring(0, 2) = s1 Or f.Substring(0, 2) = s2 Then
-
-                            Dim fname As String = System.IO.Path.GetFileName(filename(i))
-
-                            If fname.Substring(0, 1) <> "." Then    ' 隠しファイルを除外する。
-
-                                If System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w1) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w2) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w3) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s1 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s2 + w4) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w1) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w2) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w2) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w3) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w3) _
-                                Or System.Text.RegularExpressions.Regex.IsMatch(fname, s3 + w4) Or System.Text.RegularExpressions.Regex.IsMatch(fname, s4 + w4) _
-                                Then
-
-                                    'If System.Text.RegularExpressions.Regex.IsMatch(fname, WildCard1) Or System.Text.RegularExpressions.Regex.IsMatch(fname, WildCard2) Then
-
-                                    If FileMakerOn = True Then
-                                        'Dim fname As String = System.IO.Path.GetFileName(filename(i))
-
-                                        'Sql_Command = "SELECT ""FilePath"" FROM """ + Table + """ WHERE ""FilePath"" = '" & filename(i) & "'"
-                                        Sql_Command = "SELECT ""FilePath"",""PdfPath"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
-                                        tb = db.ExecuteSql(Sql_Command)
-                                        Dim n2 As Integer = tb.Rows.Count
-                                        Dim st1 As String
-                                        If n2 > 0 Then
-                                            st1 = tb.Rows(0).Item("PdfPath").ToString()
-                                        Else
-                                            st1 = ""
-                                        End If
-                                        Count += 1
-
-                                        If n2 = 0 Then
-
-                                            fname2.Add(f)
-                                            dir2.Add(System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i))))
-                                            'Me.TextBox_FileList1.Text += Count.ToString("000") + " : " + filename(i) + vbCrLf
-                                            'Me.TextBox3.SelectionStart = Me.TextBox3.Text.Length
-                                            'Me.TextBox3.Focus()
-                                            'Me.TextBox3.ScrollToCaret()
-
-                                            Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
-                                            Sql_Command += " VALUES ('" + filename(i).Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
-                                            tb = db.ExecuteSql(Sql_Command)
-                                        Else
-                                            'Me.TextBox_FileList1.Text += Count.ToString("000") + " : " + filename(i) + ":(済)" + vbCrLf
-                                        End If
-
-                                        Application.DoEvents()
-
-                                        If RadioButton_xdw.Checked = True And CheckBox_MakePdf.Checked = True Then
-
-                                            If st1 = "" Then
-
-                                                Dim p1 As String = Path.GetFileName(Path1)
-                                                Dim p2 As String
-                                                Dim d1 As String = ""
-                                                Dim f2 As String = Path.GetDirectoryName(filename(i))
-                                                Dim f3 As String = Path.GetFileNameWithoutExtension(filename(i)) + ".pdf"
-                                                Do
-                                                    p2 = Path.GetFileName(f2)
-                                                    If p2 = p1 Then Exit Do
-                                                    d1 = p2 + "\" + d1
-                                                    f2 = Path.GetDirectoryName(f2)
-                                                Loop
-                                                Dim Path3 = Path2 + "\" + d1
-                                                If System.IO.File.Exists(Path3) = False Then
-                                                    System.IO.Directory.CreateDirectory(Path3)
-                                                End If
-                                                Dim Path4 = Path3 + f3
-
-                                                Dim fileInfo As New FileInfo(Path3)
-                                                Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
-
-                                                ' アクセス権限をEveryoneに対しフルコントロール許可
-                                                Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-                                                fileSec.AddAccessRule(accessRule)
-                                                fileInfo.SetAccessControl(fileSec)
-
-                                                ' ファイルの読み取り専用属性を削除
-                                                If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
-                                                    fileInfo.Attributes = FileAttributes.Normal
-                                                End If
-
-                                                Dim Ok As Integer
-                                                If System.IO.File.Exists(Path4) = False Then
-
-                                                    Ok = DocuToPdf(filename(i), Path4, 600)
-                                                End If
-
-                                                If Ok = 0 Then
-                                                    Me.TextBox_FileLIst2.Text += Path4 + vbCrLf
-                                                    Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-                                                    Me.TextBox_FileLIst2.Focus()
-                                                    Me.TextBox_FileLIst2.ScrollToCaret()
-
-                                                    Sql_Command = "UPDATE """ + Table + """ SET ""PdfPath"" = '" + Path4.Replace("'", "''") + "'"
-                                                    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
-                                                    tb = db.ExecuteSql(Sql_Command)
-                                                End If
-                                                'Sql_Command2 = "UPDATE """ + DateLogTable + """ SET ""出勤時刻"" = TIME '" + t1 + "' ,""出勤コード"" = " + code1
-                                                'Sql_Command2 += "  WHERE ""職員番号"" = '" + value + "' AND ""日付"" = DATE '" + D1 + "'"
-
-                                                row1 = {Count.ToString, filename(i), Path3}
-                                                DataGridView1.Rows.Add(row1)
-                                                DataGridView1.CurrentRow.Cells(3).Value = True
-                                                DataGridView1.CurrentRow.Cells(4).Value = True
-
-                                                Dim columnHeaderStyle As New DataGridViewCellStyle()
-                                                columnHeaderStyle.BackColor = Color.White
-                                                columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
-                                                DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
-                                                '       R1 = R1 + 1
-                                                '       no = R1.ToString
-                                                '       row1 = {no, "", "", ""}
-                                                '       DataGridView1.Rows.Add(row1)
-
-                                                DataGridView1.Rows(i).Height = 16
-                                                DataGridView1.FirstDisplayedScrollingRowIndex = i
-                                                DataGridView1.CurrentCell = DataGridView1(0, i)
-
-                                                'Dim RN = DataGridView1.Rows.Count - 2
-                                                'If RN >= 0 Then
-                                                '    For i As Integer = 0 To RN
-                                                '        DataGridView1.Rows.RemoveAt(0)
-                                                '    Next
-                                                'End If
-                                                'Dim row1() As String
-                                                'Dim _No As Integer, _X As Double, _Y As Double, _Z1 As Double, _Z2 As Double
-                                                'For i As Integer = 0 To n - 2
-                                                '    _No = Val(Data(i + 1, 0))
-                                                '    _X = Val(Data(i + 1, 1))
-                                                '    _Y = Val(Data(i + 1, 2))
-                                                '    _Z1 = Val(Data(i + 1, 3))
-                                                '    _Z2 = Val(Data(i + 1, 4))
-
-                                                '    loadAry(i) = New XYZData()
-                                                '    loadAry(i).No = _No
-                                                '    loadAry(i).X = _X
-                                                '    loadAry(i).Y = _Y
-                                                '    loadAry(i).Z1 = _Z1
-                                                '    loadAry(i).Z2 = _Z2
-
-                                                '    row1 = {_No.ToString, _X.ToString, _Y.ToString, _Z1.ToString, _Z2.ToString}
-                                                '    DataGridView1.Rows.Add(row1)
-
-                                                '    Dim columnHeaderStyle As New DataGridViewCellStyle()
-                                                '    columnHeaderStyle.BackColor = Color.White
-                                                '    columnHeaderStyle.Font = New Font("MSゴシック", 20, FontStyle.Bold)
-                                                '    DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
-                                                '    '       R1 = R1 + 1
-                                                '    '       no = R1.ToString
-                                                '    '       row1 = {no, "", "", ""}
-                                                '    '       DataGridView1.Rows.Add(row1)
-
-                                                '    DataGridView1.Rows(i).Height = 30
-                                                '    DataGridView1.FirstDisplayedScrollingRowIndex = i
-                                                '    DataGridView1.CurrentCell = DataGridView1(0, i)
-                                                'Next
-                                                'loadAry2 = loadAry
-                                                'PointN = loadAry2.Length
-                                                'Me.EndPoint1.Text = PointN.ToString
-
-                                                'For i As Integer = 0 To loadAry.Length - 1
-                                                '    DataGridView1.Rows(i).Cells(5).Value = True
-                                                '    DataGridView1.Rows(i).Cells(6).Value = True
-                                                'Next
-
-
-
-
-
-
-
-
-
-                                            Else
-                                                'Me.TextBox_FileLIst2.Text += st1 + " (済)" + vbCrLf
-                                                'Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-                                                'Me.TextBox_FileLIst2.Focus()
-                                                'Me.TextBox_FileLIst2.ScrollToCaret()
-
-                                                Dim columnHeaderStyle As New DataGridViewCellStyle()
-                                                columnHeaderStyle.BackColor = Color.White
-                                                columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
-                                                DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
-
-                                                DataGridView1.Rows(i).Height = 18
-                                                DataGridView1.FirstDisplayedScrollingRowIndex = i
-                                                DataGridView1.CurrentCell = DataGridView1(0, i)
-
-
-                                                row1 = {Count.ToString, filename(i), st1}
-                                                DataGridView1.Rows.Add(row1)
-                                                DataGridView1.CurrentRow.Cells(3).Value = True
-                                                DataGridView1.CurrentRow.Cells(4).Value = True
-
-
-
-                                            End If
-                                        End If
-
-                                        'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
-                                        'Me.TextBox_FileList1.Focus()
-                                        'Me.TextBox_FileList1.ScrollToCaret()
-                                        'Sql_Command = "UPDATE """ + Table + """ SET ""FilePath0"" = '" + filename(i) + "'"
-                                        'Sql_Command += "  WHERE ""FilePath0"" = '" + filename(i) + "'"
-                                        'tb = db.ExecuteSql(Sql_Command)
-                                    Else
-
-                                        ' FileMakerへの書込が無い場合
-
-                                        Count += 1
-                                        fname2.Add(f)
-                                        dir2.Add(System.IO.Path.GetFileName(System.IO.Path.GetDirectoryName(filename(i))))
-                                        'Me.TextBox_FileList1.Text += Count.ToString("000") + " : " + filename(i) + vbCrLf
-                                        'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
-                                        'Me.TextBox_FileList1.Focus()
-                                        'Me.TextBox_FileList1.ScrollToCaret()
-
-
-                                        row1 = {Count.ToString, f, filename(i)}
-                                        DataGridView1.Rows.Add(row1)
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = True
-                                        DataGridView1.Rows(Count - 1).Cells(4).Value = True
-
-                                        Dim columnHeaderStyle As New DataGridViewCellStyle()
-                                        columnHeaderStyle.BackColor = Color.White
-                                        columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-                                        DataGridView1.RowsDefaultCellStyle = columnHeaderStyle
-                                        DataGridView1.Rows(Count - 1).Height = 18
-                                        DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
-                                        'DataGridView1.CurrentCell = DataGridView1(0, i)
-
-                                    End If
-                                End If
-                            End If
-                            'Console.WriteLine(a)
-                            Application.DoEvents()
-
-                        Next
-
+                    If DataGridView1.Rows(i).Cells(3).Value = "未" Then
+                        DataGridView1.Rows(i).Cells(4).Value = False
                     End If
                 End If
 
-                Application.DoEvents()
-
             Next
-
-            'Me.TextBox_FileList1.Text += "=== END ===" + vbCrLf
-            'Me.TextBox_FileList1.SelectionStart = Me.TextBox_FileList1.Text.Length
-            'Me.TextBox_FileList1.Focus()
-            'Me.TextBox_FileList1.ScrollToCaret()
-
-            If FileMakerOn = True Then
-                db.Disconnect()
-            End If
-            fname = fname2.ToArray
-            dir1 = dir2.ToArray
-        Catch e1 As Exception
-            'Console.WriteLine(e1.Message)
-        End Try
-    End Sub
-
-    Private Sub CheckBox_Input_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Input.CheckedChanged
-
+        End If
     End Sub
 
     Private Sub CheckBox_Convert_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Convert.CheckedChanged
+        Dim n As Integer = DataGridView1.RowCount - 1
+        If n > 0 Then
+            For i As Integer = 0 To n - 1
+                If CheckBox_Convert.Checked = True Then
+                    If DataGridView1.Rows(i).Cells(5).Value = "未" Then
+                        DataGridView1.Rows(i).Cells(6).Value = True
+                    End If
+                Else
+                    If DataGridView1.Rows(i).Cells(5).Value = "未" Then
+                        DataGridView1.Rows(i).Cells(6).Value = False
+                    End If
+                End If
 
+            Next
+        End If
     End Sub
+
+    Private Sub Select_Read_Folder_Button2_Click(sender As Object, e As EventArgs) Handles Select_Read_Folder_Button2.Click
+        Dim fbd As New FolderBrowserDialog
+
+        '上部に表示する説明テキストを指定する
+        fbd.Description = "読み込むフォルダを指定してください。"
+        'ルートフォルダを指定する
+        'デフォルトでDesktop
+        fbd.RootFolder = Environment.SpecialFolder.Desktop
+        '最初に選択するフォルダを指定する
+        'RootFolder以下にあるフォルダである必要がある
+        If TextBox3.Text <> "" Then
+            fbd.SelectedPath = TextBox3.Text
+        Else
+            fbd.SelectedPath = "\\192.168.0.173\disk1\SCAN\3A"
+        End If
+
+        'ユーザーが新しいフォルダを作成できるようにする
+        'デフォルトでTrue
+        fbd.ShowNewFolderButton = True
+
+        'ダイアログを表示する
+        If fbd.ShowDialog(Me) = DialogResult.OK Then
+            '選択されたフォルダを表示する
+            Me.TextBox3.Text = fbd.SelectedPath
+            Path2 = fbd.SelectedPath
+
+            'Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+            'TextBox_FilderName2.Text = Path2
+        End If
+    End Sub
+
+
 
     Private Function DocuToPdf(ByVal file1 As String, ByVal file2 As String, ByVal Dpi As Integer) As Integer
 
@@ -1612,14 +1644,17 @@ Public Class Form1
                                 End If
 
                                 Dim Ok As Integer = -1
+                                Dim AddText As String
                                 If System.IO.File.Exists(PdfPath) = False Then
                                     Ok = DocuToPdf(filename1, PdfPath, 600)
+                                    AddText = "（新規作成）"
                                 Else
                                     Ok = 0
+                                    AddText = "（既存）"
                                 End If
 
                                 If Ok = 0 Then
-                                    Me.TextBox_FileLIst2.Text += PdfPath + vbCrLf
+                                    Me.TextBox_FileLIst2.Text += PdfPath + AddText + vbCrLf
                                     Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
                                     Me.TextBox_FileLIst2.Focus()
                                     Me.TextBox_FileLIst2.ScrollToCaret()
