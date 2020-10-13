@@ -16,6 +16,9 @@ Public Class Form1
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' 起動時にプログレスバーを非表示にする。
         Me.ProgressBar1.Visible = False
+
+        ' 分野番号チェックボックスの初期設定
+
         checkbox_n = 19
         ReDim Check(checkbox_n - 1)
         Check(0) = CheckBox_3A
@@ -48,179 +51,127 @@ Public Class Form1
         CheckBox_tobihi.Checked = True
         CheckBox_hyouteika.Checked = True
 
-
+        ' xdwかpdfの選択ラジオボタン（削除する予定）
         RadioButton_xdw.Checked = True
         RadioButton_pdf.Checked = False
         TextBox_FileMakerServer.Text = FileMakerServer1
         Cansel = False
 
-        'Const C_width As Integer = 135
-        'Dim Col_n As Integer
-        'With Me.DataGridView1
-        '    .Width = 900
-        '    .Height = 300
-        '    .ColumnCount = 3
-        '    'Col_n = .ColumnCount
-        '    .ColumnHeadersVisible = True
-        '    .ColumnHeadersHeight = 18
-        '    .ScrollBars = ScrollBars.Both
-
-        '    Dim columnHeaderStyle As New DataGridViewCellStyle()
-        '    columnHeaderStyle.BackColor = Color.White
-        '    columnHeaderStyle.Font = New Font("MSゴシック", 10, FontStyle.Bold)
-        '    columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-        '    .ColumnHeadersDefaultCellStyle = columnHeaderStyle
-        '    .Columns(0).Name = "番号"
-        '    .Columns(1).Name = "ファイル名"
-        '    .Columns(2).Name = "Path"
-        '    '.Columns(3).Name = "Z1座標"
-        '    '.Columns(4).Name = "Z2座標"
-        '    '                  .Columns(5).Name = "On/Off"
-        '    .RowHeadersVisible = True
-        '    .Columns(0).Width = 60
-        '    .Columns(1).Width = 140
-        '    .Columns(2).Width = 500
-        '    '.Columns(3).Width = C_width
-        '    '.Columns(4).Width = C_width
-        '    '                    .Columns(5).Width = C_width
-
-        'End With
-        'Dim column1 As New DataGridViewCheckBoxColumn
-        'DataGridView1.Columns.Add(column1)
-        'DataGridView1.Columns(3).Name = "入力"
-        'DataGridView1.Columns(3).Width = 50
-
-        'Dim column2 As New DataGridViewCheckBoxColumn
-        'DataGridView1.Columns.Add(column2)
-        'DataGridView1.Columns(4).Name = "変換"
-        'DataGridView1.Columns(4).Width = 50
-
-        'Dim column3 As New DataGridViewCheckBoxColumn
-        'DataGridView1.Columns.Add(column3)
-        'DataGridView1.Columns(5).Name = "読込"
-        'DataGridView1.Columns(5).Width = 50
-
-        'TextBox_FilderName2.Text = PdfSaveFolder
-
-
-        'RadioButton_SameFolder.Checked = True
-        'RadioButton_OtherFolder.Checked = False
         TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
         Path2 = TextBox_FolderName1.Text
 
-        CheckBox_Input.Checked = True
-        CheckBox_Convert.Checked = True
+        CheckBox_Input.Checked = True       ' 報告書の入力チェックボックス
+        CheckBox_Convert.Checked = True     ' 報告書の変換チェックボックス
+        CheckBox_Input2.Checked = True      ' 資料（スキャンデータ）の入力チェックボックス
 
-        Me.CenterToScreen()
-    End Sub
-
-    Private Sub Save_PDF_Button_Click(sender As Object, e As EventArgs)
-
-
-
-
-
-
-        If filename.Length > 0 And Path1 <> "" And Path2 <> "" Then
-            Dim t1 As DateTime = DateTime.Now
-            Dim n As Integer = fname.Length
-            Dim file1 As String, file2 As String
-            Dim Ok As Integer, Count1 As Integer
-            Me.ProgressBar1.Minimum = 0
-            Me.ProgressBar1.Visible = True
-            Me.ProgressBar1.Maximum = n
-            Count1 = 0
-            For i As Integer = 0 To n - 1
-                Count1 += 1
-                Me.ProgressBar1.Value = Count1
-                'Me.ProgressBar1.Refresh()
-                System.Threading.Thread.Sleep(100)
-                Application.DoEvents()
-                file1 = filename(i)
-                If fname(i).Substring(0, 1) = "3" Then
-                    file2 = Path2 + "\" + StrConv(fname(i), VbStrConv.Narrow) + ".pdf"
-                Else
-                    file2 = Path2 + "\" + StrConv(dir1(i), VbStrConv.Narrow) + ".pdf"
-                End If
-
-
-                Dim fileInfo As New FileInfo(Path2)
-                Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
-
-                ' アクセス権限をEveryoneに対しフルコントロール許可
-                Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-                fileSec.AddAccessRule(accessRule)
-                fileInfo.SetAccessControl(fileSec)
-
-                ' ファイルの読み取り専用属性を削除
-                If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
-                    fileInfo.Attributes = FileAttributes.Normal
-                End If
-
-
-                Ok = DocuToPdf(file1, file2, 600)
-                If Ok = 0 Then
-                    Me.TextBox_FileLIst2.Text += file2 + vbCrLf
-                    Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-                    Me.TextBox_FileLIst2.Focus()
-                    Me.TextBox_FileLIst2.ScrollToCaret()
-                End If
-
-            Next
-
-            Dim t2 As DateTime = DateTime.Now
-            Me.TextBox_FileLIst2.Text += "処理時間：" + (t2 - t1).ToString + vbCrLf
-            Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-            Me.TextBox_FileLIst2.Focus()
-            Me.TextBox_FileLIst2.ScrollToCaret()
-            Me.ProgressBar1.Visible = False
-        End If
-    End Sub
-
-    Private Sub Button1_Click(sender As Object, e As EventArgs)
-        Dim file1 As String = "C:\Users\toshikanyama\Documents\3X02001.XDW"
-        Dim file2 As String = "C:\Users\toshikanyama\Documents\3X02001.PDF"
-        Dim Handle As Xdwapi.XDW_DOCUMENT_HANDLE = New Xdwapi.XDW_DOCUMENT_HANDLE()
-        Dim mode As Xdwapi.XDW_OPEN_MODE_EX = New Xdwapi.XDW_OPEN_MODE_EX()
-        With mode
-            .Option = Xdwapi.XDW_OPEN_READONLY
-            .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
-        End With
-
-        Dim api_result As Integer = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)
-
-        Dim info As Xdwapi.XDW_DOCUMENT_INFO = New Xdwapi.XDW_DOCUMENT_INFO()
-        Xdwapi.XDW_GetDocumentInformation(Handle, info)
-        Dim end_page As Integer = info.Pages
-        Dim start_page As Integer = 1
-
-        Dim pdf1 As Xdwapi.XDW_IMAGE_OPTION_PDF = New Xdwapi.XDW_IMAGE_OPTION_PDF()
-
-        With pdf1
-            .Compress = Xdwapi.XDW_COMPRESS_MRC_NORMAL
-            .ConvertMethod = Xdwapi.XDW_CONVERT_MRC_OS
-            .EndOfMultiPages = end_page
-        End With
-
-        Dim Dpi1 As Integer = 600
-        Dim Color1 As Integer = Xdwapi.XDW_IMAGE_COLOR
-        Dim ImageType1 As Integer = Xdwapi.XDW_IMAGE_PDF
-        Dim ex1 As Xdwapi.XDW_IMAGE_OPTION_EX = New Xdwapi.XDW_IMAGE_OPTION_EX()
-        With ex1
-            .Dpi = Dpi1
-            .Color = Color1
-            .ImageType = ImageType1
-            .DetailOption = pdf1
-        End With
-        Dim api_result2 As Integer = Xdwapi.XDW_ConvertPageToImageFile(Handle, start_page, file2, ex1)
-
-
-        Xdwapi.XDW_CloseDocumentHandle(Handle)
-
+        Me.CenterToScreen()                 ' Formをモニターの中央に表示
 
     End Sub
+
+    'Private Sub Save_PDF_Button_Click(sender As Object, e As EventArgs)
+
+
+    '    If filename.Length > 0 And Path1 <> "" And Path2 <> "" Then
+    '        Dim t1 As DateTime = DateTime.Now
+    '        Dim n As Integer = fname.Length
+    '        Dim file1 As String, file2 As String
+    '        Dim Ok As Integer, Count1 As Integer
+    '        Me.ProgressBar1.Minimum = 0
+    '        Me.ProgressBar1.Visible = True
+    '        Me.ProgressBar1.Maximum = n
+    '        Count1 = 0
+    '        For i As Integer = 0 To n - 1
+    '            Count1 += 1
+    '            Me.ProgressBar1.Value = Count1
+    '            'Me.ProgressBar1.Refresh()
+    '            System.Threading.Thread.Sleep(100)
+    '            Application.DoEvents()
+    '            file1 = filename(i)
+    '            If fname(i).Substring(0, 1) = "3" Then
+    '                file2 = Path2 + "\" + StrConv(fname(i), VbStrConv.Narrow) + ".pdf"
+    '            Else
+    '                file2 = Path2 + "\" + StrConv(dir1(i), VbStrConv.Narrow) + ".pdf"
+    '            End If
+
+
+    '            Dim fileInfo As New FileInfo(Path2)
+    '            Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
+
+    '            ' アクセス権限をEveryoneに対しフルコントロール許可
+    '            Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+    '            fileSec.AddAccessRule(accessRule)
+    '            fileInfo.SetAccessControl(fileSec)
+
+    '            ' ファイルの読み取り専用属性を削除
+    '            If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
+    '                fileInfo.Attributes = FileAttributes.Normal
+    '            End If
+
+
+    '            Ok = DocuToPdf(file1, file2, 600)
+    '            If Ok = 0 Then
+    '                Me.TextBox_FileLIst2.Text += file2 + vbCrLf
+    '                Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+    '                Me.TextBox_FileLIst2.Focus()
+    '                Me.TextBox_FileLIst2.ScrollToCaret()
+    '            End If
+
+    '        Next
+
+    '        Dim t2 As DateTime = DateTime.Now
+    '        Me.TextBox_FileLIst2.Text += "処理時間：" + (t2 - t1).ToString + vbCrLf
+    '        Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+    '        Me.TextBox_FileLIst2.Focus()
+    '        Me.TextBox_FileLIst2.ScrollToCaret()
+    '        Me.ProgressBar1.Visible = False
+    '    End If
+    'End Sub
+
+    'Private Sub Button1_Click(sender As Object, e As EventArgs)
+    '    Dim file1 As String = "C:\Users\toshikanyama\Documents\3X02001.XDW"
+    '    Dim file2 As String = "C:\Users\toshikanyama\Documents\3X02001.PDF"
+    '    Dim Handle As Xdwapi.XDW_DOCUMENT_HANDLE = New Xdwapi.XDW_DOCUMENT_HANDLE()
+    '    Dim mode As Xdwapi.XDW_OPEN_MODE_EX = New Xdwapi.XDW_OPEN_MODE_EX()
+    '    With mode
+    '        .Option = Xdwapi.XDW_OPEN_READONLY
+    '        .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
+    '    End With
+
+    '    Dim api_result As Integer = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)
+
+    '    Dim info As Xdwapi.XDW_DOCUMENT_INFO = New Xdwapi.XDW_DOCUMENT_INFO()
+    '    Xdwapi.XDW_GetDocumentInformation(Handle, info)
+    '    Dim end_page As Integer = info.Pages
+    '    Dim start_page As Integer = 1
+
+    '    Dim pdf1 As Xdwapi.XDW_IMAGE_OPTION_PDF = New Xdwapi.XDW_IMAGE_OPTION_PDF()
+
+    '    With pdf1
+    '        .Compress = Xdwapi.XDW_COMPRESS_MRC_NORMAL
+    '        .ConvertMethod = Xdwapi.XDW_CONVERT_MRC_OS
+    '        .EndOfMultiPages = end_page
+    '    End With
+
+    '    Dim Dpi1 As Integer = 600
+    '    Dim Color1 As Integer = Xdwapi.XDW_IMAGE_COLOR
+    '    Dim ImageType1 As Integer = Xdwapi.XDW_IMAGE_PDF
+    '    Dim ex1 As Xdwapi.XDW_IMAGE_OPTION_EX = New Xdwapi.XDW_IMAGE_OPTION_EX()
+    '    With ex1
+    '        .Dpi = Dpi1
+    '        .Color = Color1
+    '        .ImageType = ImageType1
+    '        .DetailOption = pdf1
+    '    End With
+    '    Dim api_result2 As Integer = Xdwapi.XDW_ConvertPageToImageFile(Handle, start_page, file2, ex1)
+
+
+    '    Xdwapi.XDW_CloseDocumentHandle(Handle)
+
+
+    'End Sub
 
     Private Sub CheckBox_kozo_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_kozo.CheckedChanged
+        ' 構造試験のチェックボックスの変更
         Dim b As Boolean = CheckBox_kozo.Checked
         CheckBox_3A.Checked = b
         CheckBox_3J.Checked = b
@@ -231,6 +182,7 @@ Public Class Form1
     End Sub
 
     Private Sub CheckBox_zairyou_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_zairyou.CheckedChanged
+        ' 材料試験のチェックボックスの変更
         Dim b As Boolean = CheckBox_zairyou.Checked
         CheckBox_3C.Checked = b
         CheckBox_3K.Checked = b
@@ -242,6 +194,7 @@ Public Class Form1
 
 
     Private Sub CheckBox_tobihi_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_tobihi.CheckedChanged
+        ' 飛び火試験のチェックボックスの変更
         Dim b As Boolean = CheckBox_tobihi.Checked
         CheckBox_3G.Checked = b
         CheckBox_3L.Checked = b
@@ -252,6 +205,7 @@ Public Class Form1
     End Sub
 
     Private Sub CheckBox_ALL_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_ALL.CheckedChanged
+        ' すべての試験のチェックボックスの変更
         Dim b As Boolean = CheckBox_ALL.Checked
         For i As Integer = 0 To checkbox_n - 1
             Check(i).Checked = b
@@ -263,6 +217,7 @@ Public Class Form1
     End Sub
 
     Private Sub CheckBox_hyouteika_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_hyouteika.CheckedChanged
+        ' 性能評価のチェックボックスの変更
         Dim b As Boolean = CheckBox_hyouteika.Checked
         CheckBox_8A.Checked = b
         CheckBox_8B.Checked = b
@@ -270,6 +225,7 @@ Public Class Form1
     End Sub
 
     Private Sub RadioButton1_CheckedChanged(sender As Object, e As EventArgs) Handles RadioButton_xdw.CheckedChanged, RadioButton_pdf.CheckedChanged
+        ' ドキュワークスかPDFの選択変更（削除する予定）
         If RadioButton_xdw.Checked = True Then
             CheckBox_MakePdf.Enabled = True
         Else
@@ -484,10 +440,14 @@ Public Class Form1
     End Sub
 
     Private Function CountChar(ByVal s As String, ByVal c As Char) As Integer
+        ' 文字列 s の中の文字 c の出現回数をカウントする関数
         Return s.Length - s.Replace(c.ToString(), "").Length
     End Function
 
     Private Sub Button1_Click_1(sender As Object, e As EventArgs) Handles Button1.Click
+        '
+        ' テキストファイルを選択するダイアログ
+        '
         'OpenFileDialogクラスのインスタンスを作成
         Dim ofd As New OpenFileDialog()
 
@@ -531,17 +491,17 @@ Public Class Form1
 
             Dim Style1 As New DataGridViewCellStyle()
             Style1.BackColor = Color.White
-            Style1.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             Dim Style2 As New DataGridViewCellStyle()
             Style2.BackColor = Color.White
-            Style2.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             Dim Style3 As New DataGridViewCellStyle()
             Style3.BackColor = Color.White
-            Style3.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             Style3.Alignment = DataGridViewContentAlignment.MiddleRight
 
             With Me.DataGridView1
@@ -671,7 +631,7 @@ Public Class Form1
                                 Dim fname As String = System.IO.Path.GetFileName(filename(i))
 
 
-                                If IsTestNumber(fname, Check(j).Text) Then
+                                If IsTestNumber(fname, Check(j).Text) Then   ' 試験番号（例えば、3A 3C）を含むファイルかどうかをチェック
 
                                     Count += 1
                                     Dim row1() As String
@@ -752,17 +712,17 @@ Public Class Form1
 
             Dim Style1 As New DataGridViewCellStyle()
             Style1.BackColor = Color.White
-            Style1.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
 
             Dim Style2 As New DataGridViewCellStyle()
             Style2.BackColor = Color.White
-            Style2.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
 
             Dim Style3 As New DataGridViewCellStyle()
             Style3.BackColor = Color.White
-            Style3.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+            Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
             Style3.Alignment = DataGridViewContentAlignment.MiddleRight
             Dim columnHeaderStyle As New DataGridViewCellStyle()
             With Me.DataGridView2
@@ -776,10 +736,10 @@ Public Class Form1
                 .ScrollBars = ScrollBars.Both
 
 
-                columnHeaderStyle.BackColor = Color.White
-                columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Bold)
-                columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
-                .ColumnHeadersDefaultCellStyle = columnHeaderStyle
+                'columnHeaderStyle.BackColor = Color.White
+                'columnHeaderStyle.Font = New Font("MSゴシック", 9, FontStyle.Bold)
+                'columnHeaderStyle.Alignment = DataGridViewContentAlignment.MiddleLeft
+                .ColumnHeadersDefaultCellStyle = Style1
                 .Columns(0).Name = "番号"
                 .Columns(1).Name = "ファイル名"
                 .Columns(2).Name = "Path"
@@ -935,6 +895,13 @@ Public Class Form1
 
 
     Private Function IsTestNumber(ByVal fname As String, ByVal checkChr As String) As Boolean
+        '
+        ' ファイル名に試験番号含まれるかどうかをチャックする関数
+        '
+        '  A010001,A-01-001,A-01-01,A-01-0001
+        '
+        '  小文字、全角にも対応
+
 
         Dim s(3) As String, w(3) As String
 
@@ -1357,7 +1324,7 @@ Public Class Form1
         If TextBox3.Text <> "" Then
             fbd.SelectedPath = TextBox3.Text
         Else
-            fbd.SelectedPath = "\\192.168.0.173\disk1\SCAN\3A"
+            fbd.SelectedPath = "\\192.168.0.173\disk1\SCAN\test"
         End If
 
         'ユーザーが新しいフォルダを作成できるようにする
@@ -1374,7 +1341,6 @@ Public Class Form1
             'TextBox_FilderName2.Text = Path2
         End If
     End Sub
-
 
 
     Private Function DocuToPdf(ByVal file1 As String, ByVal file2 As String, ByVal Dpi As Integer) As Integer
@@ -1451,6 +1417,8 @@ Public Class Form1
         End If
 
     End Sub
+
+
 
     'Private Sub Select_Save_folder_Button_Click(sender As Object, e As EventArgs)
     '    Dim fbd As New FolderBrowserDialog
@@ -1708,6 +1676,116 @@ Public Class Form1
         Else
             MessageBox.Show("データがありません!!", "警告", MessageBoxButtons.OK)
 
+        End If
+    End Sub
+
+
+
+    Private Sub Data_Input_Button2_Click(sender As Object, e As EventArgs) Handles Data_Input_Button2.Click
+
+        If DataGridView2.RowCount > 1 Then
+
+            Dim db As New OdbcDbIf
+            Dim tb As DataTable
+            Dim Sql_Command As String
+
+
+            Dim n As Integer = DataGridView2.RowCount - 1
+            Dim Count As Integer = 0
+            For i As Integer = 0 To n - 1
+                If DataGridView2.Rows(i).Cells(4).Value = True Then
+                    Count += 1
+                End If
+            Next
+
+
+
+
+
+            If Count > 0 Then
+
+                ' メッセージボックスに表示するテキスト
+                Dim message As String = "未入力のデータが" + Count.ToString + "個あります。" + vbCrLf + "入力しますか？"
+
+                ' タイトルバーに表示するテキスト
+                Dim caption As String = "確認"
+
+                ' 表示するボタン([OK]ボタンと[キャンセル]ボタン)
+                Dim buttons As MessageBoxButtons = MessageBoxButtons.OKCancel
+
+                Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
+
+                If result = vbOK Then
+
+                    Debug.Print("OK")
+                    Try
+                        FileMakerServer = TextBox_FileMakerServer.Text
+                        db.Connect()
+
+                        If System.IO.File.Exists(CmdFile) = False Then
+                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
+                        End If
+                        Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
+                        sw.WriteLine("1")  ' コマンド番号
+
+                        For i As Integer = 0 To n - 1
+                            If DataGridView2.Rows(i).Cells(4).Value = True Then
+
+                                Dim fname As String = DataGridView2.Rows(i).Cells(1).Value
+                                Dim filename1 As String = DataGridView2.Rows(i).Cells(2).Value
+                                Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+                                Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+                                tb = db.ExecuteSql(Sql_Command)
+                                DataGridView2.Rows(i).Cells(3).Value = "済"
+                                DataGridView2.Rows(i).Cells(4).Value = False
+
+                                sw.WriteLine(fname)
+                                'Count += 1
+                            End If
+                            Application.DoEvents()
+                        Next
+                        db.Disconnect()
+
+                        ' Shift-Jisでファイルを作成
+
+
+                        '２行書き込み
+
+
+                        'ストリームを閉じる
+                        sw.Close()
+                    Catch e1 As Exception
+
+                    End Try
+
+                End If
+            Else
+                MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
+            End If
+
+
+
+        Else
+            MessageBox.Show("データがありません!!", "警告", MessageBoxButtons.OK)
+
+        End If
+    End Sub
+
+    Private Sub CheckBox_Input2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Input2.CheckedChanged
+        Dim n As Integer = DataGridView2.RowCount - 1
+        If n > 0 Then
+            For i As Integer = 0 To n - 1
+                If CheckBox_Input2.Checked = True Then
+                    If DataGridView2.Rows(i).Cells(3).Value = "未" Then
+                        DataGridView2.Rows(i).Cells(4).Value = True
+                    End If
+                Else
+                    If DataGridView2.Rows(i).Cells(3).Value = "未" Then
+                        DataGridView2.Rows(i).Cells(4).Value = False
+                    End If
+                End If
+
+            Next
         End If
     End Sub
 

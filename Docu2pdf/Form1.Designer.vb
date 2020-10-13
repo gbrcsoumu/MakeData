@@ -46,9 +46,6 @@ Partial Class Form1
         Me.CheckBox_zairyou = New System.Windows.Forms.CheckBox()
         Me.CheckBox_tobihi = New System.Windows.Forms.CheckBox()
         Me.CheckBox_ALL = New System.Windows.Forms.CheckBox()
-        Me.RadioButton_xdw = New System.Windows.Forms.RadioButton()
-        Me.RadioButton_pdf = New System.Windows.Forms.RadioButton()
-        Me.FileMakerCheckBox = New System.Windows.Forms.CheckBox()
         Me.CheckBox_8A = New System.Windows.Forms.CheckBox()
         Me.CheckBox_8B = New System.Windows.Forms.CheckBox()
         Me.CheckBox_8C = New System.Windows.Forms.CheckBox()
@@ -64,10 +61,8 @@ Partial Class Form1
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.CheckBox1 = New System.Windows.Forms.CheckBox()
-        Me.CheckBox2 = New System.Windows.Forms.CheckBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.Button3 = New System.Windows.Forms.Button()
+        Me.CheckBox_Input2 = New System.Windows.Forms.CheckBox()
+        Me.Data_Input_Button2 = New System.Windows.Forms.Button()
         Me.TextBox_FileLIst3 = New System.Windows.Forms.TextBox()
         Me.PdfReadButton = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
@@ -77,15 +72,20 @@ Partial Class Form1
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.Button1 = New System.Windows.Forms.Button()
         Me.TextBox2 = New System.Windows.Forms.TextBox()
-        Me.CheckBox_MakePdf = New System.Windows.Forms.CheckBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
+        Me.RadioButton_xdw = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_pdf = New System.Windows.Forms.RadioButton()
+        Me.FileMakerCheckBox = New System.Windows.Forms.CheckBox()
+        Me.CheckBox_MakePdf = New System.Windows.Forms.CheckBox()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage2.SuspendLayout()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Select_Read_Folder_Button
@@ -112,7 +112,7 @@ Partial Class Form1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(26, 6)
+        Me.Label1.Location = New System.Drawing.Point(23, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(435, 22)
         Me.Label1.TabIndex = 3
@@ -129,7 +129,7 @@ Partial Class Form1
         'CheckBox_3A
         '
         Me.CheckBox_3A.AutoSize = True
-        Me.CheckBox_3A.Location = New System.Drawing.Point(599, 6)
+        Me.CheckBox_3A.Location = New System.Drawing.Point(6, 18)
         Me.CheckBox_3A.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3A.Name = "CheckBox_3A"
         Me.CheckBox_3A.Size = New System.Drawing.Size(38, 16)
@@ -140,7 +140,7 @@ Partial Class Form1
         'CheckBox_3C
         '
         Me.CheckBox_3C.AutoSize = True
-        Me.CheckBox_3C.Location = New System.Drawing.Point(599, 30)
+        Me.CheckBox_3C.Location = New System.Drawing.Point(6, 38)
         Me.CheckBox_3C.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3C.Name = "CheckBox_3C"
         Me.CheckBox_3C.Size = New System.Drawing.Size(38, 16)
@@ -151,7 +151,7 @@ Partial Class Form1
         'CheckBox_3G
         '
         Me.CheckBox_3G.AutoSize = True
-        Me.CheckBox_3G.Location = New System.Drawing.Point(599, 54)
+        Me.CheckBox_3G.Location = New System.Drawing.Point(6, 58)
         Me.CheckBox_3G.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3G.Name = "CheckBox_3G"
         Me.CheckBox_3G.Size = New System.Drawing.Size(38, 16)
@@ -162,7 +162,7 @@ Partial Class Form1
         'CheckBox_3J
         '
         Me.CheckBox_3J.AutoSize = True
-        Me.CheckBox_3J.Location = New System.Drawing.Point(640, 6)
+        Me.CheckBox_3J.Location = New System.Drawing.Point(47, 18)
         Me.CheckBox_3J.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3J.Name = "CheckBox_3J"
         Me.CheckBox_3J.Size = New System.Drawing.Size(37, 16)
@@ -173,7 +173,7 @@ Partial Class Form1
         'CheckBox_3K
         '
         Me.CheckBox_3K.AutoSize = True
-        Me.CheckBox_3K.Location = New System.Drawing.Point(640, 30)
+        Me.CheckBox_3K.Location = New System.Drawing.Point(47, 38)
         Me.CheckBox_3K.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3K.Name = "CheckBox_3K"
         Me.CheckBox_3K.Size = New System.Drawing.Size(37, 16)
@@ -184,7 +184,7 @@ Partial Class Form1
         'CheckBox_3L
         '
         Me.CheckBox_3L.AutoSize = True
-        Me.CheckBox_3L.Location = New System.Drawing.Point(640, 54)
+        Me.CheckBox_3L.Location = New System.Drawing.Point(47, 58)
         Me.CheckBox_3L.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3L.Name = "CheckBox_3L"
         Me.CheckBox_3L.Size = New System.Drawing.Size(36, 16)
@@ -195,7 +195,7 @@ Partial Class Form1
         'CheckBox_3M
         '
         Me.CheckBox_3M.AutoSize = True
-        Me.CheckBox_3M.Location = New System.Drawing.Point(682, 6)
+        Me.CheckBox_3M.Location = New System.Drawing.Point(89, 18)
         Me.CheckBox_3M.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3M.Name = "CheckBox_3M"
         Me.CheckBox_3M.Size = New System.Drawing.Size(39, 16)
@@ -206,7 +206,7 @@ Partial Class Form1
         'CheckBox_3O
         '
         Me.CheckBox_3O.AutoSize = True
-        Me.CheckBox_3O.Location = New System.Drawing.Point(682, 30)
+        Me.CheckBox_3O.Location = New System.Drawing.Point(89, 38)
         Me.CheckBox_3O.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3O.Name = "CheckBox_3O"
         Me.CheckBox_3O.Size = New System.Drawing.Size(38, 16)
@@ -217,7 +217,7 @@ Partial Class Form1
         'CheckBox_3P
         '
         Me.CheckBox_3P.AutoSize = True
-        Me.CheckBox_3P.Location = New System.Drawing.Point(682, 54)
+        Me.CheckBox_3P.Location = New System.Drawing.Point(89, 58)
         Me.CheckBox_3P.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3P.Name = "CheckBox_3P"
         Me.CheckBox_3P.Size = New System.Drawing.Size(37, 16)
@@ -228,7 +228,7 @@ Partial Class Form1
         'CheckBox_3N
         '
         Me.CheckBox_3N.AutoSize = True
-        Me.CheckBox_3N.Location = New System.Drawing.Point(722, 6)
+        Me.CheckBox_3N.Location = New System.Drawing.Point(129, 18)
         Me.CheckBox_3N.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3N.Name = "CheckBox_3N"
         Me.CheckBox_3N.Size = New System.Drawing.Size(38, 16)
@@ -239,7 +239,7 @@ Partial Class Form1
         'CheckBox_3S
         '
         Me.CheckBox_3S.AutoSize = True
-        Me.CheckBox_3S.Location = New System.Drawing.Point(762, 6)
+        Me.CheckBox_3S.Location = New System.Drawing.Point(169, 18)
         Me.CheckBox_3S.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3S.Name = "CheckBox_3S"
         Me.CheckBox_3S.Size = New System.Drawing.Size(37, 16)
@@ -250,7 +250,7 @@ Partial Class Form1
         'CheckBox_3T
         '
         Me.CheckBox_3T.AutoSize = True
-        Me.CheckBox_3T.Location = New System.Drawing.Point(762, 30)
+        Me.CheckBox_3T.Location = New System.Drawing.Point(169, 38)
         Me.CheckBox_3T.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3T.Name = "CheckBox_3T"
         Me.CheckBox_3T.Size = New System.Drawing.Size(37, 16)
@@ -261,7 +261,7 @@ Partial Class Form1
         'CheckBox_3U
         '
         Me.CheckBox_3U.AutoSize = True
-        Me.CheckBox_3U.Location = New System.Drawing.Point(762, 54)
+        Me.CheckBox_3U.Location = New System.Drawing.Point(169, 58)
         Me.CheckBox_3U.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3U.Name = "CheckBox_3U"
         Me.CheckBox_3U.Size = New System.Drawing.Size(38, 16)
@@ -272,7 +272,7 @@ Partial Class Form1
         'CheckBox_3X
         '
         Me.CheckBox_3X.AutoSize = True
-        Me.CheckBox_3X.Location = New System.Drawing.Point(803, 6)
+        Me.CheckBox_3X.Location = New System.Drawing.Point(210, 18)
         Me.CheckBox_3X.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3X.Name = "CheckBox_3X"
         Me.CheckBox_3X.Size = New System.Drawing.Size(37, 16)
@@ -283,7 +283,7 @@ Partial Class Form1
         'CheckBox_3Y
         '
         Me.CheckBox_3Y.AutoSize = True
-        Me.CheckBox_3Y.Location = New System.Drawing.Point(803, 30)
+        Me.CheckBox_3Y.Location = New System.Drawing.Point(210, 38)
         Me.CheckBox_3Y.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3Y.Name = "CheckBox_3Y"
         Me.CheckBox_3Y.Size = New System.Drawing.Size(37, 16)
@@ -294,7 +294,7 @@ Partial Class Form1
         'CheckBox_3Z
         '
         Me.CheckBox_3Z.AutoSize = True
-        Me.CheckBox_3Z.Location = New System.Drawing.Point(803, 54)
+        Me.CheckBox_3Z.Location = New System.Drawing.Point(210, 58)
         Me.CheckBox_3Z.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_3Z.Name = "CheckBox_3Z"
         Me.CheckBox_3Z.Size = New System.Drawing.Size(37, 16)
@@ -305,7 +305,7 @@ Partial Class Form1
         'CheckBox_kozo
         '
         Me.CheckBox_kozo.AutoSize = True
-        Me.CheckBox_kozo.Location = New System.Drawing.Point(842, 6)
+        Me.CheckBox_kozo.Location = New System.Drawing.Point(249, 18)
         Me.CheckBox_kozo.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_kozo.Name = "CheckBox_kozo"
         Me.CheckBox_kozo.Size = New System.Drawing.Size(48, 16)
@@ -316,7 +316,7 @@ Partial Class Form1
         'CheckBox_zairyou
         '
         Me.CheckBox_zairyou.AutoSize = True
-        Me.CheckBox_zairyou.Location = New System.Drawing.Point(842, 30)
+        Me.CheckBox_zairyou.Location = New System.Drawing.Point(249, 38)
         Me.CheckBox_zairyou.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_zairyou.Name = "CheckBox_zairyou"
         Me.CheckBox_zairyou.Size = New System.Drawing.Size(48, 16)
@@ -327,7 +327,7 @@ Partial Class Form1
         'CheckBox_tobihi
         '
         Me.CheckBox_tobihi.AutoSize = True
-        Me.CheckBox_tobihi.Location = New System.Drawing.Point(842, 54)
+        Me.CheckBox_tobihi.Location = New System.Drawing.Point(249, 58)
         Me.CheckBox_tobihi.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_tobihi.Name = "CheckBox_tobihi"
         Me.CheckBox_tobihi.Size = New System.Drawing.Size(48, 16)
@@ -338,7 +338,7 @@ Partial Class Form1
         'CheckBox_ALL
         '
         Me.CheckBox_ALL.AutoSize = True
-        Me.CheckBox_ALL.Location = New System.Drawing.Point(896, 6)
+        Me.CheckBox_ALL.Location = New System.Drawing.Point(303, 18)
         Me.CheckBox_ALL.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_ALL.Name = "CheckBox_ALL"
         Me.CheckBox_ALL.Size = New System.Drawing.Size(44, 16)
@@ -346,42 +346,10 @@ Partial Class Form1
         Me.CheckBox_ALL.Text = "ALL"
         Me.CheckBox_ALL.UseVisualStyleBackColor = True
         '
-        'RadioButton_xdw
-        '
-        Me.RadioButton_xdw.AutoSize = True
-        Me.RadioButton_xdw.Checked = True
-        Me.RadioButton_xdw.Location = New System.Drawing.Point(483, 30)
-        Me.RadioButton_xdw.Name = "RadioButton_xdw"
-        Me.RadioButton_xdw.Size = New System.Drawing.Size(43, 16)
-        Me.RadioButton_xdw.TabIndex = 8
-        Me.RadioButton_xdw.TabStop = True
-        Me.RadioButton_xdw.Text = "xdw"
-        Me.RadioButton_xdw.UseVisualStyleBackColor = True
-        '
-        'RadioButton_pdf
-        '
-        Me.RadioButton_pdf.AutoSize = True
-        Me.RadioButton_pdf.Location = New System.Drawing.Point(532, 30)
-        Me.RadioButton_pdf.Name = "RadioButton_pdf"
-        Me.RadioButton_pdf.Size = New System.Drawing.Size(39, 16)
-        Me.RadioButton_pdf.TabIndex = 9
-        Me.RadioButton_pdf.Text = "pdf"
-        Me.RadioButton_pdf.UseVisualStyleBackColor = True
-        '
-        'FileMakerCheckBox
-        '
-        Me.FileMakerCheckBox.AutoSize = True
-        Me.FileMakerCheckBox.Location = New System.Drawing.Point(483, 54)
-        Me.FileMakerCheckBox.Name = "FileMakerCheckBox"
-        Me.FileMakerCheckBox.Size = New System.Drawing.Size(98, 16)
-        Me.FileMakerCheckBox.TabIndex = 10
-        Me.FileMakerCheckBox.Text = "FileMaker書込"
-        Me.FileMakerCheckBox.UseVisualStyleBackColor = True
-        '
         'CheckBox_8A
         '
         Me.CheckBox_8A.AutoSize = True
-        Me.CheckBox_8A.Location = New System.Drawing.Point(599, 78)
+        Me.CheckBox_8A.Location = New System.Drawing.Point(6, 78)
         Me.CheckBox_8A.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_8A.Name = "CheckBox_8A"
         Me.CheckBox_8A.Size = New System.Drawing.Size(38, 16)
@@ -392,7 +360,7 @@ Partial Class Form1
         'CheckBox_8B
         '
         Me.CheckBox_8B.AutoSize = True
-        Me.CheckBox_8B.Location = New System.Drawing.Point(638, 78)
+        Me.CheckBox_8B.Location = New System.Drawing.Point(47, 78)
         Me.CheckBox_8B.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_8B.Name = "CheckBox_8B"
         Me.CheckBox_8B.Size = New System.Drawing.Size(38, 16)
@@ -403,7 +371,7 @@ Partial Class Form1
         'CheckBox_8C
         '
         Me.CheckBox_8C.AutoSize = True
-        Me.CheckBox_8C.Location = New System.Drawing.Point(683, 78)
+        Me.CheckBox_8C.Location = New System.Drawing.Point(89, 78)
         Me.CheckBox_8C.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_8C.Name = "CheckBox_8C"
         Me.CheckBox_8C.Size = New System.Drawing.Size(38, 16)
@@ -414,7 +382,7 @@ Partial Class Form1
         'CheckBox_hyouteika
         '
         Me.CheckBox_hyouteika.AutoSize = True
-        Me.CheckBox_hyouteika.Location = New System.Drawing.Point(842, 78)
+        Me.CheckBox_hyouteika.Location = New System.Drawing.Point(249, 78)
         Me.CheckBox_hyouteika.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_hyouteika.Name = "CheckBox_hyouteika"
         Me.CheckBox_hyouteika.Size = New System.Drawing.Size(60, 16)
@@ -438,7 +406,7 @@ Partial Class Form1
         Me.TabControl1.Controls.Add(Me.TabPage3)
         Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(30, 99)
+        Me.TabControl1.Location = New System.Drawing.Point(27, 113)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
         Me.TabControl1.Size = New System.Drawing.Size(947, 631)
@@ -532,10 +500,8 @@ Partial Class Form1
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.CheckBox1)
-        Me.TabPage3.Controls.Add(Me.CheckBox2)
-        Me.TabPage3.Controls.Add(Me.Button2)
-        Me.TabPage3.Controls.Add(Me.Button3)
+        Me.TabPage3.Controls.Add(Me.CheckBox_Input2)
+        Me.TabPage3.Controls.Add(Me.Data_Input_Button2)
         Me.TabPage3.Controls.Add(Me.TextBox_FileLIst3)
         Me.TabPage3.Controls.Add(Me.PdfReadButton)
         Me.TabPage3.Controls.Add(Me.DataGridView2)
@@ -550,48 +516,29 @@ Partial Class Form1
         Me.TabPage3.Text = "フォルダーから資料の検索"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'CheckBox1
+        'CheckBox_Input2
         '
-        Me.CheckBox1.AutoSize = True
-        Me.CheckBox1.Location = New System.Drawing.Point(896, 37)
-        Me.CheckBox1.Name = "CheckBox1"
-        Me.CheckBox1.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox1.TabIndex = 26
-        Me.CheckBox1.UseVisualStyleBackColor = True
+        Me.CheckBox_Input2.AutoSize = True
+        Me.CheckBox_Input2.Location = New System.Drawing.Point(858, 37)
+        Me.CheckBox_Input2.Name = "CheckBox_Input2"
+        Me.CheckBox_Input2.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input2.TabIndex = 25
+        Me.CheckBox_Input2.UseVisualStyleBackColor = True
         '
-        'CheckBox2
+        'Data_Input_Button2
         '
-        Me.CheckBox2.AutoSize = True
-        Me.CheckBox2.Location = New System.Drawing.Point(809, 38)
-        Me.CheckBox2.Name = "CheckBox2"
-        Me.CheckBox2.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox2.TabIndex = 25
-        Me.CheckBox2.UseVisualStyleBackColor = True
-        '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(843, 29)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(48, 32)
-        Me.Button2.TabIndex = 23
-        Me.Button2.Text = "変換"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'Button3
-        '
-        Me.Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button3.Location = New System.Drawing.Point(754, 29)
-        Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(48, 32)
-        Me.Button3.TabIndex = 24
-        Me.Button3.Text = "入力"
-        Me.Button3.UseVisualStyleBackColor = True
+        Me.Data_Input_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Data_Input_Button2.Location = New System.Drawing.Point(803, 28)
+        Me.Data_Input_Button2.Name = "Data_Input_Button2"
+        Me.Data_Input_Button2.Size = New System.Drawing.Size(48, 32)
+        Me.Data_Input_Button2.TabIndex = 24
+        Me.Data_Input_Button2.Text = "入力"
+        Me.Data_Input_Button2.UseVisualStyleBackColor = True
         '
         'TextBox_FileLIst3
         '
         Me.TextBox_FileLIst3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(20, 421)
+        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(15, 420)
         Me.TextBox_FileLIst3.Multiline = True
         Me.TextBox_FileLIst3.Name = "TextBox_FileLIst3"
         Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 163)
@@ -600,7 +547,7 @@ Partial Class Form1
         'PdfReadButton
         '
         Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PdfReadButton.Location = New System.Drawing.Point(153, 14)
+        Me.PdfReadButton.Location = New System.Drawing.Point(148, 13)
         Me.PdfReadButton.Name = "PdfReadButton"
         Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
         Me.PdfReadButton.TabIndex = 20
@@ -610,7 +557,7 @@ Partial Class Form1
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(19, 93)
+        Me.DataGridView2.Location = New System.Drawing.Point(14, 92)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 21
         Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
@@ -619,7 +566,7 @@ Partial Class Form1
         'TextBox3
         '
         Me.TextBox3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(19, 65)
+        Me.TextBox3.Location = New System.Drawing.Point(14, 64)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox3.Multiline = True
         Me.TextBox3.Name = "TextBox3"
@@ -628,7 +575,7 @@ Partial Class Form1
         '
         'ProgressBar2
         '
-        Me.ProgressBar2.Location = New System.Drawing.Point(20, 398)
+        Me.ProgressBar2.Location = New System.Drawing.Point(15, 397)
         Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar2.Name = "ProgressBar2"
         Me.ProgressBar2.Size = New System.Drawing.Size(573, 18)
@@ -637,7 +584,7 @@ Partial Class Form1
         'Select_Read_Folder_Button2
         '
         Me.Select_Read_Folder_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(19, 14)
+        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(14, 13)
         Me.Select_Read_Folder_Button2.Name = "Select_Read_Folder_Button2"
         Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(128, 47)
         Me.Select_Read_Folder_Button2.TabIndex = 17
@@ -677,20 +624,10 @@ Partial Class Form1
         Me.TextBox2.Size = New System.Drawing.Size(897, 23)
         Me.TextBox2.TabIndex = 3
         '
-        'CheckBox_MakePdf
-        '
-        Me.CheckBox_MakePdf.AutoSize = True
-        Me.CheckBox_MakePdf.Location = New System.Drawing.Point(483, 78)
-        Me.CheckBox_MakePdf.Name = "CheckBox_MakePdf"
-        Me.CheckBox_MakePdf.Size = New System.Drawing.Size(70, 16)
-        Me.CheckBox_MakePdf.TabIndex = 11
-        Me.CheckBox_MakePdf.Text = "PDF変換"
-        Me.CheckBox_MakePdf.UseVisualStyleBackColor = True
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(32, 48)
+        Me.Label2.Location = New System.Drawing.Point(29, 62)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(118, 12)
         Me.Label2.TabIndex = 15
@@ -698,46 +635,98 @@ Partial Class Form1
         '
         'TextBox_FileMakerServer
         '
-        Me.TextBox_FileMakerServer.Location = New System.Drawing.Point(34, 63)
+        Me.TextBox_FileMakerServer.Location = New System.Drawing.Point(31, 77)
         Me.TextBox_FileMakerServer.Name = "TextBox_FileMakerServer"
         Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(143, 19)
         Me.TextBox_FileMakerServer.TabIndex = 14
+        '
+        'RadioButton_xdw
+        '
+        Me.RadioButton_xdw.AutoSize = True
+        Me.RadioButton_xdw.Checked = True
+        Me.RadioButton_xdw.Location = New System.Drawing.Point(480, 44)
+        Me.RadioButton_xdw.Name = "RadioButton_xdw"
+        Me.RadioButton_xdw.Size = New System.Drawing.Size(43, 16)
+        Me.RadioButton_xdw.TabIndex = 8
+        Me.RadioButton_xdw.TabStop = True
+        Me.RadioButton_xdw.Text = "xdw"
+        Me.RadioButton_xdw.UseVisualStyleBackColor = True
+        '
+        'RadioButton_pdf
+        '
+        Me.RadioButton_pdf.AutoSize = True
+        Me.RadioButton_pdf.Location = New System.Drawing.Point(529, 44)
+        Me.RadioButton_pdf.Name = "RadioButton_pdf"
+        Me.RadioButton_pdf.Size = New System.Drawing.Size(39, 16)
+        Me.RadioButton_pdf.TabIndex = 9
+        Me.RadioButton_pdf.Text = "pdf"
+        Me.RadioButton_pdf.UseVisualStyleBackColor = True
+        '
+        'FileMakerCheckBox
+        '
+        Me.FileMakerCheckBox.AutoSize = True
+        Me.FileMakerCheckBox.Location = New System.Drawing.Point(480, 68)
+        Me.FileMakerCheckBox.Name = "FileMakerCheckBox"
+        Me.FileMakerCheckBox.Size = New System.Drawing.Size(98, 16)
+        Me.FileMakerCheckBox.TabIndex = 10
+        Me.FileMakerCheckBox.Text = "FileMaker書込"
+        Me.FileMakerCheckBox.UseVisualStyleBackColor = True
+        '
+        'CheckBox_MakePdf
+        '
+        Me.CheckBox_MakePdf.AutoSize = True
+        Me.CheckBox_MakePdf.Location = New System.Drawing.Point(480, 92)
+        Me.CheckBox_MakePdf.Name = "CheckBox_MakePdf"
+        Me.CheckBox_MakePdf.Size = New System.Drawing.Size(70, 16)
+        Me.CheckBox_MakePdf.TabIndex = 11
+        Me.CheckBox_MakePdf.Text = "PDF変換"
+        Me.CheckBox_MakePdf.UseVisualStyleBackColor = True
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.CheckBox_hyouteika)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_tobihi)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_zairyou)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3Z)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3Y)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3U)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3T)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_ALL)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_kozo)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3P)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3X)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3O)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3S)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3L)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3N)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3K)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3M)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3G)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3J)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3C)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_8C)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_8B)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_8A)
+        Me.GroupBox1.Controls.Add(Me.CheckBox_3A)
+        Me.GroupBox1.Location = New System.Drawing.Point(615, 14)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(359, 94)
+        Me.GroupBox1.TabIndex = 16
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "分野番号"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1008, 738)
+        Me.ClientSize = New System.Drawing.Size(1007, 756)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox_FileMakerServer)
         Me.Controls.Add(Me.CheckBox_MakePdf)
         Me.Controls.Add(Me.FileMakerCheckBox)
         Me.Controls.Add(Me.RadioButton_pdf)
         Me.Controls.Add(Me.RadioButton_xdw)
-        Me.Controls.Add(Me.CheckBox_hyouteika)
-        Me.Controls.Add(Me.CheckBox_tobihi)
-        Me.Controls.Add(Me.CheckBox_zairyou)
-        Me.Controls.Add(Me.CheckBox_3Z)
-        Me.Controls.Add(Me.CheckBox_3Y)
-        Me.Controls.Add(Me.CheckBox_3U)
-        Me.Controls.Add(Me.CheckBox_3T)
-        Me.Controls.Add(Me.CheckBox_ALL)
-        Me.Controls.Add(Me.CheckBox_kozo)
-        Me.Controls.Add(Me.CheckBox_3P)
-        Me.Controls.Add(Me.CheckBox_3X)
-        Me.Controls.Add(Me.CheckBox_3O)
-        Me.Controls.Add(Me.CheckBox_3S)
-        Me.Controls.Add(Me.CheckBox_3L)
-        Me.Controls.Add(Me.CheckBox_3N)
-        Me.Controls.Add(Me.CheckBox_3K)
-        Me.Controls.Add(Me.CheckBox_3M)
-        Me.Controls.Add(Me.CheckBox_3G)
-        Me.Controls.Add(Me.CheckBox_3J)
-        Me.Controls.Add(Me.CheckBox_3C)
-        Me.Controls.Add(Me.CheckBox_8C)
-        Me.Controls.Add(Me.CheckBox_8B)
-        Me.Controls.Add(Me.CheckBox_8A)
-        Me.Controls.Add(Me.CheckBox_3A)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TabControl1)
         Me.Margin = New System.Windows.Forms.Padding(2)
@@ -752,6 +741,8 @@ Partial Class Form1
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage2.ResumeLayout(False)
         Me.TabPage2.PerformLayout()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -780,9 +771,6 @@ Partial Class Form1
     Friend WithEvents CheckBox_zairyou As CheckBox
     Friend WithEvents CheckBox_tobihi As CheckBox
     Friend WithEvents CheckBox_ALL As CheckBox
-    Friend WithEvents RadioButton_xdw As RadioButton
-    Friend WithEvents RadioButton_pdf As RadioButton
-    Friend WithEvents FileMakerCheckBox As CheckBox
     Friend WithEvents CheckBox_8A As CheckBox
     Friend WithEvents CheckBox_8B As CheckBox
     Friend WithEvents CheckBox_8C As CheckBox
@@ -793,7 +781,6 @@ Partial Class Form1
     Friend WithEvents TabPage2 As TabPage
     Friend WithEvents TextBox2 As TextBox
     Friend WithEvents Button1 As Button
-    Friend WithEvents CheckBox_MakePdf As CheckBox
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox_FileMakerServer As TextBox
     Friend WithEvents DataGridView1 As DataGridView
@@ -804,14 +791,17 @@ Partial Class Form1
     Friend WithEvents CheckBox_Convert As CheckBox
     Friend WithEvents CheckBox_Input As CheckBox
     Friend WithEvents TabPage3 As TabPage
-    Friend WithEvents CheckBox1 As CheckBox
-    Friend WithEvents CheckBox2 As CheckBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents Button3 As Button
+    Friend WithEvents CheckBox_Input2 As CheckBox
+    Friend WithEvents Data_Input_Button2 As Button
     Friend WithEvents TextBox_FileLIst3 As TextBox
     Friend WithEvents PdfReadButton As Button
     Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents ProgressBar2 As ProgressBar
     Friend WithEvents Select_Read_Folder_Button2 As Button
+    Friend WithEvents RadioButton_xdw As RadioButton
+    Friend WithEvents RadioButton_pdf As RadioButton
+    Friend WithEvents FileMakerCheckBox As CheckBox
+    Friend WithEvents CheckBox_MakePdf As CheckBox
+    Friend WithEvents GroupBox1 As GroupBox
 End Class
