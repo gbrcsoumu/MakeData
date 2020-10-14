@@ -57,7 +57,8 @@ Public Class Form1
         TextBox_FileMakerServer.Text = FileMakerServer1
         Cansel = False
 
-        TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
+        'TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
+        TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\test用"
         Path2 = TextBox_FolderName1.Text
 
         CheckBox_Input.Checked = True       ' 報告書の入力チェックボックス
@@ -903,16 +904,17 @@ Public Class Form1
         '  小文字、全角にも対応
 
 
-        Dim s(3) As String, w(3) As String
+        Dim s(3) As String, w(4) As String
 
         s(0) = checkChr.Substring(1, 1)                 ' 3A ->A
         s(1) = s(0).ToLower                             ' 3A -> A -> a
         s(2) = StrConv(s(0), VbStrConv.Wide)            ' A -> Ａ（全角）
         s(3) = StrConv(s(1), VbStrConv.Wide)            ' a -> ａ（全角）
         w(0) = "\d\d\d\d\d\d"
-        w(1) = "-\d\d-\d\d\d"
-        w(2) = "-\d\d-\d\d"
-        w(3) = "-\d\d-\d\d\d\d"
+        w(1) = "\d\d\d\d\d"
+        w(2) = "-\d\d-\d\d\d"
+        w(3) = "-\d\d-\d\d"
+        w(4) = "-\d\d-\d\d\d\d"
 
         IsTestNumber = False
         If fname.Substring(0, 1) <> "." Then    ' 隠しファイルを除外する。
@@ -1485,6 +1487,9 @@ Public Class Form1
                 Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
 
                 If result = vbOK Then
+                    ProgressBar1.Minimum = 0
+                    ProgressBar1.Maximum = Count
+                    ProgressBar1.Visible = True
 
                     Debug.Print("OK")
                     Try
@@ -1509,6 +1514,7 @@ Public Class Form1
                                 DataGridView1.Rows(i).Cells(4).Value = False
 
                                 sw.WriteLine(fname)
+                                ProgressBar1.Value = i + 1
                                 'Count += 1
                             End If
                             Application.DoEvents()
@@ -1523,6 +1529,7 @@ Public Class Form1
 
                         'ストリームを閉じる
                         sw.Close()
+                        ProgressBar1.Visible = False
                     Catch e1 As Exception
 
                     End Try
@@ -1552,7 +1559,7 @@ Public Class Form1
             Dim n As Integer = DataGridView1.RowCount - 1
             Dim Count As Integer = 0
             For i As Integer = 0 To n - 1
-                If DataGridView1.Rows(i).Cells(6).Value = False Then
+                If DataGridView1.Rows(i).Cells(5).Value = "未" And DataGridView1.Rows(i).Cells(6).Value = True Then
                     Count += 1
                 End If
             Next
@@ -1564,7 +1571,7 @@ Public Class Form1
             If Count > 0 Then
 
                 ' メッセージボックスに表示するテキスト
-                Dim message As String = "PDF未変換のデータが" + Count.ToString + "個あります。" + vbCrLf + "入力しますか？"
+                Dim message As String = "PDF変換にチェックされたデータが" + Count.ToString + "個あります。" + vbCrLf + "入力しますか？"
 
                 ' タイトルバーに表示するテキスト
                 Dim caption As String = "確認"
@@ -1575,6 +1582,9 @@ Public Class Form1
                 Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
 
                 If result = vbOK Then
+                    ProgressBar1.Minimum = 0
+                    ProgressBar1.Maximum = Count
+                    ProgressBar1.Visible = True
 
                     TextBox_FileLIst2.Text = ""
                     Debug.Print("OK")
@@ -1582,11 +1592,11 @@ Public Class Form1
                         FileMakerServer = TextBox_FileMakerServer.Text
                         db.Connect()
 
-                        If System.IO.File.Exists(CmdFile) = False Then
-                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
-                        End If
-                        Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
-                        sw.WriteLine("2")  ' コマンド番号
+                        'If System.IO.File.Exists(CmdFile) = False Then
+                        '    System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
+                        'End If
+                        'Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
+                        'sw.WriteLine("2")  ' コマンド番号
 
                         For i As Integer = 0 To n - 1
                             If DataGridView1.Rows(i).Cells(6).Value = True Then
@@ -1634,10 +1644,10 @@ Public Class Form1
                                     DataGridView1.Rows(i).Cells(5).Value = "済"
                                     DataGridView1.Rows(i).Cells(6).Value = False
 
-                                    sw.WriteLine(fname)
+                                    'sw.WriteLine(fname)
 
                                 End If
-
+                                ProgressBar1.Value = i + 1
 
 
                                 'Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
@@ -1661,7 +1671,9 @@ Public Class Form1
 
 
                         'ストリームを閉じる
-                        sw.Close()
+                        'sw.Close()
+                        ProgressBar1.Visible = False
+
                     Catch e1 As Exception
 
                     End Try
