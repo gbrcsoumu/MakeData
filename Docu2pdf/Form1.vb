@@ -1626,17 +1626,18 @@ Public Class Form1
                                 Dim AddText As String
                                 If System.IO.File.Exists(PdfPath) = False Then
                                     Ok = DocuToPdf(filename1, PdfPath, 600)
-                                    AddText = "（新規作成）"
+                                    If Ok = 0 Then
+                                        AddText = "（新規作成）"
+                                    Else
+                                        AddText = "（失敗）"
+                                    End If
                                 Else
-                                    Ok = 0
+                                        Ok = 0
                                     AddText = "（既存）"
                                 End If
 
                                 If Ok = 0 Then
-                                    Me.TextBox_FileLIst2.Text += PdfPath + AddText + vbCrLf
-                                    Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
-                                    Me.TextBox_FileLIst2.Focus()
-                                    Me.TextBox_FileLIst2.ScrollToCaret()
+
 
                                     Sql_Command = "UPDATE """ + Table + """ SET ""PdfPath"" = '" + PdfPath.Replace("'", "''") + "'"
                                     Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
@@ -1645,8 +1646,16 @@ Public Class Form1
                                     DataGridView1.Rows(i).Cells(6).Value = False
 
                                     'sw.WriteLine(fname)
-
+                                Else
+                                    DataGridView1.Rows(i).Cells(5).Value = "未"
+                                    DataGridView1.Rows(i).Cells(6).Value = True
                                 End If
+
+                                Me.TextBox_FileLIst2.Text += PdfPath + AddText + vbCrLf
+                                Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+                                Me.TextBox_FileLIst2.Focus()
+                                Me.TextBox_FileLIst2.ScrollToCaret()
+
                                 ProgressBar1.Value = i + 1
 
 
