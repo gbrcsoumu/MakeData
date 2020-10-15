@@ -50,7 +50,6 @@ Partial Class Form1
         Me.CheckBox_8B = New System.Windows.Forms.CheckBox()
         Me.CheckBox_8C = New System.Windows.Forms.CheckBox()
         Me.CheckBox_hyouteika = New System.Windows.Forms.CheckBox()
-        Me.Text_Read_Button = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.CheckBox_Convert = New System.Windows.Forms.CheckBox()
@@ -69,22 +68,14 @@ Partial Class Form1
         Me.TextBox3 = New System.Windows.Forms.TextBox()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Select_Read_Folder_Button2 = New System.Windows.Forms.Button()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.TextBox2 = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
-        Me.RadioButton_xdw = New System.Windows.Forms.RadioButton()
-        Me.RadioButton_pdf = New System.Windows.Forms.RadioButton()
-        Me.FileMakerCheckBox = New System.Windows.Forms.CheckBox()
-        Me.CheckBox_MakePdf = New System.Windows.Forms.CheckBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -123,7 +114,7 @@ Partial Class Form1
         Me.ProgressBar1.Location = New System.Drawing.Point(10, 401)
         Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(573, 18)
+        Me.ProgressBar1.Size = New System.Drawing.Size(896, 18)
         Me.ProgressBar1.TabIndex = 5
         '
         'CheckBox_3A
@@ -390,21 +381,10 @@ Partial Class Form1
         Me.CheckBox_hyouteika.Text = "評定課"
         Me.CheckBox_hyouteika.UseVisualStyleBackColor = True
         '
-        'Text_Read_Button
-        '
-        Me.Text_Read_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Text_Read_Button.Location = New System.Drawing.Point(178, 14)
-        Me.Text_Read_Button.Name = "Text_Read_Button"
-        Me.Text_Read_Button.Size = New System.Drawing.Size(127, 46)
-        Me.Text_Read_Button.TabIndex = 12
-        Me.Text_Read_Button.Text = "テキスト読込"
-        Me.Text_Read_Button.UseVisualStyleBackColor = True
-        '
         'TabControl1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(27, 113)
         Me.TabControl1.Name = "TabControl1"
@@ -591,39 +571,6 @@ Partial Class Form1
         Me.Select_Read_Folder_Button2.Text = "読み込みフォルダー選択"
         Me.Select_Read_Folder_Button2.UseVisualStyleBackColor = True
         '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.Button1)
-        Me.TabPage2.Controls.Add(Me.Text_Read_Button)
-        Me.TabPage2.Controls.Add(Me.TextBox2)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(939, 598)
-        Me.TabPage2.TabIndex = 1
-        Me.TabPage2.Text = "テキストファイルからの検索"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'Button1
-        '
-        Me.Button1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button1.Location = New System.Drawing.Point(12, 14)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(129, 46)
-        Me.Button1.TabIndex = 13
-        Me.Button1.Text = "テキストファイルの選択"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'TextBox2
-        '
-        Me.TextBox2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox2.Location = New System.Drawing.Point(12, 65)
-        Me.TextBox2.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox2.Multiline = True
-        Me.TextBox2.Name = "TextBox2"
-        Me.TextBox2.Size = New System.Drawing.Size(897, 23)
-        Me.TextBox2.TabIndex = 3
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -639,48 +586,6 @@ Partial Class Form1
         Me.TextBox_FileMakerServer.Name = "TextBox_FileMakerServer"
         Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(143, 19)
         Me.TextBox_FileMakerServer.TabIndex = 14
-        '
-        'RadioButton_xdw
-        '
-        Me.RadioButton_xdw.AutoSize = True
-        Me.RadioButton_xdw.Checked = True
-        Me.RadioButton_xdw.Location = New System.Drawing.Point(480, 44)
-        Me.RadioButton_xdw.Name = "RadioButton_xdw"
-        Me.RadioButton_xdw.Size = New System.Drawing.Size(43, 16)
-        Me.RadioButton_xdw.TabIndex = 8
-        Me.RadioButton_xdw.TabStop = True
-        Me.RadioButton_xdw.Text = "xdw"
-        Me.RadioButton_xdw.UseVisualStyleBackColor = True
-        '
-        'RadioButton_pdf
-        '
-        Me.RadioButton_pdf.AutoSize = True
-        Me.RadioButton_pdf.Location = New System.Drawing.Point(529, 44)
-        Me.RadioButton_pdf.Name = "RadioButton_pdf"
-        Me.RadioButton_pdf.Size = New System.Drawing.Size(39, 16)
-        Me.RadioButton_pdf.TabIndex = 9
-        Me.RadioButton_pdf.Text = "pdf"
-        Me.RadioButton_pdf.UseVisualStyleBackColor = True
-        '
-        'FileMakerCheckBox
-        '
-        Me.FileMakerCheckBox.AutoSize = True
-        Me.FileMakerCheckBox.Location = New System.Drawing.Point(480, 68)
-        Me.FileMakerCheckBox.Name = "FileMakerCheckBox"
-        Me.FileMakerCheckBox.Size = New System.Drawing.Size(98, 16)
-        Me.FileMakerCheckBox.TabIndex = 10
-        Me.FileMakerCheckBox.Text = "FileMaker書込"
-        Me.FileMakerCheckBox.UseVisualStyleBackColor = True
-        '
-        'CheckBox_MakePdf
-        '
-        Me.CheckBox_MakePdf.AutoSize = True
-        Me.CheckBox_MakePdf.Location = New System.Drawing.Point(480, 92)
-        Me.CheckBox_MakePdf.Name = "CheckBox_MakePdf"
-        Me.CheckBox_MakePdf.Size = New System.Drawing.Size(70, 16)
-        Me.CheckBox_MakePdf.TabIndex = 11
-        Me.CheckBox_MakePdf.Text = "PDF変換"
-        Me.CheckBox_MakePdf.UseVisualStyleBackColor = True
         '
         'GroupBox1
         '
@@ -710,7 +615,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.CheckBox_3A)
         Me.GroupBox1.Location = New System.Drawing.Point(615, 14)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(359, 94)
+        Me.GroupBox1.Size = New System.Drawing.Size(359, 101)
         Me.GroupBox1.TabIndex = 16
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "分野番号"
@@ -723,15 +628,11 @@ Partial Class Form1
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox_FileMakerServer)
-        Me.Controls.Add(Me.CheckBox_MakePdf)
-        Me.Controls.Add(Me.FileMakerCheckBox)
-        Me.Controls.Add(Me.RadioButton_pdf)
-        Me.Controls.Add(Me.RadioButton_xdw)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TabControl1)
         Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
-        Me.Text = "Make Data v2.0"
+        Me.Text = "Make Data v1.0"
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
@@ -739,8 +640,6 @@ Partial Class Form1
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -775,12 +674,8 @@ Partial Class Form1
     Friend WithEvents CheckBox_8B As CheckBox
     Friend WithEvents CheckBox_8C As CheckBox
     Friend WithEvents CheckBox_hyouteika As CheckBox
-    Friend WithEvents Text_Read_Button As Button
     Friend WithEvents TabControl1 As TabControl
     Friend WithEvents TabPage1 As TabPage
-    Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents TextBox2 As TextBox
-    Friend WithEvents Button1 As Button
     Friend WithEvents Label2 As Label
     Friend WithEvents TextBox_FileMakerServer As TextBox
     Friend WithEvents DataGridView1 As DataGridView
@@ -799,9 +694,5 @@ Partial Class Form1
     Friend WithEvents TextBox3 As TextBox
     Friend WithEvents ProgressBar2 As ProgressBar
     Friend WithEvents Select_Read_Folder_Button2 As Button
-    Friend WithEvents RadioButton_xdw As RadioButton
-    Friend WithEvents RadioButton_pdf As RadioButton
-    Friend WithEvents FileMakerCheckBox As CheckBox
-    Friend WithEvents CheckBox_MakePdf As CheckBox
     Friend WithEvents GroupBox1 As GroupBox
 End Class

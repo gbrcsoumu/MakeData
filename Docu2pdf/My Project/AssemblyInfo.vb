@@ -8,7 +8,7 @@ Imports System.Runtime.InteropServices
 
 ' アセンブリ属性の値を確認します
 
-<Assembly: AssemblyTitle("MakeData2")>
+<Assembly: AssemblyTitle("MakeData")>
 <Assembly: AssemblyDescription("")>
 <Assembly: AssemblyCompany("GBRC")>
 <Assembly: AssemblyProduct("MakeData")>
