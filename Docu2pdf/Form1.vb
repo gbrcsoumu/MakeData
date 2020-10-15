@@ -1376,9 +1376,11 @@ Public Class Form1
 
 
     Private Function PCInfo(ByVal IP As String, ByVal Hname As String, ByVal Path As String, ByVal Pname As String) As Boolean
-
-        'SELECT TIMESTAMP '2019-06-05 02:49:03' FROM " 営業社員 "
-
+        '
+        '   PCのアドレス、ホストネーム、プログラムのパス、プログラム名、接続日時をデータベースに記録する関数
+        '
+        '       接続出来ない場合はプログラムを終了する。
+        '
         Dim db As New OdbcDbIf
         Dim tb As DataTable
         Dim Sql_Command As String
