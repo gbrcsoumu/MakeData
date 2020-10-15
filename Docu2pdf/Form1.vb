@@ -28,7 +28,7 @@ Public Class Form1
     Private Path1 As String, Path2 As String
     Private Check() As CheckBox, checkbox_n As Integer
     Private Cansel As Boolean
-    Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress()
+    Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
 
 
     Private TextFileName As String
@@ -37,6 +37,8 @@ Public Class Form1
         '
         ' フォームの初期化
         '
+        TextBox_FileMakerServer.Text = FileMakerServer1
+
         MyPath = My.Application.Info.DirectoryPath
         MyName = My.Application.Info.AssemblyName
         ' ホスト名を取得する
@@ -44,12 +46,23 @@ Public Class Form1
 
         ' ホスト名からIPアドレスを取得する
         adrList = Dns.GetHostAddresses(hostname)
+        MyIP = ""
         For Each address As IPAddress In adrList
             Console.WriteLine(address.ToString())
+            If System.Text.RegularExpressions.Regex.IsMatch(address.ToString(), "\d{1,3}(\.\d{1,3}){3}(/\d{1,2})?") = True Then
+                Console.WriteLine(address.ToString())
+                MyIP = address.ToString()
+            End If
         Next
 
-        ' 起動時にプログレスバーを非表示にする。
-        Me.ProgressBar1.Visible = False
+        If MyIP <> "" Then
+            If PCInfo(MyIP, hostname, MyPath, MyName) = False Then
+                MsgBox("データベースに接続出来ません!" + vbCrLf + "終了します!", vbOK, "警告")
+                End
+            End If
+        End If
+            ' 起動時にプログレスバーを非表示にする。
+            Me.ProgressBar1.Visible = False
         Me.ProgressBar2.Visible = False
 
         ' 分野番号チェックボックスの初期設定
@@ -86,7 +99,7 @@ Public Class Form1
         CheckBox_tobihi.Checked = True
         CheckBox_hyouteika.Checked = True
 
-        TextBox_FileMakerServer.Text = FileMakerServer1
+        'TextBox_FileMakerServer.Text = FileMakerServer1
         Cansel = False
 
         'TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
@@ -1360,5 +1373,41 @@ Public Class Form1
             Next
         End If
     End Sub
+
+
+    Private Function PCInfo(ByVal IP As String, ByVal Hname As String, ByVal Path As String, ByVal Pname As String) As Boolean
+
+        'SELECT TIMESTAMP '2019-06-05 02:49:03' FROM " 営業社員 "
+
+        Dim db As New OdbcDbIf
+        Dim tb As DataTable
+        Dim Sql_Command As String
+        Dim td1 As DateTime = DateTime.Now
+        Dim td2 As String = td1.ToString().Replace("/", "-")
+
+        Try
+            FileMakerServer = TextBox_FileMakerServer.Text
+            db.Connect()
+
+            Sql_Command = "SELECT ""IP"",""Path"",""ProgramName"",""HostName"" FROM """ + Table2 + """ WHERE (""IP"" = '" + IP + "' AND ""HostName"" = '" + Hname + "')"
+            tb = db.ExecuteSql(Sql_Command)
+            Dim n2 As Integer = tb.Rows.Count
+            If n2 > 0 Then
+                Sql_Command = "UPDATE """ + Table2 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "'"
+                Sql_Command += " WHERE (""IP"" = '" + IP + "' AND ""HostName"" = '" + Hname + "' AND ""Path"" = '" + Path + "')"
+                tb = db.ExecuteSql(Sql_Command)
+            Else
+                Sql_Command = "INSERT INTO """ + Table2 + """ (""IP"",""Path"",""ProgramName"",""HostName"",""接続日時"")"
+                Sql_Command += " VALUES ('" + IP + "','" + Path + "','" + Pname + "','" + Hname + "',TIMESTAMP '" + td2 + "')"
+                tb = db.ExecuteSql(Sql_Command)
+            End If
+
+            db.Disconnect()
+            PCInfo = True
+        Catch e1 As Exception
+            PCInfo = False
+        End Try
+
+    End Function
 
 End Class
