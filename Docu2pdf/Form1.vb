@@ -19,6 +19,7 @@
 '*************************************************************************************************************
 
 Imports System.IO
+Imports System.Net
 Imports System.Security.AccessControl
 Imports FujiXerox.DocuWorks.Toolkit
 
@@ -27,6 +28,8 @@ Public Class Form1
     Private Path1 As String, Path2 As String
     Private Check() As CheckBox, checkbox_n As Integer
     Private Cansel As Boolean
+    Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress()
+
 
     Private TextFileName As String
 
@@ -34,6 +37,17 @@ Public Class Form1
         '
         ' フォームの初期化
         '
+        MyPath = My.Application.Info.DirectoryPath
+        MyName = My.Application.Info.AssemblyName
+        ' ホスト名を取得する
+        hostname = Dns.GetHostName()
+
+        ' ホスト名からIPアドレスを取得する
+        adrList = Dns.GetHostAddresses(hostname)
+        For Each address As IPAddress In adrList
+            Console.WriteLine(address.ToString())
+        Next
+
         ' 起動時にプログレスバーを非表示にする。
         Me.ProgressBar1.Visible = False
         Me.ProgressBar2.Visible = False
@@ -1256,6 +1270,11 @@ Public Class Form1
                 Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
 
                 If result = vbOK Then
+
+                    ProgressBar2.Minimum = 0
+                    ProgressBar2.Maximum = Count
+                    ProgressBar2.Visible = True
+
                     TextBox_FileLIst3.Text = ""
                     Debug.Print("OK")
                     Try
@@ -1285,6 +1304,9 @@ Public Class Form1
                                 Me.TextBox_FileLIst3.SelectionStart = Me.TextBox_FileLIst2.Text.Length
                                 Me.TextBox_FileLIst3.Focus()
                                 Me.TextBox_FileLIst3.ScrollToCaret()
+
+                                ProgressBar2.Value = i + 1
+
                             End If
                             Application.DoEvents()
                         Next
@@ -1298,6 +1320,9 @@ Public Class Form1
 
                         'ストリームを閉じる
                         sw.Close()
+
+                        ProgressBar2.Visible = False
+
                     Catch e1 As Exception
 
                     End Try

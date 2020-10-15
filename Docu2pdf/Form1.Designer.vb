@@ -558,7 +558,7 @@ Partial Class Form1
         Me.ProgressBar2.Location = New System.Drawing.Point(15, 397)
         Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(573, 18)
+        Me.ProgressBar2.Size = New System.Drawing.Size(896, 18)
         Me.ProgressBar2.TabIndex = 18
         '
         'Select_Read_Folder_Button2
