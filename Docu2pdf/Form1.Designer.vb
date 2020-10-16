@@ -52,6 +52,7 @@ Partial Class Form1
         Me.CheckBox_hyouteika = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.FolderSaveButton1 = New System.Windows.Forms.Button()
         Me.CheckBox_Convert = New System.Windows.Forms.CheckBox()
         Me.CheckBox_Input = New System.Windows.Forms.CheckBox()
         Me.PDF_Convert_Button = New System.Windows.Forms.Button()
@@ -72,6 +73,7 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.FolderMenuButton1 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -93,11 +95,11 @@ Partial Class Form1
         'TextBox_FolderName1
         '
         Me.TextBox_FolderName1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName1.Location = New System.Drawing.Point(9, 68)
+        Me.TextBox_FolderName1.Location = New System.Drawing.Point(67, 69)
         Me.TextBox_FolderName1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FolderName1.Multiline = True
         Me.TextBox_FolderName1.Name = "TextBox_FolderName1"
-        Me.TextBox_FolderName1.Size = New System.Drawing.Size(897, 23)
+        Me.TextBox_FolderName1.Size = New System.Drawing.Size(842, 23)
         Me.TextBox_FolderName1.TabIndex = 1
         '
         'Label1
@@ -395,6 +397,8 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.FolderMenuButton1)
+        Me.TabPage1.Controls.Add(Me.FolderSaveButton1)
         Me.TabPage1.Controls.Add(Me.CheckBox_Convert)
         Me.TabPage1.Controls.Add(Me.CheckBox_Input)
         Me.TabPage1.Controls.Add(Me.PDF_Convert_Button)
@@ -412,6 +416,16 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "フォルダーから報告書の検索"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'FolderSaveButton1
+        '
+        Me.FolderSaveButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderSaveButton1.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton1.Name = "FolderSaveButton1"
+        Me.FolderSaveButton1.Size = New System.Drawing.Size(53, 23)
+        Me.FolderSaveButton1.TabIndex = 16
+        Me.FolderSaveButton1.Text = "登録"
+        Me.FolderSaveButton1.UseVisualStyleBackColor = True
         '
         'CheckBox_Convert
         '
@@ -492,7 +506,7 @@ Partial Class Form1
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(939, 549)
+        Me.TabPage3.Size = New System.Drawing.Size(939, 529)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "フォルダーから資料の検索"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -630,6 +644,16 @@ Partial Class Form1
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
+        'FolderMenuButton1
+        '
+        Me.FolderMenuButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderMenuButton1.Location = New System.Drawing.Point(535, 22)
+        Me.FolderMenuButton1.Name = "FolderMenuButton1"
+        Me.FolderMenuButton1.Size = New System.Drawing.Size(149, 41)
+        Me.FolderMenuButton1.TabIndex = 17
+        Me.FolderMenuButton1.Text = "履歴から選択"
+        Me.FolderMenuButton1.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -707,4 +731,6 @@ Partial Class Form1
     Friend WithEvents Select_Read_Folder_Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label3 As Label
+    Friend WithEvents FolderSaveButton1 As Button
+    Friend WithEvents FolderMenuButton1 As Button
 End Class

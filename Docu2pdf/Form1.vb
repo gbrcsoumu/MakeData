@@ -860,6 +860,8 @@ Public Class Form1
         End If
     End Sub
 
+
+
     Private Sub Select_Read_Folder_Button2_Click(sender As Object, e As EventArgs) Handles Select_Read_Folder_Button2.Click
         '
         '   資料（PDF）を検索するフォルダーの選択
@@ -1411,5 +1413,50 @@ Public Class Form1
         End Try
 
     End Function
+
+    Private Sub FolderSaveButton1_Click(sender As Object, e As EventArgs) Handles FolderSaveButton1.Click
+
+
+        If TextBox_FolderName1.Text <> "" Then
+            Try
+                Dim db As New OdbcDbIf
+                Dim tb As DataTable
+                Dim Sql_Command As String
+
+                Dim td1 As DateTime = DateTime.Now
+                Dim td2 As String = td1.ToString().Replace("/", "-")
+
+                FileMakerServer = TextBox_FileMakerServer.Text
+                db.Connect()
+
+                Dim Path As String = TextBox_FolderName1.Text
+
+                Sql_Command = "SELECT ""IP"",""Path"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "')"
+                tb = db.ExecuteSql(Sql_Command)
+
+                Dim n2 As Integer = tb.Rows.Count
+                If n2 > 0 Then
+                    Sql_Command = "UPDATE """ + Table3 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "'"
+                    Sql_Command += " WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "')"
+                    tb = db.ExecuteSql(Sql_Command)
+                Else
+                    Sql_Command = "INSERT INTO """ + Table3 + """ (""IP"",""Path"",""接続日時"")"
+                    Sql_Command += " VALUES ('" + MyIP + "','" + Path + "',TIMESTAMP '" + td2 + "')"
+                    tb = db.ExecuteSql(Sql_Command)
+                End If
+
+                db.Disconnect()
+
+            Catch e1 As Exception
+
+            End Try
+        End If
+    End Sub
+
+    Private Sub FolderMenuButton1_Click(sender As Object, e As EventArgs) Handles FolderMenuButton1.Click
+
+        Dim menuForm As New Form2
+        menuForm.Show()
+    End Sub
 
 End Class
