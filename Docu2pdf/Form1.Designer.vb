@@ -390,7 +390,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(27, 113)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(947, 582)
+        Me.TabControl1.Size = New System.Drawing.Size(947, 562)
         Me.TabControl1.TabIndex = 13
         '
         'TabPage1
@@ -408,7 +408,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(939, 549)
+        Me.TabPage1.Size = New System.Drawing.Size(939, 529)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "フォルダーから報告書の検索"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -457,7 +457,7 @@ Partial Class Form1
         Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 424)
         Me.TextBox_FileLIst2.Multiline = True
         Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
-        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 116)
+        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 95)
         Me.TextBox_FileLIst2.TabIndex = 11
         '
         'DocuReadButton
@@ -522,7 +522,7 @@ Partial Class Form1
         Me.TextBox_FileLIst3.Location = New System.Drawing.Point(10, 424)
         Me.TextBox_FileLIst3.Multiline = True
         Me.TextBox_FileLIst3.Name = "TextBox_FileLIst3"
-        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 114)
+        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 96)
         Me.TextBox_FileLIst3.TabIndex = 22
         '
         'PdfReadButton
@@ -634,7 +634,7 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1007, 702)
+        Me.ClientSize = New System.Drawing.Size(1007, 679)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label2)
