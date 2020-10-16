@@ -71,6 +71,7 @@ Partial Class Form1
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,9 +106,9 @@ Partial Class Form1
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label1.Location = New System.Drawing.Point(23, 20)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(435, 22)
+        Me.Label1.Size = New System.Drawing.Size(474, 22)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "報告書および資料をデータベース化するプログラム"
+        Me.Label1.Text = "報告書および資料をデータベースに登録するプログラム"
         '
         'ProgressBar1
         '
@@ -389,7 +390,7 @@ Partial Class Form1
         Me.TabControl1.Location = New System.Drawing.Point(27, 113)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(947, 631)
+        Me.TabControl1.Size = New System.Drawing.Size(947, 582)
         Me.TabControl1.TabIndex = 13
         '
         'TabPage1
@@ -407,7 +408,7 @@ Partial Class Form1
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(939, 598)
+        Me.TabPage1.Size = New System.Drawing.Size(939, 549)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "フォルダーから報告書の検索"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -456,7 +457,7 @@ Partial Class Form1
         Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 424)
         Me.TextBox_FileLIst2.Multiline = True
         Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
-        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 163)
+        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 116)
         Me.TextBox_FileLIst2.TabIndex = 11
         '
         'DocuReadButton
@@ -491,7 +492,7 @@ Partial Class Form1
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(939, 598)
+        Me.TabPage3.Size = New System.Drawing.Size(939, 549)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "フォルダーから資料の検索"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -518,16 +519,16 @@ Partial Class Form1
         'TextBox_FileLIst3
         '
         Me.TextBox_FileLIst3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(15, 420)
+        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(10, 424)
         Me.TextBox_FileLIst3.Multiline = True
         Me.TextBox_FileLIst3.Name = "TextBox_FileLIst3"
-        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 163)
+        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 114)
         Me.TextBox_FileLIst3.TabIndex = 22
         '
         'PdfReadButton
         '
         Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PdfReadButton.Location = New System.Drawing.Point(148, 13)
+        Me.PdfReadButton.Location = New System.Drawing.Point(143, 17)
         Me.PdfReadButton.Name = "PdfReadButton"
         Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
         Me.PdfReadButton.TabIndex = 20
@@ -537,7 +538,7 @@ Partial Class Form1
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(14, 92)
+        Me.DataGridView2.Location = New System.Drawing.Point(9, 96)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 21
         Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
@@ -546,7 +547,7 @@ Partial Class Form1
         'TextBox3
         '
         Me.TextBox3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(14, 64)
+        Me.TextBox3.Location = New System.Drawing.Point(9, 68)
         Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox3.Multiline = True
         Me.TextBox3.Name = "TextBox3"
@@ -555,7 +556,7 @@ Partial Class Form1
         '
         'ProgressBar2
         '
-        Me.ProgressBar2.Location = New System.Drawing.Point(15, 397)
+        Me.ProgressBar2.Location = New System.Drawing.Point(10, 401)
         Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar2.Name = "ProgressBar2"
         Me.ProgressBar2.Size = New System.Drawing.Size(896, 18)
@@ -564,7 +565,7 @@ Partial Class Form1
         'Select_Read_Folder_Button2
         '
         Me.Select_Read_Folder_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(14, 13)
+        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(9, 17)
         Me.Select_Read_Folder_Button2.Name = "Select_Read_Folder_Button2"
         Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(128, 47)
         Me.Select_Read_Folder_Button2.TabIndex = 17
@@ -620,11 +621,21 @@ Partial Class Form1
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "分野番号"
         '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(787, 3)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(187, 12)
+        Me.Label3.TabIndex = 17
+        Me.Label3.Text = "チェックされた分野だけが検索されます。"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1007, 756)
+        Me.ClientSize = New System.Drawing.Size(1007, 702)
+        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox_FileMakerServer)
@@ -695,4 +706,5 @@ Partial Class Form1
     Friend WithEvents ProgressBar2 As ProgressBar
     Friend WithEvents Select_Read_Folder_Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label3 As Label
 End Class
