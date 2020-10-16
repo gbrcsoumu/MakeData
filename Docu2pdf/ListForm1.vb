@@ -1,25 +1,26 @@
-﻿Imports System.IO
+﻿
+
+
+
 Imports System.Net
-Imports System.Security.AccessControl
-Imports FujiXerox.DocuWorks.Toolkit
 
-
-
-
-
-
-
-
-
-
-Public Class Form2
+Public Class ListForm1
 
     'Private filename() As String, fname() As String, dir1() As String
     'Private Path1 As String, Path2 As String
     'Private Check() As CheckBox, checkbox_n As Integer
     'Private Cansel As Boolean
     Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
+    Private anser As String, _Kind As String
 
+
+    Private Sub Cansel_Button1_Click(sender As Object, e As EventArgs) Handles Cancel_Button1.Click
+        '
+        '  Canselボタン処理
+        '
+        DialogResult = DialogResult.Cancel
+        Me.Close()
+    End Sub
 
     Private Sub Form2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
@@ -127,13 +128,15 @@ Public Class Form2
             Dim tb As DataTable
             Dim Sql_Command As String
 
+            Dim Kind As String = DataKind
+
             'Dim td1 As DateTime = DateTime.Now
             'Dim td2 As String = td1.ToString().Replace("/", "-")
 
             FileMakerServer = FileMakerServer1
             db.Connect()
 
-            Sql_Command = "SELECT ""IP"",""Path"",""接続日時"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "')"
+            Sql_Command = "SELECT ""IP"",""Path"",""接続日時"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "' AND ""種類"" = '" + Kind + "')"
             tb = db.ExecuteSql(Sql_Command)
 
 
@@ -151,7 +154,10 @@ Public Class Form2
                     .Rows(i).Cells(2).Value = td1
                     .Rows(i).Cells(3).Value = Path
                 Next
-
+            Else
+                MsgBox("登録データがありません", vbOK, "警告")
+                DialogResult = DialogResult.Cancel
+                Me.Close()
             End If
 
             db.Disconnect()
@@ -163,4 +169,33 @@ Public Class Form2
 
         Me.CenterToScreen()
     End Sub
+
+    'CellContentClickイベントハンドラ
+    Private Sub DataGridView1_CellContentClick(ByVal sender As Object,
+            ByVal e As DataGridViewCellEventArgs) _
+            Handles DataGridView1.CellContentClick
+        Dim dgv As DataGridView = CType(sender, DataGridView)
+        '"Button"列ならば、ボタンがクリックされた
+        If dgv.Columns(e.ColumnIndex).Name = "選択" Then
+            'MessageBox.Show((e.RowIndex.ToString() +
+            '    "行の選択ボタンがクリックされました。"))
+            anser = DataGridView1.Rows(e.RowIndex).Cells(3).Value
+            DialogResult = DialogResult.OK
+            Me.Close()
+        End If
+
+        If dgv.Columns(e.ColumnIndex).Name = "削除" Then
+            MessageBox.Show((e.RowIndex.ToString() +
+                "行の削除ボタンがクリックされました。"))
+        End If
+
+    End Sub
+
+
+    Public Function GetValue() As String
+        Return anser
+    End Function
+
+
+
 End Class

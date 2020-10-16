@@ -52,6 +52,7 @@ Partial Class Form1
         Me.CheckBox_hyouteika = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.FolderMenuButton1 = New System.Windows.Forms.Button()
         Me.FolderSaveButton1 = New System.Windows.Forms.Button()
         Me.CheckBox_Convert = New System.Windows.Forms.CheckBox()
         Me.CheckBox_Input = New System.Windows.Forms.CheckBox()
@@ -61,19 +62,20 @@ Partial Class Form1
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.FolderMenuButton2 = New System.Windows.Forms.Button()
         Me.CheckBox_Input2 = New System.Windows.Forms.CheckBox()
         Me.Data_Input_Button2 = New System.Windows.Forms.Button()
         Me.TextBox_FileLIst3 = New System.Windows.Forms.TextBox()
         Me.PdfReadButton = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.TextBox3 = New System.Windows.Forms.TextBox()
+        Me.TextBox_FolderName3 = New System.Windows.Forms.TextBox()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Select_Read_Folder_Button2 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.FolderMenuButton1 = New System.Windows.Forms.Button()
+        Me.FolderSaveButton2 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -87,7 +89,7 @@ Partial Class Form1
         Me.Select_Read_Folder_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Select_Read_Folder_Button.Location = New System.Drawing.Point(9, 17)
         Me.Select_Read_Folder_Button.Name = "Select_Read_Folder_Button"
-        Me.Select_Read_Folder_Button.Size = New System.Drawing.Size(128, 47)
+        Me.Select_Read_Folder_Button.Size = New System.Drawing.Size(138, 47)
         Me.Select_Read_Folder_Button.TabIndex = 2
         Me.Select_Read_Folder_Button.Text = "読み込みフォルダー選択"
         Me.Select_Read_Folder_Button.UseVisualStyleBackColor = True
@@ -417,6 +419,16 @@ Partial Class Form1
         Me.TabPage1.Text = "フォルダーから報告書の検索"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'FolderMenuButton1
+        '
+        Me.FolderMenuButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderMenuButton1.Location = New System.Drawing.Point(153, 17)
+        Me.FolderMenuButton1.Name = "FolderMenuButton1"
+        Me.FolderMenuButton1.Size = New System.Drawing.Size(149, 47)
+        Me.FolderMenuButton1.TabIndex = 17
+        Me.FolderMenuButton1.Text = "登録リストから選択"
+        Me.FolderMenuButton1.UseVisualStyleBackColor = True
+        '
         'FolderSaveButton1
         '
         Me.FolderSaveButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
@@ -477,7 +489,7 @@ Partial Class Form1
         'DocuReadButton
         '
         Me.DocuReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.DocuReadButton.Location = New System.Drawing.Point(143, 17)
+        Me.DocuReadButton.Location = New System.Drawing.Point(461, 17)
         Me.DocuReadButton.Name = "DocuReadButton"
         Me.DocuReadButton.Size = New System.Drawing.Size(136, 47)
         Me.DocuReadButton.TabIndex = 9
@@ -495,12 +507,14 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.FolderSaveButton2)
+        Me.TabPage3.Controls.Add(Me.FolderMenuButton2)
         Me.TabPage3.Controls.Add(Me.CheckBox_Input2)
         Me.TabPage3.Controls.Add(Me.Data_Input_Button2)
         Me.TabPage3.Controls.Add(Me.TextBox_FileLIst3)
         Me.TabPage3.Controls.Add(Me.PdfReadButton)
         Me.TabPage3.Controls.Add(Me.DataGridView2)
-        Me.TabPage3.Controls.Add(Me.TextBox3)
+        Me.TabPage3.Controls.Add(Me.TextBox_FolderName3)
         Me.TabPage3.Controls.Add(Me.ProgressBar2)
         Me.TabPage3.Controls.Add(Me.Select_Read_Folder_Button2)
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
@@ -510,6 +524,16 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "フォルダーから資料の検索"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'FolderMenuButton2
+        '
+        Me.FolderMenuButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderMenuButton2.Location = New System.Drawing.Point(154, 17)
+        Me.FolderMenuButton2.Name = "FolderMenuButton2"
+        Me.FolderMenuButton2.Size = New System.Drawing.Size(139, 47)
+        Me.FolderMenuButton2.TabIndex = 26
+        Me.FolderMenuButton2.Text = "登録リストから選択"
+        Me.FolderMenuButton2.UseVisualStyleBackColor = True
         '
         'CheckBox_Input2
         '
@@ -542,7 +566,7 @@ Partial Class Form1
         'PdfReadButton
         '
         Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PdfReadButton.Location = New System.Drawing.Point(143, 17)
+        Me.PdfReadButton.Location = New System.Drawing.Point(439, 17)
         Me.PdfReadButton.Name = "PdfReadButton"
         Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
         Me.PdfReadButton.TabIndex = 20
@@ -558,15 +582,15 @@ Partial Class Form1
         Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
         Me.DataGridView2.TabIndex = 19
         '
-        'TextBox3
+        'TextBox_FolderName3
         '
-        Me.TextBox3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox3.Location = New System.Drawing.Point(9, 68)
-        Me.TextBox3.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox3.Multiline = True
-        Me.TextBox3.Name = "TextBox3"
-        Me.TextBox3.Size = New System.Drawing.Size(897, 23)
-        Me.TextBox3.TabIndex = 16
+        Me.TextBox_FolderName3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox_FolderName3.Location = New System.Drawing.Point(68, 68)
+        Me.TextBox_FolderName3.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox_FolderName3.Multiline = True
+        Me.TextBox_FolderName3.Name = "TextBox_FolderName3"
+        Me.TextBox_FolderName3.Size = New System.Drawing.Size(838, 23)
+        Me.TextBox_FolderName3.TabIndex = 16
         '
         'ProgressBar2
         '
@@ -581,7 +605,7 @@ Partial Class Form1
         Me.Select_Read_Folder_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(9, 17)
         Me.Select_Read_Folder_Button2.Name = "Select_Read_Folder_Button2"
-        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(128, 47)
+        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(139, 47)
         Me.Select_Read_Folder_Button2.TabIndex = 17
         Me.Select_Read_Folder_Button2.Text = "読み込みフォルダー選択"
         Me.Select_Read_Folder_Button2.UseVisualStyleBackColor = True
@@ -644,15 +668,15 @@ Partial Class Form1
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
-        'FolderMenuButton1
+        'FolderSaveButton2
         '
-        Me.FolderMenuButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderMenuButton1.Location = New System.Drawing.Point(535, 22)
-        Me.FolderMenuButton1.Name = "FolderMenuButton1"
-        Me.FolderMenuButton1.Size = New System.Drawing.Size(149, 41)
-        Me.FolderMenuButton1.TabIndex = 17
-        Me.FolderMenuButton1.Text = "履歴から選択"
-        Me.FolderMenuButton1.UseVisualStyleBackColor = True
+        Me.FolderSaveButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderSaveButton2.Location = New System.Drawing.Point(10, 68)
+        Me.FolderSaveButton2.Name = "FolderSaveButton2"
+        Me.FolderSaveButton2.Size = New System.Drawing.Size(53, 23)
+        Me.FolderSaveButton2.TabIndex = 27
+        Me.FolderSaveButton2.Text = "登録"
+        Me.FolderSaveButton2.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -726,11 +750,13 @@ Partial Class Form1
     Friend WithEvents TextBox_FileLIst3 As TextBox
     Friend WithEvents PdfReadButton As Button
     Friend WithEvents DataGridView2 As DataGridView
-    Friend WithEvents TextBox3 As TextBox
+    Friend WithEvents TextBox_FolderName3 As TextBox
     Friend WithEvents ProgressBar2 As ProgressBar
     Friend WithEvents Select_Read_Folder_Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents Label3 As Label
     Friend WithEvents FolderSaveButton1 As Button
     Friend WithEvents FolderMenuButton1 As Button
+    Friend WithEvents FolderMenuButton2 As Button
+    Friend WithEvents FolderSaveButton2 As Button
 End Class

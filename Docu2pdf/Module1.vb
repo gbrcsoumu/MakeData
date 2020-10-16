@@ -7,5 +7,6 @@
     Public Const Table4 = "フォルダー情報2"
     Public Const PdfSaveFolder = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
     Public Const CmdFile = "C:\CMD\cmd.txt"
+    Public DataKind As String
     'Public Const PdfSaveFolder = "\\192.168.32.90\Win共有\PDF"
 End Module

@@ -875,8 +875,8 @@ Public Class Form1
         fbd.RootFolder = Environment.SpecialFolder.Desktop
         '最初に選択するフォルダを指定する
         'RootFolder以下にあるフォルダである必要がある
-        If TextBox3.Text <> "" Then
-            fbd.SelectedPath = TextBox3.Text
+        If TextBox_FolderName3.Text <> "" Then
+            fbd.SelectedPath = TextBox_FolderName3.Text
         Else
             fbd.SelectedPath = "\\192.168.0.173\disk1\SCAN\test"
         End If
@@ -888,7 +888,7 @@ Public Class Form1
         'ダイアログを表示する
         If fbd.ShowDialog(Me) = DialogResult.OK Then
             '選択されたフォルダを表示する
-            Me.TextBox3.Text = fbd.SelectedPath
+            Me.TextBox_FolderName3.Text = fbd.SelectedPath
             Path2 = fbd.SelectedPath
 
             'Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
@@ -953,6 +953,8 @@ Public Class Form1
         DocuToPdf = api_result2
     End Function
 
+
+
     Private Sub Select_Read_Folder_Button_Click(sender As Object, e As EventArgs) Handles Select_Read_Folder_Button.Click
         '
         '   報告書（.xdw/.xbd）を検索するフォルダーの選択
@@ -987,6 +989,7 @@ Public Class Form1
         End If
 
     End Sub
+
 
 
     Private Sub Data_Input_Button_Click(sender As Object, e As EventArgs) Handles Data_Input_Button.Click
@@ -1430,18 +1433,60 @@ Public Class Form1
                 db.Connect()
 
                 Dim Path As String = TextBox_FolderName1.Text
+                Dim Kind As String = "報告書"
 
-                Sql_Command = "SELECT ""IP"",""Path"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "')"
+                Sql_Command = "SELECT ""IP"",""Path"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "' AND ""種類"" = '" + Kind + "')"
                 tb = db.ExecuteSql(Sql_Command)
 
                 Dim n2 As Integer = tb.Rows.Count
                 If n2 > 0 Then
                     Sql_Command = "UPDATE """ + Table3 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "'"
-                    Sql_Command += " WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "')"
+                    Sql_Command += " WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "' AND ""種類"" = '" + Kind + "')"
                     tb = db.ExecuteSql(Sql_Command)
                 Else
-                    Sql_Command = "INSERT INTO """ + Table3 + """ (""IP"",""Path"",""接続日時"")"
-                    Sql_Command += " VALUES ('" + MyIP + "','" + Path + "',TIMESTAMP '" + td2 + "')"
+                    Sql_Command = "INSERT INTO """ + Table3 + """ (""IP"",""Path"",""種類"",""接続日時"")"
+                    Sql_Command += " VALUES ('" + MyIP + "','" + Path + "','" + Kind + "',TIMESTAMP '" + td2 + "')"
+                    tb = db.ExecuteSql(Sql_Command)
+                End If
+
+                db.Disconnect()
+
+            Catch e1 As Exception
+
+            End Try
+        End If
+    End Sub
+
+
+    Private Sub FolderSaveButton2_Click(sender As Object, e As EventArgs) Handles FolderSaveButton2.Click
+
+
+        If TextBox_FolderName3.Text <> "" Then
+            Try
+                Dim db As New OdbcDbIf
+                Dim tb As DataTable
+                Dim Sql_Command As String
+
+                Dim td1 As DateTime = DateTime.Now
+                Dim td2 As String = td1.ToString().Replace("/", "-")
+
+                FileMakerServer = FileMakerServer1
+                db.Connect()
+
+                Dim Path As String = TextBox_FolderName3.Text
+                Dim Kind As String = "資料"
+
+                Sql_Command = "SELECT ""IP"",""Path"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "' AND ""種類"" = '" + Kind + "')"
+                tb = db.ExecuteSql(Sql_Command)
+
+                Dim n2 As Integer = tb.Rows.Count
+                If n2 > 0 Then
+                    Sql_Command = "UPDATE """ + Table3 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "'"
+                    Sql_Command += " WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "' AND ""種類"" = '" + Kind + "')"
+                    tb = db.ExecuteSql(Sql_Command)
+                Else
+                    Sql_Command = "INSERT INTO """ + Table3 + """ (""IP"",""Path"",""種類"",""接続日時"")"
+                    Sql_Command += " VALUES ('" + MyIP + "','" + Path + "','" + Kind + "',TIMESTAMP '" + td2 + "')"
                     tb = db.ExecuteSql(Sql_Command)
                 End If
 
@@ -1455,8 +1500,33 @@ Public Class Form1
 
     Private Sub FolderMenuButton1_Click(sender As Object, e As EventArgs) Handles FolderMenuButton1.Click
 
-        Dim menuForm As New Form2
-        menuForm.Show()
+        Dim menuForm As New ListForm1
+        DataKind = "報告書"
+        'menuForm.Show()
+
+
+        menuForm.StartPosition = FormStartPosition.CenterParent
+        If menuForm.ShowDialog = DialogResult.OK Then         '値を受け取る
+            TextBox_FolderName1.Text = menuForm.GetValue
+            Path1 = TextBox_FolderName1.Text
+            Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+        End If
+        menuForm.Dispose()
     End Sub
 
+
+    Private Sub FolderMenuButton2_Click(sender As Object, e As EventArgs) Handles FolderMenuButton2.Click
+        Dim menuForm As New ListForm1
+        DataKind = "資料"
+        'menuForm.Show()
+
+
+        menuForm.StartPosition = FormStartPosition.CenterParent
+        If menuForm.ShowDialog = DialogResult.OK Then         '値を受け取る
+            TextBox_FolderName3.Text = menuForm.GetValue
+            Path2 = TextBox_FolderName3.Text
+
+        End If
+        menuForm.Dispose()
+    End Sub
 End Class
