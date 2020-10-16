@@ -103,7 +103,7 @@ Public Class Form1
         Cansel = False
 
         'TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
-        TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\test用"
+        'TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\test用"
         Path2 = TextBox_FolderName1.Text
 
         CheckBox_Input.Checked = True       ' 報告書の入力チェックボックス
@@ -378,219 +378,222 @@ Public Class Form1
         '
         '　報告書（xdw,xbd）を読み込んでPDFに変換し、それをFileMakerに登録する。
         '
+        If TextBox_FolderName1.Text <> "" Then
+            Try
 
-        Try
+                Dim Style1 As New DataGridViewCellStyle()
+                Style1.BackColor = Color.White
+                Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
 
-            Dim Style1 As New DataGridViewCellStyle()
-            Style1.BackColor = Color.White
-            Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Dim Style2 As New DataGridViewCellStyle()
+                Style2.BackColor = Color.White
+                Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-            Dim Style2 As New DataGridViewCellStyle()
-            Style2.BackColor = Color.White
-            Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
+                Dim Style3 As New DataGridViewCellStyle()
+                Style3.BackColor = Color.White
+                Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                Style3.Alignment = DataGridViewContentAlignment.MiddleRight
 
-            Dim Style3 As New DataGridViewCellStyle()
-            Style3.BackColor = Color.White
-            Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            Style3.Alignment = DataGridViewContentAlignment.MiddleRight
-
-            With Me.DataGridView1
-                .Rows.Clear()
-                .Columns.Clear()
-                .Width = 920
-                .Height = 300
-                .ColumnCount = 3
-                'Col_n = .ColumnCount
-                .ColumnHeadersVisible = True
-                .ColumnHeadersHeight = 18
-                .ScrollBars = ScrollBars.Both
-
-
-                .ColumnHeadersDefaultCellStyle = Style1
-                .Columns(0).Name = "番号"
-                .Columns(1).Name = "ファイル名"
-                .Columns(2).Name = "Path"
-
-                .RowHeadersVisible = True
-                .Columns(0).Width = 60
-                .Columns(1).Width = 140
-                .Columns(2).Width = 500
-
-                Dim textColumn1 As New DataGridViewTextBoxColumn()
-                textColumn1.DataPropertyName = "入力"
-                textColumn1.Name = "入力"
-                textColumn1.HeaderText = "入力"
-                .Columns.Add(textColumn1)
-
-                .Columns(3).Width = 40
-                .Columns(3).DefaultCellStyle = Style2
-
-                Dim column1_2 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column1_2)
-                .Columns(4).Name = "☑️"
-                .Columns(4).Width = 25
-
-                Dim textColumn2 As New DataGridViewTextBoxColumn()
-                textColumn2.DataPropertyName = "変換"
-                textColumn2.Name = "変換"
-                textColumn2.HeaderText = "変換"
-                .Columns.Add(textColumn2)
-                .Columns(5).Width = 40
-                .Columns(5).DefaultCellStyle = Style2
-
-                Dim column2_2 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column2_2)
-                .Columns(6).Name = "☑️"
-                .Columns(6).Width = 25
-
-                Dim textColumn3 As New DataGridViewTextBoxColumn()
-                textColumn3.DataPropertyName = "読込"
-                textColumn3.Name = "読込"
-                textColumn3.HeaderText = "読込"
-                .Columns.Add(textColumn3)
-                .Columns(7).Width = 40
-                .Columns(7).DefaultCellStyle = Style2
+                With Me.DataGridView1
+                    .Rows.Clear()
+                    .Columns.Clear()
+                    .Width = 920
+                    .Height = 300
+                    .ColumnCount = 3
+                    'Col_n = .ColumnCount
+                    .ColumnHeadersVisible = True
+                    .ColumnHeadersHeight = 18
+                    .ScrollBars = ScrollBars.Both
 
 
-            End With
+                    .ColumnHeadersDefaultCellStyle = Style1
+                    .Columns(0).Name = "番号"
+                    .Columns(1).Name = "ファイル名"
+                    .Columns(2).Name = "Path"
+
+                    .RowHeadersVisible = True
+                    .Columns(0).Width = 60
+                    .Columns(1).Width = 140
+                    .Columns(2).Width = 500
+
+                    Dim textColumn1 As New DataGridViewTextBoxColumn()
+                    textColumn1.DataPropertyName = "入力"
+                    textColumn1.Name = "入力"
+                    textColumn1.HeaderText = "入力"
+                    .Columns.Add(textColumn1)
+
+                    .Columns(3).Width = 40
+                    .Columns(3).DefaultCellStyle = Style2
+
+                    Dim column1_2 As New DataGridViewCheckBoxColumn
+                    .Columns.Add(column1_2)
+                    .Columns(4).Name = "☑️"
+                    .Columns(4).Width = 25
+
+                    Dim textColumn2 As New DataGridViewTextBoxColumn()
+                    textColumn2.DataPropertyName = "変換"
+                    textColumn2.Name = "変換"
+                    textColumn2.HeaderText = "変換"
+                    .Columns.Add(textColumn2)
+                    .Columns(5).Width = 40
+                    .Columns(5).DefaultCellStyle = Style2
+
+                    Dim column2_2 As New DataGridViewCheckBoxColumn
+                    .Columns.Add(column2_2)
+                    .Columns(6).Name = "☑️"
+                    .Columns(6).Width = 25
+
+                    Dim textColumn3 As New DataGridViewTextBoxColumn()
+                    textColumn3.DataPropertyName = "読込"
+                    textColumn3.Name = "読込"
+                    textColumn3.HeaderText = "読込"
+                    .Columns.Add(textColumn3)
+                    .Columns(7).Width = 40
+                    .Columns(7).DefaultCellStyle = Style2
 
 
-            'Application.DoEvents()
-
-            Dim db As New OdbcDbIf
-            Dim tb As DataTable
-            Dim Sql_Command As String
-
-            FileMakerServer = TextBox_FileMakerServer.Text
-            db.Connect()
-
-            Dim fname2 As New List(Of String)
-            Dim dir2 As New List(Of String)
-            Dim WildCard1() As String
-            Dim Count As Integer = 0
-            Dim ff()() As String, flag() As Boolean
-
-            ReDim WildCard1(1), ff(1)
-            WildCard1(0) = "*.xdw"
-            WildCard1(1) = "*.xbd"
+                End With
 
 
-            Dim nn As Integer = 0
+                'Application.DoEvents()
 
-            For i As Integer = 0 To WildCard1.Length - 1
-                ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
-                nn += ff(i).Length
-            Next
+                Dim db As New OdbcDbIf
+                Dim tb As DataTable
+                Dim Sql_Command As String
 
-            ReDim filename(nn - 1)
+                FileMakerServer = TextBox_FileMakerServer.Text
+                db.Connect()
 
-            For i As Integer = 0 To WildCard1.Length - 1
-                If i = 0 Then
-                    ff(i).CopyTo(filename, 0)
-                Else
-                    ff(i).CopyTo(filename, ff(i - 1).Length)
-                End If
-            Next
+                Dim fname2 As New List(Of String)
+                Dim dir2 As New List(Of String)
+                Dim WildCard1() As String
+                Dim Count As Integer = 0
+                Dim ff()() As String, flag() As Boolean
 
-            Dim n As Integer = filename.Length
-            ReDim flag(n - 1)
-            For i As Integer = 0 To n - 1
-                flag(i) = False
-            Next
-
-            DataGridView1.Rows.Clear()
-            Style1.BackColor = Color.White
-            Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            DataGridView1.RowsDefaultCellStyle = Style1
-
-            For j As Integer = 0 To checkbox_n - 1
-                If Check(j).Checked = True Then
-
-                    If n > 0 Then
-
-                        For i As Integer = 0 To n - 1
-                            If flag(i) = False Then
-                                Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
-
-                                Dim fname As String = System.IO.Path.GetFileName(filename(i))
+                ReDim WildCard1(1), ff(1)
+                WildCard1(0) = "*.xdw"
+                WildCard1(1) = "*.xbd"
 
 
-                                If IsTestNumber(fname, Check(j).Text) Then   ' 試験番号（例えば、3A 3C）を含むファイルかどうかをチェック
+                Dim nn As Integer = 0
 
-                                    Count += 1
-                                    Dim row1() As String
-                                    row1 = {Count.ToString, fname, filename(i)}
-                                    DataGridView1.Rows.Add(row1)
+                For i As Integer = 0 To WildCard1.Length - 1
+                    ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    nn += ff(i).Length
+                Next
 
-                                    Sql_Command = "SELECT ""FilePath"",""PdfPath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
-                                    tb = db.ExecuteSql(Sql_Command)
-                                    Dim n2 As Integer = tb.Rows.Count
-                                    Dim st1 As String
-                                    If n2 > 0 Then
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = "済"
-                                        DataGridView1.Rows(Count - 1).Cells(4).Value = False
-                                        st1 = tb.Rows(0).Item("PdfPath").ToString()
-                                        If st1 <> "" Then
-                                            DataGridView1.Rows(Count - 1).Cells(5).Value = "済"
-                                            DataGridView1.Rows(Count - 1).Cells(6).Value = False
+                ReDim filename(nn - 1)
+
+                For i As Integer = 0 To WildCard1.Length - 1
+                    If i = 0 Then
+                        ff(i).CopyTo(filename, 0)
+                    Else
+                        ff(i).CopyTo(filename, ff(i - 1).Length)
+                    End If
+                Next
+
+                Dim n As Integer = filename.Length
+                ReDim flag(n - 1)
+                For i As Integer = 0 To n - 1
+                    flag(i) = False
+                Next
+
+                DataGridView1.Rows.Clear()
+                Style1.BackColor = Color.White
+                Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                DataGridView1.RowsDefaultCellStyle = Style1
+
+                For j As Integer = 0 To checkbox_n - 1
+                    If Check(j).Checked = True Then
+
+                        If n > 0 Then
+
+                            For i As Integer = 0 To n - 1
+                                If flag(i) = False Then
+                                    Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
+
+                                    Dim fname As String = System.IO.Path.GetFileName(filename(i))
+
+
+                                    If IsTestNumber(fname, Check(j).Text) Then   ' 試験番号（例えば、3A 3C）を含むファイルかどうかをチェック
+
+                                        Count += 1
+                                        Dim row1() As String
+                                        row1 = {Count.ToString, fname, filename(i)}
+                                        DataGridView1.Rows.Add(row1)
+
+                                        Sql_Command = "SELECT ""FilePath"",""PdfPath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+                                        tb = db.ExecuteSql(Sql_Command)
+                                        Dim n2 As Integer = tb.Rows.Count
+                                        Dim st1 As String
+                                        If n2 > 0 Then
+                                            DataGridView1.Rows(Count - 1).Cells(3).Value = "済"
+                                            DataGridView1.Rows(Count - 1).Cells(4).Value = False
+                                            st1 = tb.Rows(0).Item("PdfPath").ToString()
+                                            If st1 <> "" Then
+                                                DataGridView1.Rows(Count - 1).Cells(5).Value = "済"
+                                                DataGridView1.Rows(Count - 1).Cells(6).Value = False
+                                            Else
+                                                DataGridView1.Rows(Count - 1).Cells(5).Value = "未"
+                                                DataGridView1.Rows(Count - 1).Cells(6).Value = True
+                                            End If
+                                            st1 = tb.Rows(0).Item("入力").ToString()
+                                            If st1 <> "未読" Then
+                                                DataGridView1.Rows(Count - 1).Cells(7).Value = "済"
+                                            Else
+                                                DataGridView1.Rows(Count - 1).Cells(7).Value = "未"
+                                            End If
                                         Else
+                                            DataGridView1.Rows(Count - 1).Cells(3).Value = "未"
+                                            DataGridView1.Rows(Count - 1).Cells(4).Value = True
                                             DataGridView1.Rows(Count - 1).Cells(5).Value = "未"
                                             DataGridView1.Rows(Count - 1).Cells(6).Value = True
-                                        End If
-                                        st1 = tb.Rows(0).Item("入力").ToString()
-                                        If st1 <> "未読" Then
-                                            DataGridView1.Rows(Count - 1).Cells(7).Value = "済"
-                                        Else
                                             DataGridView1.Rows(Count - 1).Cells(7).Value = "未"
+                                            st1 = ""
                                         End If
-                                    Else
-                                        DataGridView1.Rows(Count - 1).Cells(3).Value = "未"
-                                        DataGridView1.Rows(Count - 1).Cells(4).Value = True
-                                        DataGridView1.Rows(Count - 1).Cells(5).Value = "未"
-                                        DataGridView1.Rows(Count - 1).Cells(6).Value = True
-                                        DataGridView1.Rows(Count - 1).Cells(7).Value = "未"
-                                        st1 = ""
+
+                                        DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
+                                        DataGridView1.CurrentCell = DataGridView1(0, Count - 1)
+
+                                        flag(i) = True
+
+
+
                                     End If
-
-                                    DataGridView1.FirstDisplayedScrollingRowIndex = Count - 1
-                                    DataGridView1.CurrentCell = DataGridView1(0, Count - 1)
-
-                                    flag(i) = True
-
-
-
                                 End If
-                            End If
-                            'Application.DoEvents()
+                                'Application.DoEvents()
 
-                        Next
+                            Next
 
+                        End If
                     End If
+
+                    Application.DoEvents()
+
+                Next
+
+
+                db.Disconnect()
+
+                fname = fname2.ToArray
+                dir1 = dir2.ToArray
+
+                If Count = 0 Then
+                    MsgBox("このフォルダーには報告書ファイルはありません！", vbOK, "確認")
+                Else
+                    MsgBox("このフォルダーには" + Count.ToString + "個の報告書ファイルがありました。", vbOK, "確認")
                 End If
 
-                Application.DoEvents()
+            Catch e1 As Exception
+                'Console.WriteLine(e1.Message)
+            End Try
 
-            Next
+        Else
+            MsgBox("フォルダーを選択してください！", vbOK, "エラー")
 
-
-            db.Disconnect()
-
-            fname = fname2.ToArray
-            dir1 = dir2.ToArray
-
-            If Count = 0 Then
-                MsgBox("このフォルダーには報告書ファイルはありません！", vbOK, "確認")
-            Else
-                MsgBox("このフォルダーには" + Count.ToString + "個の報告書ファイルがありました。", vbOK, "確認")
-            End If
-
-        Catch e1 As Exception
-            'Console.WriteLine(e1.Message)
-        End Try
-
-
+        End If
 
 
     End Sub
@@ -600,188 +603,190 @@ Public Class Form1
         '
         '　資料（pdf）を読み込んでFileMakerに登録する。
         '
+        If TextBox_FolderName3.Text <> "" Then
+            Try
 
-        Try
+                Dim Style1 As New DataGridViewCellStyle()
+                Style1.BackColor = Color.White
+                Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
 
-            Dim Style1 As New DataGridViewCellStyle()
-            Style1.BackColor = Color.White
-            Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
+                Dim Style2 As New DataGridViewCellStyle()
+                Style2.BackColor = Color.White
+                Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
 
-            Dim Style2 As New DataGridViewCellStyle()
-            Style2.BackColor = Color.White
-            Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
+                Dim Style3 As New DataGridViewCellStyle()
+                Style3.BackColor = Color.White
+                Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                Style3.Alignment = DataGridViewContentAlignment.MiddleRight
+                Dim columnHeaderStyle As New DataGridViewCellStyle()
+                With Me.DataGridView2
+                    .Rows.Clear()
+                    .Columns.Clear()
+                    .Width = 900
+                    .Height = 300
+                    .ColumnCount = 3
+                    .ColumnHeadersVisible = True
+                    .ColumnHeadersHeight = 18
+                    .ScrollBars = ScrollBars.Both
 
-            Dim Style3 As New DataGridViewCellStyle()
-            Style3.BackColor = Color.White
-            Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
-            Style3.Alignment = DataGridViewContentAlignment.MiddleRight
-            Dim columnHeaderStyle As New DataGridViewCellStyle()
-            With Me.DataGridView2
-                .Rows.Clear()
-                .Columns.Clear()
-                .Width = 900
-                .Height = 300
-                .ColumnCount = 3
-                .ColumnHeadersVisible = True
-                .ColumnHeadersHeight = 18
-                .ScrollBars = ScrollBars.Both
+                    .ColumnHeadersDefaultCellStyle = Style1
+                    .Columns(0).Name = "番号"
+                    .Columns(1).Name = "ファイル名"
+                    .Columns(2).Name = "Path"
 
-                .ColumnHeadersDefaultCellStyle = Style1
-                .Columns(0).Name = "番号"
-                .Columns(1).Name = "ファイル名"
-                .Columns(2).Name = "Path"
+                    .RowHeadersVisible = True
+                    .Columns(0).Width = 60
+                    .Columns(1).Width = 240
+                    .Columns(2).Width = 440
 
-                .RowHeadersVisible = True
-                .Columns(0).Width = 60
-                .Columns(1).Width = 240
-                .Columns(2).Width = 440
+                    Dim textColumn1 As New DataGridViewTextBoxColumn()
+                    textColumn1.DataPropertyName = "入力"
+                    textColumn1.Name = "入力"
+                    textColumn1.HeaderText = "入力"
+                    .Columns.Add(textColumn1)
+                    .Columns(3).Width = 40
+                    .Columns(3).DefaultCellStyle = Style2
 
-                Dim textColumn1 As New DataGridViewTextBoxColumn()
-                textColumn1.DataPropertyName = "入力"
-                textColumn1.Name = "入力"
-                textColumn1.HeaderText = "入力"
-                .Columns.Add(textColumn1)
-                .Columns(3).Width = 40
-                .Columns(3).DefaultCellStyle = Style2
+                    Dim column1_2 As New DataGridViewCheckBoxColumn
+                    .Columns.Add(column1_2)
+                    .Columns(4).Name = "☑️"
+                    .Columns(4).Width = 25
 
-                Dim column1_2 As New DataGridViewCheckBoxColumn
-                .Columns.Add(column1_2)
-                .Columns(4).Name = "☑️"
-                .Columns(4).Width = 25
+                    Dim textColumn3 As New DataGridViewTextBoxColumn()
+                    textColumn3.DataPropertyName = "読込"
+                    textColumn3.Name = "読込"
+                    textColumn3.HeaderText = "読込"
+                    .Columns.Add(textColumn3)
+                    .Columns(5).Width = 40
+                    .Columns(5).DefaultCellStyle = Style2
 
-                Dim textColumn3 As New DataGridViewTextBoxColumn()
-                textColumn3.DataPropertyName = "読込"
-                textColumn3.Name = "読込"
-                textColumn3.HeaderText = "読込"
-                .Columns.Add(textColumn3)
-                .Columns(5).Width = 40
-                .Columns(5).DefaultCellStyle = Style2
+                End With
 
-            End With
+                Dim db As New OdbcDbIf
+                Dim tb As DataTable
+                Dim Sql_Command As String
 
-            Dim db As New OdbcDbIf
-            Dim tb As DataTable
-            Dim Sql_Command As String
+                FileMakerServer = TextBox_FileMakerServer.Text
+                db.Connect()
 
-            FileMakerServer = TextBox_FileMakerServer.Text
-            db.Connect()
+                Dim fname2 As New List(Of String)
+                Dim dir2 As New List(Of String)
+                Dim WildCard1() As String
 
-            Dim fname2 As New List(Of String)
-            Dim dir2 As New List(Of String)
-            Dim WildCard1() As String
+                Dim Count As Integer = 0
+                Dim ff()() As String, flag() As Boolean
 
-            Dim Count As Integer = 0
-            Dim ff()() As String, flag() As Boolean
+                ReDim WildCard1(0), ff(0)
+                WildCard1(0) = "*.pdf"
 
-            ReDim WildCard1(0), ff(0)
-            WildCard1(0) = "*.pdf"
+                Dim nn As Integer = 0
 
-            Dim nn As Integer = 0
+                For i As Integer = 0 To WildCard1.Length - 1
+                    ff(i) = System.IO.Directory.GetFiles(Path2, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    nn += ff(i).Length
+                Next
 
-            For i As Integer = 0 To WildCard1.Length - 1
-                ff(i) = System.IO.Directory.GetFiles(Path2, WildCard1(i), System.IO.SearchOption.AllDirectories)
-                nn += ff(i).Length
-            Next
+                ReDim filename(nn - 1)
 
-            ReDim filename(nn - 1)
-
-            For i As Integer = 0 To WildCard1.Length - 1
-                If i = 0 Then
-                    ff(i).CopyTo(filename, 0)
-                Else
-                    ff(i).CopyTo(filename, ff(i - 1).Length)
-                End If
-            Next
-
-            Dim n As Integer = filename.Length
-            ReDim flag(n - 1)
-            For i As Integer = 0 To n - 1
-                flag(i) = False
-            Next
-
-            DataGridView2.Rows.Clear()
-
-            DataGridView2.RowsDefaultCellStyle = Style1
-
-            For j As Integer = 0 To checkbox_n - 1
-                If Check(j).Checked = True Then
-
-                    If n > 0 Then
-
-                        For i As Integer = 0 To n - 1
-                            If flag(i) = False Then
-                                Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
-
-                                Dim fname As String = System.IO.Path.GetFileName(filename(i))
-
-
-                                If IsTestNumber(fname, Check(j).Text) Then
-
-                                    Count += 1
-                                    Dim row1() As String
-                                    row1 = {Count.ToString, fname, filename(i)}
-                                    DataGridView2.Rows.Add(row1)
-
-                                    Sql_Command = "Select ""FilePath"", ""FilePath"", ""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
-                                    tb = db.ExecuteSql(Sql_Command)
-                                    Dim n2 As Integer = tb.Rows.Count
-                                    Dim st1 As String
-                                    If n2 > 0 Then
-                                        DataGridView2.Rows(Count - 1).Cells(3).Value = "済"
-                                        DataGridView2.Rows(Count - 1).Cells(4).Value = False
-
-                                        st1 = tb.Rows(0).Item("入力").ToString()
-                                        If st1 <> "未読" Then
-                                            DataGridView2.Rows(Count - 1).Cells(5).Value = "済"
-                                        Else
-                                            DataGridView2.Rows(Count - 1).Cells(5).Value = "未"
-                                        End If
-                                    Else
-                                        DataGridView2.Rows(Count - 1).Cells(3).Value = "未"
-                                        DataGridView2.Rows(Count - 1).Cells(4).Value = True
-                                        DataGridView2.Rows(Count - 1).Cells(5).Value = "未"
-                                        st1 = ""
-                                    End If
-
-                                    DataGridView2.FirstDisplayedScrollingRowIndex = Count - 1
-                                    DataGridView2.CurrentCell = DataGridView2(0, Count - 1)
-
-                                    flag(i) = True
-
-
-
-                                End If
-                            End If
-                            'Application.DoEvents()
-
-                        Next
-
+                For i As Integer = 0 To WildCard1.Length - 1
+                    If i = 0 Then
+                        ff(i).CopyTo(filename, 0)
+                    Else
+                        ff(i).CopyTo(filename, ff(i - 1).Length)
                     End If
+                Next
+
+                Dim n As Integer = filename.Length
+                ReDim flag(n - 1)
+                For i As Integer = 0 To n - 1
+                    flag(i) = False
+                Next
+
+                DataGridView2.Rows.Clear()
+
+                DataGridView2.RowsDefaultCellStyle = Style1
+
+                For j As Integer = 0 To checkbox_n - 1
+                    If Check(j).Checked = True Then
+
+                        If n > 0 Then
+
+                            For i As Integer = 0 To n - 1
+                                If flag(i) = False Then
+                                    Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
+
+                                    Dim fname As String = System.IO.Path.GetFileName(filename(i))
+
+
+                                    If IsTestNumber(fname, Check(j).Text) Then
+
+                                        Count += 1
+                                        Dim row1() As String
+                                        row1 = {Count.ToString, fname, filename(i)}
+                                        DataGridView2.Rows.Add(row1)
+
+                                        Sql_Command = "Select ""FilePath"", ""FilePath"", ""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+                                        tb = db.ExecuteSql(Sql_Command)
+                                        Dim n2 As Integer = tb.Rows.Count
+                                        Dim st1 As String
+                                        If n2 > 0 Then
+                                            DataGridView2.Rows(Count - 1).Cells(3).Value = "済"
+                                            DataGridView2.Rows(Count - 1).Cells(4).Value = False
+
+                                            st1 = tb.Rows(0).Item("入力").ToString()
+                                            If st1 <> "未読" Then
+                                                DataGridView2.Rows(Count - 1).Cells(5).Value = "済"
+                                            Else
+                                                DataGridView2.Rows(Count - 1).Cells(5).Value = "未"
+                                            End If
+                                        Else
+                                            DataGridView2.Rows(Count - 1).Cells(3).Value = "未"
+                                            DataGridView2.Rows(Count - 1).Cells(4).Value = True
+                                            DataGridView2.Rows(Count - 1).Cells(5).Value = "未"
+                                            st1 = ""
+                                        End If
+
+                                        DataGridView2.FirstDisplayedScrollingRowIndex = Count - 1
+                                        DataGridView2.CurrentCell = DataGridView2(0, Count - 1)
+
+                                        flag(i) = True
+
+
+
+                                    End If
+                                End If
+                                'Application.DoEvents()
+
+                            Next
+
+                        End If
+                    End If
+
+                    Application.DoEvents()
+
+                Next
+
+
+                db.Disconnect()
+
+                fname = fname2.ToArray
+                dir1 = dir2.ToArray
+
+                If Count = 0 Then
+                    MsgBox("このフォルダーには資料ファイルはありません！", vbOK, "確認")
+                Else
+                    MsgBox("このフォルダーには" + Count.ToString + "個の資料ファイルがありました。", vbOK, "確認")
                 End If
 
-                Application.DoEvents()
 
-            Next
-
-
-            db.Disconnect()
-
-            fname = fname2.ToArray
-            dir1 = dir2.ToArray
-
-            If Count = 0 Then
-                MsgBox("このフォルダーには資料ファイルはありません！", vbOK, "確認")
-            Else
-                MsgBox("このフォルダーには" + Count.ToString + "個の資料ファイルがありました。", vbOK, "確認")
-            End If
-
-
-        Catch e1 As Exception
-            'Console.WriteLine(e1.Message)
-        End Try
-
+            Catch e1 As Exception
+                'Console.WriteLine(e1.Message)
+            End Try
+        Else
+            MsgBox("フォルダーを選択してください！", vbOK, "エラー")
+        End If
 
     End Sub
 

@@ -62,6 +62,7 @@ Partial Class Form1
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.FolderSaveButton2 = New System.Windows.Forms.Button()
         Me.FolderMenuButton2 = New System.Windows.Forms.Button()
         Me.CheckBox_Input2 = New System.Windows.Forms.CheckBox()
         Me.Data_Input_Button2 = New System.Windows.Forms.Button()
@@ -75,7 +76,10 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.FolderSaveButton2 = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -91,17 +95,17 @@ Partial Class Form1
         Me.Select_Read_Folder_Button.Name = "Select_Read_Folder_Button"
         Me.Select_Read_Folder_Button.Size = New System.Drawing.Size(138, 47)
         Me.Select_Read_Folder_Button.TabIndex = 2
-        Me.Select_Read_Folder_Button.Text = "読み込みフォルダー選択"
+        Me.Select_Read_Folder_Button.Text = "フォルダー選択"
         Me.Select_Read_Folder_Button.UseVisualStyleBackColor = True
         '
         'TextBox_FolderName1
         '
         Me.TextBox_FolderName1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName1.Location = New System.Drawing.Point(67, 69)
+        Me.TextBox_FolderName1.Location = New System.Drawing.Point(97, 69)
         Me.TextBox_FolderName1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FolderName1.Multiline = True
         Me.TextBox_FolderName1.Name = "TextBox_FolderName1"
-        Me.TextBox_FolderName1.Size = New System.Drawing.Size(842, 23)
+        Me.TextBox_FolderName1.Size = New System.Drawing.Size(812, 23)
         Me.TextBox_FolderName1.TabIndex = 1
         '
         'Label1
@@ -399,6 +403,8 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label5)
+        Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.FolderMenuButton1)
         Me.TabPage1.Controls.Add(Me.FolderSaveButton1)
         Me.TabPage1.Controls.Add(Me.CheckBox_Convert)
@@ -416,7 +422,7 @@ Partial Class Form1
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(939, 529)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "フォルダーから報告書の検索"
+        Me.TabPage1.Text = "　［　フォルダーから報告書の検索　］　"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'FolderMenuButton1
@@ -434,9 +440,9 @@ Partial Class Form1
         Me.FolderSaveButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.FolderSaveButton1.Location = New System.Drawing.Point(9, 69)
         Me.FolderSaveButton1.Name = "FolderSaveButton1"
-        Me.FolderSaveButton1.Size = New System.Drawing.Size(53, 23)
+        Me.FolderSaveButton1.Size = New System.Drawing.Size(83, 23)
         Me.FolderSaveButton1.TabIndex = 16
-        Me.FolderSaveButton1.Text = "登録"
+        Me.FolderSaveButton1.Text = "フォルダー登録"
         Me.FolderSaveButton1.UseVisualStyleBackColor = True
         '
         'CheckBox_Convert
@@ -507,6 +513,8 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.Label6)
+        Me.TabPage3.Controls.Add(Me.Label7)
         Me.TabPage3.Controls.Add(Me.FolderSaveButton2)
         Me.TabPage3.Controls.Add(Me.FolderMenuButton2)
         Me.TabPage3.Controls.Add(Me.CheckBox_Input2)
@@ -522,15 +530,25 @@ Partial Class Form1
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage3.Size = New System.Drawing.Size(939, 529)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "フォルダーから資料の検索"
+        Me.TabPage3.Text = "　［　フォルダーから資料の検索　］　"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'FolderSaveButton2
+        '
+        Me.FolderSaveButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderSaveButton2.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton2.Name = "FolderSaveButton2"
+        Me.FolderSaveButton2.Size = New System.Drawing.Size(83, 23)
+        Me.FolderSaveButton2.TabIndex = 27
+        Me.FolderSaveButton2.Text = "フォルダー登録"
+        Me.FolderSaveButton2.UseVisualStyleBackColor = True
         '
         'FolderMenuButton2
         '
         Me.FolderMenuButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderMenuButton2.Location = New System.Drawing.Point(154, 17)
+        Me.FolderMenuButton2.Location = New System.Drawing.Point(153, 17)
         Me.FolderMenuButton2.Name = "FolderMenuButton2"
-        Me.FolderMenuButton2.Size = New System.Drawing.Size(139, 47)
+        Me.FolderMenuButton2.Size = New System.Drawing.Size(149, 47)
         Me.FolderMenuButton2.TabIndex = 26
         Me.FolderMenuButton2.Text = "登録リストから選択"
         Me.FolderMenuButton2.UseVisualStyleBackColor = True
@@ -566,7 +584,7 @@ Partial Class Form1
         'PdfReadButton
         '
         Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PdfReadButton.Location = New System.Drawing.Point(439, 17)
+        Me.PdfReadButton.Location = New System.Drawing.Point(461, 17)
         Me.PdfReadButton.Name = "PdfReadButton"
         Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
         Me.PdfReadButton.TabIndex = 20
@@ -585,11 +603,11 @@ Partial Class Form1
         'TextBox_FolderName3
         '
         Me.TextBox_FolderName3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName3.Location = New System.Drawing.Point(68, 68)
+        Me.TextBox_FolderName3.Location = New System.Drawing.Point(97, 69)
         Me.TextBox_FolderName3.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FolderName3.Multiline = True
         Me.TextBox_FolderName3.Name = "TextBox_FolderName3"
-        Me.TextBox_FolderName3.Size = New System.Drawing.Size(838, 23)
+        Me.TextBox_FolderName3.Size = New System.Drawing.Size(812, 23)
         Me.TextBox_FolderName3.TabIndex = 16
         '
         'ProgressBar2
@@ -605,9 +623,9 @@ Partial Class Form1
         Me.Select_Read_Folder_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(9, 17)
         Me.Select_Read_Folder_Button2.Name = "Select_Read_Folder_Button2"
-        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(139, 47)
+        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(138, 47)
         Me.Select_Read_Folder_Button2.TabIndex = 17
-        Me.Select_Read_Folder_Button2.Text = "読み込みフォルダー選択"
+        Me.Select_Read_Folder_Button2.Text = "フォルダー選択"
         Me.Select_Read_Folder_Button2.UseVisualStyleBackColor = True
         '
         'Label2
@@ -668,15 +686,45 @@ Partial Class Form1
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
-        'FolderSaveButton2
+        'Label4
         '
-        Me.FolderSaveButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderSaveButton2.Location = New System.Drawing.Point(10, 68)
-        Me.FolderSaveButton2.Name = "FolderSaveButton2"
-        Me.FolderSaveButton2.Size = New System.Drawing.Size(53, 23)
-        Me.FolderSaveButton2.TabIndex = 27
-        Me.FolderSaveButton2.Text = "登録"
-        Me.FolderSaveButton2.UseVisualStyleBackColor = True
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label4.Location = New System.Drawing.Point(95, 3)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(126, 12)
+        Me.Label4.TabIndex = 18
+        Me.Label4.Text = "（手順1）フォルダーの選択"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label5.Location = New System.Drawing.Point(459, 3)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(105, 12)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "（手順2）リストの作成"
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label6.Location = New System.Drawing.Point(459, 2)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(105, 12)
+        Me.Label6.TabIndex = 28
+        Me.Label6.Text = "（手順2）リストの作成"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label7.Location = New System.Drawing.Point(95, 2)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(126, 12)
+        Me.Label7.TabIndex = 29
+        Me.Label7.Text = "（手順1）フォルダーの選択"
         '
         'Form1
         '
@@ -759,4 +807,8 @@ Partial Class Form1
     Friend WithEvents FolderMenuButton1 As Button
     Friend WithEvents FolderMenuButton2 As Button
     Friend WithEvents FolderSaveButton2 As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Label4 As Label
+    Friend WithEvents Label6 As Label
+    Friend WithEvents Label7 As Label
 End Class

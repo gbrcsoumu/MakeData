@@ -13,6 +13,15 @@ Public Class ListForm1
     Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
     Private anser As String, _Kind As String
 
+    Private Sub Ok_Button_Click(sender As Object, e As EventArgs) Handles Ok_Button.Click
+
+
+        Dim r1 As Integer = DataGridView1.CurrentRow.Index
+        anser = DataGridView1.Rows(r1).Cells(3).Value
+        DialogResult = DialogResult.OK
+        Me.Close()
+
+    End Sub
 
     Private Sub Cansel_Button1_Click(sender As Object, e As EventArgs) Handles Cancel_Button1.Click
         '
@@ -162,9 +171,6 @@ Public Class ListForm1
 
             db.Disconnect()
 
-
-
-
         End With
 
         Me.CenterToScreen()
@@ -185,8 +191,32 @@ Public Class ListForm1
         End If
 
         If dgv.Columns(e.ColumnIndex).Name = "削除" Then
-            MessageBox.Show((e.RowIndex.ToString() +
-                "行の削除ボタンがクリックされました。"))
+            'MessageBox.Show((e.RowIndex.ToString() +
+            '    "行の削除ボタンがクリックされました。"))
+            If MsgBox("このデータを削除しますか？", vbOKCancel, "確認") = vbOK Then
+                Dim r1 As Integer = e.RowIndex
+                Dim db As New OdbcDbIf
+                Dim tb As DataTable
+                Dim Sql_Command As String
+
+                Dim Kind As String = DataKind
+                Dim IP As String = DataGridView1.Rows(r1).Cells(1).Value
+                Dim Path As String = DataGridView1.Rows(r1).Cells(3).Value
+
+                'Dim td1 As DateTime = DateTime.Now
+                'Dim td2 As String = td1.ToString().Replace("/", "-")
+
+                FileMakerServer = FileMakerServer1
+                db.Connect()
+
+                Sql_Command = "DELETE FROM """ + Table3 + """ WHERE (""IP"" = '" + IP + "' AND ""Path"" = '" + Path + "' AND ""種類"" = '" + Kind + "')"
+                tb = db.ExecuteSql(Sql_Command)
+                db.Disconnect()
+
+                DataGridView1.Rows.RemoveAt(r1)
+
+            End If
+
         End If
 
     End Sub
