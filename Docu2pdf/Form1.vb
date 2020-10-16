@@ -1099,6 +1099,7 @@ Public Class Form1
     End Sub
 
 
+
     Private Sub PDF_Convert_Button_Click(sender As Object, e As EventArgs) Handles PDF_Convert_Button.Click
         '
         '   報告書をPDFに変換し、そのデータをデータベースに転送するサブルーチン
@@ -1534,4 +1535,104 @@ Public Class Form1
         End If
         menuForm.Dispose()
     End Sub
+
+
+
+    Private Sub NextFolderButton_Click(sender As Object, e As EventArgs) Handles NextFolderButton.Click
+
+
+        If TextBox_FolderName1.Text <> "" Then
+            Dim Path1 = System.IO.Path.GetDirectoryName(TextBox_FolderName1.Text)
+            Dim dname = System.IO.Path.GetFileName(TextBox_FolderName1.Text)
+            Dim dir2 As String(), dname2 As String(), dname3 As String()
+
+            If Path1 <> "" And dname <> "" Then
+                dir2 = Directory.GetDirectories(Path1, "*", SearchOption.TopDirectoryOnly)
+                Dim n As Integer = dir2.Length
+                ReDim dname2(n - 1), dname3(n - 1)
+                For i As Integer = 0 To n - 1
+                    dname2(i) = System.IO.Path.GetFileName(dir2(i))
+                Next
+                Dim cmp As StringComparer = StringComparer.OrdinalIgnoreCase
+                Array.Sort(dname2, cmp)
+                Dim nextfolder As String, index As Integer = -1
+                Dim n2 As Integer = 0
+
+                For i As Integer = 0 To n - 1
+                    If dname2(i).Substring(0, 1) <> "." Then
+                        dname3(n2) = dname2(i)
+                        n2 += 1
+                    End If
+                Next
+
+
+                For i As Integer = 0 To n2 - 1
+                    If dname3(i) = dname Then
+                        index = i
+                        Exit For
+                    End If
+                Next
+                If index >= 0 And index < n2 - 1 Then
+                    nextfolder = dname3(index + 1)
+                    TextBox_FolderName1.Text = Path1 + "\" + nextfolder
+                    Path1 = TextBox_FolderName1.Text
+                    Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+                Else
+                    MsgBox("次はありません！", vbOK, "エラー")
+                End If
+
+            End If
+        End If
+    End Sub
+
+
+    Private Sub BeforeFolderButton_Click(sender As Object, e As EventArgs) Handles BeforeFolderButton.Click
+
+
+        If TextBox_FolderName1.Text <> "" Then
+            Dim Path1 = System.IO.Path.GetDirectoryName(TextBox_FolderName1.Text)
+            Dim dname = System.IO.Path.GetFileName(TextBox_FolderName1.Text)
+            Dim dir2 As String(), dname2 As String(), dname3 As String()
+
+            If Path1 <> "" And dname <> "" Then
+                dir2 = Directory.GetDirectories(Path1, "*", SearchOption.TopDirectoryOnly)
+                Dim n As Integer = dir2.Length
+                ReDim dname2(n - 1), dname3(n - 1)
+                For i As Integer = 0 To n - 1
+                    dname2(i) = System.IO.Path.GetFileName(dir2(i))
+                Next
+                Dim cmp As StringComparer = StringComparer.OrdinalIgnoreCase
+                Array.Sort(dname2, cmp)
+                Dim nextfolder As String, index As Integer = -1
+                Dim n2 As Integer = 0
+
+                For i As Integer = 0 To n - 1
+                    If dname2(i).Substring(0, 1) <> "." Then
+                        dname3(n2) = dname2(i)
+                        n2 += 1
+                    End If
+                Next
+
+
+                For i As Integer = 0 To n2 - 1
+                    If dname3(i) = dname Then
+                        index = i
+                        Exit For
+                    End If
+                Next
+                If index >= 1 And index < n2 Then
+                    nextfolder = dname3(index - 1)
+                    TextBox_FolderName1.Text = Path1 + "\" + nextfolder
+                    Path1 = TextBox_FolderName1.Text
+                    Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+                Else
+                    MsgBox("前はありません！", vbOK, "エラー")
+                End If
+
+            End If
+        End If
+    End Sub
+
+
+
 End Class

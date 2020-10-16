@@ -52,6 +52,10 @@ Partial Class Form1
         Me.CheckBox_hyouteika = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.BeforeFolderButton = New System.Windows.Forms.Button()
+        Me.NextFolderButton = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.FolderMenuButton1 = New System.Windows.Forms.Button()
         Me.FolderSaveButton1 = New System.Windows.Forms.Button()
         Me.CheckBox_Convert = New System.Windows.Forms.CheckBox()
@@ -62,6 +66,8 @@ Partial Class Form1
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
         Me.FolderSaveButton2 = New System.Windows.Forms.Button()
         Me.FolderMenuButton2 = New System.Windows.Forms.Button()
         Me.CheckBox_Input2 = New System.Windows.Forms.CheckBox()
@@ -76,10 +82,6 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.Label5 = New System.Windows.Forms.Label()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -403,6 +405,8 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.BeforeFolderButton)
+        Me.TabPage1.Controls.Add(Me.NextFolderButton)
         Me.TabPage1.Controls.Add(Me.Label5)
         Me.TabPage1.Controls.Add(Me.Label4)
         Me.TabPage1.Controls.Add(Me.FolderMenuButton1)
@@ -424,6 +428,46 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "　［　フォルダーから報告書の検索　］　"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'BeforeFolderButton
+        '
+        Me.BeforeFolderButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.BeforeFolderButton.Location = New System.Drawing.Point(308, 17)
+        Me.BeforeFolderButton.Name = "BeforeFolderButton"
+        Me.BeforeFolderButton.Size = New System.Drawing.Size(99, 24)
+        Me.BeforeFolderButton.TabIndex = 31
+        Me.BeforeFolderButton.Text = "前のフォルダ－"
+        Me.BeforeFolderButton.UseVisualStyleBackColor = True
+        '
+        'NextFolderButton
+        '
+        Me.NextFolderButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.NextFolderButton.Location = New System.Drawing.Point(308, 40)
+        Me.NextFolderButton.Name = "NextFolderButton"
+        Me.NextFolderButton.Size = New System.Drawing.Size(99, 24)
+        Me.NextFolderButton.TabIndex = 31
+        Me.NextFolderButton.Text = "次のフォルダ－"
+        Me.NextFolderButton.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label5.Location = New System.Drawing.Point(459, 3)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(105, 12)
+        Me.Label5.TabIndex = 18
+        Me.Label5.Text = "（手順2）リストの作成"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label4.Location = New System.Drawing.Point(95, 3)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(126, 12)
+        Me.Label4.TabIndex = 18
+        Me.Label4.Text = "（手順1）フォルダーの選択"
         '
         'FolderMenuButton1
         '
@@ -532,6 +576,26 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "　［　フォルダーから資料の検索　］　"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label6.Location = New System.Drawing.Point(459, 3)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(105, 12)
+        Me.Label6.TabIndex = 28
+        Me.Label6.Text = "（手順2）リストの作成"
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label7.Location = New System.Drawing.Point(95, 3)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(126, 12)
+        Me.Label7.TabIndex = 29
+        Me.Label7.Text = "（手順1）フォルダーの選択"
         '
         'FolderSaveButton2
         '
@@ -686,46 +750,6 @@ Partial Class Form1
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(95, 3)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(126, 12)
-        Me.Label4.TabIndex = 18
-        Me.Label4.Text = "（手順1）フォルダーの選択"
-        '
-        'Label5
-        '
-        Me.Label5.AutoSize = True
-        Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(459, 3)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(105, 12)
-        Me.Label5.TabIndex = 18
-        Me.Label5.Text = "（手順2）リストの作成"
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(459, 2)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(105, 12)
-        Me.Label6.TabIndex = 28
-        Me.Label6.Text = "（手順2）リストの作成"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label7.Location = New System.Drawing.Point(95, 2)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(126, 12)
-        Me.Label7.TabIndex = 29
-        Me.Label7.Text = "（手順1）フォルダーの選択"
-        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -811,4 +835,6 @@ Partial Class Form1
     Friend WithEvents Label4 As Label
     Friend WithEvents Label6 As Label
     Friend WithEvents Label7 As Label
+    Friend WithEvents NextFolderButton As Button
+    Friend WithEvents BeforeFolderButton As Button
 End Class
