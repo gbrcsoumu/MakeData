@@ -25,7 +25,7 @@ Imports FujiXerox.DocuWorks.Toolkit
 
 Public Class Form1
     Private filename() As String, fname() As String, dir1() As String
-    Private Path1 As String, Path2 As String
+    Private DcuPath As String, PdfPath As String
     Private Check() As CheckBox, checkbox_n As Integer
     Private Cansel As Boolean
     Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
@@ -61,8 +61,8 @@ Public Class Form1
                 End
             End If
         End If
-            ' 起動時にプログレスバーを非表示にする。
-            Me.ProgressBar1.Visible = False
+        ' 起動時にプログレスバーを非表示にする。
+        Me.ProgressBar1.Visible = False
         Me.ProgressBar2.Visible = False
 
         ' 分野番号チェックボックスの初期設定
@@ -104,7 +104,7 @@ Public Class Form1
 
         'TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室"
         'TextBox_FolderName1.Text = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\test用"
-        Path2 = TextBox_FolderName1.Text
+        PdfPath = TextBox_FolderName1.Text
 
         CheckBox_Input.Checked = True       ' 報告書の入力チェックボックス
         CheckBox_Convert.Checked = True     ' 報告書の変換チェックボックス
@@ -480,7 +480,7 @@ Public Class Form1
                 Dim nn As Integer = 0
 
                 For i As Integer = 0 To WildCard1.Length - 1
-                    ff(i) = System.IO.Directory.GetFiles(Path1, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    ff(i) = System.IO.Directory.GetFiles(DcuPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
                     nn += ff(i).Length
                 Next
 
@@ -684,7 +684,7 @@ Public Class Form1
                 Dim nn As Integer = 0
 
                 For i As Integer = 0 To WildCard1.Length - 1
-                    ff(i) = System.IO.Directory.GetFiles(Path2, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    ff(i) = System.IO.Directory.GetFiles(PdfPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
                     nn += ff(i).Length
                 Next
 
@@ -894,7 +894,7 @@ Public Class Form1
         If fbd.ShowDialog(Me) = DialogResult.OK Then
             '選択されたフォルダを表示する
             Me.TextBox_FolderName3.Text = fbd.SelectedPath
-            Path2 = fbd.SelectedPath
+            PdfPath = fbd.SelectedPath
 
             'Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
             'TextBox_FilderName2.Text = Path2
@@ -987,9 +987,9 @@ Public Class Form1
         If fbd.ShowDialog(Me) = DialogResult.OK Then
             '選択されたフォルダを表示する
             Me.TextBox_FolderName1.Text = fbd.SelectedPath
-            Path1 = fbd.SelectedPath
+            DcuPath = fbd.SelectedPath
 
-            Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+            PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
             'TextBox_FilderName2.Text = Path2
         End If
 
@@ -1514,8 +1514,8 @@ Public Class Form1
         menuForm.StartPosition = FormStartPosition.CenterParent
         If menuForm.ShowDialog = DialogResult.OK Then         '値を受け取る
             TextBox_FolderName1.Text = menuForm.GetValue
-            Path1 = TextBox_FolderName1.Text
-            Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+            DcuPath = TextBox_FolderName1.Text
+            PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
         End If
         menuForm.Dispose()
     End Sub
@@ -1530,7 +1530,7 @@ Public Class Form1
         menuForm.StartPosition = FormStartPosition.CenterParent
         If menuForm.ShowDialog = DialogResult.OK Then         '値を受け取る
             TextBox_FolderName3.Text = menuForm.GetValue
-            Path2 = TextBox_FolderName3.Text
+            PdfPath = TextBox_FolderName3.Text
 
         End If
         menuForm.Dispose()
@@ -1542,12 +1542,12 @@ Public Class Form1
 
 
         If TextBox_FolderName1.Text <> "" Then
-            Dim Path1 = System.IO.Path.GetDirectoryName(TextBox_FolderName1.Text)
+            Dim Path0 = System.IO.Path.GetDirectoryName(TextBox_FolderName1.Text)
             Dim dname = System.IO.Path.GetFileName(TextBox_FolderName1.Text)
             Dim dir2 As String(), dname2 As String(), dname3 As String()
 
-            If Path1 <> "" And dname <> "" Then
-                dir2 = Directory.GetDirectories(Path1, "*", SearchOption.TopDirectoryOnly)
+            If Path0 <> "" And dname <> "" Then
+                dir2 = Directory.GetDirectories(Path0, "*", SearchOption.TopDirectoryOnly)
                 Dim n As Integer = dir2.Length
                 ReDim dname2(n - 1), dname3(n - 1)
                 For i As Integer = 0 To n - 1
@@ -1574,9 +1574,9 @@ Public Class Form1
                 Next
                 If index >= 0 And index < n2 - 1 Then
                     nextfolder = dname3(index + 1)
-                    TextBox_FolderName1.Text = Path1 + "\" + nextfolder
-                    Path1 = TextBox_FolderName1.Text
-                    Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+                    TextBox_FolderName1.Text = Path0 + "\" + nextfolder
+                    DcuPath = TextBox_FolderName1.Text
+                    PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
                     MsgBox("次はありません！", vbOK, "エラー")
                 End If
@@ -1590,12 +1590,12 @@ Public Class Form1
 
 
         If TextBox_FolderName1.Text <> "" Then
-            Dim Path1 = System.IO.Path.GetDirectoryName(TextBox_FolderName1.Text)
+            Dim Path0 = System.IO.Path.GetDirectoryName(TextBox_FolderName1.Text)
             Dim dname = System.IO.Path.GetFileName(TextBox_FolderName1.Text)
             Dim dir2 As String(), dname2 As String(), dname3 As String()
 
-            If Path1 <> "" And dname <> "" Then
-                dir2 = Directory.GetDirectories(Path1, "*", SearchOption.TopDirectoryOnly)
+            If Path0 <> "" And dname <> "" Then
+                dir2 = Directory.GetDirectories(Path0, "*", SearchOption.TopDirectoryOnly)
                 Dim n As Integer = dir2.Length
                 ReDim dname2(n - 1), dname3(n - 1)
                 For i As Integer = 0 To n - 1
@@ -1622,9 +1622,9 @@ Public Class Form1
                 Next
                 If index >= 1 And index < n2 Then
                     nextfolder = dname3(index - 1)
-                    TextBox_FolderName1.Text = Path1 + "\" + nextfolder
-                    Path1 = TextBox_FolderName1.Text
-                    Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
+                    TextBox_FolderName1.Text = Path0 + "\" + nextfolder
+                    DcuPath = TextBox_FolderName1.Text
+                    PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
                     MsgBox("前はありません！", vbOK, "エラー")
                 End If
