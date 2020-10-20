@@ -118,9 +118,9 @@ Partial Class Form1
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.Label1.Location = New System.Drawing.Point(23, 20)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(474, 22)
+        Me.Label1.Size = New System.Drawing.Size(551, 22)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "報告書および資料をデータベースに登録するプログラム"
+        Me.Label1.Text = "報告書および資料を検索してデータベースに登録するプログラム"
         '
         'ProgressBar1
         '
@@ -428,7 +428,7 @@ Partial Class Form1
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(939, 529)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "　［　フォルダーから報告書の検索　］　"
+        Me.TabPage1.Text = "　［　報告書の検索　］　"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'BeforeFolderButton
@@ -579,7 +579,7 @@ Partial Class Form1
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage3.Size = New System.Drawing.Size(939, 529)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "　［　フォルダーから資料の検索　］　"
+        Me.TabPage3.Text = "　［　資料の検索　］　"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
         'Label6
