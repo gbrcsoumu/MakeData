@@ -66,6 +66,8 @@ Partial Class Form1
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.BeforeFolderButton2 = New System.Windows.Forms.Button()
+        Me.NextFolderButton2 = New System.Windows.Forms.Button()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.FolderSaveButton2 = New System.Windows.Forms.Button()
@@ -82,8 +84,6 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.BeforeFolderButton2 = New System.Windows.Forms.Button()
-        Me.NextFolderButton2 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -494,7 +494,7 @@ Partial Class Form1
         'CheckBox_Convert
         '
         Me.CheckBox_Convert.AutoSize = True
-        Me.CheckBox_Convert.Location = New System.Drawing.Point(886, 40)
+        Me.CheckBox_Convert.Location = New System.Drawing.Point(887, 33)
         Me.CheckBox_Convert.Name = "CheckBox_Convert"
         Me.CheckBox_Convert.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox_Convert.TabIndex = 15
@@ -503,7 +503,7 @@ Partial Class Form1
         'CheckBox_Input
         '
         Me.CheckBox_Input.AutoSize = True
-        Me.CheckBox_Input.Location = New System.Drawing.Point(799, 41)
+        Me.CheckBox_Input.Location = New System.Drawing.Point(800, 33)
         Me.CheckBox_Input.Name = "CheckBox_Input"
         Me.CheckBox_Input.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox_Input.TabIndex = 14
@@ -512,21 +512,21 @@ Partial Class Form1
         'PDF_Convert_Button
         '
         Me.PDF_Convert_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PDF_Convert_Button.Location = New System.Drawing.Point(833, 32)
+        Me.PDF_Convert_Button.Location = New System.Drawing.Point(833, 17)
         Me.PDF_Convert_Button.Name = "PDF_Convert_Button"
-        Me.PDF_Convert_Button.Size = New System.Drawing.Size(48, 32)
+        Me.PDF_Convert_Button.Size = New System.Drawing.Size(48, 47)
         Me.PDF_Convert_Button.TabIndex = 13
-        Me.PDF_Convert_Button.Text = "変換"
+        Me.PDF_Convert_Button.Text = "変換実行"
         Me.PDF_Convert_Button.UseVisualStyleBackColor = True
         '
         'Data_Input_Button
         '
         Me.Data_Input_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Data_Input_Button.Location = New System.Drawing.Point(744, 32)
+        Me.Data_Input_Button.Location = New System.Drawing.Point(744, 17)
         Me.Data_Input_Button.Name = "Data_Input_Button"
-        Me.Data_Input_Button.Size = New System.Drawing.Size(48, 32)
+        Me.Data_Input_Button.Size = New System.Drawing.Size(48, 47)
         Me.Data_Input_Button.TabIndex = 13
-        Me.Data_Input_Button.Text = "入力"
+        Me.Data_Input_Button.Text = "入力実行"
         Me.Data_Input_Button.UseVisualStyleBackColor = True
         '
         'TextBox_FileLIst2
@@ -582,6 +582,26 @@ Partial Class Form1
         Me.TabPage3.Text = "　［　資料の検索　］　"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
+        'BeforeFolderButton2
+        '
+        Me.BeforeFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.BeforeFolderButton2.Location = New System.Drawing.Point(308, 17)
+        Me.BeforeFolderButton2.Name = "BeforeFolderButton2"
+        Me.BeforeFolderButton2.Size = New System.Drawing.Size(99, 24)
+        Me.BeforeFolderButton2.TabIndex = 32
+        Me.BeforeFolderButton2.Text = "前のフォルダ－"
+        Me.BeforeFolderButton2.UseVisualStyleBackColor = True
+        '
+        'NextFolderButton2
+        '
+        Me.NextFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.NextFolderButton2.Location = New System.Drawing.Point(308, 40)
+        Me.NextFolderButton2.Name = "NextFolderButton2"
+        Me.NextFolderButton2.Size = New System.Drawing.Size(99, 24)
+        Me.NextFolderButton2.TabIndex = 33
+        Me.NextFolderButton2.Text = "次のフォルダ－"
+        Me.NextFolderButton2.UseVisualStyleBackColor = True
+        '
         'Label6
         '
         Me.Label6.AutoSize = True
@@ -625,7 +645,7 @@ Partial Class Form1
         'CheckBox_Input2
         '
         Me.CheckBox_Input2.AutoSize = True
-        Me.CheckBox_Input2.Location = New System.Drawing.Point(858, 37)
+        Me.CheckBox_Input2.Location = New System.Drawing.Point(800, 33)
         Me.CheckBox_Input2.Name = "CheckBox_Input2"
         Me.CheckBox_Input2.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox_Input2.TabIndex = 25
@@ -634,11 +654,11 @@ Partial Class Form1
         'Data_Input_Button2
         '
         Me.Data_Input_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Data_Input_Button2.Location = New System.Drawing.Point(803, 28)
+        Me.Data_Input_Button2.Location = New System.Drawing.Point(744, 17)
         Me.Data_Input_Button2.Name = "Data_Input_Button2"
-        Me.Data_Input_Button2.Size = New System.Drawing.Size(48, 32)
+        Me.Data_Input_Button2.Size = New System.Drawing.Size(48, 47)
         Me.Data_Input_Button2.TabIndex = 24
-        Me.Data_Input_Button2.Text = "入力"
+        Me.Data_Input_Button2.Text = "入力実行"
         Me.Data_Input_Button2.UseVisualStyleBackColor = True
         '
         'TextBox_FileLIst3
@@ -754,26 +774,6 @@ Partial Class Form1
         Me.Label3.Size = New System.Drawing.Size(187, 12)
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
-        '
-        'BeforeFolderButton2
-        '
-        Me.BeforeFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BeforeFolderButton2.Location = New System.Drawing.Point(308, 17)
-        Me.BeforeFolderButton2.Name = "BeforeFolderButton2"
-        Me.BeforeFolderButton2.Size = New System.Drawing.Size(99, 24)
-        Me.BeforeFolderButton2.TabIndex = 32
-        Me.BeforeFolderButton2.Text = "前のフォルダ－"
-        Me.BeforeFolderButton2.UseVisualStyleBackColor = True
-        '
-        'NextFolderButton2
-        '
-        Me.NextFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.NextFolderButton2.Location = New System.Drawing.Point(308, 40)
-        Me.NextFolderButton2.Name = "NextFolderButton2"
-        Me.NextFolderButton2.Size = New System.Drawing.Size(99, 24)
-        Me.NextFolderButton2.TabIndex = 33
-        Me.NextFolderButton2.Text = "次のフォルダ－"
-        Me.NextFolderButton2.UseVisualStyleBackColor = True
         '
         'Form1
         '
