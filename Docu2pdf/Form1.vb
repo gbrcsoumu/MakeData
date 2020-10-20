@@ -603,7 +603,7 @@ Public Class Form1
         '
         '　資料（pdf）を読み込んでFileMakerに登録する。
         '
-        If TextBox_FolderName3.Text <> "" Then
+        If TextBox_FolderName2.Text <> "" Then
             Try
 
                 Dim Style1 As New DataGridViewCellStyle()
@@ -880,8 +880,8 @@ Public Class Form1
         fbd.RootFolder = Environment.SpecialFolder.Desktop
         '最初に選択するフォルダを指定する
         'RootFolder以下にあるフォルダである必要がある
-        If TextBox_FolderName3.Text <> "" Then
-            fbd.SelectedPath = TextBox_FolderName3.Text
+        If TextBox_FolderName2.Text <> "" Then
+            fbd.SelectedPath = TextBox_FolderName2.Text
         Else
             fbd.SelectedPath = "\\192.168.0.173\disk1\SCAN\test"
         End If
@@ -893,7 +893,7 @@ Public Class Form1
         'ダイアログを表示する
         If fbd.ShowDialog(Me) = DialogResult.OK Then
             '選択されたフォルダを表示する
-            Me.TextBox_FolderName3.Text = fbd.SelectedPath
+            Me.TextBox_FolderName2.Text = fbd.SelectedPath
             PdfPath = fbd.SelectedPath
 
             'Path2 = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(Path1))
@@ -1204,7 +1204,7 @@ Public Class Form1
                                     DataGridView1.Rows(i).Cells(6).Value = True
                                 End If
 
-                                Me.TextBox_FileLIst2.Text += PdfPath + AddText + vbCrLf
+                                Me.TextBox_FileLIst2.Text += (i + 1).ToString() + "/" + n.ToString() + ":" + PdfPath + AddText + vbCrLf
                                 Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
                                 Me.TextBox_FileLIst2.Focus()
                                 Me.TextBox_FileLIst2.ScrollToCaret()
@@ -1364,6 +1364,7 @@ Public Class Form1
         End If
     End Sub
 
+
     Private Sub CheckBox_Input2_CheckedChanged(sender As Object, e As EventArgs) Handles CheckBox_Input2.CheckedChanged
         '
         '   すべての資料の入力チャックボックスのON/OFF切替
@@ -1467,7 +1468,7 @@ Public Class Form1
     Private Sub FolderSaveButton2_Click(sender As Object, e As EventArgs) Handles FolderSaveButton2.Click
 
 
-        If TextBox_FolderName3.Text <> "" Then
+        If TextBox_FolderName2.Text <> "" Then
             Try
                 Dim db As New OdbcDbIf
                 Dim tb As DataTable
@@ -1479,7 +1480,7 @@ Public Class Form1
                 FileMakerServer = FileMakerServer1
                 db.Connect()
 
-                Dim Path As String = TextBox_FolderName3.Text
+                Dim Path As String = TextBox_FolderName2.Text
                 Dim Kind As String = "資料"
 
                 Sql_Command = "SELECT ""IP"",""Path"" FROM """ + Table3 + """ WHERE (""IP"" = '" + MyIP + "' AND ""Path"" = '" + Path + "' AND ""種類"" = '" + Kind + "')"
@@ -1529,8 +1530,8 @@ Public Class Form1
 
         menuForm.StartPosition = FormStartPosition.CenterParent
         If menuForm.ShowDialog = DialogResult.OK Then         '値を受け取る
-            TextBox_FolderName3.Text = menuForm.GetValue
-            PdfPath = TextBox_FolderName3.Text
+            TextBox_FolderName2.Text = menuForm.GetValue
+            PdfPath = TextBox_FolderName2.Text
 
         End If
         menuForm.Dispose()
@@ -1623,7 +1624,7 @@ Public Class Form1
                 If index >= 1 And index < n2 Then
                     nextfolder = dname3(index - 1)
                     TextBox_FolderName1.Text = Path0 + "\" + nextfolder
-                    DcuPath = TextBox_FolderName1.Text
+                    PdfPath = TextBox_FolderName1.Text
                     PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
                     MsgBox("前はありません！", vbOK, "エラー")
@@ -1634,5 +1635,97 @@ Public Class Form1
     End Sub
 
 
+    Private Sub BeforeFolderButton2_Click(sender As Object, e As EventArgs) Handles BeforeFolderButton2.Click
+
+
+        If TextBox_FolderName2.Text <> "" Then
+            Dim Path0 = System.IO.Path.GetDirectoryName(TextBox_FolderName2.Text)
+            Dim dname = System.IO.Path.GetFileName(TextBox_FolderName2.Text)
+            Dim dir2 As String(), dname2 As String(), dname3 As String()
+
+            If Path0 <> "" And dname <> "" Then
+                dir2 = Directory.GetDirectories(Path0, "*", SearchOption.TopDirectoryOnly)
+                Dim n As Integer = dir2.Length
+                ReDim dname2(n - 1), dname3(n - 1)
+                For i As Integer = 0 To n - 1
+                    dname2(i) = System.IO.Path.GetFileName(dir2(i))
+                Next
+                Dim cmp As StringComparer = StringComparer.OrdinalIgnoreCase
+                Array.Sort(dname2, cmp)
+                Dim nextfolder As String, index As Integer = -1
+                Dim n2 As Integer = 0
+
+                For i As Integer = 0 To n - 1
+                    If dname2(i).Substring(0, 1) <> "." Then
+                        dname3(n2) = dname2(i)
+                        n2 += 1
+                    End If
+                Next
+
+
+                For i As Integer = 0 To n2 - 1
+                    If dname3(i) = dname Then
+                        index = i
+                        Exit For
+                    End If
+                Next
+                If index >= 1 And index < n2 Then
+                    nextfolder = dname3(index - 1)
+                    TextBox_FolderName2.Text = Path0 + "\" + nextfolder
+                    PdfPath = TextBox_FolderName2.Text
+                    'PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
+                Else
+                    MsgBox("前はありません！", vbOK, "エラー")
+                End If
+
+            End If
+        End If
+    End Sub
+
+    Private Sub NextFolderButton2_Click(sender As Object, e As EventArgs) Handles NextFolderButton2.Click
+
+        If TextBox_FolderName2.Text <> "" Then
+            Dim Path0 = System.IO.Path.GetDirectoryName(TextBox_FolderName2.Text)
+            Dim dname = System.IO.Path.GetFileName(TextBox_FolderName2.Text)
+            Dim dir2 As String(), dname2 As String(), dname3 As String()
+
+            If Path0 <> "" And dname <> "" Then
+                dir2 = Directory.GetDirectories(Path0, "*", SearchOption.TopDirectoryOnly)
+                Dim n As Integer = dir2.Length
+                ReDim dname2(n - 1), dname3(n - 1)
+                For i As Integer = 0 To n - 1
+                    dname2(i) = System.IO.Path.GetFileName(dir2(i))
+                Next
+                Dim cmp As StringComparer = StringComparer.OrdinalIgnoreCase
+                Array.Sort(dname2, cmp)
+                Dim nextfolder As String, index As Integer = -1
+                Dim n2 As Integer = 0
+
+                For i As Integer = 0 To n - 1
+                    If dname2(i).Substring(0, 1) <> "." Then
+                        dname3(n2) = dname2(i)
+                        n2 += 1
+                    End If
+                Next
+
+
+                For i As Integer = 0 To n2 - 1
+                    If dname3(i) = dname Then
+                        index = i
+                        Exit For
+                    End If
+                Next
+                If index >= 0 And index < n2 - 1 Then
+                    nextfolder = dname3(index + 1)
+                    TextBox_FolderName2.Text = Path0 + "\" + nextfolder
+                    PdfPath = TextBox_FolderName2.Text
+                    'PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
+                Else
+                    MsgBox("次はありません！", vbOK, "エラー")
+                End If
+
+            End If
+        End If
+    End Sub
 
 End Class

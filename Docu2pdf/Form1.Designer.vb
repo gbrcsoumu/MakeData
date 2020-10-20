@@ -75,13 +75,15 @@ Partial Class Form1
         Me.TextBox_FileLIst3 = New System.Windows.Forms.TextBox()
         Me.PdfReadButton = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.TextBox_FolderName3 = New System.Windows.Forms.TextBox()
+        Me.TextBox_FolderName2 = New System.Windows.Forms.TextBox()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Select_Read_Folder_Button2 = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.BeforeFolderButton2 = New System.Windows.Forms.Button()
+        Me.NextFolderButton2 = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -533,6 +535,7 @@ Partial Class Form1
         Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 424)
         Me.TextBox_FileLIst2.Multiline = True
         Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
+        Me.TextBox_FileLIst2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 95)
         Me.TextBox_FileLIst2.TabIndex = 11
         '
@@ -557,6 +560,8 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.BeforeFolderButton2)
+        Me.TabPage3.Controls.Add(Me.NextFolderButton2)
         Me.TabPage3.Controls.Add(Me.Label6)
         Me.TabPage3.Controls.Add(Me.Label7)
         Me.TabPage3.Controls.Add(Me.FolderSaveButton2)
@@ -566,7 +571,7 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.TextBox_FileLIst3)
         Me.TabPage3.Controls.Add(Me.PdfReadButton)
         Me.TabPage3.Controls.Add(Me.DataGridView2)
-        Me.TabPage3.Controls.Add(Me.TextBox_FolderName3)
+        Me.TabPage3.Controls.Add(Me.TextBox_FolderName2)
         Me.TabPage3.Controls.Add(Me.ProgressBar2)
         Me.TabPage3.Controls.Add(Me.Select_Read_Folder_Button2)
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
@@ -664,15 +669,15 @@ Partial Class Form1
         Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
         Me.DataGridView2.TabIndex = 19
         '
-        'TextBox_FolderName3
+        'TextBox_FolderName2
         '
-        Me.TextBox_FolderName3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName3.Location = New System.Drawing.Point(97, 69)
-        Me.TextBox_FolderName3.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox_FolderName3.Multiline = True
-        Me.TextBox_FolderName3.Name = "TextBox_FolderName3"
-        Me.TextBox_FolderName3.Size = New System.Drawing.Size(812, 23)
-        Me.TextBox_FolderName3.TabIndex = 16
+        Me.TextBox_FolderName2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox_FolderName2.Location = New System.Drawing.Point(97, 69)
+        Me.TextBox_FolderName2.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox_FolderName2.Multiline = True
+        Me.TextBox_FolderName2.Name = "TextBox_FolderName2"
+        Me.TextBox_FolderName2.Size = New System.Drawing.Size(812, 23)
+        Me.TextBox_FolderName2.TabIndex = 16
         '
         'ProgressBar2
         '
@@ -750,6 +755,26 @@ Partial Class Form1
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
+        'BeforeFolderButton2
+        '
+        Me.BeforeFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.BeforeFolderButton2.Location = New System.Drawing.Point(308, 17)
+        Me.BeforeFolderButton2.Name = "BeforeFolderButton2"
+        Me.BeforeFolderButton2.Size = New System.Drawing.Size(99, 24)
+        Me.BeforeFolderButton2.TabIndex = 32
+        Me.BeforeFolderButton2.Text = "前のフォルダ－"
+        Me.BeforeFolderButton2.UseVisualStyleBackColor = True
+        '
+        'NextFolderButton2
+        '
+        Me.NextFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.NextFolderButton2.Location = New System.Drawing.Point(308, 40)
+        Me.NextFolderButton2.Name = "NextFolderButton2"
+        Me.NextFolderButton2.Size = New System.Drawing.Size(99, 24)
+        Me.NextFolderButton2.TabIndex = 33
+        Me.NextFolderButton2.Text = "次のフォルダ－"
+        Me.NextFolderButton2.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -822,7 +847,7 @@ Partial Class Form1
     Friend WithEvents TextBox_FileLIst3 As TextBox
     Friend WithEvents PdfReadButton As Button
     Friend WithEvents DataGridView2 As DataGridView
-    Friend WithEvents TextBox_FolderName3 As TextBox
+    Friend WithEvents TextBox_FolderName2 As TextBox
     Friend WithEvents ProgressBar2 As ProgressBar
     Friend WithEvents Select_Read_Folder_Button2 As Button
     Friend WithEvents GroupBox1 As GroupBox
@@ -837,4 +862,6 @@ Partial Class Form1
     Friend WithEvents Label7 As Label
     Friend WithEvents NextFolderButton As Button
     Friend WithEvents BeforeFolderButton As Button
+    Friend WithEvents BeforeFolderButton2 As Button
+    Friend WithEvents NextFolderButton2 As Button
 End Class
