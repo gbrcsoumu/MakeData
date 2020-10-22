@@ -61,6 +61,8 @@ Public Class Form1
         '
         ' フォームの初期化
         '
+
+        Me.Icon = My.Resources.auezb_d3bmk_002
         TextBox_FileMakerServer.Text = FileMakerServer1
 
         MyPath = My.Application.Info.DirectoryPath
@@ -404,6 +406,9 @@ Public Class Form1
         '
         If TextBox_FolderName1.Text <> "" Then
             Try
+                Dim f1 As New Form2
+                f1.Show()
+                Application.DoEvents()
 
                 Dim Style1 As New DataGridViewCellStyle()
                 Style1.BackColor = Color.White
@@ -604,6 +609,9 @@ Public Class Form1
                 fname = fname2.ToArray
                 dir1 = dir2.ToArray
 
+                f1.Close()
+                f1.Dispose()
+
                 If Count = 0 Then
                     MsgBox("このフォルダーには報告書ファイルはありません！", vbOK, "確認")
                 Else
@@ -629,6 +637,9 @@ Public Class Form1
         '
         If TextBox_FolderName2.Text <> "" Then
             Try
+                Dim f1 As New Form2
+                f1.Show()
+                Application.DoEvents()
 
                 Dim Style1 As New DataGridViewCellStyle()
                 Style1.BackColor = Color.White
@@ -797,6 +808,9 @@ Public Class Form1
 
                 fname = fname2.ToArray
                 dir1 = dir2.ToArray
+
+                f1.Close()
+                f1.Dispose()
 
                 If Count = 0 Then
                     MsgBox("このフォルダーには資料ファイルはありません！", vbOK, "確認")

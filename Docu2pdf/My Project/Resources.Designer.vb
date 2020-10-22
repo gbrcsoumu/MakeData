@@ -59,5 +59,25 @@ Namespace My.Resources
                 resourceCulture = value
             End Set
         End Property
+        
+        '''<summary>
+        '''  (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
+        '''</summary>
+        Friend ReadOnly Property auezb_d3bmk_001() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("auezb_d3bmk_001", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  (アイコン) に類似した型 System.Drawing.Icon のローカライズされたリソースを検索します。
+        '''</summary>
+        Friend ReadOnly Property auezb_d3bmk_002() As System.Drawing.Icon
+            Get
+                Dim obj As Object = ResourceManager.GetObject("auezb_d3bmk_002", resourceCulture)
+                Return CType(obj,System.Drawing.Icon)
+            End Get
+        End Property
     End Module
 End Namespace
