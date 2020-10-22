@@ -703,6 +703,7 @@ Partial Class Form1
         Me.TextBox_FileLIst3.Location = New System.Drawing.Point(10, 424)
         Me.TextBox_FileLIst3.Multiline = True
         Me.TextBox_FileLIst3.Name = "TextBox_FileLIst3"
+        Me.TextBox_FileLIst3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
         Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 96)
         Me.TextBox_FileLIst3.TabIndex = 22
         '
