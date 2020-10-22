@@ -23,12 +23,36 @@ Imports System.Net
 Imports System.Security.AccessControl
 Imports FujiXerox.DocuWorks.Toolkit
 
+
 Public Class Form1
     Private filename() As String, fname() As String, dir1() As String
     Private DcuPath As String, PdfPath As String
     Private Check() As CheckBox, checkbox_n As Integer
     Private Cansel As Boolean
     Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
+
+    <Flags()>
+    Public Enum PlaySoundFlags
+        SND_SYNC = &H0
+        SND_ASYNC = &H1
+        SND_NODEFAULT = &H2
+        SND_MEMORY = &H4
+        SND_LOOP = &H8
+        SND_NOSTOP = &H10
+        SND_NOWAIT = &H2000
+        SND_ALIAS = &H10000
+        SND_ALIAS_ID = &H110000
+        SND_FILENAME = &H20000
+        SND_RESOURCE = &H40004
+        SND_PURGE = &H40
+        SND_APPLICATION = &H80
+    End Enum
+
+    <System.Runtime.InteropServices.DllImport("winmm.dll",
+    CharSet:=System.Runtime.InteropServices.CharSet.Auto)>
+    Private Shared Function PlaySound(ByVal pszSound As String,
+    ByVal hmod As IntPtr, ByVal fdwSound As PlaySoundFlags) As Boolean
+    End Function
 
 
     Private TextFileName As String
@@ -1424,6 +1448,7 @@ Public Class Form1
 
     End Function
 
+
     Private Sub FolderSaveButton1_Click(sender As Object, e As EventArgs) Handles FolderSaveButton1.Click
 
 
@@ -1579,6 +1604,8 @@ Public Class Form1
                     DcuPath = TextBox_FolderName1.Text
                     PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
+
+                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("次はありません！", vbOK, "エラー")
                 End If
 
@@ -1627,6 +1654,7 @@ Public Class Form1
                     PdfPath = TextBox_FolderName1.Text
                     PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
+                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("前はありません！", vbOK, "エラー")
                 End If
 
@@ -1675,6 +1703,7 @@ Public Class Form1
                     PdfPath = TextBox_FolderName2.Text
                     'PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
+                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("前はありません！", vbOK, "エラー")
                 End If
 
@@ -1721,6 +1750,7 @@ Public Class Form1
                     PdfPath = TextBox_FolderName2.Text
                     'PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
+                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("次はありません！", vbOK, "エラー")
                 End If
 

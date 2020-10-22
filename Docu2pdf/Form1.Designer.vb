@@ -52,6 +52,8 @@ Partial Class Form1
         Me.CheckBox_hyouteika = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.Label9 = New System.Windows.Forms.Label()
         Me.BeforeFolderButton = New System.Windows.Forms.Button()
         Me.NextFolderButton = New System.Windows.Forms.Button()
         Me.Label5 = New System.Windows.Forms.Label()
@@ -68,6 +70,7 @@ Partial Class Form1
         Me.TabPage3 = New System.Windows.Forms.TabPage()
         Me.BeforeFolderButton2 = New System.Windows.Forms.Button()
         Me.NextFolderButton2 = New System.Windows.Forms.Button()
+        Me.Label8 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.FolderSaveButton2 = New System.Windows.Forms.Button()
@@ -309,7 +312,7 @@ Partial Class Form1
         'CheckBox_kozo
         '
         Me.CheckBox_kozo.AutoSize = True
-        Me.CheckBox_kozo.Location = New System.Drawing.Point(249, 18)
+        Me.CheckBox_kozo.Location = New System.Drawing.Point(265, 18)
         Me.CheckBox_kozo.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_kozo.Name = "CheckBox_kozo"
         Me.CheckBox_kozo.Size = New System.Drawing.Size(48, 16)
@@ -320,7 +323,7 @@ Partial Class Form1
         'CheckBox_zairyou
         '
         Me.CheckBox_zairyou.AutoSize = True
-        Me.CheckBox_zairyou.Location = New System.Drawing.Point(249, 38)
+        Me.CheckBox_zairyou.Location = New System.Drawing.Point(265, 38)
         Me.CheckBox_zairyou.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_zairyou.Name = "CheckBox_zairyou"
         Me.CheckBox_zairyou.Size = New System.Drawing.Size(48, 16)
@@ -331,7 +334,7 @@ Partial Class Form1
         'CheckBox_tobihi
         '
         Me.CheckBox_tobihi.AutoSize = True
-        Me.CheckBox_tobihi.Location = New System.Drawing.Point(249, 58)
+        Me.CheckBox_tobihi.Location = New System.Drawing.Point(265, 58)
         Me.CheckBox_tobihi.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_tobihi.Name = "CheckBox_tobihi"
         Me.CheckBox_tobihi.Size = New System.Drawing.Size(48, 16)
@@ -342,7 +345,7 @@ Partial Class Form1
         'CheckBox_ALL
         '
         Me.CheckBox_ALL.AutoSize = True
-        Me.CheckBox_ALL.Location = New System.Drawing.Point(303, 18)
+        Me.CheckBox_ALL.Location = New System.Drawing.Point(319, 18)
         Me.CheckBox_ALL.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_ALL.Name = "CheckBox_ALL"
         Me.CheckBox_ALL.Size = New System.Drawing.Size(44, 16)
@@ -386,7 +389,7 @@ Partial Class Form1
         'CheckBox_hyouteika
         '
         Me.CheckBox_hyouteika.AutoSize = True
-        Me.CheckBox_hyouteika.Location = New System.Drawing.Point(249, 78)
+        Me.CheckBox_hyouteika.Location = New System.Drawing.Point(265, 78)
         Me.CheckBox_hyouteika.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
         Me.CheckBox_hyouteika.Name = "CheckBox_hyouteika"
         Me.CheckBox_hyouteika.Size = New System.Drawing.Size(60, 16)
@@ -407,6 +410,8 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.Label10)
+        Me.TabPage1.Controls.Add(Me.Label9)
         Me.TabPage1.Controls.Add(Me.BeforeFolderButton)
         Me.TabPage1.Controls.Add(Me.NextFolderButton)
         Me.TabPage1.Controls.Add(Me.Label5)
@@ -430,6 +435,26 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "　［　報告書の検索　］　"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label10.Location = New System.Drawing.Point(816, 3)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(93, 12)
+        Me.Label10.TabIndex = 32
+        Me.Label10.Text = "（手順4）PDF変換"
+        '
+        'Label9
+        '
+        Me.Label9.AutoSize = True
+        Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label9.Location = New System.Drawing.Point(655, 3)
+        Me.Label9.Name = "Label9"
+        Me.Label9.Size = New System.Drawing.Size(148, 12)
+        Me.Label9.TabIndex = 32
+        Me.Label9.Text = "（手順3）データベースへの入力"
         '
         'BeforeFolderButton
         '
@@ -494,7 +519,7 @@ Partial Class Form1
         'CheckBox_Convert
         '
         Me.CheckBox_Convert.AutoSize = True
-        Me.CheckBox_Convert.Location = New System.Drawing.Point(887, 33)
+        Me.CheckBox_Convert.Location = New System.Drawing.Point(873, 33)
         Me.CheckBox_Convert.Name = "CheckBox_Convert"
         Me.CheckBox_Convert.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox_Convert.TabIndex = 15
@@ -503,7 +528,7 @@ Partial Class Form1
         'CheckBox_Input
         '
         Me.CheckBox_Input.AutoSize = True
-        Me.CheckBox_Input.Location = New System.Drawing.Point(800, 33)
+        Me.CheckBox_Input.Location = New System.Drawing.Point(729, 33)
         Me.CheckBox_Input.Name = "CheckBox_Input"
         Me.CheckBox_Input.Size = New System.Drawing.Size(15, 14)
         Me.CheckBox_Input.TabIndex = 14
@@ -512,7 +537,7 @@ Partial Class Form1
         'PDF_Convert_Button
         '
         Me.PDF_Convert_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PDF_Convert_Button.Location = New System.Drawing.Point(833, 17)
+        Me.PDF_Convert_Button.Location = New System.Drawing.Point(819, 17)
         Me.PDF_Convert_Button.Name = "PDF_Convert_Button"
         Me.PDF_Convert_Button.Size = New System.Drawing.Size(48, 47)
         Me.PDF_Convert_Button.TabIndex = 13
@@ -522,7 +547,7 @@ Partial Class Form1
         'Data_Input_Button
         '
         Me.Data_Input_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Data_Input_Button.Location = New System.Drawing.Point(744, 17)
+        Me.Data_Input_Button.Location = New System.Drawing.Point(673, 17)
         Me.Data_Input_Button.Name = "Data_Input_Button"
         Me.Data_Input_Button.Size = New System.Drawing.Size(48, 47)
         Me.Data_Input_Button.TabIndex = 13
@@ -562,6 +587,7 @@ Partial Class Form1
         '
         Me.TabPage3.Controls.Add(Me.BeforeFolderButton2)
         Me.TabPage3.Controls.Add(Me.NextFolderButton2)
+        Me.TabPage3.Controls.Add(Me.Label8)
         Me.TabPage3.Controls.Add(Me.Label6)
         Me.TabPage3.Controls.Add(Me.Label7)
         Me.TabPage3.Controls.Add(Me.FolderSaveButton2)
@@ -601,6 +627,16 @@ Partial Class Form1
         Me.NextFolderButton2.TabIndex = 33
         Me.NextFolderButton2.Text = "次のフォルダ－"
         Me.NextFolderButton2.UseVisualStyleBackColor = True
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label8.Location = New System.Drawing.Point(742, 3)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(148, 12)
+        Me.Label8.TabIndex = 28
+        Me.Label8.Text = "（手順3）データベースへの入力"
         '
         'Label6
         '
@@ -761,7 +797,7 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.CheckBox_3A)
         Me.GroupBox1.Location = New System.Drawing.Point(615, 14)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(359, 101)
+        Me.GroupBox1.Size = New System.Drawing.Size(369, 101)
         Me.GroupBox1.TabIndex = 16
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "分野番号"
@@ -864,4 +900,7 @@ Partial Class Form1
     Friend WithEvents BeforeFolderButton As Button
     Friend WithEvents BeforeFolderButton2 As Button
     Friend WithEvents NextFolderButton2 As Button
+    Friend WithEvents Label10 As Label
+    Friend WithEvents Label9 As Label
+    Friend WithEvents Label8 As Label
 End Class
