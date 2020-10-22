@@ -28,7 +28,7 @@ Partial Class Form2
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(73, 28)
+        Me.Label1.Location = New System.Drawing.Point(72, 20)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(31, 12)
         Me.Label1.TabIndex = 0
@@ -39,11 +39,12 @@ Partial Class Form2
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(298, 107)
-        Me.ControlBox = False
         Me.Controls.Add(Me.Label1)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "Form2"
         Me.ShowIcon = False
-        Me.Text = "状況"
+        Me.Text = "ファイル検索中"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
