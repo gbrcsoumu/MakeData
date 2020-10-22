@@ -45,6 +45,7 @@ Partial Class Form2
         Me.Name = "Form2"
         Me.ShowIcon = False
         Me.Text = "ファイル検索中"
+        Me.TopMost = True
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

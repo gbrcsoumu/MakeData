@@ -407,6 +407,8 @@ Public Class Form1
         If TextBox_FolderName1.Text <> "" Then
             Try
                 Dim f1 As New Form2
+                f1.title = "ファイルの検索"
+                f1.message = "ただいまファイルの検索中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
                 f1.Show()
                 Application.DoEvents()
 
@@ -638,6 +640,8 @@ Public Class Form1
         If TextBox_FolderName2.Text <> "" Then
             Try
                 Dim f1 As New Form2
+                f1.title = "ファイルの検索"
+                f1.message = "ただいまファイルの検索中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
                 f1.Show()
                 Application.DoEvents()
 
@@ -1069,6 +1073,13 @@ Public Class Form1
                 Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
 
                 If result = vbOK Then
+
+                    Dim f1 As New Form2
+                    f1.title = "PDF変換"
+                    f1.message = "ただいまデータをに入力中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
+                    f1.Show()
+                    Application.DoEvents()
+
                     TextBox_FileLIst2.Text = ""
                     ProgressBar1.Minimum = 0
                     ProgressBar1.Maximum = Count
@@ -1123,6 +1134,9 @@ Public Class Form1
 
                     End Try
 
+                    f1.Close()
+                    f1.Dispose()
+
                 End If
             Else
                 MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
@@ -1173,6 +1187,14 @@ Public Class Form1
                 Dim result As DialogResult = MessageBox.Show(message, caption, buttons)
 
                 If result = vbOK Then
+
+                    Dim f1 As New Form2
+                    f1.title = "PDF変換"
+                    f1.message = "ただいまＰＤＦファイルに変換中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
+                    f1.Show()
+                    Application.DoEvents()
+
+
                     ProgressBar1.Minimum = 0
                     ProgressBar1.Maximum = Count
                     ProgressBar1.Visible = True
@@ -1273,10 +1295,14 @@ Public Class Form1
                         'ストリームを閉じる
                         'sw.Close()
                         ProgressBar1.Visible = False
+                        f1.Close()
+                        f1.Dispose()
 
                     Catch e1 As Exception
 
                     End Try
+
+
 
                 End If
             Else
@@ -1333,6 +1359,12 @@ Public Class Form1
 
                 If result = vbOK Then
 
+                    Dim f1 As New Form2
+                    f1.title = "PDF変換"
+                    f1.message = "ただいまデータをに入力中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
+                    f1.Show()
+                    Application.DoEvents()
+
                     ProgressBar2.Minimum = 0
                     ProgressBar2.Maximum = Count
                     ProgressBar2.Visible = True
@@ -1388,6 +1420,9 @@ Public Class Form1
                     Catch e1 As Exception
 
                     End Try
+
+                    f1.Close()
+                    f1.Dispose()
 
                 End If
             Else
