@@ -62,6 +62,12 @@ Public Class Form1
         ' フォームの初期化
         '
 
+        'Dim file1 As String = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室\3A\3A000058R\3A000058R2.xdw"
+        'Dim page As Integer = 2
+        'Dim text1 As String = DocuToText(file1, page)
+        'Debug.Print(text1)
+
+
         Me.Icon = My.Resources.auezb_d3bmk_002
         TextBox_FileMakerServer.Text = FileMakerServer1
 
@@ -1000,7 +1006,111 @@ Public Class Form1
         DocuToPdf = api_result2
     End Function
 
+    Private Function DocuToText(ByVal file1 As String, ByVal page As Integer) As String
 
+
+        Dim FolderPath As String = Path.GetDirectoryName(file1)
+        Dim fileInfo As New FileInfo(FolderPath)
+        Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
+
+        ' アクセス権限をEveryoneに対しフルコントロール許可
+        Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+        fileSec.AddAccessRule(accessRule)
+        fileInfo.SetAccessControl(fileSec)
+
+        Dim Handle As Xdwapi.XDW_DOCUMENT_HANDLE = New Xdwapi.XDW_DOCUMENT_HANDLE()
+        Dim mode As Xdwapi.XDW_OPEN_MODE_EX = New Xdwapi.XDW_OPEN_MODE_EX()
+        With mode
+            .Option = Xdwapi.XDW_OPEN_READONLY
+            .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
+        End With
+
+        Dim api_result As Integer = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)
+        DocuToText = ""
+
+        If api_result >= 0 Then
+            Dim info As Xdwapi.XDW_DOCUMENT_INFO = New Xdwapi.XDW_DOCUMENT_INFO()
+            Xdwapi.XDW_GetDocumentInformation(Handle, info)
+            Dim end_page As Integer = info.Pages
+            Dim start_page As Integer = 1
+
+
+            If page >= 1 And page <= end_page Then
+                Dim info2 As Xdwapi.XDW_PAGE_INFO_EX = New Xdwapi.XDW_PAGE_INFO_EX()
+
+                Dim result As Integer = Xdwapi.XDW_GetPageInformation(Handle, page, info2)
+
+                If result >= 0 Then
+                    If info2.PageType = Xdwapi.XDW_PGT_FROMAPPL Or info2.PageType = Xdwapi.XDW_PGT_FROMIMAGE Then
+                        Dim text1 As String
+                        Dim nDataSize As Integer = 0
+                        Dim reserved = Nothing
+                        Dim result2 As Integer = Xdwapi.XDW_GetPageTextToMemory(Handle, page, text1)
+
+                        Xdwapi.XDW_CloseDocumentHandle(Handle)  ' ファイルを閉じる
+
+                        If result2 >= 0 Then
+                            If text1 <> Nothing Then
+                                ' テキストが正しく読めた場合
+                                DocuToText = text1
+
+                            Else
+                                ' テキストが読めなかった場合はOCR処理をしてテキストを抽出する。
+                                With mode
+                                    .Option = Xdwapi.XDW_OPEN_UPDATE    ' 編集モード
+                                    .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
+                                End With
+
+                                api_result = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)     ' 再度ファイルを開く
+
+                                Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
+                                If result3 >= 0 Then
+                                    Dim ocr_optoin As Xdwapi.XDW_OCR_OPTION_V7 = New Xdwapi.XDW_OCR_OPTION_V7
+                                    With ocr_optoin
+                                        .NoiseReduction = Xdwapi.XDW_REDUCENOISE_NORMAL
+                                        .Language = Xdwapi.XDW_OCR_LANGUAGE_AUTO
+                                        .InsertSpaceCharacter = 0
+                                        .Form = Xdwapi.XDW_OCR_FORM_AUTO
+                                        .Column = Xdwapi.XDW_OCR_COLUMN_AUTO
+                                        .EngineLevel = Xdwapi.XDW_OCR_ENGINE_LEVEL_ACCURACY
+                                    End With
+                                    result3 = Xdwapi.XDW_ApplyOcr(Handle, page, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
+                                    If result3 >= 0 Then
+
+                                        result3 = -1
+                                        result3 = Xdwapi.XDW_GetPageTextToMemory(Handle, page, text1)
+                                    End If
+
+                                    If result3 >= 0 Then
+                                        If text1 <> Nothing Then
+                                            DocuToText = text1
+                                        End If
+                                    End If
+                                End If
+                                Xdwapi.XDW_CloseDocumentHandle(Handle)
+                                Xdwapi.XDW_Finalize()
+
+                            End If
+
+                        End If
+
+                    End If
+
+                End If
+
+            End If
+
+
+
+        End If
+
+        'Xdwapi.XDW_CloseDocumentHandle(Handle)
+
+        'If ocr_exec <> 0 Then
+        '    Xdwapi.XDW_Finalize()
+        'End If
+
+    End Function
 
     Private Sub Select_Read_Folder_Button_Click(sender As Object, e As EventArgs) Handles Select_Read_Folder_Button.Click
         '
@@ -1101,6 +1211,10 @@ Public Class Form1
 
                                 Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
                                 Dim filename1 As String = DataGridView1.Rows(i).Cells(2).Value
+                                Dim text1 As String = DocuToText(filename1, 1)
+                                Dim text2 As String = DocuToText(filename1, 2)
+
+
                                 Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
                                 Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
                                 tb = db.ExecuteSql(Sql_Command)
