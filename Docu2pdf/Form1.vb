@@ -61,11 +61,12 @@ Public Class Form1
         '
         ' フォームの初期化
         '
-
-        'Dim file1 As String = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室\3A\3A000058R\3A000058R2.xdw"
-        'Dim page As Integer = 2
-        'Dim text1 As String = DocuToText(file1, page)
-        'Debug.Print(text1)
+        'Dim text2 As String = "試験番号：受付日：試験結果は、本報告のとおりであることを証明します。耐火防火試験室長技術管理者センター長工学博士井上豊０田坂茂樹０試験研究センター０ⅢＡ－００－００５８Ｒ防火設備性能試験成績書０財団法人日本建築総合試験所平成１２年１２月１日平成１８年６月３０日なお、本報告書は、平成13年2月22日付けの報告書（試験番号：ⅢA-00-58）を更新するものである。"
+        Dim file1 As String = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室\3A\3A000058R\3A000058R.xdw"
+        Dim page As Integer = 1
+        Dim text1 As String = DocuToText(file1, page)
+        text1 = text1.Replace(" ", "").Replace("　", "")
+        Debug.Print(text1)
 
 
         Me.Icon = My.Resources.auezb_d3bmk_002
