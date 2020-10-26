@@ -62,11 +62,55 @@ Public Class Form1
         ' フォームの初期化
         '
         'Dim text2 As String = "試験番号：受付日：試験結果は、本報告のとおりであることを証明します。耐火防火試験室長技術管理者センター長工学博士井上豊０田坂茂樹０試験研究センター０ⅢＡ－００－００５８Ｒ防火設備性能試験成績書０財団法人日本建築総合試験所平成１２年１２月１日平成１８年６月３０日なお、本報告書は、平成13年2月22日付けの報告書（試験番号：ⅢA-00-58）を更新するものである。"
-        Dim file1 As String = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室\3A\3A000058R\3A000058R.xdw"
-        Dim page As Integer = 1
-        Dim text1 As String = DocuToText(file1, page)
-        text1 = text1.Replace(" ", "").Replace("　", "")
-        Debug.Print(text1)
+        '    Dim file1 As String = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室\3A\3A000106\3A000106.xdw"
+        '    Dim page As Integer = 1
+        '    Dim text1 As String = DocuToText(file1, page)
+        '    text1 = text1.Replace(" ", "").Replace("　", "")
+
+        '    Debug.Print(text1)
+        '    '正規表現パターンとオプションを指定してRegexオブジェクトを作成 
+        '    Dim r As New System.Text.RegularExpressions.Regex(
+        '"\p{IsCJKUnifiedIdeographs}+成績書",
+        'System.Text.RegularExpressions.RegexOptions.None)
+
+        '    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+        '    Dim mc As System.Text.RegularExpressions.MatchCollection =
+        'r.Matches(text1)
+
+        '    Dim testname As String
+        '    For Each m As System.Text.RegularExpressions.Match In mc
+        '        '正規表現に一致したグループの文字列を表示 
+        '        testname = m.Groups(0).Value
+        '        If testname.Substring(0, 1) = "日" Or testname.Substring(0, 1) = "号" Then
+        '            testname = testname.Substring(1, testname.Length - 1)
+        '        End If
+        '        Exit For
+        '        'Console.WriteLine("タグ:" + m.Groups(1).Value + vbCrLf +
+        '        '          "タグ内の文字列:" + m.Groups(2).Value)
+        '    Next
+
+        '    Dim r2 As New System.Text.RegularExpressions.Regex(
+        '"[ⅢⅧ]\w+[-－][0-9０-９]+[-－][0-9０-９]+",
+        'System.Text.RegularExpressions.RegexOptions.None)
+
+        '    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+        '    Dim mc2 As System.Text.RegularExpressions.MatchCollection =
+        'r2.Matches(text1)
+
+        '    Dim testNo As String
+        '    For Each m As System.Text.RegularExpressions.Match In mc2
+        '        '正規表現に一致したグループの文字列を表示 
+        '        testNo = m.Groups(0).Value
+        '        testNo = StrConv(testNo, VbStrConv.Narrow).Replace("Ⅲ", "3").Replace("Ⅷ", "8")
+        '        'If testname.Substring(0, 1) = "日" Or testname.Substring(0, 1) = "号" Then
+        '        '    testname = testname.Substring(1, testname.Length - 1)
+        '        'End If
+        '        Exit For
+        '        'Console.WriteLine("タグ:" + m.Groups(1).Value + vbCrLf +
+        '        '          "タグ内の文字列:" + m.Groups(2).Value)
+        '    Next
+
+
 
 
         Me.Icon = My.Resources.auezb_d3bmk_002
@@ -1053,7 +1097,7 @@ Public Class Form1
                         If result2 >= 0 Then
                             If text1 <> Nothing Then
                                 ' テキストが正しく読めた場合
-                                DocuToText = text1
+                                DocuToText = "0" + text1
 
                             Else
                                 ' テキストが読めなかった場合はOCR処理をしてテキストを抽出する。
@@ -1084,7 +1128,7 @@ Public Class Form1
 
                                     If result3 >= 0 Then
                                         If text1 <> Nothing Then
-                                            DocuToText = text1
+                                            DocuToText = "1" + text1
                                         End If
                                     End If
                                 End If
@@ -1213,12 +1257,23 @@ Public Class Form1
                                 Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
                                 Dim filename1 As String = DataGridView1.Rows(i).Cells(2).Value
                                 Dim text1 As String = DocuToText(filename1, 1)
+                                text1 = text1.Replace(" ", "").Replace("　", "")
                                 Dim text2 As String = DocuToText(filename1, 2)
+                                text2 = text2.Replace(" ", "").Replace("　", "")
 
+                                Dim testname = DataFromText(text1, "試験項目")
+                                Dim testno = DataFromText(text1, "試験番号")
+                                Dim username = DataFromText(text2, "依頼者名")
 
                                 Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
                                 Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
                                 tb = db.ExecuteSql(Sql_Command)
+
+                                Sql_Command = "UPDATE """ + Table + """ SET ""試験項目2"" = '" + testname + "',""依頼者名2"" = '" + username + "'"
+                                Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                tb = db.ExecuteSql(Sql_Command)
+
+
                                 DataGridView1.Rows(i).Cells(3).Value = "済"
                                 DataGridView1.Rows(i).Cells(4).Value = False
 
@@ -1264,6 +1319,145 @@ Public Class Form1
 
         End If
     End Sub
+
+    Private Function DataFromText(ByVal text As String, ByVal kind As String) As String
+
+
+
+
+        DataFromText = ""
+
+        If text <> "" Then
+            Select Case kind
+                Case "試験項目"
+                    Dim pattern As String = "\p{IsCJKUnifiedIdeographs}+成績書"
+                    Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+
+                    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                    Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+
+                    Dim result As String
+                    For Each m As System.Text.RegularExpressions.Match In mc
+                        '正規表現に一致したグループの文字列を表示 
+                        result = m.Groups(0).Value
+                        If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                            result = result.Substring(1, result.Length - 1)
+                        End If
+                        Exit For
+                    Next
+
+                    If result <> Nothing Then
+                        result = result.Replace("成績書", "")
+                        DataFromText = result
+                    End If
+
+
+                Case "試験番号"
+                    Dim pattern As String = "[ⅢⅧ]\w+[-－][0-9０-９]+[-－][0-9０-９]+"
+                    Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+
+                    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                    Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+
+                    Dim result As String
+                    For Each m As System.Text.RegularExpressions.Match In mc
+                        '正規表現に一致したグループの文字列を表示 
+                        result = m.Groups(0).Value
+                        If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                            result = result.Substring(1, result.Length - 1)
+                        End If
+                        Exit For
+                    Next
+
+                    If result <> Nothing Then
+                        result = StrConv(result, VbStrConv.Narrow).Replace("Ⅲ", "3").Replace("Ⅷ", "8")
+                        DataFromText = result
+                    End If
+
+
+                Case "依頼者名"
+                    Dim pattern As String
+
+                    If text.Substring(0, 1) = "1" Then
+                        For i As Integer = 0 To 3
+                            Select Case i
+                                Case 0
+                                    pattern = "[^\x01-\x7E]+株式会社"
+                                Case 1
+                                    pattern = "株式会社[^\x01-\x7E]+"
+                                Case 2
+                                    pattern = "[^\x01-\x7E]+有限会社"
+                                Case 3
+                                    pattern = "有限会社[^\x01-\x7E]+"
+                            End Select
+
+                            Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+
+                            'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                            Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+
+                            Dim result As String
+                            For Each m As System.Text.RegularExpressions.Match In mc
+                                '正規表現に一致したグループの文字列を表示 
+                                result = m.Groups(0).Value
+                                If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                                    result = result.Substring(1, result.Length - 1)
+                                End If
+                                Exit For
+                            Next
+
+                            If result <> Nothing Then
+                                'result = result.Replace("社名", "").Replace("株式会社", "").Replace("有限会社", "")
+                                DataFromText = result
+                                Exit For
+                            End If
+
+                        Next
+
+                    ElseIf text.Substring(0, 1) = "0" Then
+                        For i As Integer = 0 To 3
+                            Select Case i
+                                Case 0
+                                    pattern = "社名[^\x01-\x7E]+株式会社"
+                                Case 1
+                                    pattern = "社名株式会社[^\x01-\x7E]+"
+                                Case 2
+                                    pattern = "社名[^\x01-\x7E]+有限会社"
+                                Case 3
+                                    pattern = "社名有限会社[^\x01-\x7E]+"
+                            End Select
+
+                            Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+
+                            'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                            Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+
+                            Dim result As String
+                            For Each m As System.Text.RegularExpressions.Match In mc
+                                '正規表現に一致したグループの文字列を表示 
+                                result = m.Groups(0).Value
+                                If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                                    result = result.Substring(1, result.Length - 1)
+                                End If
+                                Exit For
+                            Next
+
+                            If result <> Nothing Then
+                                result = result.Replace("社名", "")
+                                DataFromText = result
+                                Exit For
+                            End If
+
+                        Next
+
+                    End If
+            End Select
+
+
+
+        End If
+    End Function
+
 
 
 
