@@ -1370,15 +1370,22 @@ Public Class Form1
                     Next
 
                     If result <> Nothing Then
+                        'result = result.Replace("ー", "-")
                         result = StrConv(result, VbStrConv.Narrow).Replace("Ⅲ", "3").Replace("Ⅷ", "8")
-                        DataFromText = result
+                        Dim ind1 As Integer = result.IndexOf("-")
+                        Dim ind2 As Integer = result.IndexOf("-", ind1 + 1)
+                        Dim y1 As Integer = Integer.Parse(result.Substring(ind1 + 1, ind2 - ind1 - 1))
+                        Dim no As Integer = Integer.Parse(result.Substring(ind2 + 1, result.Length - ind2 - 1))
+                        'result = StrConv(result, VbStrConv.Narrow).Replace("Ⅲ", "3").Replace("Ⅷ", "8")
+                        DataFromText = result.Substring(0, 2) + y1.ToString("00") + no.ToString("0000")
                     End If
 
 
                 Case "依頼者名"
                     Dim pattern As String
 
-                    If text.Substring(0, 1) = "1" Then
+                    If text.Substring(0, 1) = "1" Then      ' OCRからのテキストの場合（改行が含まれる）
+
                         For i As Integer = 0 To 3
                             Select Case i
                                 Case 0
@@ -1414,7 +1421,7 @@ Public Class Form1
 
                         Next
 
-                    ElseIf text.Substring(0, 1) = "0" Then
+                    ElseIf text.Substring(0, 1) = "0" Then      ' 本文からのテキストの場合（改行が含まれない）
                         For i As Integer = 0 To 3
                             Select Case i
                                 Case 0
