@@ -1407,7 +1407,7 @@ Public Class Form1
                             For Each m As System.Text.RegularExpressions.Match In mc
                                 '正規表現に一致したグループの文字列を表示 
                                 result = m.Groups(0).Value
-                                If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                                If (result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号") And result.Substring(0, 2) <> "日本" Then
                                     result = result.Substring(1, result.Length - 1)
                                 End If
                                 Exit For
@@ -1443,7 +1443,7 @@ Public Class Form1
                             For Each m As System.Text.RegularExpressions.Match In mc
                                 '正規表現に一致したグループの文字列を表示 
                                 result = m.Groups(0).Value
-                                If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                                If (result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号") And result.Substring(0, 2) <> "日本" Then
                                     result = result.Substring(1, result.Length - 1)
                                 End If
                                 Exit For
