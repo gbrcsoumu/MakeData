@@ -1120,6 +1120,7 @@ Public Class Form1
                                         .EngineLevel = Xdwapi.XDW_OCR_ENGINE_LEVEL_ACCURACY
                                     End With
                                     result3 = Xdwapi.XDW_ApplyOcr(Handle, page, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
+                                    System.Threading.Thread.Sleep(1000)
                                     If result3 >= 0 Then
 
                                         result3 = -1
