@@ -80,6 +80,9 @@ Public Class Form1
         'me1.Dispose()
         'MsgBox(t1)
 
+        'Dim testName As String = "Ｃ-01-001-1.xdw"
+        'Dim result As String = TestNo(testName)
+
         Me.Icon = My.Resources.auezb_d3bmk_002
         TextBox_FileMakerServer.Text = FileMakerServer1
 
@@ -1235,7 +1238,7 @@ Public Class Form1
                                 text2 = text2.Replace(" ", "").Replace("　", "")
 
                                 Dim testname As String = DataFromText(text1, "試験項目")
-                                Dim testno As String = DataFromText(text1, "試験番号")
+                                'Dim testno As String = DataFromText(text1, "試験番号")
                                 Dim username As String = DataFromText(text2, "依頼者名")
                                 If username = "" Then
                                     username = DataFromText(text1, "依頼者名")
@@ -1256,6 +1259,21 @@ Public Class Form1
                                 Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
                                 tb = db.ExecuteSql(Sql_Command)
 
+                                Dim filename As String = TestNo(fname)
+                                If filename <> "" Then
+                                    Dim kind2 As String = filename.Substring(0, 2)
+                                    Dim year2 As String = filename.Substring(2, 2)
+                                    Dim no2 As String = filename.Substring(4, 4)
+                                    Dim eda2 As String = ""
+                                    If filename.Contains("(") = True Then
+                                        eda2 = filename.Substring(9, 2)
+                                    End If
+                                    Sql_Command = "UPDATE """ + Table + """ SET ""分類2"" = '" + kind2 + "',""年度2"" = '" + year2 + "',""番号2"" = '" + no2
+                                    Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename + "'"
+                                    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                    tb = db.ExecuteSql(Sql_Command)
+                                End If
+
                                 DataGridView1.Rows(i).Cells(3).Value = "済"
                                 DataGridView1.Rows(i).Cells(4).Value = False
 
@@ -1269,7 +1287,7 @@ Public Class Form1
 
                                 'Count += 1
                             End If
-                            Application.DoEvents()
+                                Application.DoEvents()
                         Next
                         db.Disconnect()
 
@@ -1302,10 +1320,194 @@ Public Class Form1
         End If
     End Sub
 
+    Private Function TestNo(ByVal FileName As String) As String
+        TestNo = ""
+        Dim Pattern As String() = {"[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d\d\(\d+\)",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d\(\d+\)",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d\d",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\d\(\d+\)",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\(\d+\)",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\d-\d+",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]]{1}-\d\d-\d\d\d-\d+",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\d",
+                                     "[3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d"
+            }
+        Dim Pattern_n = Pattern.Length
+        Dim y As Integer
+        Dim n1 As Integer, n2 As Integer
+        Dim kind As String = ""
+        'Imports System.Text.RegularExpressions
+        For i As Integer = 0 To Pattern_n - 1
+            Dim rx = New System.Text.RegularExpressions.Regex(Pattern(i), System.Text.RegularExpressions.RegexOptions.Compiled)
+            Dim result As Boolean = rx.IsMatch(FileName)
+            If result = True Then
+                Dim r As New System.Text.RegularExpressions.Regex(Pattern(i), System.Text.RegularExpressions.RegexOptions.None)
+                'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(FileName)
+
+                Dim result2 As String = ""
+                For Each m As System.Text.RegularExpressions.Match In mc
+                    '正規表現に一致したグループの文字列を表示 
+                    result2 = m.Groups(0).Value
+
+                    Exit For
+                Next
+                If result2 <> "" Then
+
+                    result2 = StrConv(result2, VbStrConv.Narrow).Replace("Ⅲ", "3").Replace("Ⅷ", "8")
+                    Select Case i
+
+                        Case 0  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d\d\(\d+\)
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(4, 4))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(1, 2))
+                                n1 = Integer.Parse(result2.Substring(3, 4))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 1  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d\(\d+\)
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(4, 3))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(1, 2))
+                                n1 = Integer.Parse(result2.Substring(3, 3))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 2  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d\d
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(4, 4))
+                                n2 = 0
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(1, 2))
+                                n1 = Integer.Parse(result2.Substring(3, 4))
+                                n2 = 0
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 3  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}\d\d\d\d\d
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(4, 3))
+                                n2 = 0
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(1, 2))
+                                n1 = Integer.Parse(result2.Substring(3, 3))
+                                n2 = 0
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 4  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\d\(\d+\)
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(3, 2))
+                                n1 = Integer.Parse(result2.Substring(6, 4))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(5, 4))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 5  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\(\d+\)
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(3, 2))
+                                n1 = Integer.Parse(result2.Substring(6, 3))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(5, 3))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("(") + 1, result2.IndexOf(")") - result2.IndexOf("(") - 1))
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+
+                        Case 6  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\d-\d+
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(3, 2))
+                                n1 = Integer.Parse(result2.Substring(6, 4))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("-", 7) + 1, result2.Length - result2.IndexOf("-", 7) - 1))
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(5, 4))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("-", 6) + 1, result2.Length - result2.IndexOf("-", 6) - 1))
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 7  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d-\d+"
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(3, 2))
+                                n1 = Integer.Parse(result2.Substring(6, 3))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("-", 6) + 1, result2.Length - result2.IndexOf("-", 6) - 1))
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(5, 3))
+                                n2 = Integer.Parse(result2.Substring(result2.IndexOf("-", 5) + 1, result2.Length - result2.IndexOf("-", 5) - 1))
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 8  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\d\
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(3, 2))
+                                n1 = Integer.Parse(result2.Substring(6, 4))
+                                n2 = 0
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(5, 4))
+                                n2 = 0
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+                        Case 9  ' [3３8８ⅢⅧ]?[a-zA-Zａ-ｚＡ-Ｚ]{1}-\d\d-\d\d\d\
+                            If result2.Substring(0, 1) = "3" Or result2.Substring(0, 1) = "8" Then
+                                y = Integer.Parse(result2.Substring(3, 2))
+                                n1 = Integer.Parse(result2.Substring(6, 3))
+                                n2 = 0
+                                kind = result2.Substring(0, 2)
+                            Else
+                                y = Integer.Parse(result2.Substring(2, 2))
+                                n1 = Integer.Parse(result2.Substring(5, 3))
+                                n2 = 0
+                                kind = "3" + result2.Substring(0, 1)
+                            End If
+
+
+                    End Select
+                    If kind <> "" Then Exit For
+                End If
+            End If
+        Next
+
+        If kind <> "" Then
+            TestNo = kind + y.ToString("00") + n1.ToString("0000")
+            If n2 > 0 Then
+                TestNo += "(" + n2.ToString("00") + ")"
+            End If
+        End If
+
+    End Function
+
+
+
     Private Function DataFromText(ByVal text As String, ByVal kind As String) As String
-
-
-
 
         DataFromText = ""
 
