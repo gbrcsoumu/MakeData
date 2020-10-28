@@ -1234,9 +1234,12 @@ Public Class Form1
                                 Dim text2 As String = DocuToText(filename1, 2)
                                 text2 = text2.Replace(" ", "").Replace("　", "")
 
-                                Dim testname = DataFromText(text1, "試験項目")
-                                Dim testno = DataFromText(text1, "試験番号")
-                                Dim username = DataFromText(text2, "依頼者名")
+                                Dim testname As String = DataFromText(text1, "試験項目")
+                                Dim testno As String = DataFromText(text1, "試験番号")
+                                Dim username As String = DataFromText(text2, "依頼者名")
+                                If username = "" Then
+                                    username = DataFromText(text1, "依頼者名")
+                                End If
 
                                 Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
                                 Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
@@ -1246,6 +1249,12 @@ Public Class Form1
                                 Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
                                 tb = db.ExecuteSql(Sql_Command)
 
+                                text1 = text1.Replace("'", "''").Replace(vbCrLf, "")
+                                text2 = text2.Replace("'", "''").Replace(vbCrLf, "")
+
+                                Sql_Command = "UPDATE """ + Table + """ SET ""page1"" = '" + text1 + "',""page2"" = '" + text2 + "'"
+                                Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                tb = db.ExecuteSql(Sql_Command)
 
                                 DataGridView1.Rows(i).Cells(3).Value = "済"
                                 DataGridView1.Rows(i).Cells(4).Value = False
@@ -1337,6 +1346,24 @@ Public Class Form1
 
                     End If
 
+                    If result = Nothing Then
+                        Dim pattern2 As String = "[\p{IsHiragana}\p{IsHiragana}\p{IsCJKUnifiedIdeographs}]+火害調査"
+                        Dim r2 As New System.Text.RegularExpressions.Regex(pattern2, System.Text.RegularExpressions.RegexOptions.None)
+
+                        'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                        Dim mc2 As System.Text.RegularExpressions.MatchCollection = r2.Matches(text)
+
+                        For Each m As System.Text.RegularExpressions.Match In mc2
+                            '正規表現に一致したグループの文字列を表示 
+                            result = m.Groups(0).Value
+                            If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                                result = result.Substring(1, result.Length - 1)
+                            End If
+                            Exit For
+                        Next
+
+                    End If
+
                     If result <> Nothing Then
                         result = result.Replace("成績書", "").Replace("結果報告書", "")
                         DataFromText = result
@@ -1373,12 +1400,17 @@ Public Class Form1
 
 
                 Case "依頼者名"
-                    Dim cname As String() = {"株式会社", "有限会社", "協同組合"}
 
+                    ' 法人名称
+                    Dim cname As String() = {"株式会社", "有限会社", "協同組合"}
                     Dim cname_n As Integer = cname.Length
-                    Dim AddText As String() = {"社名", "依頼者", "報告は", "試験番号", "試験体", "財団法人", "行動記録", "所在地", "による．", ""}
+
+                    ' 会社名の前後に来る可能性が高い単語
+                    Dim AddText As String() = {"社名", "依頼者", "報告は", "試験番号", "試験体", "財団法人", "行動記録", "所在地", "による．", "提出資料", ""}
                     Dim AddText_n As Integer = AddText.Length
-                    Dim EraseText As String() = {"試験機関", "財団法人", "日本建築総合試験所", "依頼者", "試験番号", "試験体", "所在地", "成績書", "験頼機", "依験頼機"}
+
+                    ' 会社名に含まれていた場合に削除する単語
+                    Dim EraseText As String() = {"試験機関", "財団法人", "日本建築総合試験所", "依頼者", "試験番号", "試験", "試験体", "所在地", "成績書", "験頼機", "依験頼機", "発熱性", "の"}
                     Dim EraseText_n As Integer = EraseText.Length
                     Dim pattern As String
                     Dim p1 As String = "[\p{IsKatakana}\p{IsHiragana}\p{IsCJKUnifiedIdeographs}\p{IsHalfwidthandFullwidthForms}]+"
@@ -1503,11 +1535,11 @@ Public Class Form1
                                                 result = result.Replace(EraseText(m), "")
                                             End If
                                         Next
-
-                                        DataFromText = result
-                                        Exit_Flag = True
-                                        Exit For
-
+                                        If result <> cname(j) Then
+                                            DataFromText = result
+                                            Exit_Flag = True
+                                            Exit For
+                                        End If
                                     End If
 
                                 Next
