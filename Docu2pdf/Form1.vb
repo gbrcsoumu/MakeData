@@ -83,6 +83,32 @@ Public Class Form1
         'Dim testName As String = "Ｃ-01-001-1.xdw"
         'Dim result As String = TestNo(testName)
 
+        Dim path1 As String = "\\192.168.0.173\disk1\SCAN\test\3C170234_オカモト_コーンカロリーメータ_1.pdf"
+        Dim path2 As String = "\\192.168.0.173\disk1\SCAN\test\3C170234_オカモト_コーンカロリーメータ_1.xdw"
+
+
+        Dim FolderPath1 As String = Path.GetDirectoryName(path1)
+        Dim fileInfo1 As New FileInfo(FolderPath1)
+        Dim fileSec1 As FileSecurity = fileInfo1.GetAccessControl()
+
+        ' アクセス権限をEveryoneに対しフルコントロール許可
+        Dim accessRule1 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+        fileSec1.AddAccessRule(accessRule1)
+        fileInfo1.SetAccessControl(fileSec1)
+
+
+        Dim FolderPath2 As String = Path.GetDirectoryName(path1)
+        Dim fileInfo2 As New FileInfo(FolderPath2)
+        Dim fileSec2 As FileSecurity = fileInfo2.GetAccessControl()
+
+        ' アクセス権限をEveryoneに対しフルコントロール許可
+        Dim accessRule2 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+        fileSec2.AddAccessRule(accessRule2)
+        fileInfo2.SetAccessControl(fileSec2)
+
+        Dim r1 As Integer = Xdwapi.XDW_CreateXdwFromImagePdfFile(path1, path2)
+
+
         Me.Icon = My.Resources.auezb_d3bmk_002
         TextBox_FileMakerServer.Text = FileMakerServer1
 
@@ -1259,17 +1285,17 @@ Public Class Form1
                                 Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
                                 tb = db.ExecuteSql(Sql_Command)
 
-                                Dim filename As String = TestNo(fname)
-                                If filename <> "" Then
-                                    Dim kind2 As String = filename.Substring(0, 2)
-                                    Dim year2 As String = filename.Substring(2, 2)
-                                    Dim no2 As String = filename.Substring(4, 4)
+                                Dim filename2 As String = TestNo(fname)
+                                If filename2 <> "" Then
+                                    Dim kind2 As String = filename2.Substring(0, 2)
+                                    Dim year2 As String = filename2.Substring(2, 2)
+                                    Dim no2 As String = filename2.Substring(4, 4)
                                     Dim eda2 As String = ""
-                                    If filename.Contains("(") = True Then
-                                        eda2 = filename.Substring(9, 2)
+                                    If filename2.Contains("(") = True Then
+                                        eda2 = filename2.Substring(9, 2)
                                     End If
                                     Sql_Command = "UPDATE """ + Table + """ SET ""分類2"" = '" + kind2 + "',""年度2"" = '" + year2 + "',""番号2"" = '" + no2
-                                    Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename + "'"
+                                    Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename2 + "'"
                                     Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
                                     tb = db.ExecuteSql(Sql_Command)
                                 End If
