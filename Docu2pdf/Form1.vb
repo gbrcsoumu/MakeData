@@ -22,6 +22,7 @@ Imports System.IO
 Imports System.Net
 Imports System.Security.AccessControl
 Imports FujiXerox.DocuWorks.Toolkit
+Imports System.Runtime.InteropServices
 
 
 Public Class Form1
@@ -30,6 +31,7 @@ Public Class Form1
     Private Check() As CheckBox, checkbox_n As Integer
     Private Cansel As Boolean
     Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
+    Private OcrFlag As Boolean
 
     <Flags()>
     Public Enum PlaySoundFlags
@@ -57,61 +59,26 @@ Public Class Form1
 
     Private TextFileName As String
 
+    Private Sub Form1_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
+        If MessageBox.Show("終了しますか？", "終了確認ダイアログ", MessageBoxButtons.YesNo) = DialogResult.No Then
+            e.Cancel = True
+        Else
+            If OcrFlag = True Then
+                Xdwapi.XDW_Finalize()
+            End If
+        End If
+    End Sub
+
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         '
         ' フォームの初期化
         '
-        'Dim text2 As String = "試験番号：受付日：試験結果は、本報告のとおりであることを証明します。耐火防火試験室長技術管理者センター長工学博士井上豊０田坂茂樹０試験研究センター０ⅢＡ－００－００５８Ｒ防火設備性能試験成績書０財団法人日本建築総合試験所平成１２年１２月１日平成１８年６月３０日なお、本報告書は、平成13年2月22日付けの報告書（試験番号：ⅢA-00-58）を更新するものである。"
-        '    Dim file1 As String = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から\2000Ⅲ耐火防火試験室\3A\3A000106\3A000106.xdw"
-        '    Dim page As Integer = 1
-        '    Dim text1 As String = DocuToText(file1, page)
-        '    text1 = text1.Replace(" ", "").Replace("　", "")
 
-        '    Debug.Print(text1)
-        '    '正規表現パターンとオプションを指定してRegexオブジェクトを作成 
-        '    Dim r As New System.Text.RegularExpressions.Regex(
-        '"\p{IsCJKUnifiedIdeographs}+成績書",
-        'System.Text.RegularExpressions.RegexOptions.None)
-
-        '    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
-        '    Dim mc As System.Text.RegularExpressions.MatchCollection =
-        'r.Matches(text1)
-
-        '    Dim testname As String
-        '    For Each m As System.Text.RegularExpressions.Match In mc
-        '        '正規表現に一致したグループの文字列を表示 
-        '        testname = m.Groups(0).Value
-        '        If testname.Substring(0, 1) = "日" Or testname.Substring(0, 1) = "号" Then
-        '            testname = testname.Substring(1, testname.Length - 1)
-        '        End If
-        '        Exit For
-        '        'Console.WriteLine("タグ:" + m.Groups(1).Value + vbCrLf +
-        '        '          "タグ内の文字列:" + m.Groups(2).Value)
-        '    Next
-
-        '    Dim r2 As New System.Text.RegularExpressions.Regex(
-        '"[ⅢⅧ]\w+[-－][0-9０-９]+[-－][0-9０-９]+",
-        'System.Text.RegularExpressions.RegexOptions.None)
-
-        '    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
-        '    Dim mc2 As System.Text.RegularExpressions.MatchCollection =
-        'r2.Matches(text1)
-
-        '    Dim testNo As String
-        '    For Each m As System.Text.RegularExpressions.Match In mc2
-        '        '正規表現に一致したグループの文字列を表示 
-        '        testNo = m.Groups(0).Value
-        '        testNo = StrConv(testNo, VbStrConv.Narrow).Replace("Ⅲ", "3").Replace("Ⅷ", "8")
-        '        'If testname.Substring(0, 1) = "日" Or testname.Substring(0, 1) = "号" Then
-        '        '    testname = testname.Substring(1, testname.Length - 1)
-        '        'End If
-        '        Exit For
-        '        'Console.WriteLine("タグ:" + m.Groups(1).Value + vbCrLf +
-        '        '          "タグ内の文字列:" + m.Groups(2).Value)
-        '    Next
-
-
-
+        'Dim me1 As New MeCab
+        'Dim t1 As String = me1.Parse("和布蕪を使って日本語文字列を形態素分析する。").Replace(vbLf, vbCrLf)
+        'me1.Dispose()
+        'MsgBox(t1)
 
         Me.Icon = My.Resources.auezb_d3bmk_002
         TextBox_FileMakerServer.Text = FileMakerServer1
@@ -186,6 +153,8 @@ Public Class Form1
         CheckBox_Input.Checked = True       ' 報告書の入力チェックボックス
         CheckBox_Convert.Checked = True     ' 報告書の変換チェックボックス
         CheckBox_Input2.Checked = True      ' 資料（スキャンデータ）の入力チェックボックス
+
+        OcrFlag = False
 
         Me.CenterToScreen()                 ' Formをモニターの中央に表示
 
@@ -1108,7 +1077,8 @@ Public Class Form1
 
                                 api_result = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)     ' 再度ファイルを開く
 
-                                Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
+                                'Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
+                                Dim result3 As Integer = 0
                                 If result3 >= 0 Then
                                     Dim ocr_optoin As Xdwapi.XDW_OCR_OPTION_V7 = New Xdwapi.XDW_OCR_OPTION_V7
                                     With ocr_optoin
@@ -1121,6 +1091,7 @@ Public Class Form1
                                     End With
                                     result3 = Xdwapi.XDW_ApplyOcr(Handle, page, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
                                     System.Threading.Thread.Sleep(1000)
+                                    OcrFlag = True
                                     If result3 >= 0 Then
 
                                         result3 = -1
@@ -1134,7 +1105,7 @@ Public Class Form1
                                     End If
                                 End If
                                 Xdwapi.XDW_CloseDocumentHandle(Handle)
-                                Xdwapi.XDW_Finalize()
+                                'Xdwapi.XDW_Finalize()
 
                             End If
 
@@ -1257,6 +1228,7 @@ Public Class Form1
 
                                 Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
                                 Dim filename1 As String = DataGridView1.Rows(i).Cells(2).Value
+
                                 Dim text1 As String = DocuToText(filename1, 1)
                                 text1 = text1.Replace(" ", "").Replace("　", "")
                                 Dim text2 As String = DocuToText(filename1, 2)
@@ -1331,7 +1303,7 @@ Public Class Form1
         If text <> "" Then
             Select Case kind
                 Case "試験項目"
-                    Dim pattern As String = "\p{IsCJKUnifiedIdeographs}+成績書"
+                    Dim pattern As String = "[\p{IsHiragana}\p{IsHiragana}\p{IsCJKUnifiedIdeographs}]+成績書"
                     Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
 
                     'TextBox1.Text内で正規表現と一致する対象をすべて検索 
@@ -1347,8 +1319,26 @@ Public Class Form1
                         Exit For
                     Next
 
+                    If result = Nothing Then
+                        Dim pattern2 As String = "[\p{IsHiragana}\p{IsHiragana}\p{IsCJKUnifiedIdeographs}]+結果報告書"
+                        Dim r2 As New System.Text.RegularExpressions.Regex(pattern2, System.Text.RegularExpressions.RegexOptions.None)
+
+                        'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                        Dim mc2 As System.Text.RegularExpressions.MatchCollection = r2.Matches(text)
+
+                        For Each m As System.Text.RegularExpressions.Match In mc2
+                            '正規表現に一致したグループの文字列を表示 
+                            result = m.Groups(0).Value
+                            If result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号" Then
+                                result = result.Substring(1, result.Length - 1)
+                            End If
+                            Exit For
+                        Next
+
+                    End If
+
                     If result <> Nothing Then
-                        result = result.Replace("成績書", "")
+                        result = result.Replace("成績書", "").Replace("結果報告書", "")
                         DataFromText = result
                     End If
 
@@ -1383,81 +1373,148 @@ Public Class Form1
 
 
                 Case "依頼者名"
+                    Dim cname As String() = {"株式会社", "有限会社", "協同組合"}
+
+                    Dim cname_n As Integer = cname.Length
+                    Dim AddText As String() = {"社名", "依頼者", "報告は", "試験番号", "試験体", "財団法人", "行動記録", "所在地", "による．", ""}
+                    Dim AddText_n As Integer = AddText.Length
+                    Dim EraseText As String() = {"試験機関", "財団法人", "日本建築総合試験所", "依頼者", "試験番号", "試験体", "所在地", "成績書", "験頼機", "依験頼機"}
+                    Dim EraseText_n As Integer = EraseText.Length
                     Dim pattern As String
+                    Dim p1 As String = "[\p{IsKatakana}\p{IsHiragana}\p{IsCJKUnifiedIdeographs}\p{IsHalfwidthandFullwidthForms}]+"
 
                     If text.Substring(0, 1) = "1" Then      ' OCRからのテキストの場合（改行が含まれる）
+                        Dim Exit_Flag As Boolean = False
+                        For j As Integer = 0 To cname_n - 1
+                            If Exit_Flag = True Then Exit For
+                            For i As Integer = 0 To 1
+                                Select Case i
+                                    Case 0
+                                        pattern = cname(j) + p1
+                                    Case 1
+                                        pattern = p1 + cname(j)
+                                        'Case 2
+                                        '    pattern = p1 + "有限会社"
+                                        'Case 3
+                                        '    pattern = "有限会社" + p1
+                                End Select
 
-                        For i As Integer = 0 To 3
-                            Select Case i
-                                Case 0
-                                    pattern = "[^\x01-\x7E]+株式会社"
-                                Case 1
-                                    pattern = "株式会社[^\x01-\x7E]+"
-                                Case 2
-                                    pattern = "[^\x01-\x7E]+有限会社"
-                                Case 3
-                                    pattern = "有限会社[^\x01-\x7E]+"
-                            End Select
+                                Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
 
-                            Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+                                'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                                Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
 
-                            'TextBox1.Text内で正規表現と一致する対象をすべて検索 
-                            Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+                                Dim result As String
+                                For Each m As System.Text.RegularExpressions.Match In mc
+                                    '正規表現に一致したグループの文字列を表示 
+                                    result = m.Groups(0).Value
+                                    If (result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号") And result.Substring(0, 2) <> "日本" Then
+                                        result = result.Substring(1, result.Length - 1)
+                                    End If
+                                    Exit For
+                                Next
 
-                            Dim result As String
-                            For Each m As System.Text.RegularExpressions.Match In mc
-                                '正規表現に一致したグループの文字列を表示 
-                                result = m.Groups(0).Value
-                                If (result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号") And result.Substring(0, 2) <> "日本" Then
-                                    result = result.Substring(1, result.Length - 1)
+                                If result <> Nothing Then
+                                    'Dim me1 As New MeCab
+                                    'Dim t1 As String = me1.Parse(result).Replace(vbLf, vbCrLf)
+                                    'me1.Dispose()
+                                    'MsgBox(t1)
+                                    'result = result.Replace("社名", "").Replace("株式会社", "").Replace("有限会社", "")
+                                    DataFromText = result
+                                    Exit_Flag = True
+                                    Exit For
                                 End If
-                                Exit For
+
                             Next
-
-                            If result <> Nothing Then
-                                'result = result.Replace("社名", "").Replace("株式会社", "").Replace("有限会社", "")
-                                DataFromText = result
-                                Exit For
-                            End If
-
+                            'If Exit_Flag = True Then Exit For
                         Next
 
                     ElseIf text.Substring(0, 1) = "0" Then      ' 本文からのテキストの場合（改行が含まれない）
-                        For i As Integer = 0 To 3
-                            Select Case i
-                                Case 0
-                                    pattern = "社名[^\x01-\x7E]+株式会社"
-                                Case 1
-                                    pattern = "社名株式会社[^\x01-\x7E]+"
-                                Case 2
-                                    pattern = "社名[^\x01-\x7E]+有限会社"
-                                Case 3
-                                    pattern = "社名有限会社[^\x01-\x7E]+"
-                            End Select
+                        Dim Exit_Flag As Boolean = False
 
-                            Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+                        For j As Integer = 0 To cname_n - 1
+                                    If Exit_Flag = True Then Exit For
 
-                            'TextBox1.Text内で正規表現と一致する対象をすべて検索 
-                            Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+                            For k As Integer = 0 To AddText_n - 1
+                                If Exit_Flag = True Then Exit For
 
-                            Dim result As String
-                            For Each m As System.Text.RegularExpressions.Match In mc
-                                '正規表現に一致したグループの文字列を表示 
-                                result = m.Groups(0).Value
-                                If (result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号") And result.Substring(0, 2) <> "日本" Then
-                                    result = result.Substring(1, result.Length - 1)
-                                End If
-                                Exit For
+                                For i As Integer = 0 To 1
+                                    If Exit_Flag = True Then Exit For
+
+                                    Select Case i
+                                        Case 0
+                                            pattern = AddText(k) + p1 + cname(j)
+                                        Case 1
+                                            pattern = AddText(k) + cname(j) + p1
+                                            'Case 2
+                                            '    pattern = "社名" + p1 + "有限会社"
+                                            'Case 3
+                                            '    pattern = "社名有限会社" + p1
+                                            'Case 4
+                                            '    pattern = "報告は" + p1 + "株式会社"
+                                            'Case 5
+                                            '    pattern = "報告は株式会社" + p1
+                                            'Case 6
+                                            '    pattern = "報告は" + p1 + "有限会社"
+                                            'Case 7
+                                            '    pattern = "報告は有限会社" + p1
+                                            'Case 8
+                                            '    pattern = "依頼者" + p1 + "株式会社"
+                                            'Case 9
+                                            '    pattern = "依頼者株式会社" + p1
+                                            'Case 10
+                                            '    pattern = "依頼者" + p1 + "有限会社"
+                                            'Case 11
+                                            '    pattern = "依頼者有限会社" + p1
+                                            'Case 12
+                                            '    pattern = p1 + "株式会社"
+                                            'Case 13
+                                            '    pattern = "株式会社" + p1
+                                            'Case 14
+                                            '    pattern = p1 + "有限会社"
+                                            'Case 15
+                                            '    pattern = "有限会社" + p1
+                                    End Select
+
+                                    Dim r As New System.Text.RegularExpressions.Regex(pattern, System.Text.RegularExpressions.RegexOptions.None)
+
+                                    'TextBox1.Text内で正規表現と一致する対象をすべて検索 
+                                    Dim mc As System.Text.RegularExpressions.MatchCollection = r.Matches(text)
+
+                                    Dim result As String
+                                    For Each m As System.Text.RegularExpressions.Match In mc
+                                        '正規表現に一致したグループの文字列を表示 
+                                        result = m.Groups(0).Value
+                                        If (result.Substring(0, 1) = "日" Or result.Substring(0, 1) = "号") And result.Substring(0, 2) <> "日本" Then
+                                            result = result.Substring(1, result.Length - 1)
+                                        End If
+                                        Exit For
+                                    Next
+
+                                    If result <> Nothing Then
+
+                                        For m As Integer = 0 To AddText_n - 1
+                                            If AddText(m) <> "" Then
+                                                result = result.Replace(AddText(m), "")
+                                            End If
+                                        Next
+                                        For m As Integer = 0 To EraseText_n - 1
+                                            If EraseText(m) <> "" Then
+                                                result = result.Replace(EraseText(m), "")
+                                            End If
+                                        Next
+
+                                        DataFromText = result
+                                        Exit_Flag = True
+                                        Exit For
+
+                                    End If
+
+                                Next
+                                'If Exit_Flag = True Then Exit For
                             Next
-
-                            If result <> Nothing Then
-                                result = result.Replace("社名", "")
-                                DataFromText = result
-                                Exit For
-                            End If
-
+                            'If Exit_Flag = True Then Exit For
                         Next
-
                     End If
             End Select
 
@@ -2122,6 +2179,48 @@ Public Class Form1
 
             End If
         End If
+    End Sub
+
+End Class
+
+Class MeCab
+    Implements IDisposable
+
+    <DllImport("libmecab.dll", CallingConvention:=CallingConvention.Cdecl)>
+    Public Shared Function mecab_new2(ByVal arg As String) As IntPtr
+    End Function
+
+    <DllImport("libmecab.dll", CallingConvention:=CallingConvention.Cdecl)>
+    Public Shared Function mecab_sparse_tostr(ByVal m As IntPtr, ByVal str As String) As IntPtr
+    End Function
+
+    <DllImport("libmecab.dll", CallingConvention:=CallingConvention.Cdecl)>
+    Public Shared Sub mecab_destroy(ByVal m As IntPtr)
+    End Sub
+
+    Private ptrMeCab As IntPtr
+
+    Sub New()
+        Me.New(String.Empty)
+    End Sub
+
+    Sub New(ByVal Arg As String)
+        ptrMeCab = mecab_new2(Arg)
+    End Sub
+
+    Public Function Parse(ByVal [String] As String) As String
+        Dim ptrResult As IntPtr = mecab_sparse_tostr(ptrMeCab, [String])
+        Dim strResult As String = Marshal.PtrToStringAnsi(ptrResult)
+        Return strResult
+    End Function
+
+    Public Overloads Sub Dispose() Implements IDisposable.Dispose
+        mecab_destroy(ptrMeCab)
+        GC.SuppressFinalize(Me)
+    End Sub
+
+    Protected Overrides Sub Finalize()
+        Dispose()
     End Sub
 
 End Class
