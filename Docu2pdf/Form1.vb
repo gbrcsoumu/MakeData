@@ -188,6 +188,9 @@ Public Class Form1
 
         OcrFlag = False
 
+        RadioButton_xdw.Checked = True
+        RadioButton_pdf.Checked = False
+
         Me.CenterToScreen()                 ' Formをモニターの中央に表示
 
     End Sub
@@ -2261,6 +2264,294 @@ Public Class Form1
         End Try
 
     End Function
+
+    Private Sub Select_File_Button_Click(sender As Object, e As EventArgs) Handles Select_File_Button.Click
+
+
+        Dim FileFlag As String
+
+        Dim filekind As String
+        If RadioButton_xdw.Checked = True Then
+            filekind = "ドキュワークスファイル(*.xdw;*.xbd)|*.xdw;*.xbd"
+            FileFlag = "xdw"
+        Else
+            filekind = "PDFファイル(*.pdf)|*.pdf"
+            FileFlag = "pdf"
+        End If
+        'OpenFileDialogクラスのインスタンスを作成
+        Dim ofd As New OpenFileDialog()
+
+        ofd.FileName = "default.html"
+        'はじめに表示されるフォルダを指定する
+        '指定しない（空の文字列）の時は、現在のディレクトリが表示される
+
+        If TextBox_FolderName3.Text <> "" Then
+            ofd.InitialDirectory = TextBox_FolderName3.Text
+        Else
+            ofd.InitialDirectory = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から"
+        End If
+        '[ファイルの種類]に表示される選択肢を指定する
+        '指定しないとすべてのファイルが表示される
+        ofd.Filter = filekind
+        '[ファイルの種類]ではじめに選択されるものを指定する
+        '2番目の「すべてのファイル」が選択されているようにする
+        ofd.FilterIndex = 2
+        'タイトルを設定する
+        ofd.Title = "ファイルを選択してください（複数可）"
+        'ダイアログボックスを閉じる前に現在のディレクトリを復元するようにする
+        ofd.RestoreDirectory = True
+        '存在しないファイルの名前が指定されたとき警告を表示する
+        'デフォルトでTrueなので指定する必要はない
+        ofd.CheckFileExists = True
+        '存在しないパスが指定されたとき警告を表示する
+        'デフォルトでTrueなので指定する必要はない
+        ofd.CheckPathExists = True
+        '複数のファイルを選択できるようにする
+        ofd.Multiselect = True
+        'ダイアログを表示する
+        If ofd.ShowDialog() = DialogResult.OK Then
+            'OKボタンがクリックされたとき、選択されたファイル名を表示する
+            'For Each fn As String In ofd.FileNames
+            '    Console.WriteLine(fn)
+
+            If FileFlag = "xdw" Then
+
+                Try
+                    'Dim f1 As New Form2
+                    'f1.title = "ファイルの検索"
+                    'f1.message = "ただいまファイルの検索中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
+                    'f1.Show()
+                    Application.DoEvents()
+
+                    Dim Style1 As New DataGridViewCellStyle()
+                    Style1.BackColor = Color.White
+                    Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                    Style1.Alignment = DataGridViewContentAlignment.MiddleLeft
+
+                    Dim Style2 As New DataGridViewCellStyle()
+                    Style2.BackColor = Color.White
+                    Style2.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                    Style2.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+                    Dim Style3 As New DataGridViewCellStyle()
+                    Style3.BackColor = Color.White
+                    Style3.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                    Style3.Alignment = DataGridViewContentAlignment.MiddleRight
+
+                    With Me.DataGridView3
+                        .Rows.Clear()
+                        .Columns.Clear()
+                        .Width = 920
+                        .Height = 300
+                        .ColumnCount = 3
+                        'Col_n = .ColumnCount
+                        .ColumnHeadersVisible = True
+                        .ColumnHeadersHeight = 18
+                        .ScrollBars = ScrollBars.Both
+
+
+                        .ColumnHeadersDefaultCellStyle = Style1
+                        .Columns(0).Name = "番号"
+                        .Columns(1).Name = "ファイル名"
+                        .Columns(2).Name = "Path"
+
+                        .RowHeadersVisible = True
+                        .Columns(0).Width = 60
+                        .Columns(1).Width = 140
+                        .Columns(2).Width = 500
+
+                        Dim textColumn1 As New DataGridViewTextBoxColumn()
+                        textColumn1.DataPropertyName = "入力"
+                        textColumn1.Name = "入力"
+                        textColumn1.HeaderText = "入力"
+                        .Columns.Add(textColumn1)
+
+                        .Columns(3).Width = 40
+                        .Columns(3).DefaultCellStyle = Style2
+
+                        Dim column1_2 As New DataGridViewCheckBoxColumn
+                        .Columns.Add(column1_2)
+                        .Columns(4).Name = "☑️"
+                        .Columns(4).Width = 25
+
+                        Dim textColumn2 As New DataGridViewTextBoxColumn()
+                        textColumn2.DataPropertyName = "変換"
+                        textColumn2.Name = "変換"
+                        textColumn2.HeaderText = "変換"
+                        .Columns.Add(textColumn2)
+                        .Columns(5).Width = 40
+                        .Columns(5).DefaultCellStyle = Style2
+
+                        Dim column2_2 As New DataGridViewCheckBoxColumn
+                        .Columns.Add(column2_2)
+                        .Columns(6).Name = "☑️"
+                        .Columns(6).Width = 25
+
+                        Dim textColumn3 As New DataGridViewTextBoxColumn()
+                        textColumn3.DataPropertyName = "読込"
+                        textColumn3.Name = "読込"
+                        textColumn3.HeaderText = "読込"
+                        .Columns.Add(textColumn3)
+                        .Columns(7).Width = 40
+                        .Columns(7).DefaultCellStyle = Style2
+
+
+                    End With
+
+
+                    'Application.DoEvents()
+
+                    Dim db As New OdbcDbIf
+                    Dim tb As DataTable
+                    Dim Sql_Command As String
+
+                    FileMakerServer = TextBox_FileMakerServer.Text
+                    db.Connect()
+
+                    Dim fname2 As New List(Of String)
+                    Dim dir2 As New List(Of String)
+                    'Dim WildCard1() As String
+                    Dim Count As Integer = 0
+                    Dim ff()() As String, flag() As Boolean
+
+                    'ReDim WildCard1(1), ff(1)
+                    'WildCard1(0) = "*.xdw"
+                    'WildCard1(1) = "*.xbd"
+
+                    filename = ofd.FileNames
+                    'Dim nn As Integer = filename.Length
+
+                    'For i As Integer = 0 To WildCard1.Length - 1
+                    '    ff(i) = System.IO.Directory.GetFiles(DcuPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    '    nn += ff(i).Length
+                    'Next
+
+                    'ReDim filename(nn - 1)
+
+                    'For i As Integer = 0 To WildCard1.Length - 1
+                    '    If i = 0 Then
+                    '        ff(i).CopyTo(filename, 0)
+                    '    Else
+                    '        ff(i).CopyTo(filename, ff(i - 1).Length)
+                    '    End If
+                    'Next
+
+                    Dim n As Integer = filename.Length
+                    ReDim flag(n - 1)
+                    For i As Integer = 0 To n - 1
+                        flag(i) = False
+                    Next
+
+                    DataGridView3.Rows.Clear()
+                    Style1.BackColor = Color.White
+                    Style1.Font = New Font("MSゴシック", 9, FontStyle.Regular)
+                    DataGridView3.RowsDefaultCellStyle = Style1
+
+                    For j As Integer = 0 To checkbox_n - 1
+                        If Check(j).Checked = True Then
+
+                            If n > 0 Then
+
+                                For i As Integer = 0 To n - 1
+                                    If flag(i) = False Then
+                                        Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
+
+                                        Dim fname As String = System.IO.Path.GetFileName(filename(i))
+
+
+                                        If TestNo(fname) <> "" Then   ' 試験番号（例えば、3A 3C）を含むファイルかどうかをチェック
+
+                                            Count += 1
+                                            Dim row1() As String
+                                            row1 = {Count.ToString, fname, filename(i)}
+                                            DataGridView3.Rows.Add(row1)
+
+                                            Sql_Command = "SELECT ""FilePath"",""PdfPath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+                                            tb = db.ExecuteSql(Sql_Command)
+                                            Dim n2 As Integer = tb.Rows.Count
+                                            Dim st1 As String
+                                            If n2 > 0 Then
+                                                DataGridView3.Rows(Count - 1).Cells(3).Value = "済"
+                                                DataGridView3.Rows(Count - 1).Cells(4).Value = False
+                                                st1 = tb.Rows(0).Item("PdfPath").ToString()
+                                                If st1 <> "" Then
+                                                    DataGridView3.Rows(Count - 1).Cells(5).Value = "済"
+                                                    DataGridView3.Rows(Count - 1).Cells(6).Value = False
+                                                Else
+                                                    DataGridView3.Rows(Count - 1).Cells(5).Value = "未"
+                                                    DataGridView3.Rows(Count - 1).Cells(6).Value = True
+                                                End If
+                                                st1 = tb.Rows(0).Item("入力").ToString()
+                                                If st1 <> "未読" Then
+                                                    DataGridView3.Rows(Count - 1).Cells(7).Value = "済"
+                                                Else
+                                                    DataGridView3.Rows(Count - 1).Cells(7).Value = "未"
+                                                End If
+                                            Else
+                                                DataGridView3.Rows(Count - 1).Cells(3).Value = "未"
+                                                DataGridView3.Rows(Count - 1).Cells(4).Value = True
+                                                DataGridView3.Rows(Count - 1).Cells(5).Value = "未"
+                                                DataGridView3.Rows(Count - 1).Cells(6).Value = True
+                                                DataGridView3.Rows(Count - 1).Cells(7).Value = "未"
+                                                st1 = ""
+                                            End If
+
+                                            DataGridView3.FirstDisplayedScrollingRowIndex = Count - 1
+                                            DataGridView3.CurrentCell = DataGridView3(0, Count - 1)
+
+                                            flag(i) = True
+
+
+
+                                        End If
+                                    End If
+                                    'Application.DoEvents()
+
+                                Next
+
+                            End If
+                        End If
+
+                        Application.DoEvents()
+
+                    Next
+
+
+                    db.Disconnect()
+
+                    fname = fname2.ToArray
+                    dir1 = dir2.ToArray
+
+                    'f1.Close()
+                    'f1.Dispose()
+
+                    If Count = 0 Then
+                        MsgBox("このフォルダーには報告書ファイルはありません！", vbOK, "確認")
+                    Else
+                        MsgBox("このフォルダーには" + Count.ToString + "個の報告書ファイルがありました。", vbOK, "確認")
+                    End If
+
+                Catch e1 As Exception
+                    'Console.WriteLine(e1.Message)
+                End Try
+
+
+            ElseIf FileFlag = "pdf" Then
+
+
+
+            End If
+
+
+
+
+
+
+
+
+            'Next
+        End If
+    End Sub
 
 
     Private Sub FolderSaveButton1_Click(sender As Object, e As EventArgs) Handles FolderSaveButton1.Click

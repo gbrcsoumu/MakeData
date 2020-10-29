@@ -83,6 +83,24 @@ Partial Class Form1
         Me.TextBox_FolderName2 = New System.Windows.Forms.TextBox()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Select_Read_Folder_Button2 = New System.Windows.Forms.Button()
+        Me.TabPage2 = New System.Windows.Forms.TabPage()
+        Me.BeforeFolderButton3 = New System.Windows.Forms.Button()
+        Me.NextFolderButton3 = New System.Windows.Forms.Button()
+        Me.FolderMenuButton3 = New System.Windows.Forms.Button()
+        Me.FolderSaveButton3 = New System.Windows.Forms.Button()
+        Me.TextBox_FolderName3 = New System.Windows.Forms.TextBox()
+        Me.RadioButton_pdf = New System.Windows.Forms.RadioButton()
+        Me.RadioButton_xdw = New System.Windows.Forms.RadioButton()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.CheckBox_Input3 = New System.Windows.Forms.CheckBox()
+        Me.Data_Input_Button3 = New System.Windows.Forms.Button()
+        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
+        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
+        Me.Select_File_Button = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -92,6 +110,8 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabPage2.SuspendLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -401,6 +421,7 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
+        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
         Me.TabControl1.Location = New System.Drawing.Point(27, 113)
         Me.TabControl1.Name = "TabControl1"
@@ -754,6 +775,201 @@ Partial Class Form1
         Me.Select_Read_Folder_Button2.Text = "フォルダー選択"
         Me.Select_Read_Folder_Button2.UseVisualStyleBackColor = True
         '
+        'TabPage2
+        '
+        Me.TabPage2.Controls.Add(Me.BeforeFolderButton3)
+        Me.TabPage2.Controls.Add(Me.NextFolderButton3)
+        Me.TabPage2.Controls.Add(Me.FolderMenuButton3)
+        Me.TabPage2.Controls.Add(Me.FolderSaveButton3)
+        Me.TabPage2.Controls.Add(Me.TextBox_FolderName3)
+        Me.TabPage2.Controls.Add(Me.RadioButton_pdf)
+        Me.TabPage2.Controls.Add(Me.RadioButton_xdw)
+        Me.TabPage2.Controls.Add(Me.Label11)
+        Me.TabPage2.Controls.Add(Me.Label12)
+        Me.TabPage2.Controls.Add(Me.Label13)
+        Me.TabPage2.Controls.Add(Me.CheckBox_Input3)
+        Me.TabPage2.Controls.Add(Me.Data_Input_Button3)
+        Me.TabPage2.Controls.Add(Me.TextBox1)
+        Me.TabPage2.Controls.Add(Me.Button2)
+        Me.TabPage2.Controls.Add(Me.DataGridView3)
+        Me.TabPage2.Controls.Add(Me.ProgressBar3)
+        Me.TabPage2.Controls.Add(Me.Select_File_Button)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage2.Name = "TabPage2"
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
+        Me.TabPage2.Size = New System.Drawing.Size(939, 529)
+        Me.TabPage2.TabIndex = 3
+        Me.TabPage2.Text = "　［　ファイルの選択　］　"
+        Me.TabPage2.UseVisualStyleBackColor = True
+        '
+        'BeforeFolderButton3
+        '
+        Me.BeforeFolderButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.BeforeFolderButton3.Location = New System.Drawing.Point(395, 19)
+        Me.BeforeFolderButton3.Name = "BeforeFolderButton3"
+        Me.BeforeFolderButton3.Size = New System.Drawing.Size(99, 24)
+        Me.BeforeFolderButton3.TabIndex = 44
+        Me.BeforeFolderButton3.Text = "前のフォルダ－"
+        Me.BeforeFolderButton3.UseVisualStyleBackColor = True
+        '
+        'NextFolderButton3
+        '
+        Me.NextFolderButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.NextFolderButton3.Location = New System.Drawing.Point(395, 42)
+        Me.NextFolderButton3.Name = "NextFolderButton3"
+        Me.NextFolderButton3.Size = New System.Drawing.Size(99, 24)
+        Me.NextFolderButton3.TabIndex = 45
+        Me.NextFolderButton3.Text = "次のフォルダ－"
+        Me.NextFolderButton3.UseVisualStyleBackColor = True
+        '
+        'FolderMenuButton3
+        '
+        Me.FolderMenuButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderMenuButton3.Location = New System.Drawing.Point(262, 19)
+        Me.FolderMenuButton3.Name = "FolderMenuButton3"
+        Me.FolderMenuButton3.Size = New System.Drawing.Size(127, 47)
+        Me.FolderMenuButton3.TabIndex = 43
+        Me.FolderMenuButton3.Text = "登録リストから選択"
+        Me.FolderMenuButton3.UseVisualStyleBackColor = True
+        '
+        'FolderSaveButton3
+        '
+        Me.FolderSaveButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderSaveButton3.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton3.Name = "FolderSaveButton3"
+        Me.FolderSaveButton3.Size = New System.Drawing.Size(83, 23)
+        Me.FolderSaveButton3.TabIndex = 42
+        Me.FolderSaveButton3.Text = "フォルダー登録"
+        Me.FolderSaveButton3.UseVisualStyleBackColor = True
+        '
+        'TextBox_FolderName3
+        '
+        Me.TextBox_FolderName3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox_FolderName3.Location = New System.Drawing.Point(97, 69)
+        Me.TextBox_FolderName3.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox_FolderName3.Multiline = True
+        Me.TextBox_FolderName3.Name = "TextBox_FolderName3"
+        Me.TextBox_FolderName3.Size = New System.Drawing.Size(812, 23)
+        Me.TextBox_FolderName3.TabIndex = 41
+        '
+        'RadioButton_pdf
+        '
+        Me.RadioButton_pdf.AutoSize = True
+        Me.RadioButton_pdf.Location = New System.Drawing.Point(10, 41)
+        Me.RadioButton_pdf.Name = "RadioButton_pdf"
+        Me.RadioButton_pdf.Size = New System.Drawing.Size(51, 23)
+        Me.RadioButton_pdf.TabIndex = 40
+        Me.RadioButton_pdf.TabStop = True
+        Me.RadioButton_pdf.Text = "pdf"
+        Me.RadioButton_pdf.UseVisualStyleBackColor = True
+        '
+        'RadioButton_xdw
+        '
+        Me.RadioButton_xdw.AutoSize = True
+        Me.RadioButton_xdw.Location = New System.Drawing.Point(10, 19)
+        Me.RadioButton_xdw.Name = "RadioButton_xdw"
+        Me.RadioButton_xdw.Size = New System.Drawing.Size(102, 23)
+        Me.RadioButton_xdw.TabIndex = 40
+        Me.RadioButton_xdw.TabStop = True
+        Me.RadioButton_xdw.Text = "xdw (xbd)"
+        Me.RadioButton_xdw.UseVisualStyleBackColor = True
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label11.Location = New System.Drawing.Point(742, 3)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(148, 12)
+        Me.Label11.TabIndex = 37
+        Me.Label11.Text = "（手順3）データベースへの入力"
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label12.Location = New System.Drawing.Point(543, 3)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(105, 12)
+        Me.Label12.TabIndex = 38
+        Me.Label12.Text = "（手順2）リストの作成"
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Label13.Location = New System.Drawing.Point(117, 5)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(115, 12)
+        Me.Label13.TabIndex = 39
+        Me.Label13.Text = "（手順1）ファイルの選択"
+        '
+        'CheckBox_Input3
+        '
+        Me.CheckBox_Input3.AutoSize = True
+        Me.CheckBox_Input3.Location = New System.Drawing.Point(800, 33)
+        Me.CheckBox_Input3.Name = "CheckBox_Input3"
+        Me.CheckBox_Input3.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input3.TabIndex = 36
+        Me.CheckBox_Input3.UseVisualStyleBackColor = True
+        '
+        'Data_Input_Button3
+        '
+        Me.Data_Input_Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Data_Input_Button3.Location = New System.Drawing.Point(744, 17)
+        Me.Data_Input_Button3.Name = "Data_Input_Button3"
+        Me.Data_Input_Button3.Size = New System.Drawing.Size(48, 47)
+        Me.Data_Input_Button3.TabIndex = 35
+        Me.Data_Input_Button3.Text = "入力実行"
+        Me.Data_Input_Button3.UseVisualStyleBackColor = True
+        '
+        'TextBox1
+        '
+        Me.TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.TextBox1.Location = New System.Drawing.Point(10, 424)
+        Me.TextBox1.Multiline = True
+        Me.TextBox1.Name = "TextBox1"
+        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
+        Me.TextBox1.Size = New System.Drawing.Size(896, 96)
+        Me.TextBox1.TabIndex = 34
+        '
+        'Button2
+        '
+        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Button2.Location = New System.Drawing.Point(545, 17)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(136, 47)
+        Me.Button2.TabIndex = 33
+        Me.Button2.Text = "資料(pdf)リスト作成"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'DataGridView3
+        '
+        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DataGridView3.Location = New System.Drawing.Point(9, 96)
+        Me.DataGridView3.Name = "DataGridView3"
+        Me.DataGridView3.RowTemplate.Height = 21
+        Me.DataGridView3.Size = New System.Drawing.Size(900, 300)
+        Me.DataGridView3.TabIndex = 32
+        '
+        'ProgressBar3
+        '
+        Me.ProgressBar3.Location = New System.Drawing.Point(10, 401)
+        Me.ProgressBar3.Margin = New System.Windows.Forms.Padding(2)
+        Me.ProgressBar3.Name = "ProgressBar3"
+        Me.ProgressBar3.Size = New System.Drawing.Size(896, 18)
+        Me.ProgressBar3.TabIndex = 31
+        '
+        'Select_File_Button
+        '
+        Me.Select_File_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.Select_File_Button.Location = New System.Drawing.Point(118, 19)
+        Me.Select_File_Button.Name = "Select_File_Button"
+        Me.Select_File_Button.Size = New System.Drawing.Size(138, 47)
+        Me.Select_File_Button.TabIndex = 30
+        Me.Select_File_Button.Text = "ファイル選択"
+        Me.Select_File_Button.UseVisualStyleBackColor = True
+        '
         'Label2
         '
         Me.Label2.AutoSize = True
@@ -833,6 +1049,9 @@ Partial Class Form1
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -904,4 +1123,22 @@ Partial Class Form1
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
+    Friend WithEvents TabPage2 As TabPage
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label12 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents CheckBox_Input3 As CheckBox
+    Friend WithEvents Data_Input_Button3 As Button
+    Friend WithEvents TextBox1 As TextBox
+    Friend WithEvents Button2 As Button
+    Friend WithEvents DataGridView3 As DataGridView
+    Friend WithEvents ProgressBar3 As ProgressBar
+    Friend WithEvents Select_File_Button As Button
+    Friend WithEvents RadioButton_pdf As RadioButton
+    Friend WithEvents RadioButton_xdw As RadioButton
+    Friend WithEvents BeforeFolderButton3 As Button
+    Friend WithEvents NextFolderButton3 As Button
+    Friend WithEvents FolderMenuButton3 As Button
+    Friend WithEvents FolderSaveButton3 As Button
+    Friend WithEvents TextBox_FolderName3 As TextBox
 End Class
