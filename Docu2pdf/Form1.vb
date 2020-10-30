@@ -2263,8 +2263,8 @@ Public Class Form1
             tb = db.ExecuteSql(Sql_Command)
             Dim n2 As Integer = tb.Rows.Count
             If n2 > 0 Then
-                Sql_Command = "UPDATE """ + Table2 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "'"
-                Sql_Command += " WHERE (""IP"" = '" + IP + "' AND ""UserName"" = '" + Uname + "' AND ""Path"" = '" + Path + "')"
+                Sql_Command = "UPDATE """ + Table2 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "',""Path"" = '" + Path + "'"
+                Sql_Command += " WHERE (""IP"" = '" + IP + "')"
                 tb = db.ExecuteSql(Sql_Command)
             Else
                 Sql_Command = "INSERT INTO """ + Table2 + """ (""IP"",""Path"",""ProgramName"",""UserName"",""接続日時"")"
