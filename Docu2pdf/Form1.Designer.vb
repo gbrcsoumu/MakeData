@@ -65,9 +65,11 @@ Partial Class Form1
         Me.PDF_Convert_Button = New System.Windows.Forms.Button()
         Me.Data_Input_Button = New System.Windows.Forms.Button()
         Me.TextBox_FileLIst2 = New System.Windows.Forms.TextBox()
+        Me.SelectXdwButton = New System.Windows.Forms.Button()
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.SelectPdfButton = New System.Windows.Forms.Button()
         Me.BeforeFolderButton2 = New System.Windows.Forms.Button()
         Me.NextFolderButton2 = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
@@ -83,24 +85,6 @@ Partial Class Form1
         Me.TextBox_FolderName2 = New System.Windows.Forms.TextBox()
         Me.ProgressBar2 = New System.Windows.Forms.ProgressBar()
         Me.Select_Read_Folder_Button2 = New System.Windows.Forms.Button()
-        Me.TabPage2 = New System.Windows.Forms.TabPage()
-        Me.BeforeFolderButton3 = New System.Windows.Forms.Button()
-        Me.NextFolderButton3 = New System.Windows.Forms.Button()
-        Me.FolderMenuButton3 = New System.Windows.Forms.Button()
-        Me.FolderSaveButton3 = New System.Windows.Forms.Button()
-        Me.TextBox_FolderName3 = New System.Windows.Forms.TextBox()
-        Me.RadioButton_pdf = New System.Windows.Forms.RadioButton()
-        Me.RadioButton_xdw = New System.Windows.Forms.RadioButton()
-        Me.Label11 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.CheckBox_Input3 = New System.Windows.Forms.CheckBox()
-        Me.Data_Input_Button3 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Button2 = New System.Windows.Forms.Button()
-        Me.DataGridView3 = New System.Windows.Forms.DataGridView()
-        Me.ProgressBar3 = New System.Windows.Forms.ProgressBar()
-        Me.Select_File_Button = New System.Windows.Forms.Button()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
@@ -110,17 +94,16 @@ Partial Class Form1
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabPage2.SuspendLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Select_Read_Folder_Button
         '
         Me.Select_Read_Folder_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_Read_Folder_Button.Location = New System.Drawing.Point(9, 17)
+        Me.Select_Read_Folder_Button.Location = New System.Drawing.Point(20, 34)
+        Me.Select_Read_Folder_Button.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.Select_Read_Folder_Button.Name = "Select_Read_Folder_Button"
-        Me.Select_Read_Folder_Button.Size = New System.Drawing.Size(138, 47)
+        Me.Select_Read_Folder_Button.Size = New System.Drawing.Size(200, 94)
         Me.Select_Read_Folder_Button.TabIndex = 2
         Me.Select_Read_Folder_Button.Text = "フォルダー選択"
         Me.Select_Read_Folder_Button.UseVisualStyleBackColor = True
@@ -128,38 +111,39 @@ Partial Class Form1
         'TextBox_FolderName1
         '
         Me.TextBox_FolderName1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName1.Location = New System.Drawing.Point(97, 69)
-        Me.TextBox_FolderName1.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox_FolderName1.Location = New System.Drawing.Point(210, 138)
+        Me.TextBox_FolderName1.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_FolderName1.Multiline = True
         Me.TextBox_FolderName1.Name = "TextBox_FolderName1"
-        Me.TextBox_FolderName1.Size = New System.Drawing.Size(812, 23)
+        Me.TextBox_FolderName1.Size = New System.Drawing.Size(1755, 42)
         Me.TextBox_FolderName1.TabIndex = 1
         '
         'Label1
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("MS UI Gothic", 16.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label1.Location = New System.Drawing.Point(23, 20)
+        Me.Label1.Location = New System.Drawing.Point(50, 40)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(551, 22)
+        Me.Label1.Size = New System.Drawing.Size(1162, 43)
         Me.Label1.TabIndex = 3
-        Me.Label1.Text = "報告書および資料を検索してデータベースに登録するプログラム"
+        Me.Label1.Text = "報告書ファイルおよび資料ファイルをデータベースに登録するプログラム"
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(10, 401)
-        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(2)
+        Me.ProgressBar1.Location = New System.Drawing.Point(22, 802)
+        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(4)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(896, 18)
+        Me.ProgressBar1.Size = New System.Drawing.Size(1941, 36)
         Me.ProgressBar1.TabIndex = 5
         '
         'CheckBox_3A
         '
         Me.CheckBox_3A.AutoSize = True
-        Me.CheckBox_3A.Location = New System.Drawing.Point(6, 18)
-        Me.CheckBox_3A.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3A.Location = New System.Drawing.Point(13, 36)
+        Me.CheckBox_3A.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3A.Name = "CheckBox_3A"
-        Me.CheckBox_3A.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_3A.Size = New System.Drawing.Size(69, 28)
         Me.CheckBox_3A.TabIndex = 6
         Me.CheckBox_3A.Text = "3A"
         Me.CheckBox_3A.UseVisualStyleBackColor = True
@@ -167,10 +151,10 @@ Partial Class Form1
         'CheckBox_3C
         '
         Me.CheckBox_3C.AutoSize = True
-        Me.CheckBox_3C.Location = New System.Drawing.Point(6, 38)
-        Me.CheckBox_3C.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3C.Location = New System.Drawing.Point(13, 76)
+        Me.CheckBox_3C.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3C.Name = "CheckBox_3C"
-        Me.CheckBox_3C.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_3C.Size = New System.Drawing.Size(70, 28)
         Me.CheckBox_3C.TabIndex = 6
         Me.CheckBox_3C.Text = "3C"
         Me.CheckBox_3C.UseVisualStyleBackColor = True
@@ -178,10 +162,10 @@ Partial Class Form1
         'CheckBox_3G
         '
         Me.CheckBox_3G.AutoSize = True
-        Me.CheckBox_3G.Location = New System.Drawing.Point(6, 58)
-        Me.CheckBox_3G.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3G.Location = New System.Drawing.Point(13, 116)
+        Me.CheckBox_3G.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3G.Name = "CheckBox_3G"
-        Me.CheckBox_3G.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_3G.Size = New System.Drawing.Size(70, 28)
         Me.CheckBox_3G.TabIndex = 6
         Me.CheckBox_3G.Text = "3G"
         Me.CheckBox_3G.UseVisualStyleBackColor = True
@@ -189,10 +173,10 @@ Partial Class Form1
         'CheckBox_3J
         '
         Me.CheckBox_3J.AutoSize = True
-        Me.CheckBox_3J.Location = New System.Drawing.Point(47, 18)
-        Me.CheckBox_3J.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3J.Location = New System.Drawing.Point(102, 36)
+        Me.CheckBox_3J.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3J.Name = "CheckBox_3J"
-        Me.CheckBox_3J.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3J.Size = New System.Drawing.Size(67, 28)
         Me.CheckBox_3J.TabIndex = 6
         Me.CheckBox_3J.Text = "3J"
         Me.CheckBox_3J.UseVisualStyleBackColor = True
@@ -200,10 +184,10 @@ Partial Class Form1
         'CheckBox_3K
         '
         Me.CheckBox_3K.AutoSize = True
-        Me.CheckBox_3K.Location = New System.Drawing.Point(47, 38)
-        Me.CheckBox_3K.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3K.Location = New System.Drawing.Point(102, 76)
+        Me.CheckBox_3K.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3K.Name = "CheckBox_3K"
-        Me.CheckBox_3K.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3K.Size = New System.Drawing.Size(68, 28)
         Me.CheckBox_3K.TabIndex = 6
         Me.CheckBox_3K.Text = "3K"
         Me.CheckBox_3K.UseVisualStyleBackColor = True
@@ -211,10 +195,10 @@ Partial Class Form1
         'CheckBox_3L
         '
         Me.CheckBox_3L.AutoSize = True
-        Me.CheckBox_3L.Location = New System.Drawing.Point(47, 58)
-        Me.CheckBox_3L.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3L.Location = New System.Drawing.Point(102, 116)
+        Me.CheckBox_3L.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3L.Name = "CheckBox_3L"
-        Me.CheckBox_3L.Size = New System.Drawing.Size(36, 16)
+        Me.CheckBox_3L.Size = New System.Drawing.Size(67, 28)
         Me.CheckBox_3L.TabIndex = 6
         Me.CheckBox_3L.Text = "3L"
         Me.CheckBox_3L.UseVisualStyleBackColor = True
@@ -222,10 +206,10 @@ Partial Class Form1
         'CheckBox_3M
         '
         Me.CheckBox_3M.AutoSize = True
-        Me.CheckBox_3M.Location = New System.Drawing.Point(89, 18)
-        Me.CheckBox_3M.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3M.Location = New System.Drawing.Point(193, 36)
+        Me.CheckBox_3M.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3M.Name = "CheckBox_3M"
-        Me.CheckBox_3M.Size = New System.Drawing.Size(39, 16)
+        Me.CheckBox_3M.Size = New System.Drawing.Size(72, 28)
         Me.CheckBox_3M.TabIndex = 6
         Me.CheckBox_3M.Text = "3M"
         Me.CheckBox_3M.UseVisualStyleBackColor = True
@@ -233,10 +217,10 @@ Partial Class Form1
         'CheckBox_3O
         '
         Me.CheckBox_3O.AutoSize = True
-        Me.CheckBox_3O.Location = New System.Drawing.Point(89, 38)
-        Me.CheckBox_3O.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3O.Location = New System.Drawing.Point(193, 76)
+        Me.CheckBox_3O.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3O.Name = "CheckBox_3O"
-        Me.CheckBox_3O.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_3O.Size = New System.Drawing.Size(71, 28)
         Me.CheckBox_3O.TabIndex = 6
         Me.CheckBox_3O.Text = "3O"
         Me.CheckBox_3O.UseVisualStyleBackColor = True
@@ -244,10 +228,10 @@ Partial Class Form1
         'CheckBox_3P
         '
         Me.CheckBox_3P.AutoSize = True
-        Me.CheckBox_3P.Location = New System.Drawing.Point(89, 58)
-        Me.CheckBox_3P.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3P.Location = New System.Drawing.Point(193, 116)
+        Me.CheckBox_3P.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3P.Name = "CheckBox_3P"
-        Me.CheckBox_3P.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3P.Size = New System.Drawing.Size(69, 28)
         Me.CheckBox_3P.TabIndex = 6
         Me.CheckBox_3P.Text = "3P"
         Me.CheckBox_3P.UseVisualStyleBackColor = True
@@ -255,10 +239,10 @@ Partial Class Form1
         'CheckBox_3N
         '
         Me.CheckBox_3N.AutoSize = True
-        Me.CheckBox_3N.Location = New System.Drawing.Point(129, 18)
-        Me.CheckBox_3N.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3N.Location = New System.Drawing.Point(280, 36)
+        Me.CheckBox_3N.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3N.Name = "CheckBox_3N"
-        Me.CheckBox_3N.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_3N.Size = New System.Drawing.Size(69, 28)
         Me.CheckBox_3N.TabIndex = 6
         Me.CheckBox_3N.Text = "3N"
         Me.CheckBox_3N.UseVisualStyleBackColor = True
@@ -266,10 +250,10 @@ Partial Class Form1
         'CheckBox_3S
         '
         Me.CheckBox_3S.AutoSize = True
-        Me.CheckBox_3S.Location = New System.Drawing.Point(169, 18)
-        Me.CheckBox_3S.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3S.Location = New System.Drawing.Point(366, 36)
+        Me.CheckBox_3S.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3S.Name = "CheckBox_3S"
-        Me.CheckBox_3S.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3S.Size = New System.Drawing.Size(68, 28)
         Me.CheckBox_3S.TabIndex = 6
         Me.CheckBox_3S.Text = "3S"
         Me.CheckBox_3S.UseVisualStyleBackColor = True
@@ -277,10 +261,10 @@ Partial Class Form1
         'CheckBox_3T
         '
         Me.CheckBox_3T.AutoSize = True
-        Me.CheckBox_3T.Location = New System.Drawing.Point(169, 38)
-        Me.CheckBox_3T.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3T.Location = New System.Drawing.Point(366, 76)
+        Me.CheckBox_3T.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3T.Name = "CheckBox_3T"
-        Me.CheckBox_3T.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3T.Size = New System.Drawing.Size(68, 28)
         Me.CheckBox_3T.TabIndex = 6
         Me.CheckBox_3T.Text = "3T"
         Me.CheckBox_3T.UseVisualStyleBackColor = True
@@ -288,10 +272,10 @@ Partial Class Form1
         'CheckBox_3U
         '
         Me.CheckBox_3U.AutoSize = True
-        Me.CheckBox_3U.Location = New System.Drawing.Point(169, 58)
-        Me.CheckBox_3U.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3U.Location = New System.Drawing.Point(366, 116)
+        Me.CheckBox_3U.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3U.Name = "CheckBox_3U"
-        Me.CheckBox_3U.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_3U.Size = New System.Drawing.Size(69, 28)
         Me.CheckBox_3U.TabIndex = 6
         Me.CheckBox_3U.Text = "3U"
         Me.CheckBox_3U.UseVisualStyleBackColor = True
@@ -299,10 +283,10 @@ Partial Class Form1
         'CheckBox_3X
         '
         Me.CheckBox_3X.AutoSize = True
-        Me.CheckBox_3X.Location = New System.Drawing.Point(210, 18)
-        Me.CheckBox_3X.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3X.Location = New System.Drawing.Point(455, 36)
+        Me.CheckBox_3X.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3X.Name = "CheckBox_3X"
-        Me.CheckBox_3X.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3X.Size = New System.Drawing.Size(68, 28)
         Me.CheckBox_3X.TabIndex = 6
         Me.CheckBox_3X.Text = "3X"
         Me.CheckBox_3X.UseVisualStyleBackColor = True
@@ -310,10 +294,10 @@ Partial Class Form1
         'CheckBox_3Y
         '
         Me.CheckBox_3Y.AutoSize = True
-        Me.CheckBox_3Y.Location = New System.Drawing.Point(210, 38)
-        Me.CheckBox_3Y.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3Y.Location = New System.Drawing.Point(455, 76)
+        Me.CheckBox_3Y.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3Y.Name = "CheckBox_3Y"
-        Me.CheckBox_3Y.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3Y.Size = New System.Drawing.Size(68, 28)
         Me.CheckBox_3Y.TabIndex = 6
         Me.CheckBox_3Y.Text = "3Y"
         Me.CheckBox_3Y.UseVisualStyleBackColor = True
@@ -321,10 +305,10 @@ Partial Class Form1
         'CheckBox_3Z
         '
         Me.CheckBox_3Z.AutoSize = True
-        Me.CheckBox_3Z.Location = New System.Drawing.Point(210, 58)
-        Me.CheckBox_3Z.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_3Z.Location = New System.Drawing.Point(455, 116)
+        Me.CheckBox_3Z.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_3Z.Name = "CheckBox_3Z"
-        Me.CheckBox_3Z.Size = New System.Drawing.Size(37, 16)
+        Me.CheckBox_3Z.Size = New System.Drawing.Size(68, 28)
         Me.CheckBox_3Z.TabIndex = 6
         Me.CheckBox_3Z.Text = "3Z"
         Me.CheckBox_3Z.UseVisualStyleBackColor = True
@@ -332,10 +316,10 @@ Partial Class Form1
         'CheckBox_kozo
         '
         Me.CheckBox_kozo.AutoSize = True
-        Me.CheckBox_kozo.Location = New System.Drawing.Point(265, 18)
-        Me.CheckBox_kozo.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_kozo.Location = New System.Drawing.Point(574, 36)
+        Me.CheckBox_kozo.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_kozo.Name = "CheckBox_kozo"
-        Me.CheckBox_kozo.Size = New System.Drawing.Size(48, 16)
+        Me.CheckBox_kozo.Size = New System.Drawing.Size(90, 28)
         Me.CheckBox_kozo.TabIndex = 6
         Me.CheckBox_kozo.Text = "構造"
         Me.CheckBox_kozo.UseVisualStyleBackColor = True
@@ -343,10 +327,10 @@ Partial Class Form1
         'CheckBox_zairyou
         '
         Me.CheckBox_zairyou.AutoSize = True
-        Me.CheckBox_zairyou.Location = New System.Drawing.Point(265, 38)
-        Me.CheckBox_zairyou.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_zairyou.Location = New System.Drawing.Point(574, 76)
+        Me.CheckBox_zairyou.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_zairyou.Name = "CheckBox_zairyou"
-        Me.CheckBox_zairyou.Size = New System.Drawing.Size(48, 16)
+        Me.CheckBox_zairyou.Size = New System.Drawing.Size(90, 28)
         Me.CheckBox_zairyou.TabIndex = 6
         Me.CheckBox_zairyou.Text = "材料"
         Me.CheckBox_zairyou.UseVisualStyleBackColor = True
@@ -354,10 +338,10 @@ Partial Class Form1
         'CheckBox_tobihi
         '
         Me.CheckBox_tobihi.AutoSize = True
-        Me.CheckBox_tobihi.Location = New System.Drawing.Point(265, 58)
-        Me.CheckBox_tobihi.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_tobihi.Location = New System.Drawing.Point(574, 116)
+        Me.CheckBox_tobihi.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_tobihi.Name = "CheckBox_tobihi"
-        Me.CheckBox_tobihi.Size = New System.Drawing.Size(48, 16)
+        Me.CheckBox_tobihi.Size = New System.Drawing.Size(90, 28)
         Me.CheckBox_tobihi.TabIndex = 6
         Me.CheckBox_tobihi.Text = "飛火"
         Me.CheckBox_tobihi.UseVisualStyleBackColor = True
@@ -365,10 +349,10 @@ Partial Class Form1
         'CheckBox_ALL
         '
         Me.CheckBox_ALL.AutoSize = True
-        Me.CheckBox_ALL.Location = New System.Drawing.Point(319, 18)
-        Me.CheckBox_ALL.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_ALL.Location = New System.Drawing.Point(691, 36)
+        Me.CheckBox_ALL.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_ALL.Name = "CheckBox_ALL"
-        Me.CheckBox_ALL.Size = New System.Drawing.Size(44, 16)
+        Me.CheckBox_ALL.Size = New System.Drawing.Size(83, 28)
         Me.CheckBox_ALL.TabIndex = 6
         Me.CheckBox_ALL.Text = "ALL"
         Me.CheckBox_ALL.UseVisualStyleBackColor = True
@@ -376,10 +360,10 @@ Partial Class Form1
         'CheckBox_8A
         '
         Me.CheckBox_8A.AutoSize = True
-        Me.CheckBox_8A.Location = New System.Drawing.Point(6, 78)
-        Me.CheckBox_8A.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_8A.Location = New System.Drawing.Point(13, 156)
+        Me.CheckBox_8A.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_8A.Name = "CheckBox_8A"
-        Me.CheckBox_8A.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_8A.Size = New System.Drawing.Size(69, 28)
         Me.CheckBox_8A.TabIndex = 6
         Me.CheckBox_8A.Text = "8A"
         Me.CheckBox_8A.UseVisualStyleBackColor = True
@@ -387,10 +371,10 @@ Partial Class Form1
         'CheckBox_8B
         '
         Me.CheckBox_8B.AutoSize = True
-        Me.CheckBox_8B.Location = New System.Drawing.Point(47, 78)
-        Me.CheckBox_8B.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_8B.Location = New System.Drawing.Point(102, 156)
+        Me.CheckBox_8B.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_8B.Name = "CheckBox_8B"
-        Me.CheckBox_8B.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_8B.Size = New System.Drawing.Size(69, 28)
         Me.CheckBox_8B.TabIndex = 6
         Me.CheckBox_8B.Text = "8B"
         Me.CheckBox_8B.UseVisualStyleBackColor = True
@@ -398,10 +382,10 @@ Partial Class Form1
         'CheckBox_8C
         '
         Me.CheckBox_8C.AutoSize = True
-        Me.CheckBox_8C.Location = New System.Drawing.Point(89, 78)
-        Me.CheckBox_8C.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_8C.Location = New System.Drawing.Point(193, 156)
+        Me.CheckBox_8C.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_8C.Name = "CheckBox_8C"
-        Me.CheckBox_8C.Size = New System.Drawing.Size(38, 16)
+        Me.CheckBox_8C.Size = New System.Drawing.Size(70, 28)
         Me.CheckBox_8C.TabIndex = 6
         Me.CheckBox_8C.Text = "8C"
         Me.CheckBox_8C.UseVisualStyleBackColor = True
@@ -409,10 +393,10 @@ Partial Class Form1
         'CheckBox_hyouteika
         '
         Me.CheckBox_hyouteika.AutoSize = True
-        Me.CheckBox_hyouteika.Location = New System.Drawing.Point(265, 78)
-        Me.CheckBox_hyouteika.Margin = New System.Windows.Forms.Padding(1, 2, 1, 2)
+        Me.CheckBox_hyouteika.Location = New System.Drawing.Point(574, 156)
+        Me.CheckBox_hyouteika.Margin = New System.Windows.Forms.Padding(2, 4, 2, 4)
         Me.CheckBox_hyouteika.Name = "CheckBox_hyouteika"
-        Me.CheckBox_hyouteika.Size = New System.Drawing.Size(60, 16)
+        Me.CheckBox_hyouteika.Size = New System.Drawing.Size(114, 28)
         Me.CheckBox_hyouteika.TabIndex = 6
         Me.CheckBox_hyouteika.Text = "評定課"
         Me.CheckBox_hyouteika.UseVisualStyleBackColor = True
@@ -421,12 +405,12 @@ Partial Class Form1
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage3)
-        Me.TabControl1.Controls.Add(Me.TabPage2)
         Me.TabControl1.Font = New System.Drawing.Font("MS UI Gothic", 14.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TabControl1.Location = New System.Drawing.Point(27, 113)
+        Me.TabControl1.Location = New System.Drawing.Point(59, 226)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(947, 562)
+        Me.TabControl1.Size = New System.Drawing.Size(2052, 1124)
         Me.TabControl1.TabIndex = 13
         '
         'TabPage1
@@ -444,26 +428,29 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.PDF_Convert_Button)
         Me.TabPage1.Controls.Add(Me.Data_Input_Button)
         Me.TabPage1.Controls.Add(Me.TextBox_FileLIst2)
+        Me.TabPage1.Controls.Add(Me.SelectXdwButton)
         Me.TabPage1.Controls.Add(Me.DocuReadButton)
         Me.TabPage1.Controls.Add(Me.DataGridView1)
         Me.TabPage1.Controls.Add(Me.TextBox_FolderName1)
         Me.TabPage1.Controls.Add(Me.ProgressBar1)
         Me.TabPage1.Controls.Add(Me.Select_Read_Folder_Button)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage1.Location = New System.Drawing.Point(8, 52)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(939, 529)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.TabPage1.Size = New System.Drawing.Size(2036, 1064)
         Me.TabPage1.TabIndex = 0
-        Me.TabPage1.Text = "　［　報告書の検索　］　"
+        Me.TabPage1.Text = "　［　報告書ファイルを登録　］　"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
         'Label10
         '
         Me.Label10.AutoSize = True
         Me.Label10.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label10.Location = New System.Drawing.Point(816, 3)
+        Me.Label10.Location = New System.Drawing.Point(1768, 6)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(93, 12)
+        Me.Label10.Size = New System.Drawing.Size(186, 24)
         Me.Label10.TabIndex = 32
         Me.Label10.Text = "（手順4）PDF変換"
         '
@@ -471,18 +458,20 @@ Partial Class Form1
         '
         Me.Label9.AutoSize = True
         Me.Label9.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label9.Location = New System.Drawing.Point(655, 3)
+        Me.Label9.Location = New System.Drawing.Point(1419, 6)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(148, 12)
+        Me.Label9.Size = New System.Drawing.Size(297, 24)
         Me.Label9.TabIndex = 32
         Me.Label9.Text = "（手順3）データベースへの入力"
         '
         'BeforeFolderButton
         '
         Me.BeforeFolderButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BeforeFolderButton.Location = New System.Drawing.Point(308, 17)
+        Me.BeforeFolderButton.Location = New System.Drawing.Point(448, 34)
+        Me.BeforeFolderButton.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.BeforeFolderButton.Name = "BeforeFolderButton"
-        Me.BeforeFolderButton.Size = New System.Drawing.Size(99, 24)
+        Me.BeforeFolderButton.Size = New System.Drawing.Size(200, 48)
         Me.BeforeFolderButton.TabIndex = 31
         Me.BeforeFolderButton.Text = "前のフォルダ－"
         Me.BeforeFolderButton.UseVisualStyleBackColor = True
@@ -490,9 +479,10 @@ Partial Class Form1
         'NextFolderButton
         '
         Me.NextFolderButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.NextFolderButton.Location = New System.Drawing.Point(308, 40)
+        Me.NextFolderButton.Location = New System.Drawing.Point(448, 80)
+        Me.NextFolderButton.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.NextFolderButton.Name = "NextFolderButton"
-        Me.NextFolderButton.Size = New System.Drawing.Size(99, 24)
+        Me.NextFolderButton.Size = New System.Drawing.Size(200, 48)
         Me.NextFolderButton.TabIndex = 31
         Me.NextFolderButton.Text = "次のフォルダ－"
         Me.NextFolderButton.UseVisualStyleBackColor = True
@@ -501,9 +491,10 @@ Partial Class Form1
         '
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label5.Location = New System.Drawing.Point(459, 3)
+        Me.Label5.Location = New System.Drawing.Point(700, 6)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(105, 12)
+        Me.Label5.Size = New System.Drawing.Size(211, 24)
         Me.Label5.TabIndex = 18
         Me.Label5.Text = "（手順2）リストの作成"
         '
@@ -511,28 +502,31 @@ Partial Class Form1
         '
         Me.Label4.AutoSize = True
         Me.Label4.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label4.Location = New System.Drawing.Point(95, 3)
+        Me.Label4.Location = New System.Drawing.Point(206, 6)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(126, 12)
+        Me.Label4.Size = New System.Drawing.Size(251, 24)
         Me.Label4.TabIndex = 18
         Me.Label4.Text = "（手順1）フォルダーの選択"
         '
         'FolderMenuButton1
         '
         Me.FolderMenuButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderMenuButton1.Location = New System.Drawing.Point(153, 17)
+        Me.FolderMenuButton1.Location = New System.Drawing.Point(234, 34)
+        Me.FolderMenuButton1.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.FolderMenuButton1.Name = "FolderMenuButton1"
-        Me.FolderMenuButton1.Size = New System.Drawing.Size(149, 47)
+        Me.FolderMenuButton1.Size = New System.Drawing.Size(200, 94)
         Me.FolderMenuButton1.TabIndex = 17
-        Me.FolderMenuButton1.Text = "登録リストから選択"
+        Me.FolderMenuButton1.Text = "登録リストからフォルダーを選択"
         Me.FolderMenuButton1.UseVisualStyleBackColor = True
         '
         'FolderSaveButton1
         '
         Me.FolderSaveButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderSaveButton1.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton1.Location = New System.Drawing.Point(20, 138)
+        Me.FolderSaveButton1.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.FolderSaveButton1.Name = "FolderSaveButton1"
-        Me.FolderSaveButton1.Size = New System.Drawing.Size(83, 23)
+        Me.FolderSaveButton1.Size = New System.Drawing.Size(180, 46)
         Me.FolderSaveButton1.TabIndex = 16
         Me.FolderSaveButton1.Text = "フォルダー登録"
         Me.FolderSaveButton1.UseVisualStyleBackColor = True
@@ -540,27 +534,30 @@ Partial Class Form1
         'CheckBox_Convert
         '
         Me.CheckBox_Convert.AutoSize = True
-        Me.CheckBox_Convert.Location = New System.Drawing.Point(873, 33)
+        Me.CheckBox_Convert.Location = New System.Drawing.Point(1892, 66)
+        Me.CheckBox_Convert.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.CheckBox_Convert.Name = "CheckBox_Convert"
-        Me.CheckBox_Convert.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Convert.Size = New System.Drawing.Size(28, 27)
         Me.CheckBox_Convert.TabIndex = 15
         Me.CheckBox_Convert.UseVisualStyleBackColor = True
         '
         'CheckBox_Input
         '
         Me.CheckBox_Input.AutoSize = True
-        Me.CheckBox_Input.Location = New System.Drawing.Point(729, 33)
+        Me.CheckBox_Input.Location = New System.Drawing.Point(1580, 66)
+        Me.CheckBox_Input.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.CheckBox_Input.Name = "CheckBox_Input"
-        Me.CheckBox_Input.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input.Size = New System.Drawing.Size(28, 27)
         Me.CheckBox_Input.TabIndex = 14
         Me.CheckBox_Input.UseVisualStyleBackColor = True
         '
         'PDF_Convert_Button
         '
         Me.PDF_Convert_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PDF_Convert_Button.Location = New System.Drawing.Point(819, 17)
+        Me.PDF_Convert_Button.Location = New System.Drawing.Point(1775, 34)
+        Me.PDF_Convert_Button.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.PDF_Convert_Button.Name = "PDF_Convert_Button"
-        Me.PDF_Convert_Button.Size = New System.Drawing.Size(48, 47)
+        Me.PDF_Convert_Button.Size = New System.Drawing.Size(104, 94)
         Me.PDF_Convert_Button.TabIndex = 13
         Me.PDF_Convert_Button.Text = "変換実行"
         Me.PDF_Convert_Button.UseVisualStyleBackColor = True
@@ -568,9 +565,10 @@ Partial Class Form1
         'Data_Input_Button
         '
         Me.Data_Input_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Data_Input_Button.Location = New System.Drawing.Point(673, 17)
+        Me.Data_Input_Button.Location = New System.Drawing.Point(1458, 34)
+        Me.Data_Input_Button.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.Data_Input_Button.Name = "Data_Input_Button"
-        Me.Data_Input_Button.Size = New System.Drawing.Size(48, 47)
+        Me.Data_Input_Button.Size = New System.Drawing.Size(104, 94)
         Me.Data_Input_Button.TabIndex = 13
         Me.Data_Input_Button.Text = "入力実行"
         Me.Data_Input_Button.UseVisualStyleBackColor = True
@@ -578,34 +576,49 @@ Partial Class Form1
         'TextBox_FileLIst2
         '
         Me.TextBox_FileLIst2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(10, 424)
+        Me.TextBox_FileLIst2.Location = New System.Drawing.Point(22, 848)
+        Me.TextBox_FileLIst2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.TextBox_FileLIst2.Multiline = True
         Me.TextBox_FileLIst2.Name = "TextBox_FileLIst2"
         Me.TextBox_FileLIst2.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(896, 95)
+        Me.TextBox_FileLIst2.Size = New System.Drawing.Size(1937, 186)
         Me.TextBox_FileLIst2.TabIndex = 11
+        '
+        'SelectXdwButton
+        '
+        Me.SelectXdwButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.SelectXdwButton.Location = New System.Drawing.Point(1100, 34)
+        Me.SelectXdwButton.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.SelectXdwButton.Name = "SelectXdwButton"
+        Me.SelectXdwButton.Size = New System.Drawing.Size(200, 94)
+        Me.SelectXdwButton.TabIndex = 9
+        Me.SelectXdwButton.Text = "ファイル(xdw)を直接選択"
+        Me.SelectXdwButton.UseVisualStyleBackColor = True
         '
         'DocuReadButton
         '
         Me.DocuReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.DocuReadButton.Location = New System.Drawing.Point(461, 17)
+        Me.DocuReadButton.Location = New System.Drawing.Point(700, 34)
+        Me.DocuReadButton.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.DocuReadButton.Name = "DocuReadButton"
-        Me.DocuReadButton.Size = New System.Drawing.Size(136, 47)
+        Me.DocuReadButton.Size = New System.Drawing.Size(200, 94)
         Me.DocuReadButton.TabIndex = 9
-        Me.DocuReadButton.Text = "報告書(xdw)リスト作成"
+        Me.DocuReadButton.Text = "報告書(xdw)を検索"
         Me.DocuReadButton.UseVisualStyleBackColor = True
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 96)
+        Me.DataGridView1.Location = New System.Drawing.Point(20, 192)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(900, 300)
+        Me.DataGridView1.Size = New System.Drawing.Size(1950, 600)
         Me.DataGridView1.TabIndex = 8
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.SelectPdfButton)
         Me.TabPage3.Controls.Add(Me.BeforeFolderButton2)
         Me.TabPage3.Controls.Add(Me.NextFolderButton2)
         Me.TabPage3.Controls.Add(Me.Label8)
@@ -621,20 +634,33 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.TextBox_FolderName2)
         Me.TabPage3.Controls.Add(Me.ProgressBar2)
         Me.TabPage3.Controls.Add(Me.Select_Read_Folder_Button2)
-        Me.TabPage3.Location = New System.Drawing.Point(4, 29)
+        Me.TabPage3.Location = New System.Drawing.Point(8, 52)
+        Me.TabPage3.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage3.Size = New System.Drawing.Size(939, 529)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.TabPage3.Size = New System.Drawing.Size(2036, 1064)
         Me.TabPage3.TabIndex = 2
-        Me.TabPage3.Text = "　［　資料の検索　］　"
+        Me.TabPage3.Text = "　［　資料ファイルを登録　］　"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'SelectPdfButton
+        '
+        Me.SelectPdfButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.SelectPdfButton.Location = New System.Drawing.Point(1090, 34)
+        Me.SelectPdfButton.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.SelectPdfButton.Name = "SelectPdfButton"
+        Me.SelectPdfButton.Size = New System.Drawing.Size(200, 94)
+        Me.SelectPdfButton.TabIndex = 34
+        Me.SelectPdfButton.Text = "ファイル(pdf)を直接選択"
+        Me.SelectPdfButton.UseVisualStyleBackColor = True
         '
         'BeforeFolderButton2
         '
         Me.BeforeFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BeforeFolderButton2.Location = New System.Drawing.Point(308, 17)
+        Me.BeforeFolderButton2.Location = New System.Drawing.Point(448, 34)
+        Me.BeforeFolderButton2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.BeforeFolderButton2.Name = "BeforeFolderButton2"
-        Me.BeforeFolderButton2.Size = New System.Drawing.Size(99, 24)
+        Me.BeforeFolderButton2.Size = New System.Drawing.Size(200, 48)
         Me.BeforeFolderButton2.TabIndex = 32
         Me.BeforeFolderButton2.Text = "前のフォルダ－"
         Me.BeforeFolderButton2.UseVisualStyleBackColor = True
@@ -642,9 +668,10 @@ Partial Class Form1
         'NextFolderButton2
         '
         Me.NextFolderButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.NextFolderButton2.Location = New System.Drawing.Point(308, 40)
+        Me.NextFolderButton2.Location = New System.Drawing.Point(448, 80)
+        Me.NextFolderButton2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.NextFolderButton2.Name = "NextFolderButton2"
-        Me.NextFolderButton2.Size = New System.Drawing.Size(99, 24)
+        Me.NextFolderButton2.Size = New System.Drawing.Size(200, 48)
         Me.NextFolderButton2.TabIndex = 33
         Me.NextFolderButton2.Text = "次のフォルダ－"
         Me.NextFolderButton2.UseVisualStyleBackColor = True
@@ -653,9 +680,10 @@ Partial Class Form1
         '
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label8.Location = New System.Drawing.Point(742, 3)
+        Me.Label8.Location = New System.Drawing.Point(1608, 6)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(148, 12)
+        Me.Label8.Size = New System.Drawing.Size(297, 24)
         Me.Label8.TabIndex = 28
         Me.Label8.Text = "（手順3）データベースへの入力"
         '
@@ -663,9 +691,10 @@ Partial Class Form1
         '
         Me.Label6.AutoSize = True
         Me.Label6.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label6.Location = New System.Drawing.Point(459, 3)
+        Me.Label6.Location = New System.Drawing.Point(700, 6)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(105, 12)
+        Me.Label6.Size = New System.Drawing.Size(211, 24)
         Me.Label6.TabIndex = 28
         Me.Label6.Text = "（手順2）リストの作成"
         '
@@ -673,18 +702,20 @@ Partial Class Form1
         '
         Me.Label7.AutoSize = True
         Me.Label7.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label7.Location = New System.Drawing.Point(95, 3)
+        Me.Label7.Location = New System.Drawing.Point(206, 6)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(126, 12)
+        Me.Label7.Size = New System.Drawing.Size(251, 24)
         Me.Label7.TabIndex = 29
         Me.Label7.Text = "（手順1）フォルダーの選択"
         '
         'FolderSaveButton2
         '
         Me.FolderSaveButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderSaveButton2.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton2.Location = New System.Drawing.Point(20, 138)
+        Me.FolderSaveButton2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.FolderSaveButton2.Name = "FolderSaveButton2"
-        Me.FolderSaveButton2.Size = New System.Drawing.Size(83, 23)
+        Me.FolderSaveButton2.Size = New System.Drawing.Size(180, 46)
         Me.FolderSaveButton2.TabIndex = 27
         Me.FolderSaveButton2.Text = "フォルダー登録"
         Me.FolderSaveButton2.UseVisualStyleBackColor = True
@@ -692,28 +723,31 @@ Partial Class Form1
         'FolderMenuButton2
         '
         Me.FolderMenuButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderMenuButton2.Location = New System.Drawing.Point(153, 17)
+        Me.FolderMenuButton2.Location = New System.Drawing.Point(234, 36)
+        Me.FolderMenuButton2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.FolderMenuButton2.Name = "FolderMenuButton2"
-        Me.FolderMenuButton2.Size = New System.Drawing.Size(149, 47)
+        Me.FolderMenuButton2.Size = New System.Drawing.Size(200, 94)
         Me.FolderMenuButton2.TabIndex = 26
-        Me.FolderMenuButton2.Text = "登録リストから選択"
+        Me.FolderMenuButton2.Text = "登録リストからフォルダーを選択"
         Me.FolderMenuButton2.UseVisualStyleBackColor = True
         '
         'CheckBox_Input2
         '
         Me.CheckBox_Input2.AutoSize = True
-        Me.CheckBox_Input2.Location = New System.Drawing.Point(800, 33)
+        Me.CheckBox_Input2.Location = New System.Drawing.Point(1733, 66)
+        Me.CheckBox_Input2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.CheckBox_Input2.Name = "CheckBox_Input2"
-        Me.CheckBox_Input2.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input2.Size = New System.Drawing.Size(28, 27)
         Me.CheckBox_Input2.TabIndex = 25
         Me.CheckBox_Input2.UseVisualStyleBackColor = True
         '
         'Data_Input_Button2
         '
         Me.Data_Input_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Data_Input_Button2.Location = New System.Drawing.Point(744, 17)
+        Me.Data_Input_Button2.Location = New System.Drawing.Point(1612, 34)
+        Me.Data_Input_Button2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.Data_Input_Button2.Name = "Data_Input_Button2"
-        Me.Data_Input_Button2.Size = New System.Drawing.Size(48, 47)
+        Me.Data_Input_Button2.Size = New System.Drawing.Size(104, 94)
         Me.Data_Input_Button2.TabIndex = 24
         Me.Data_Input_Button2.Text = "入力実行"
         Me.Data_Input_Button2.UseVisualStyleBackColor = True
@@ -721,269 +755,80 @@ Partial Class Form1
         'TextBox_FileLIst3
         '
         Me.TextBox_FileLIst3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(10, 424)
+        Me.TextBox_FileLIst3.Location = New System.Drawing.Point(22, 848)
+        Me.TextBox_FileLIst3.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.TextBox_FileLIst3.Multiline = True
         Me.TextBox_FileLIst3.Name = "TextBox_FileLIst3"
         Me.TextBox_FileLIst3.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(896, 96)
+        Me.TextBox_FileLIst3.Size = New System.Drawing.Size(1937, 188)
         Me.TextBox_FileLIst3.TabIndex = 22
         '
         'PdfReadButton
         '
         Me.PdfReadButton.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.PdfReadButton.Location = New System.Drawing.Point(461, 17)
+        Me.PdfReadButton.Location = New System.Drawing.Point(700, 34)
+        Me.PdfReadButton.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.PdfReadButton.Name = "PdfReadButton"
-        Me.PdfReadButton.Size = New System.Drawing.Size(136, 47)
+        Me.PdfReadButton.Size = New System.Drawing.Size(200, 94)
         Me.PdfReadButton.TabIndex = 20
-        Me.PdfReadButton.Text = "資料(pdf)リスト作成"
+        Me.PdfReadButton.Text = "資料(pdf)を検索"
         Me.PdfReadButton.UseVisualStyleBackColor = True
         '
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(9, 96)
+        Me.DataGridView2.Location = New System.Drawing.Point(20, 192)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 21
-        Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
+        Me.DataGridView2.Size = New System.Drawing.Size(1950, 600)
         Me.DataGridView2.TabIndex = 19
         '
         'TextBox_FolderName2
         '
         Me.TextBox_FolderName2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName2.Location = New System.Drawing.Point(97, 69)
-        Me.TextBox_FolderName2.Margin = New System.Windows.Forms.Padding(2)
+        Me.TextBox_FolderName2.Location = New System.Drawing.Point(210, 138)
+        Me.TextBox_FolderName2.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBox_FolderName2.Multiline = True
         Me.TextBox_FolderName2.Name = "TextBox_FolderName2"
-        Me.TextBox_FolderName2.Size = New System.Drawing.Size(812, 23)
+        Me.TextBox_FolderName2.Size = New System.Drawing.Size(1755, 42)
         Me.TextBox_FolderName2.TabIndex = 16
         '
         'ProgressBar2
         '
-        Me.ProgressBar2.Location = New System.Drawing.Point(10, 401)
-        Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2)
+        Me.ProgressBar2.Location = New System.Drawing.Point(22, 802)
+        Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(4)
         Me.ProgressBar2.Name = "ProgressBar2"
-        Me.ProgressBar2.Size = New System.Drawing.Size(896, 18)
+        Me.ProgressBar2.Size = New System.Drawing.Size(1941, 36)
         Me.ProgressBar2.TabIndex = 18
         '
         'Select_Read_Folder_Button2
         '
         Me.Select_Read_Folder_Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(9, 17)
+        Me.Select_Read_Folder_Button2.Location = New System.Drawing.Point(20, 34)
+        Me.Select_Read_Folder_Button2.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.Select_Read_Folder_Button2.Name = "Select_Read_Folder_Button2"
-        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(138, 47)
+        Me.Select_Read_Folder_Button2.Size = New System.Drawing.Size(200, 94)
         Me.Select_Read_Folder_Button2.TabIndex = 17
         Me.Select_Read_Folder_Button2.Text = "フォルダー選択"
         Me.Select_Read_Folder_Button2.UseVisualStyleBackColor = True
         '
-        'TabPage2
-        '
-        Me.TabPage2.Controls.Add(Me.BeforeFolderButton3)
-        Me.TabPage2.Controls.Add(Me.NextFolderButton3)
-        Me.TabPage2.Controls.Add(Me.FolderMenuButton3)
-        Me.TabPage2.Controls.Add(Me.FolderSaveButton3)
-        Me.TabPage2.Controls.Add(Me.TextBox_FolderName3)
-        Me.TabPage2.Controls.Add(Me.RadioButton_pdf)
-        Me.TabPage2.Controls.Add(Me.RadioButton_xdw)
-        Me.TabPage2.Controls.Add(Me.Label11)
-        Me.TabPage2.Controls.Add(Me.Label12)
-        Me.TabPage2.Controls.Add(Me.Label13)
-        Me.TabPage2.Controls.Add(Me.CheckBox_Input3)
-        Me.TabPage2.Controls.Add(Me.Data_Input_Button3)
-        Me.TabPage2.Controls.Add(Me.TextBox1)
-        Me.TabPage2.Controls.Add(Me.Button2)
-        Me.TabPage2.Controls.Add(Me.DataGridView3)
-        Me.TabPage2.Controls.Add(Me.ProgressBar3)
-        Me.TabPage2.Controls.Add(Me.Select_File_Button)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 29)
-        Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(939, 529)
-        Me.TabPage2.TabIndex = 3
-        Me.TabPage2.Text = "　［　ファイルの選択　］　"
-        Me.TabPage2.UseVisualStyleBackColor = True
-        '
-        'BeforeFolderButton3
-        '
-        Me.BeforeFolderButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.BeforeFolderButton3.Location = New System.Drawing.Point(395, 19)
-        Me.BeforeFolderButton3.Name = "BeforeFolderButton3"
-        Me.BeforeFolderButton3.Size = New System.Drawing.Size(99, 24)
-        Me.BeforeFolderButton3.TabIndex = 44
-        Me.BeforeFolderButton3.Text = "前のフォルダ－"
-        Me.BeforeFolderButton3.UseVisualStyleBackColor = True
-        '
-        'NextFolderButton3
-        '
-        Me.NextFolderButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.NextFolderButton3.Location = New System.Drawing.Point(395, 42)
-        Me.NextFolderButton3.Name = "NextFolderButton3"
-        Me.NextFolderButton3.Size = New System.Drawing.Size(99, 24)
-        Me.NextFolderButton3.TabIndex = 45
-        Me.NextFolderButton3.Text = "次のフォルダ－"
-        Me.NextFolderButton3.UseVisualStyleBackColor = True
-        '
-        'FolderMenuButton3
-        '
-        Me.FolderMenuButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderMenuButton3.Location = New System.Drawing.Point(262, 19)
-        Me.FolderMenuButton3.Name = "FolderMenuButton3"
-        Me.FolderMenuButton3.Size = New System.Drawing.Size(127, 47)
-        Me.FolderMenuButton3.TabIndex = 43
-        Me.FolderMenuButton3.Text = "登録リストから選択"
-        Me.FolderMenuButton3.UseVisualStyleBackColor = True
-        '
-        'FolderSaveButton3
-        '
-        Me.FolderSaveButton3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderSaveButton3.Location = New System.Drawing.Point(9, 69)
-        Me.FolderSaveButton3.Name = "FolderSaveButton3"
-        Me.FolderSaveButton3.Size = New System.Drawing.Size(83, 23)
-        Me.FolderSaveButton3.TabIndex = 42
-        Me.FolderSaveButton3.Text = "フォルダー登録"
-        Me.FolderSaveButton3.UseVisualStyleBackColor = True
-        '
-        'TextBox_FolderName3
-        '
-        Me.TextBox_FolderName3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName3.Location = New System.Drawing.Point(97, 69)
-        Me.TextBox_FolderName3.Margin = New System.Windows.Forms.Padding(2)
-        Me.TextBox_FolderName3.Multiline = True
-        Me.TextBox_FolderName3.Name = "TextBox_FolderName3"
-        Me.TextBox_FolderName3.Size = New System.Drawing.Size(812, 23)
-        Me.TextBox_FolderName3.TabIndex = 41
-        '
-        'RadioButton_pdf
-        '
-        Me.RadioButton_pdf.AutoSize = True
-        Me.RadioButton_pdf.Location = New System.Drawing.Point(10, 41)
-        Me.RadioButton_pdf.Name = "RadioButton_pdf"
-        Me.RadioButton_pdf.Size = New System.Drawing.Size(51, 23)
-        Me.RadioButton_pdf.TabIndex = 40
-        Me.RadioButton_pdf.TabStop = True
-        Me.RadioButton_pdf.Text = "pdf"
-        Me.RadioButton_pdf.UseVisualStyleBackColor = True
-        '
-        'RadioButton_xdw
-        '
-        Me.RadioButton_xdw.AutoSize = True
-        Me.RadioButton_xdw.Location = New System.Drawing.Point(10, 19)
-        Me.RadioButton_xdw.Name = "RadioButton_xdw"
-        Me.RadioButton_xdw.Size = New System.Drawing.Size(102, 23)
-        Me.RadioButton_xdw.TabIndex = 40
-        Me.RadioButton_xdw.TabStop = True
-        Me.RadioButton_xdw.Text = "xdw (xbd)"
-        Me.RadioButton_xdw.UseVisualStyleBackColor = True
-        '
-        'Label11
-        '
-        Me.Label11.AutoSize = True
-        Me.Label11.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label11.Location = New System.Drawing.Point(742, 3)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(148, 12)
-        Me.Label11.TabIndex = 37
-        Me.Label11.Text = "（手順3）データベースへの入力"
-        '
-        'Label12
-        '
-        Me.Label12.AutoSize = True
-        Me.Label12.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label12.Location = New System.Drawing.Point(543, 3)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(105, 12)
-        Me.Label12.TabIndex = 38
-        Me.Label12.Text = "（手順2）リストの作成"
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Label13.Location = New System.Drawing.Point(117, 5)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(115, 12)
-        Me.Label13.TabIndex = 39
-        Me.Label13.Text = "（手順1）ファイルの選択"
-        '
-        'CheckBox_Input3
-        '
-        Me.CheckBox_Input3.AutoSize = True
-        Me.CheckBox_Input3.Location = New System.Drawing.Point(800, 33)
-        Me.CheckBox_Input3.Name = "CheckBox_Input3"
-        Me.CheckBox_Input3.Size = New System.Drawing.Size(15, 14)
-        Me.CheckBox_Input3.TabIndex = 36
-        Me.CheckBox_Input3.UseVisualStyleBackColor = True
-        '
-        'Data_Input_Button3
-        '
-        Me.Data_Input_Button3.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Data_Input_Button3.Location = New System.Drawing.Point(744, 17)
-        Me.Data_Input_Button3.Name = "Data_Input_Button3"
-        Me.Data_Input_Button3.Size = New System.Drawing.Size(48, 47)
-        Me.Data_Input_Button3.TabIndex = 35
-        Me.Data_Input_Button3.Text = "入力実行"
-        Me.Data_Input_Button3.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox1.Location = New System.Drawing.Point(10, 424)
-        Me.TextBox1.Multiline = True
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
-        Me.TextBox1.Size = New System.Drawing.Size(896, 96)
-        Me.TextBox1.TabIndex = 34
-        '
-        'Button2
-        '
-        Me.Button2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Button2.Location = New System.Drawing.Point(545, 17)
-        Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(136, 47)
-        Me.Button2.TabIndex = 33
-        Me.Button2.Text = "資料(pdf)リスト作成"
-        Me.Button2.UseVisualStyleBackColor = True
-        '
-        'DataGridView3
-        '
-        Me.DataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView3.Location = New System.Drawing.Point(9, 96)
-        Me.DataGridView3.Name = "DataGridView3"
-        Me.DataGridView3.RowTemplate.Height = 21
-        Me.DataGridView3.Size = New System.Drawing.Size(900, 300)
-        Me.DataGridView3.TabIndex = 32
-        '
-        'ProgressBar3
-        '
-        Me.ProgressBar3.Location = New System.Drawing.Point(10, 401)
-        Me.ProgressBar3.Margin = New System.Windows.Forms.Padding(2)
-        Me.ProgressBar3.Name = "ProgressBar3"
-        Me.ProgressBar3.Size = New System.Drawing.Size(896, 18)
-        Me.ProgressBar3.TabIndex = 31
-        '
-        'Select_File_Button
-        '
-        Me.Select_File_Button.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.Select_File_Button.Location = New System.Drawing.Point(118, 19)
-        Me.Select_File_Button.Name = "Select_File_Button"
-        Me.Select_File_Button.Size = New System.Drawing.Size(138, 47)
-        Me.Select_File_Button.TabIndex = 30
-        Me.Select_File_Button.Text = "ファイル選択"
-        Me.Select_File_Button.UseVisualStyleBackColor = True
-        '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(29, 62)
+        Me.Label2.Location = New System.Drawing.Point(63, 124)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(118, 12)
+        Me.Label2.Size = New System.Drawing.Size(227, 24)
         Me.Label2.TabIndex = 15
         Me.Label2.Text = "FileMaker Server URL"
         '
         'TextBox_FileMakerServer
         '
-        Me.TextBox_FileMakerServer.Location = New System.Drawing.Point(31, 77)
+        Me.TextBox_FileMakerServer.Location = New System.Drawing.Point(67, 154)
+        Me.TextBox_FileMakerServer.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.TextBox_FileMakerServer.Name = "TextBox_FileMakerServer"
-        Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(143, 19)
+        Me.TextBox_FileMakerServer.Size = New System.Drawing.Size(305, 31)
         Me.TextBox_FileMakerServer.TabIndex = 14
         '
         'GroupBox1
@@ -1012,9 +857,11 @@ Partial Class Form1
         Me.GroupBox1.Controls.Add(Me.CheckBox_8B)
         Me.GroupBox1.Controls.Add(Me.CheckBox_8A)
         Me.GroupBox1.Controls.Add(Me.CheckBox_3A)
-        Me.GroupBox1.Location = New System.Drawing.Point(615, 14)
+        Me.GroupBox1.Location = New System.Drawing.Point(1333, 28)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(7, 6, 7, 6)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(369, 101)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(7, 6, 7, 6)
+        Me.GroupBox1.Size = New System.Drawing.Size(800, 202)
         Me.GroupBox1.TabIndex = 16
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "分野番号"
@@ -1022,24 +869,25 @@ Partial Class Form1
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(787, 3)
+        Me.Label3.Location = New System.Drawing.Point(1705, 6)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(7, 0, 7, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(187, 12)
+        Me.Label3.Size = New System.Drawing.Size(378, 24)
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
         'Form1
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(13.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1007, 679)
+        Me.ClientSize = New System.Drawing.Size(2182, 1358)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.TextBox_FileMakerServer)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TabControl1)
-        Me.Margin = New System.Windows.Forms.Padding(2)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "Form1"
         Me.Text = "Make Data v1.0"
         Me.TabControl1.ResumeLayout(False)
@@ -1049,9 +897,6 @@ Partial Class Form1
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage3.PerformLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabPage2.ResumeLayout(False)
-        Me.TabPage2.PerformLayout()
-        CType(Me.DataGridView3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
@@ -1123,22 +968,6 @@ Partial Class Form1
     Friend WithEvents Label10 As Label
     Friend WithEvents Label9 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents TabPage2 As TabPage
-    Friend WithEvents Label11 As Label
-    Friend WithEvents Label12 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents CheckBox_Input3 As CheckBox
-    Friend WithEvents Data_Input_Button3 As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Button2 As Button
-    Friend WithEvents DataGridView3 As DataGridView
-    Friend WithEvents ProgressBar3 As ProgressBar
-    Friend WithEvents Select_File_Button As Button
-    Friend WithEvents RadioButton_pdf As RadioButton
-    Friend WithEvents RadioButton_xdw As RadioButton
-    Friend WithEvents BeforeFolderButton3 As Button
-    Friend WithEvents NextFolderButton3 As Button
-    Friend WithEvents FolderMenuButton3 As Button
-    Friend WithEvents FolderSaveButton3 As Button
-    Friend WithEvents TextBox_FolderName3 As TextBox
+    Friend WithEvents SelectXdwButton As Button
+    Friend WithEvents SelectPdfButton As Button
 End Class
