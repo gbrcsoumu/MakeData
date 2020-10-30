@@ -75,45 +75,26 @@ Public Class Form1
         ' フォームの初期化
         '
 
-        'Dim me1 As New MeCab
-        'Dim t1 As String = me1.Parse("和布蕪を使って日本語文字列を形態素分析する。").Replace(vbLf, vbCrLf)
-        'me1.Dispose()
-        'MsgBox(t1)
+        ' ファイルメーカーサーバーのIPアドレス情報を読み込む
+        Dim text As String
+        Try
+            Dim sr As New StreamReader("c:\ファイル情報設定ファイル\HostIP.txt", System.Text.Encoding.GetEncoding("utf-8"))
+            text = sr.ReadLine
+            sr.Close()
+        Catch
+        End Try
 
-        'Dim testName As String = "Ｃ-01-001-1.xdw"
-        'Dim result As String = TestNo(testName)
-
-        'Dim path1 As String = "\\192.168.0.173\disk1\SCAN\test\3C170234_オカモト_コーンカロリーメータ_1.pdf"
-        'Dim path2 As String = "\\192.168.0.173\disk1\SCAN\test\3C170234_オカモト_コーンカロリーメータ_1.xdw"
-
-        'If System.IO.File.Exists(path2) = True Then     ' すでに.xdwファイルが存在している場合は削除
-        '    System.IO.File.Delete(path2)
-        'End If
-
-        'Dim FolderPath1 As String = Path.GetDirectoryName(path1)
-        'Dim fileInfo1 As New FileInfo(FolderPath1)
-        'Dim fileSec1 As FileSecurity = fileInfo1.GetAccessControl()
-
-        '' アクセス権限をEveryoneに対しフルコントロール許可
-        'Dim accessRule1 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-        'fileSec1.AddAccessRule(accessRule1)
-        'fileInfo1.SetAccessControl(fileSec1)
-
-
-        'Dim FolderPath2 As String = Path.GetDirectoryName(path1)
-        'Dim fileInfo2 As New FileInfo(FolderPath2)
-        'Dim fileSec2 As FileSecurity = fileInfo2.GetAccessControl()
-
-        '' アクセス権限をEveryoneに対しフルコントロール許可
-        'Dim accessRule2 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-        'fileSec2.AddAccessRule(accessRule2)
-        'fileInfo2.SetAccessControl(fileSec2)
-
-        'Dim r1 As Integer = Xdwapi.XDW_CreateXdwFromImagePdfFile(path1, path2)
+        Dim rx = New System.Text.RegularExpressions.Regex("\d+.\d+.\d+.\d+", System.Text.RegularExpressions.RegexOptions.Compiled)
+        Dim result As Boolean = rx.IsMatch(text)
+        If result = True Then
+            TextBox_FileMakerServer.Text = text
+        Else
+            TextBox_FileMakerServer.Text = FileMakerServer1
+        End If
 
 
         Me.Icon = My.Resources.auezb_d3bmk_002
-        TextBox_FileMakerServer.Text = FileMakerServer1
+
 
         MyPath = My.Application.Info.DirectoryPath
         MyName = My.Application.Info.AssemblyName
@@ -190,6 +171,11 @@ Public Class Form1
 
         'RadioButton_xdw.Checked = True
         'RadioButton_pdf.Checked = False
+
+        xdwFolderRadioButton.Checked = True
+        xdwFileRadioButton.Checked = False
+        pdfFolderRadioButton.Checked = True
+        pdfFileRadioButton.Checked = False
 
         Me.Width = 1020
         Me.Height = 720
@@ -2415,6 +2401,86 @@ Public Class Form1
     End Sub
 
 
+    Private Sub xdwFolderRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles xdwFolderRadioButton.CheckedChanged, xdwFileRadioButton.CheckedChanged
+
+        If xdwFolderRadioButton.Checked = True Then
+            xdwModeChange("folder")
+        Else
+            xdwModeChange("file")
+        End If
+
+    End Sub
+
+    Private Sub xdwModeChange(ByVal flag As String)
+        If flag = "folder" Then
+            Select_Read_Folder_Button.Visible = True
+            FolderMenuButton1.Visible = True
+            BeforeFolderButton.Visible = True
+            NextFolderButton.Visible = True
+            DocuReadButton.Visible = True
+            SelectXdwButton.Visible = False
+            Label4.Visible = True
+            Label5.Visible = True
+            Label11.Visible = False
+
+            Label9.Text = "（手順4）データベースへの入力"
+            Label10.Text = "（手順5）PDF変換"
+
+        ElseIf flag = "file" Then
+            Select_Read_Folder_Button.Visible = False
+            FolderMenuButton1.Visible = False
+            BeforeFolderButton.Visible = False
+            NextFolderButton.Visible = False
+            DocuReadButton.Visible = False
+            SelectXdwButton.Visible = True
+            Label4.Visible = False
+            Label5.Visible = False
+            Label11.Visible = True
+
+            Label9.Text = "（手順3）データベースへの入力"
+            Label10.Text = "（手順4）PDF変換"
+        End If
+    End Sub
+
+    Private Sub pdfFolderRadioButton_CheckedChanged(sender As Object, e As EventArgs) Handles pdfFolderRadioButton.CheckedChanged, pdfFileRadioButton.CheckedChanged
+        If pdfFolderRadioButton.Checked = True Then
+            pdfModeChange("folder")
+        Else
+            pdfModeChange("file")
+        End If
+
+    End Sub
+
+    Private Sub pdfModeChange(ByVal flag As String)
+        If flag = "folder" Then
+            Select_Read_Folder_Button2.Visible = True
+            FolderMenuButton2.Visible = True
+            BeforeFolderButton2.Visible = True
+            NextFolderButton2.Visible = True
+            PdfReadButton.Visible = True
+            SelectPdfButton.Visible = False
+            Label7.Visible = True
+            Label6.Visible = True
+            Label12.Visible = False
+
+            Label8.Text = "（手順4）データベースへの入力"
+
+
+        ElseIf flag = "file" Then
+            Select_Read_Folder_Button2.Visible = False
+            FolderMenuButton2.Visible = False
+            BeforeFolderButton2.Visible = False
+            NextFolderButton2.Visible = False
+            PdfReadButton.Visible = False
+            SelectPdfButton.Visible = True
+            Label7.Visible = False
+            Label6.Visible = False
+            Label12.Visible = True
+
+            Label8.Text = "（手順3）データベースへの入力"
+
+        End If
+    End Sub
 
     Private Sub FolderSaveButton1_Click(sender As Object, e As EventArgs) Handles FolderSaveButton1.Click
 
