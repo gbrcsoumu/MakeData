@@ -32,6 +32,8 @@ Public Class Form1
     Private Cansel As Boolean
     Private MyPath As String, MyName As String, username As String, adrList As IPAddress(), MyIP As String, hostname As String
     Private OcrFlag As Boolean
+    Private EndFlag As Boolean
+
 
     <Flags()>
     Public Enum PlaySoundFlags
@@ -60,12 +62,16 @@ Public Class Form1
     Private TextFileName As String
 
     Private Sub Form1_Closing(ByVal sender As Object, ByVal e As System.ComponentModel.CancelEventArgs) Handles MyBase.Closing
-        If MessageBox.Show("終了しますか？", "終了確認ダイアログ", MessageBoxButtons.YesNo) = DialogResult.No Then
-            e.Cancel = True
-        Else
-            If OcrFlag = True Then
-                Xdwapi.XDW_Finalize()
+        If EndFlag = False Then
+            If MessageBox.Show("終了しますか？", "終了確認ダイアログ", MessageBoxButtons.YesNo) = DialogResult.No Then
+                e.Cancel = True
+            Else
+                If OcrFlag = True Then
+                    Xdwapi.XDW_Finalize()
+                End If
             End If
+        Else
+            e.Cancel = False
         End If
     End Sub
 
@@ -74,6 +80,20 @@ Public Class Form1
         '
         ' フォームの初期化
         '
+
+        EndFlag = False
+        '実行アプリケーションのプロセス名を取得
+        Dim strThisProcess As String = System.Diagnostics.Process.GetCurrentProcess().ProcessName
+
+        '取得した同名のプロセスが他に存在するかを確認
+        If System.Diagnostics.Process.GetProcessesByName(strThisProcess).Length > 1 Then
+            MsgBox("すでに起動中です。", vbOK, "確認")
+            EndFlag = True
+            Me.Close()
+            Me.Dispose()
+            AppActivate("MakeData.exe")
+            End
+        End If
 
         ' ファイルメーカーサーバーのIPアドレス情報を読み込む
         Dim text As String
