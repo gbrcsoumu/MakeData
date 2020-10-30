@@ -2259,7 +2259,7 @@ Public Class Form1
             FileMakerServer = TextBox_FileMakerServer.Text
             db.Connect()
 
-            Sql_Command = "SELECT ""IP"",""Path"",""ProgramName"",""UserName"" FROM """ + Table2 + """ WHERE (""IP"" = '" + IP + "' AND ""Path"" = '" + Path + "')"
+            Sql_Command = "SELECT ""IP"",""Path"",""ProgramName"",""UserName"" FROM """ + Table2 + """ WHERE (""IP"" = '" + IP + "')"
             tb = db.ExecuteSql(Sql_Command)
             Dim n2 As Integer = tb.Rows.Count
             If n2 > 0 Then
