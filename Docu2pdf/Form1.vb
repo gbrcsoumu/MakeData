@@ -30,7 +30,7 @@ Public Class Form1
     Private DcuPath As String, PdfPath As String
     Private Check() As CheckBox, checkbox_n As Integer
     Private Cansel As Boolean
-    Private MyPath As String, MyName As String, hostname As String, adrList As IPAddress(), MyIP As String
+    Private MyPath As String, MyName As String, username As String, adrList As IPAddress(), MyIP As String, hostname As String
     Private OcrFlag As Boolean
 
     <Flags()>
@@ -100,7 +100,7 @@ Public Class Form1
         MyName = My.Application.Info.AssemblyName
         ' ホスト名を取得する
         hostname = Dns.GetHostName()
-
+        username = Environment.UserName
         ' ホスト名からIPアドレスを取得する
         adrList = Dns.GetHostAddresses(hostname)
         MyIP = ""
@@ -113,7 +113,7 @@ Public Class Form1
         Next
 
         If MyIP <> "" Then
-            If PCInfo(MyIP, hostname, MyPath, MyName) = False Then
+            If PCInfo(MyIP, username, MyPath, MyName) = False Then
                 MsgBox("データベースに接続出来ません!" + vbCrLf + "終了します!", vbOK, "警告")
                 End
             End If
@@ -2243,7 +2243,7 @@ Public Class Form1
     End Sub
 
 
-    Private Function PCInfo(ByVal IP As String, ByVal Hname As String, ByVal Path As String, ByVal Pname As String) As Boolean
+    Private Function PCInfo(ByVal IP As String, ByVal Uname As String, ByVal Path As String, ByVal Pname As String) As Boolean
         '
         '   PCのアドレス、ホストネーム、プログラムのパス、プログラム名、接続日時をデータベースに記録する関数
         '
@@ -2259,16 +2259,16 @@ Public Class Form1
             FileMakerServer = TextBox_FileMakerServer.Text
             db.Connect()
 
-            Sql_Command = "SELECT ""IP"",""Path"",""ProgramName"",""HostName"" FROM """ + Table2 + """ WHERE (""IP"" = '" + IP + "' AND ""Path"" = '" + Path + "')"
+            Sql_Command = "SELECT ""IP"",""Path"",""ProgramName"",""UserName"" FROM """ + Table2 + """ WHERE (""IP"" = '" + IP + "' AND ""Path"" = '" + Path + "')"
             tb = db.ExecuteSql(Sql_Command)
             Dim n2 As Integer = tb.Rows.Count
             If n2 > 0 Then
                 Sql_Command = "UPDATE """ + Table2 + """ SET ""接続日時"" = TIMESTAMP '" + td2 + "'"
-                Sql_Command += " WHERE (""IP"" = '" + IP + "' AND ""HostName"" = '" + Hname + "' AND ""Path"" = '" + Path + "')"
+                Sql_Command += " WHERE (""IP"" = '" + IP + "' AND ""UserName"" = '" + Uname + "' AND ""Path"" = '" + Path + "')"
                 tb = db.ExecuteSql(Sql_Command)
             Else
-                Sql_Command = "INSERT INTO """ + Table2 + """ (""IP"",""Path"",""ProgramName"",""HostName"",""接続日時"")"
-                Sql_Command += " VALUES ('" + IP + "','" + Path + "','" + Pname + "','" + Hname + "',TIMESTAMP '" + td2 + "')"
+                Sql_Command = "INSERT INTO """ + Table2 + """ (""IP"",""Path"",""ProgramName"",""UserName"",""接続日時"")"
+                Sql_Command += " VALUES ('" + IP + "','" + Path + "','" + Pname + "','" + Uname + "',TIMESTAMP '" + td2 + "')"
                 tb = db.ExecuteSql(Sql_Command)
             End If
 
