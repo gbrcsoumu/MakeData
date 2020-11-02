@@ -2221,7 +2221,8 @@ Public Class Form1
 
                         'ストリームを閉じる
                         sw.Close()
-
+                        f1.Close()
+                        f1.Dispose()
                         ProgressBar2.Visible = False
 
                     Catch e1 As Exception
@@ -2230,9 +2231,9 @@ Public Class Form1
                         ProgressBar2.Visible = False
                     End Try
 
-                    f1.Close()
-                    f1.Dispose()
-                    ProgressBar2.Visible = False
+                    'f1.Close()
+                    'f1.Dispose()
+                    'ProgressBar2.Visible = False
                 End If
             Else
                 MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
@@ -2664,7 +2665,7 @@ Public Class Form1
                     PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
 
-                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
+                    'PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("次はありません！", vbOK, "エラー")
                 End If
 
@@ -2710,10 +2711,10 @@ Public Class Form1
                 If index >= 1 And index < n2 Then
                     nextfolder = dname3(index - 1)
                     TextBox_FolderName1.Text = Path0 + "\" + nextfolder
-                    PdfPath = TextBox_FolderName1.Text
+                    DcuPath = TextBox_FolderName1.Text
                     PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
-                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
+                    'PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("前はありません！", vbOK, "エラー")
                 End If
 
@@ -2762,7 +2763,7 @@ Public Class Form1
                     PdfPath = TextBox_FolderName2.Text
                     'PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
-                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
+                    'PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("前はありません！", vbOK, "エラー")
                 End If
 
@@ -2809,7 +2810,7 @@ Public Class Form1
                     PdfPath = TextBox_FolderName2.Text
                     'PdfPath = PdfSaveFolder + "\" + System.IO.Path.GetFileName(System.IO.Path.GetFileName(DcuPath))
                 Else
-                    PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
+                    'PlaySound("SystemHand", IntPtr.Zero, PlaySoundFlags.SND_ALIAS Or PlaySoundFlags.SND_NODEFAULT)
                     MsgBox("次はありません！", vbOK, "エラー")
                 End If
 
