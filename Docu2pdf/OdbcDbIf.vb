@@ -60,7 +60,7 @@ Public Class OdbcDbIf
                 _con.Close()
             End If
         Catch ex As Exception
-            Throw New Exception("Disconnect Error", ex)
+            'Throw New Exception("Disconnect Error", ex)
         End Try
     End Sub
 
