@@ -1368,12 +1368,14 @@ Public Class Form1
                         sw.Close()
                         ProgressBar1.Visible = False
                     Catch e1 As Exception
-
+                        f1.Close()
+                        f1.Dispose()
+                        ProgressBar1.Visible = False
                     End Try
 
                     f1.Close()
                     f1.Dispose()
-
+                    ProgressBar1.Visible = False
                 End If
             Else
                 MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
@@ -1974,7 +1976,9 @@ Public Class Form1
                         f1.Dispose()
 
                     Catch e1 As Exception
-
+                        ProgressBar1.Visible = False
+                        f1.Close()
+                        f1.Dispose()
                     End Try
 
 
@@ -2221,12 +2225,14 @@ Public Class Form1
                         ProgressBar2.Visible = False
 
                     Catch e1 As Exception
-
+                        f1.Close()
+                        f1.Dispose()
+                        ProgressBar2.Visible = False
                     End Try
 
                     f1.Close()
                     f1.Dispose()
-
+                    ProgressBar2.Visible = False
                 End If
             Else
                 MessageBox.Show("未入力のデータはありません", "警告", MessageBoxButtons.OK)
