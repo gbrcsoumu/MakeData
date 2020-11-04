@@ -1961,6 +1961,12 @@ Public Class Form1
                             End If
                             Application.DoEvents()
                         Next
+
+                        Me.TextBox_FileLIst2.Text += "変換終了" + vbCrLf
+                        Me.TextBox_FileLIst2.SelectionStart = Me.TextBox_FileLIst2.Text.Length
+                        Me.TextBox_FileLIst2.Focus()
+                        Me.TextBox_FileLIst2.ScrollToCaret()
+
                         db.Disconnect()
 
                         ' Shift-Jisでファイルを作成
