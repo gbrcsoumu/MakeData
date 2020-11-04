@@ -1279,7 +1279,7 @@ Public Class Form1
 
                     TextBox_FileLIst2.Text = ""
                     ProgressBar1.Minimum = 0
-                    ProgressBar1.Maximum = Count
+                    ProgressBar1.Maximum = n
                     ProgressBar1.Visible = True
 
                     Debug.Print("OK")
@@ -1873,7 +1873,7 @@ Public Class Form1
 
 
                     ProgressBar1.Minimum = 0
-                    ProgressBar1.Maximum = Count
+                    ProgressBar1.Maximum = n
                     ProgressBar1.Visible = True
 
                     TextBox_FileLIst2.Text = ""
