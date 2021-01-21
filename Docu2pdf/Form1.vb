@@ -96,7 +96,7 @@ Public Class Form1
         End If
 
         ' ファイルメーカーサーバーのIPアドレス情報を読み込む
-        Dim text As String
+        Dim text As String = ""
         Try
             Dim sr As New StreamReader("c:\ファイル情報設定ファイル\HostIP.txt", System.Text.Encoding.GetEncoding("utf-8"))
             text = sr.ReadLine
