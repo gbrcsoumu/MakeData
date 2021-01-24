@@ -13,6 +13,7 @@
             Me.Label1.Text = "ただいまファイルの検索中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
         End If
 
-        Me.CenterToScreen()
+        'Me.CenterToScreen()
+        Me.CenterToParent()
     End Sub
 End Class

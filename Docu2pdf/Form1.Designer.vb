@@ -97,6 +97,8 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
+        Me.成績書OnlyCheckBox = New System.Windows.Forms.CheckBox()
+        Me.スキャンデータOnlyCheckBox = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -118,8 +120,8 @@ Partial Class Form1
         'TextBox_FolderName1
         '
         Me.TextBox_FolderName1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName1.Location = New System.Drawing.Point(97, 69)
-        Me.TextBox_FolderName1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox_FolderName1.Location = New System.Drawing.Point(97, 90)
+        Me.TextBox_FolderName1.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FolderName1.Multiline = True
         Me.TextBox_FolderName1.Name = "TextBox_FolderName1"
         Me.TextBox_FolderName1.Size = New System.Drawing.Size(812, 23)
@@ -138,7 +140,7 @@ Partial Class Form1
         'ProgressBar1
         '
         Me.ProgressBar1.Location = New System.Drawing.Point(10, 401)
-        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar1.Name = "ProgressBar1"
         Me.ProgressBar1.Size = New System.Drawing.Size(896, 18)
         Me.ProgressBar1.TabIndex = 5
@@ -420,6 +422,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.成績書OnlyCheckBox)
         Me.TabPage1.Controls.Add(Me.xdwFileRadioButton)
         Me.TabPage1.Controls.Add(Me.xdwFolderRadioButton)
         Me.TabPage1.Controls.Add(Me.Label10)
@@ -445,7 +448,7 @@ Partial Class Form1
         Me.TabPage1.Controls.Add(Me.Select_Read_Folder_Button)
         Me.TabPage1.Location = New System.Drawing.Point(4, 29)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage1.Size = New System.Drawing.Size(939, 529)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "　［　報告書ファイルを登録　］　"
@@ -570,7 +573,7 @@ Partial Class Form1
         'FolderSaveButton1
         '
         Me.FolderSaveButton1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderSaveButton1.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton1.Location = New System.Drawing.Point(9, 90)
         Me.FolderSaveButton1.Name = "FolderSaveButton1"
         Me.FolderSaveButton1.Size = New System.Drawing.Size(83, 23)
         Me.FolderSaveButton1.TabIndex = 16
@@ -648,14 +651,15 @@ Partial Class Form1
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 96)
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 118)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(900, 300)
+        Me.DataGridView1.Size = New System.Drawing.Size(900, 278)
         Me.DataGridView1.TabIndex = 8
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.スキャンデータOnlyCheckBox)
         Me.TabPage3.Controls.Add(Me.Label14)
         Me.TabPage3.Controls.Add(Me.pdfFileRadioButton)
         Me.TabPage3.Controls.Add(Me.pdfFolderRadioButton)
@@ -678,7 +682,7 @@ Partial Class Form1
         Me.TabPage3.Controls.Add(Me.Select_Read_Folder_Button2)
         Me.TabPage3.Location = New System.Drawing.Point(4, 29)
         Me.TabPage3.Name = "TabPage3"
-        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3, 3, 3, 3)
+        Me.TabPage3.Padding = New System.Windows.Forms.Padding(3)
         Me.TabPage3.Size = New System.Drawing.Size(939, 529)
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "　［　資料ファイルを登録　］　"
@@ -793,7 +797,7 @@ Partial Class Form1
         'FolderSaveButton2
         '
         Me.FolderSaveButton2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.FolderSaveButton2.Location = New System.Drawing.Point(9, 69)
+        Me.FolderSaveButton2.Location = New System.Drawing.Point(9, 89)
         Me.FolderSaveButton2.Name = "FolderSaveButton2"
         Me.FolderSaveButton2.Size = New System.Drawing.Size(83, 23)
         Me.FolderSaveButton2.TabIndex = 27
@@ -852,17 +856,17 @@ Partial Class Form1
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(9, 96)
+        Me.DataGridView2.Location = New System.Drawing.Point(9, 117)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 21
-        Me.DataGridView2.Size = New System.Drawing.Size(900, 300)
+        Me.DataGridView2.Size = New System.Drawing.Size(900, 279)
         Me.DataGridView2.TabIndex = 19
         '
         'TextBox_FolderName2
         '
         Me.TextBox_FolderName2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.TextBox_FolderName2.Location = New System.Drawing.Point(97, 69)
-        Me.TextBox_FolderName2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.TextBox_FolderName2.Location = New System.Drawing.Point(97, 89)
+        Me.TextBox_FolderName2.Margin = New System.Windows.Forms.Padding(2)
         Me.TextBox_FolderName2.Multiline = True
         Me.TextBox_FolderName2.Name = "TextBox_FolderName2"
         Me.TextBox_FolderName2.Size = New System.Drawing.Size(812, 23)
@@ -871,7 +875,7 @@ Partial Class Form1
         'ProgressBar2
         '
         Me.ProgressBar2.Location = New System.Drawing.Point(10, 401)
-        Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.ProgressBar2.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBar2.Name = "ProgressBar2"
         Me.ProgressBar2.Size = New System.Drawing.Size(896, 18)
         Me.ProgressBar2.TabIndex = 18
@@ -944,6 +948,28 @@ Partial Class Form1
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
         '
+        '成績書OnlyCheckBox
+        '
+        Me.成績書OnlyCheckBox.AutoSize = True
+        Me.成績書OnlyCheckBox.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.成績書OnlyCheckBox.Location = New System.Drawing.Point(411, 69)
+        Me.成績書OnlyCheckBox.Name = "成績書OnlyCheckBox"
+        Me.成績書OnlyCheckBox.Size = New System.Drawing.Size(171, 16)
+        Me.成績書OnlyCheckBox.TabIndex = 33
+        Me.成績書OnlyCheckBox.Text = """成績書""フォルダーのみを検索"
+        Me.成績書OnlyCheckBox.UseVisualStyleBackColor = True
+        '
+        'スキャンデータOnlyCheckBox
+        '
+        Me.スキャンデータOnlyCheckBox.AutoSize = True
+        Me.スキャンデータOnlyCheckBox.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.スキャンデータOnlyCheckBox.Location = New System.Drawing.Point(409, 68)
+        Me.スキャンデータOnlyCheckBox.Name = "スキャンデータOnlyCheckBox"
+        Me.スキャンデータOnlyCheckBox.Size = New System.Drawing.Size(199, 16)
+        Me.スキャンデータOnlyCheckBox.TabIndex = 38
+        Me.スキャンデータOnlyCheckBox.Text = """スキャンデータ""フォルダーのみを検索"
+        Me.スキャンデータOnlyCheckBox.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 12.0!)
@@ -955,7 +981,7 @@ Partial Class Form1
         Me.Controls.Add(Me.TextBox_FileMakerServer)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TabControl1)
-        Me.Margin = New System.Windows.Forms.Padding(2, 2, 2, 2)
+        Me.Margin = New System.Windows.Forms.Padding(2)
         Me.Name = "Form1"
         Me.Text = "Make Data v1.0"
         Me.TabControl1.ResumeLayout(False)
@@ -1046,4 +1072,6 @@ Partial Class Form1
     Friend WithEvents Label12 As Label
     Friend WithEvents Label13 As Label
     Friend WithEvents Label14 As Label
+    Friend WithEvents 成績書OnlyCheckBox As CheckBox
+    Friend WithEvents スキャンデータOnlyCheckBox As CheckBox
 End Class

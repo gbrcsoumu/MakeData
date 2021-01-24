@@ -197,6 +197,9 @@ Public Class Form1
         pdfFolderRadioButton.Checked = True
         pdfFileRadioButton.Checked = False
 
+        成績書OnlyCheckBox.Checked = True
+        スキャンデータOnlyCheckBox.Checked = True
+
         Me.Width = 1020
         Me.Height = 720
         Me.CenterToScreen()                 ' Formをモニターの中央に表示
@@ -277,6 +280,7 @@ Public Class Form1
                 f1.title = "ファイルの検索"
                 f1.message = "ただいまファイルの検索中！" + vbCrLf + vbCrLf + vbCrLf + "しばらくお待ちください。"
                 f1.Show()
+
                 Application.DoEvents()
 
 
@@ -285,17 +289,36 @@ Public Class Form1
                 Dim WildCard1() As String
                 'Dim Count As Integer = 0
                 Dim ff()() As String    ', flag() As Boolean
+                Dim ff2() As String, ff3() As String
+                Dim ROnly As Boolean = 成績書OnlyCheckBox.Checked
 
                 ReDim WildCard1(1), ff(1)
+
                 WildCard1(0) = "*.xdw"
                 WildCard1(1) = "*.xbd"
-
 
                 Dim nn As Integer = 0
 
                 For i As Integer = 0 To WildCard1.Length - 1
-                    ff(i) = System.IO.Directory.GetFiles(DcuPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    ff2 = System.IO.Directory.GetFiles(DcuPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    If ROnly Then
+                        ReDim ff3(ff2.Length - 1)
+                        Dim k As Integer = 0
+                        For j As Integer = 0 To ff2.Length - 1
+
+                            If ff2(j).Contains("\成績書\") Then
+                                ff3(k) = ff2(j)
+                                k += 1
+                            End If
+
+                        Next
+                        ReDim Preserve ff3(k - 1)
+                        ff(i) = ff3
+                    Else
+                        ff(i) = ff2
+                    End If
                     nn += ff(i).Length
+                    Application.DoEvents()
                 Next
 
                 ReDim filename(nn - 1)
@@ -455,7 +478,7 @@ Public Class Form1
                                 row1 = {Count.ToString, fname, filename(i)}
                                 DataGridView1.Rows.Add(row1)
 
-                                Sql_Command = "SELECT ""FilePath"",""PdfPath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
+                                Sql_Command = "Select ""FilePath"",""PdfPath"",""入力"" FROM """ + Table + """ WHERE (""ファイル名"" = '" & fname.Replace("'", "''") & "')"
                                 tb = db.ExecuteSql(Sql_Command)
                                 Dim n2 As Integer = tb.Rows.Count
                                 Dim st1 As String
@@ -536,6 +559,8 @@ Public Class Form1
 
                 'Dim Count As Integer = 0
                 Dim ff()() As String
+                Dim ff2() As String, ff3() As String
+                Dim ROnly As Boolean = スキャンデータOnlyCheckBox.Checked
 
                 ReDim WildCard1(0), ff(0)
                 WildCard1(0) = "*.pdf"
@@ -543,8 +568,25 @@ Public Class Form1
                 Dim nn As Integer = 0
 
                 For i As Integer = 0 To WildCard1.Length - 1
-                    ff(i) = System.IO.Directory.GetFiles(PdfPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    ff2 = System.IO.Directory.GetFiles(PdfPath, WildCard1(i), System.IO.SearchOption.AllDirectories)
+                    If ROnly Then
+                        ReDim ff3(ff2.Length - 1)
+                        Dim k As Integer = 0
+                        For j As Integer = 0 To ff2.Length - 1
+
+                            If ff2(j).Contains("\スキャンデータ\") Then
+                                ff3(k) = ff2(j)
+                                k += 1
+                            End If
+
+                        Next
+                        ReDim Preserve ff3(k - 1)
+                        ff(i) = ff3
+                    Else
+                        ff(i) = ff2
+                    End If
                     nn += ff(i).Length
+                    Application.DoEvents()
                 Next
 
                 ReDim filename(nn - 1)
@@ -1215,7 +1257,9 @@ Public Class Form1
         If TextBox_FolderName1.Text <> "" Then
             fbd.SelectedPath = TextBox_FolderName1.Text
         Else
-            fbd.SelectedPath = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から"
+            'fbd.SelectedPath = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から"
+            'fbd.SelectedPath = "\\192.168.37.242\fire\耐火構造\依頼試験\案件フォルダ【取扱注意】元データのため削除禁止\2015年度"
+            fbd.SelectedPath = "W:\耐火構造\依頼試験\案件フォルダ【取扱注意】元データのため削除禁止\2015年度"
         End If
 
         'ユーザーが新しいフォルダを作成できるようにする
@@ -2338,7 +2382,9 @@ Public Class Form1
         If TextBox_FolderName1.Text <> "" Then
             ofd.InitialDirectory = TextBox_FolderName1.Text
         Else
-            ofd.InitialDirectory = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から"
+            'ofd.InitialDirectory = "\\192.168.0.173\disk1\報告書（耐火）＿業務課から"
+            ofd.InitialDirectory = "W:\耐火構造\依頼試験\案件フォルダ【取扱注意】元データのため削除禁止\2015年度"
+
         End If
         '[ファイルの種類]に表示される選択肢を指定する
         '指定しないとすべてのファイルが表示される

@@ -1,5 +1,5 @@
 ﻿Module Module1
-    Public Const FileMakerServer1 As String = "192.168.37.231"
+    Public Const FileMakerServer1 As String = "192.168.37.228"
     Public FileMakerServer As String
     Public Const Table = "ファイル情報"
     Public Const Table2 = "PC情報"
