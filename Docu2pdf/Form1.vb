@@ -1140,9 +1140,13 @@ Public Class Form1
         Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
 
         ' アクセス権限をEveryoneに対しフルコントロール許可
-        Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-        fileSec.AddAccessRule(accessRule)
-        fileInfo.SetAccessControl(fileSec)
+        Try
+            Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+            fileSec.AddAccessRule(accessRule)
+            fileInfo.SetAccessControl(fileSec)
+        Catch ex As Exception
+
+        End Try
 
         Dim Handle As Xdwapi.XDW_DOCUMENT_HANDLE = New Xdwapi.XDW_DOCUMENT_HANDLE()
         Dim mode As Xdwapi.XDW_OPEN_MODE_EX = New Xdwapi.XDW_OPEN_MODE_EX()
@@ -1162,70 +1166,76 @@ Public Class Form1
 
 
             If page >= 1 And page <= end_page Then
-                Dim info2 As Xdwapi.XDW_PAGE_INFO_EX = New Xdwapi.XDW_PAGE_INFO_EX()
 
-                Dim result As Integer = Xdwapi.XDW_GetPageInformation(Handle, page, info2)
+                Try
+                    Dim info2 As Xdwapi.XDW_PAGE_INFO_EX = New Xdwapi.XDW_PAGE_INFO_EX()
 
-                If result >= 0 Then
-                    If info2.PageType = Xdwapi.XDW_PGT_FROMAPPL Or info2.PageType = Xdwapi.XDW_PGT_FROMIMAGE Then
-                        Dim text1 As String
-                        Dim nDataSize As Integer = 0
-                        Dim reserved = Nothing
-                        Dim result2 As Integer = Xdwapi.XDW_GetPageTextToMemory(Handle, page, text1)
+                    Dim result As Integer = Xdwapi.XDW_GetPageInformation(Handle, page, info2)
 
-                        Xdwapi.XDW_CloseDocumentHandle(Handle)  ' ファイルを閉じる
+                    If result >= 0 Then
+                        If info2.PageType = Xdwapi.XDW_PGT_FROMAPPL Or info2.PageType = Xdwapi.XDW_PGT_FROMIMAGE Then
+                            Dim text1 As String
+                            Dim nDataSize As Integer = 0
+                            Dim reserved = Nothing
+                            Dim result2 As Integer = Xdwapi.XDW_GetPageTextToMemory(Handle, page, text1)
 
-                        If result2 >= 0 Then
-                            If text1 <> Nothing Then
-                                ' テキストが正しく読めた場合
-                                DocuToText = "0" + text1
+                            Xdwapi.XDW_CloseDocumentHandle(Handle)  ' ファイルを閉じる
 
-                            Else
-                                ' テキストが読めなかった場合はOCR処理をしてテキストを抽出する。
-                                With mode
-                                    .Option = Xdwapi.XDW_OPEN_UPDATE    ' 編集モード
-                                    .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
-                                End With
+                            If result2 >= 0 Then
+                                If text1 <> Nothing Then
+                                    ' テキストが正しく読めた場合
+                                    DocuToText = "0" + text1
 
-                                api_result = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)     ' 再度ファイルを開く
-
-                                'Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
-                                Dim result3 As Integer = 0
-                                If result3 >= 0 Then
-                                    Dim ocr_optoin As Xdwapi.XDW_OCR_OPTION_V7 = New Xdwapi.XDW_OCR_OPTION_V7
-                                    With ocr_optoin
-                                        .NoiseReduction = Xdwapi.XDW_REDUCENOISE_NORMAL
-                                        .Language = Xdwapi.XDW_OCR_LANGUAGE_AUTO
-                                        .InsertSpaceCharacter = 0
-                                        .Form = Xdwapi.XDW_OCR_FORM_AUTO
-                                        .Column = Xdwapi.XDW_OCR_COLUMN_AUTO
-                                        .EngineLevel = Xdwapi.XDW_OCR_ENGINE_LEVEL_ACCURACY
+                                Else
+                                    ' テキストが読めなかった場合はOCR処理をしてテキストを抽出する。
+                                    With mode
+                                        .Option = Xdwapi.XDW_OPEN_UPDATE    ' 編集モード
+                                        .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
                                     End With
-                                    result3 = Xdwapi.XDW_ApplyOcr(Handle, page, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
-                                    System.Threading.Thread.Sleep(1000)
-                                    OcrFlag = True
-                                    If result3 >= 0 Then
 
-                                        result3 = -1
-                                        result3 = Xdwapi.XDW_GetPageTextToMemory(Handle, page, text1)
-                                    End If
+                                    api_result = Xdwapi.XDW_OpenDocumentHandle(file1, Handle, mode)     ' 再度ファイルを開く
 
+                                    'Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
+                                    Dim result3 As Integer = 0
                                     If result3 >= 0 Then
-                                        If text1 <> Nothing Then
-                                            DocuToText = "1" + text1
+                                        Dim ocr_optoin As Xdwapi.XDW_OCR_OPTION_V7 = New Xdwapi.XDW_OCR_OPTION_V7
+                                        With ocr_optoin
+                                            .NoiseReduction = Xdwapi.XDW_REDUCENOISE_NORMAL
+                                            .Language = Xdwapi.XDW_OCR_LANGUAGE_AUTO
+                                            .InsertSpaceCharacter = 0
+                                            .Form = Xdwapi.XDW_OCR_FORM_AUTO
+                                            .Column = Xdwapi.XDW_OCR_COLUMN_AUTO
+                                            .EngineLevel = Xdwapi.XDW_OCR_ENGINE_LEVEL_ACCURACY
+                                        End With
+                                        result3 = Xdwapi.XDW_ApplyOcr(Handle, page, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
+                                        System.Threading.Thread.Sleep(1000)
+                                        OcrFlag = True
+                                        If result3 >= 0 Then
+
+                                            result3 = -1
+                                            result3 = Xdwapi.XDW_GetPageTextToMemory(Handle, page, text1)
+                                        End If
+
+                                        If result3 >= 0 Then
+                                            If text1 <> Nothing Then
+                                                DocuToText = "1" + text1
+                                            End If
                                         End If
                                     End If
+                                    Xdwapi.XDW_CloseDocumentHandle(Handle)
+                                    'Xdwapi.XDW_Finalize()
+
                                 End If
-                                Xdwapi.XDW_CloseDocumentHandle(Handle)
-                                'Xdwapi.XDW_Finalize()
 
                             End If
 
                         End If
 
                     End If
+                Catch ex As Exception
 
-                End If
+                End Try
+
 
             End If
 
@@ -1943,18 +1953,23 @@ Public Class Form1
 
                                 Dim PdfPath = FolderPath + "\" + PdfFilename
 
-                                Dim fileInfo As New FileInfo(FolderPath)
-                                Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
+                                Try
+                                    Dim fileInfo As New FileInfo(FolderPath)
+                                    Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
 
-                                ' アクセス権限をEveryoneに対しフルコントロール許可
-                                Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-                                fileSec.AddAccessRule(accessRule)
-                                fileInfo.SetAccessControl(fileSec)
+                                    ' アクセス権限をEveryoneに対しフルコントロール許可
+                                    Dim accessRule As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+                                    fileSec.AddAccessRule(accessRule)
+                                    fileInfo.SetAccessControl(fileSec)
 
-                                ' ファイルの読み取り専用属性を削除
-                                If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
-                                    fileInfo.Attributes = FileAttributes.Normal
-                                End If
+                                    ' ファイルの読み取り専用属性を削除
+                                    If (fileInfo.Attributes And FileAttributes.ReadOnly) = FileAttributes.ReadOnly Then
+                                        fileInfo.Attributes = FileAttributes.Normal
+                                    End If
+                                Catch ex As Exception
+
+                                End Try
+
 
                                 Dim Ok As Integer = -1
                                 Dim AddText As String
