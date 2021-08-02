@@ -198,7 +198,9 @@ Public Class Form1
         pdfFileRadioButton.Checked = False
 
         成績書OnlyCheckBox.Checked = True
+        FolderNameCheckBox1.Checked = True
         スキャンデータOnlyCheckBox.Checked = True
+        FolderNameCheckBox2.Checked = True
 
         Me.Width = 1020
         Me.Height = 720
@@ -382,7 +384,7 @@ Public Class Form1
             .Rows.Clear()
             .Columns.Clear()
             .Width = 920
-            .Height = 300
+            .Height = 256
             .ColumnCount = 3
             'Col_n = .ColumnCount
             .ColumnHeadersVisible = True
@@ -466,6 +468,15 @@ Public Class Form1
 
                     For i As Integer = 0 To n - 1
                         If flag(i) = False Then
+
+                            For k As Integer = 0 To Ndrive.GetLength(0) - 1
+                                filename(i) = filename(i).Replace(Ndrive(k, 0), Ndrive(k, 1))
+                            Next
+                            'filename(i) = filename(i).Replace("W:\", "\\192.168.37.242\fire\")
+                            'filename(i) = filename(i).Replace("X:\", "\\192.168.37.240\fire\")
+                            'filename(i) = filename(i).Replace("V:\", "\\192.168.37.242\fire\")
+                            'filename(i) = filename(i).Replace("Y:\", "\\192.168.0.173\fire\")
+
                             Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
 
                             Dim fname As String = System.IO.Path.GetFileName(filename(i))
@@ -814,7 +825,7 @@ Public Class Form1
             .Rows.Clear()
             .Columns.Clear()
             .Width = 900
-            .Height = 300
+            .Height = 262
             .ColumnCount = 3
             .ColumnHeadersVisible = True
             .ColumnHeadersHeight = 18
@@ -904,6 +915,11 @@ Public Class Form1
 
                     For i As Integer = 0 To n - 1
                         If flag(i) = False Then
+
+                            For k As Integer = 0 To Ndrive.GetLength(0) - 1
+                                filename(i) = filename(i).Replace(Ndrive(k, 0), Ndrive(k, 1))
+                            Next
+
                             Dim f As String = System.IO.Path.GetFileNameWithoutExtension(filename(i))
 
                             Dim fname As String = System.IO.Path.GetFileName(filename(i))
@@ -1134,10 +1150,10 @@ Public Class Form1
 
     Private Function DocuToText(ByVal file1 As String, ByVal page As Integer) As String
 
-
         Dim FolderPath As String = Path.GetDirectoryName(file1)
         Dim fileInfo As New FileInfo(FolderPath)
         Dim fileSec As FileSecurity = fileInfo.GetAccessControl()
+
 
         ' アクセス権限をEveryoneに対しフルコントロール許可
         Try
@@ -1300,7 +1316,7 @@ Public Class Form1
             Dim db As New OdbcDbIf
             Dim tb As DataTable
             Dim Sql_Command As String
-
+            Dim ROnly = 成績書OnlyCheckBox.Checked And FolderNameCheckBox1.Checked
 
             Dim n As Integer = DataGridView1.RowCount - 1
             Dim Count As Integer = 0
@@ -1352,17 +1368,36 @@ Public Class Form1
 
                                 Dim fname As String = DataGridView1.Rows(i).Cells(1).Value
                                 Dim filename1 As String = DataGridView1.Rows(i).Cells(2).Value
+                                Dim FolderPath As String = Path.GetDirectoryName(filename1)
 
-                                Dim text1 As String = DocuToText(filename1, 1)
+                                Dim Path1 As String, name1 As String
+                                Dim text1 As String, text2 As String
+                                Dim testname As String
+                                Dim username As String
+
+                                text1 = DocuToText(filename1, 1)
                                 text1 = text1.Replace(" ", "").Replace("　", "")
-                                Dim text2 As String = DocuToText(filename1, 2)
+                                text2 = DocuToText(filename1, 2)
                                 text2 = text2.Replace(" ", "").Replace("　", "")
 
-                                Dim testname As String = DataFromText(text1, "試験項目")
-                                'Dim testno As String = DataFromText(text1, "試験番号")
-                                Dim username As String = DataFromText(text2, "依頼者名")
-                                If username = "" Then
-                                    username = DataFromText(text1, "依頼者名")
+                                If ROnly Then
+                                    Path1 = FolderPath.Replace("\成績書", "")
+                                    name1 = Path1.Substring(Path1.LastIndexOf("\") + 1, Path1.Length - Path1.LastIndexOf("\") - 1)
+                                    testname = name1
+                                    username = name1
+                                Else
+
+                                    'text1 = DocuToText(filename1, 1)
+                                    'text1 = text1.Replace(" ", "").Replace("　", "")
+                                    'text2 = DocuToText(filename1, 2)
+                                    'text2 = text2.Replace(" ", "").Replace("　", "")
+
+                                    testname = DataFromText(text1, "試験項目")
+                                    'Dim testno As String = DataFromText(text1, "試験番号")
+                                    username = DataFromText(text2, "依頼者名")
+                                    If username = "" Then
+                                        username = DataFromText(text1, "依頼者名")
+                                    End If
                                 End If
 
                                 Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
@@ -2074,7 +2109,7 @@ Public Class Form1
             Dim db As New OdbcDbIf
             Dim tb As DataTable
             Dim Sql_Command As String
-
+            Dim ROnly = スキャンデータOnlyCheckBox.Checked And FolderNameCheckBox2.Checked
 
             Dim n As Integer = DataGridView2.RowCount - 1
             Dim Count As Integer = 0
@@ -2106,7 +2141,7 @@ Public Class Form1
                     Application.DoEvents()
 
                     ProgressBar2.Minimum = 0
-                    ProgressBar2.Maximum = Count
+                    ProgressBar2.Maximum = n
                     ProgressBar2.Visible = True
 
                     TextBox_FileLIst3.Text = ""
@@ -2115,156 +2150,254 @@ Public Class Form1
                         FileMakerServer = TextBox_FileMakerServer.Text
                         db.Connect()
 
-                        If System.IO.File.Exists(CmdFile) = False Then
-                            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
-                        End If
-                        Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
-                        sw.WriteLine("1")  ' コマンド番号
+                        'If System.IO.File.Exists(CmdFile) = False Then
+                        '    System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName(CmdFile))
+                        'End If
+                        'Dim sw As New StreamWriter(CmdFile, False, System.Text.Encoding.GetEncoding("utf-8"))
+                        'sw.WriteLine("1")  ' コマンド番号
 
+                        Dim ii As Integer = 0
                         For i As Integer = 0 To n - 1
                             If DataGridView2.Rows(i).Cells(4).Value = True Then
 
                                 Dim fname As String = DataGridView2.Rows(i).Cells(1).Value
                                 Dim filename1 As String = DataGridView2.Rows(i).Cells(2).Value
-                                Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
-                                Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
-                                tb = db.ExecuteSql(Sql_Command)
+
+                                Dim FolderPath As String = Path.GetDirectoryName(filename1)
+
+                                Dim Path0 As String, name1 As String
+                                Dim text1 As String, text2 As String
+                                Dim testname As String
+                                Dim username As String
+
+                                Dim ocr_flag1 As Boolean = False
+                                Dim input_ok As Boolean = False
+
+                                'Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+                                'Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+                                'tb = db.ExecuteSql(Sql_Command)
 
                                 Dim fname1 As String = System.IO.Path.GetFileNameWithoutExtension(fname)
-                                Dim filekind As String = fname1.Substring(fname1.Length - 1, 1)
+                                Dim filekind As String = ""
 
 
-                                Dim filename2 As String = TestNo(fname) ' ファイル名から試験番号を抽出し、データベースに入力
-                                If filename2 <> "" Then
-                                    Dim kind2 As String = filename2.Substring(0, 2)
-                                    Dim year2 As String = filename2.Substring(2, 2)
-                                    Dim no2 As String = filename2.Substring(4, 4)
-                                    Dim eda2 As String = ""
-                                    If filename2.Contains("(") = True Then
-                                        eda2 = filename2.Substring(9, 2)
-                                    End If
-                                    Sql_Command = "UPDATE """ + Table + """ SET ""分類2"" = '" + kind2 + "',""年度2"" = '" + year2 + "',""番号2"" = '" + no2
-                                    Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename2 + "'"
-                                    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                Dim filename2 As String ' ファイル名から試験番号を抽出し、データベースに入力
+                                'If filename2 <> "" Then
+                                '    Dim kind2 As String = filename2.Substring(0, 2)
+                                '    Dim year2 As String = filename2.Substring(2, 2)
+                                '    Dim no2 As String = filename2.Substring(4, 4)
+                                '    Dim eda2 As String = ""
+                                '    If filename2.Contains("(") = True Then
+                                '        eda2 = filename2.Substring(9, 2)
+                                '    End If
+                                '    Sql_Command = "UPDATE """ + Table + """ SET ""分類2"" = '" + kind2 + "',""年度2"" = '" + year2 + "',""番号2"" = '" + no2
+                                '    Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename2 + "'"
+                                '    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                '    tb = db.ExecuteSql(Sql_Command)
+                                'End If
+
+                                If ROnly Then
+
+                                    Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+                                    Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
                                     tb = db.ExecuteSql(Sql_Command)
-                                End If
+                                    input_ok = True
 
-                                If fname.Contains("_") = True Then ' ファイル名から依頼者名と試験項目（または資料名）を抽出し、データベースに入力
-                                    Dim p1 As Integer = fname.IndexOf("_", 0)
-                                    Dim p2 As Integer = fname.IndexOf("_", p1 + 1)
-                                    Dim p3 As Integer = fname.IndexOf("_", p2 + 1)
-                                    Dim username As String = fname.Substring(p1 + 1, p2 - p1 - 1)
-                                    Dim testname As String = fname.Substring(p2 + 1, p3 - p2 - 1)
-                                    Sql_Command = "UPDATE """ + Table + """ SET ""試験項目2"" = '" + testname + "',""依頼者名2"" = '" + username + "'"
-                                    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
-                                    tb = db.ExecuteSql(Sql_Command)
-                                End If
+                                    Path0 = FolderPath.Replace("\スキャンデータ", "")
+                                    name1 = Path0.Substring(Path0.LastIndexOf("\") + 1, Path0.Length - Path0.LastIndexOf("\") - 1)
 
-                                ' 資料１（依頼書）の場合はPDFをXDWに変換し、OCRをかけてテキストを抽出する。資料２は処理しない
-                                If filekind = "1" Then
-                                    Dim myDodumentFolder = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal)
-                                    Dim myUserFolder = Path.GetDirectoryName(myDodumentFolder)
-
-                                    ' XDWファイルは c:\user\(ユーザーフォルダー)\PdfToXdwフォルダーに保存する。
-                                    Dim myWdxFolder = myUserFolder + "\PdfToXdw"
-                                    If System.IO.Directory.Exists(myWdxFolder) = False Then     ' ディレクトリーが存在しない場合は作成
-                                        System.IO.Directory.CreateDirectory(myWdxFolder)
-                                    End If
-
-                                    Dim path1 As String = filename1
-                                    Dim path2 As String = myWdxFolder + "\" + fname1 + ".xdw"
-
-                                    If System.IO.File.Exists(path2) = False Then     ' すでに同じ.xdwファイルが存在している場合はそれを利用する。
-                                        'System.IO.File.Delete(path2)
-
-
-                                        Dim FolderPath1 As String = Path.GetDirectoryName(path1)
-                                        Dim fileInfo1 As New FileInfo(FolderPath1)
-                                        Dim fileSec1 As FileSecurity = fileInfo1.GetAccessControl()
-
-                                        ' アクセス権限をEveryoneに対しフルコントロール許可
-                                        Dim accessRule1 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-                                        fileSec1.AddAccessRule(accessRule1)
-                                        fileInfo1.SetAccessControl(fileSec1)
-
-
-                                        Dim FolderPath2 As String = Path.GetDirectoryName(path1)
-                                        Dim fileInfo2 As New FileInfo(FolderPath2)
-                                        Dim fileSec2 As FileSecurity = fileInfo2.GetAccessControl()
-
-                                        ' アクセス権限をEveryoneに対しフルコントロール許可
-                                        Dim accessRule2 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
-                                        fileSec2.AddAccessRule(accessRule2)
-                                        fileInfo2.SetAccessControl(fileSec2)
-
-                                        ' PDFからXDWを作成
-                                        Dim r1 As Integer = Xdwapi.XDW_CreateXdwFromImagePdfFile(path1, path2)
-
-                                    End If
-
-
-                                    Dim text1 As String
-                                    Dim Handle As Xdwapi.XDW_DOCUMENT_HANDLE = New Xdwapi.XDW_DOCUMENT_HANDLE()
-                                    Dim mode As Xdwapi.XDW_OPEN_MODE_EX = New Xdwapi.XDW_OPEN_MODE_EX()
-                                    With mode
-                                        .Option = Xdwapi.XDW_OPEN_UPDATE    ' 編集モード
-                                        .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
-                                    End With
-                                    Dim api_result As Integer = Xdwapi.XDW_OpenDocumentHandle(path2, Handle, mode)
-
-                                    'api_result = Xdwapi.XDW_OpenDocumentHandle(path2, Handle, mode)     ' 再度ファイルを開く
-
-                                    'Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
-                                    Dim result3 As Integer = 0
-                                    If result3 >= 0 Then
-                                        Dim ocr_optoin As Xdwapi.XDW_OCR_OPTION_V7 = New Xdwapi.XDW_OCR_OPTION_V7
-                                        With ocr_optoin
-                                            .NoiseReduction = Xdwapi.XDW_REDUCENOISE_NORMAL
-                                            .Language = Xdwapi.XDW_OCR_LANGUAGE_AUTO
-                                            .InsertSpaceCharacter = 0
-                                            .Form = Xdwapi.XDW_OCR_FORM_AUTO
-                                            .Column = Xdwapi.XDW_OCR_COLUMN_AUTO
-                                            .EngineLevel = Xdwapi.XDW_OCR_ENGINE_LEVEL_STANDARD
-                                        End With
-                                        result3 = Xdwapi.XDW_ApplyOcr(Handle, 1, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
-                                        System.Threading.Thread.Sleep(1000)
-                                        OcrFlag = True
-                                        If result3 >= 0 Then
-
-                                            result3 = -1
-                                            result3 = Xdwapi.XDW_GetPageTextToMemory(Handle, 1, text1)
+                                    filename2 = TestNo(name1) ' ファイル名から試験番号を抽出し、データベースに入力
+                                    If filename2 <> "" Then
+                                        Dim kind2 As String = filename2.Substring(0, 2)
+                                        Dim year2 As String = filename2.Substring(2, 2)
+                                        Dim no2 As String = filename2.Substring(4, 4)
+                                        Dim eda2 As String = ""
+                                        If filename2.Contains("(") = True Then
+                                            eda2 = filename2.Substring(9, 2)
                                         End If
-
-                                        'If result3 >= 0 Then
-                                        '    If text1 <> Nothing Then
-                                        '        'DocuToText = "1" + text1
-                                        '    End If
-                                        'End If
-                                    End If
-                                    Xdwapi.XDW_CloseDocumentHandle(Handle)
-                                    'Xdwapi.XDW_Finalize()
-
-                                    If text1 <> Nothing Then
-                                        text1 = text1.Replace("'", "''").Replace(vbCrLf, "")
-                                        'text2 = text2.Replace("'", "''").Replace(vbCrLf, "")
-
-                                        Sql_Command = "UPDATE """ + Table + """ SET ""page1"" = '" + text1 + "'"
+                                        Sql_Command = "UPDATE """ + Table + """ SET ""分類2"" = '" + kind2 + "',""年度2"" = '" + year2 + "',""番号2"" = '" + no2
+                                        Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename2 + "'"
                                         Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
                                         tb = db.ExecuteSql(Sql_Command)
                                     End If
 
-                                    If System.IO.File.Exists(path2) = True Then     ' .xdwファイルを削除する。
-                                        System.IO.File.Delete(path2)
+
+                                    testname = name1
+                                    username = name1
+                                    Sql_Command = "UPDATE """ + Table + """ SET ""試験項目2"" = '" + testname + "',""依頼者名2"" = '" + username + "'"
+                                    Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                    tb = db.ExecuteSql(Sql_Command)
+
+                                    If fname1.Contains("申請書") Or fname1.Contains("依頼書") Then
+                                        ocr_flag1 = True
+                                    Else
+                                        ocr_flag1 = True
+                                    End If
+                                Else
+                                    fname1 = fname1.Trim
+                                    filekind = fname1.Substring(fname1.Length - 1, 1)
+                                    If CountChar(fname, "_") = 3 And IsNumeric(filekind) Then
+
+                                        Sql_Command = "INSERT INTO """ + Table + """ (""FilePath"",""ファイル名"",""入力"")"
+                                        Sql_Command += " VALUES ('" + filename1.Replace("'", "''") + "','" + fname.Replace("'", "''") + "','未読')"
+                                        tb = db.ExecuteSql(Sql_Command)
+                                        input_ok = True
+
+                                        filename2 = TestNo(fname) ' ファイル名から試験番号を抽出し、データベースに入力
+                                        If filename2 <> "" Then
+                                            Dim kind2 As String = filename2.Substring(0, 2)
+                                            Dim year2 As String = filename2.Substring(2, 2)
+                                            Dim no2 As String = filename2.Substring(4, 4)
+                                            Dim eda2 As String = ""
+                                            If filename2.Contains("(") = True Then
+                                                eda2 = filename2.Substring(9, 2)
+                                            End If
+                                            Sql_Command = "UPDATE """ + Table + """ SET ""分類2"" = '" + kind2 + "',""年度2"" = '" + year2 + "',""番号2"" = '" + no2
+                                            Sql_Command += "',""枝番2"" = '" + eda2 + "',""試験番号2"" = '" + filename2 + "'"
+                                            Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                            tb = db.ExecuteSql(Sql_Command)
+                                        End If
+
+                                        'If fname.Contains("_") = True Then ' ファイル名から依頼者名と試験項目（または資料名）を抽出し、データベースに入力
+                                        '    If CountChar(fname, "_") > 1 Then
+                                        '        filekind = fname1.Substring(fname1.Length - 1, 1)
+                                        '        If IsNumeric(filekind) Then
+                                        Dim p1 As Integer = fname.IndexOf("_", 0)
+                                        Dim p2 As Integer = fname.IndexOf("_", p1 + 1)
+                                        Dim p3 As Integer = fname.IndexOf("_", p2 + 1)
+                                        username = fname.Substring(p1 + 1, p2 - p1 - 1)
+                                        testname = fname.Substring(p2 + 1, p3 - p2 - 1)
+                                        Sql_Command = "UPDATE """ + Table + """ SET ""試験項目2"" = '" + testname + "',""依頼者名2"" = '" + username + "'"
+                                        Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                        tb = db.ExecuteSql(Sql_Command)
+                                        '        End If
+                                        '    End If
+                                        'End If
+                                        If filekind = "1" Then
+                                            ocr_flag1 = True
+                                        Else
+                                            ocr_flag1 = False
+                                        End If
                                     End If
 
+                                    ' 資料１（依頼書）の場合はPDFをXDWに変換し、OCRをかけてテキストを抽出する。資料２は処理しない
+                                    If ocr_flag1 Then
+                                        Dim myDodumentFolder = System.Environment.GetFolderPath(Environment.SpecialFolder.Personal)
+                                        Dim myUserFolder = Path.GetDirectoryName(myDodumentFolder)
+
+                                        ' XDWファイルは c:\user\(ユーザーフォルダー)\PdfToXdwフォルダーに保存する。
+                                        Dim myWdxFolder = myUserFolder + "\PdfToXdw"
+                                        If System.IO.Directory.Exists(myWdxFolder) = False Then     ' ディレクトリーが存在しない場合は作成
+                                            System.IO.Directory.CreateDirectory(myWdxFolder)
+                                        End If
+
+                                        Dim path1 As String = filename1
+                                        Dim path2 As String = myWdxFolder + "\" + fname1 + ".xdw"
+
+                                        If System.IO.File.Exists(path2) = False Then     ' すでに同じ.xdwファイルが存在している場合はそれを利用する。
+                                            'System.IO.File.Delete(path2)
+
+
+                                            Dim FolderPath1 As String = Path.GetDirectoryName(path1)
+                                            Dim fileInfo1 As New FileInfo(FolderPath1)
+                                            Dim fileSec1 As FileSecurity = fileInfo1.GetAccessControl()
+
+                                            'Try
+                                            '    ' アクセス権限をEveryoneに対しフルコントロール許可
+                                            '    Dim accessRule1 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+                                            '    fileSec1.AddAccessRule(accessRule1)
+                                            '    fileInfo1.SetAccessControl(fileSec1)
+                                            'Catch ex As Exception
+
+                                            'End Try
+
+
+
+                                            Dim FolderPath2 As String = Path.GetDirectoryName(path1)
+                                            Dim fileInfo2 As New FileInfo(FolderPath2)
+                                            Dim fileSec2 As FileSecurity = fileInfo2.GetAccessControl()
+
+                                            'Try
+                                            '    ' アクセス権限をEveryoneに対しフルコントロール許可
+                                            '    Dim accessRule2 As New FileSystemAccessRule("Everyone", FileSystemRights.FullControl, AccessControlType.Allow)
+                                            '    fileSec2.AddAccessRule(accessRule2)
+                                            '    fileInfo2.SetAccessControl(fileSec2)
+                                            'Catch ex As Exception
+
+                                            'End Try
+
+
+                                            ' PDFからXDWを作成
+                                            Dim r1 As Integer = Xdwapi.XDW_CreateXdwFromImagePdfFile(path1, path2)
+
+                                        End If
+
+
+                                        'Dim text1 As String
+                                        Dim Handle As Xdwapi.XDW_DOCUMENT_HANDLE = New Xdwapi.XDW_DOCUMENT_HANDLE()
+                                        Dim mode As Xdwapi.XDW_OPEN_MODE_EX = New Xdwapi.XDW_OPEN_MODE_EX()
+                                        With mode
+                                            .Option = Xdwapi.XDW_OPEN_UPDATE    ' 編集モード
+                                            .AuthMode = Xdwapi.XDW_AUTH_NODIALOGUE
+                                        End With
+                                        Dim api_result As Integer = Xdwapi.XDW_OpenDocumentHandle(path2, Handle, mode)
+
+                                        'api_result = Xdwapi.XDW_OpenDocumentHandle(path2, Handle, mode)     ' 再度ファイルを開く
+
+                                        'Dim result3 As Integer = Xdwapi.XDW_RotatePageAuto(Handle, page)    ' 横書きの場合は90度回
+                                        Dim result3 As Integer = 0
+                                        If result3 >= 0 Then
+                                            Dim ocr_optoin As Xdwapi.XDW_OCR_OPTION_V7 = New Xdwapi.XDW_OCR_OPTION_V7
+                                            With ocr_optoin
+                                                .NoiseReduction = Xdwapi.XDW_REDUCENOISE_NORMAL
+                                                .Language = Xdwapi.XDW_OCR_LANGUAGE_AUTO
+                                                .InsertSpaceCharacter = 0
+                                                .Form = Xdwapi.XDW_OCR_FORM_AUTO
+                                                .Column = Xdwapi.XDW_OCR_COLUMN_AUTO
+                                                .EngineLevel = Xdwapi.XDW_OCR_ENGINE_LEVEL_STANDARD
+                                            End With
+                                            result3 = Xdwapi.XDW_ApplyOcr(Handle, 1, Xdwapi.XDW_OCR_ENGINE_DEFAULT, ocr_optoin)
+                                            System.Threading.Thread.Sleep(1000)
+                                            OcrFlag = True
+                                            If result3 >= 0 Then
+
+                                                result3 = -1
+                                                result3 = Xdwapi.XDW_GetPageTextToMemory(Handle, 1, text1)
+                                            End If
+
+                                            'If result3 >= 0 Then
+                                            '    If text1 <> Nothing Then
+                                            '        'DocuToText = "1" + text1
+                                            '    End If
+                                            'End If
+                                        End If
+                                        Xdwapi.XDW_CloseDocumentHandle(Handle)
+                                        'Xdwapi.XDW_Finalize()
+
+                                        If text1 <> Nothing Then
+                                            text1 = text1.Replace("'", "''").Replace(vbCrLf, "")
+                                            'text2 = text2.Replace("'", "''").Replace(vbCrLf, "")
+
+                                            Sql_Command = "UPDATE """ + Table + """ SET ""page1"" = '" + text1.Replace("'", "''") + "'"
+                                            Sql_Command += "  WHERE ""ファイル名"" = '" + fname.Replace("'", "''") + "'"
+                                            tb = db.ExecuteSql(Sql_Command)
+                                        End If
+
+                                        If System.IO.File.Exists(path2) = True Then     ' .xdwファイルを削除する。
+                                            System.IO.File.Delete(path2)
+                                        End If
+                                    End If
                                 End If
 
+                                If input_ok Then
 
+                                    DataGridView2.Rows(i).Cells(3).Value = "済"
+                                    DataGridView2.Rows(i).Cells(4).Value = False
+                                Else
+                                    filename1 += "(file name error)"
 
-                                DataGridView2.Rows(i).Cells(3).Value = "済"
-                                DataGridView2.Rows(i).Cells(4).Value = False
-
-                                sw.WriteLine(fname)
+                                End If
+                                'sw.WriteLine(fname)
                                 'Count += 1
                                 Me.TextBox_FileLIst3.Text += filename1 + vbCrLf
                                 Me.TextBox_FileLIst3.SelectionStart = Me.TextBox_FileLIst2.Text.Length
@@ -2285,7 +2418,7 @@ Public Class Form1
 
 
                         'ストリームを閉じる
-                        sw.Close()
+                        'sw.Close()
                         f1.Close()
                         f1.Dispose()
                         ProgressBar2.Visible = False
@@ -2426,10 +2559,10 @@ Public Class Form1
             Dim Count As Integer = MakeXdwList(filename)
 
             If Count = 0 Then
-                    MsgBox("このフォルダーには報告書ファイルはありません！", vbOK, "確認")
-                Else
-                    MsgBox("このフォルダーには" + Count.ToString + "個の報告書ファイルがありました。", vbOK, "確認")
-                End If
+                MsgBox("このフォルダーには報告書ファイルはありません！", vbOK, "確認")
+            Else
+                MsgBox("このフォルダーには" + Count.ToString + "個の報告書ファイルがありました。", vbOK, "確認")
+            End If
 
         End If
     End Sub
@@ -2543,6 +2676,26 @@ Public Class Form1
             pdfModeChange("file")
         End If
 
+    End Sub
+
+    Private Sub 成績書OnlyCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles 成績書OnlyCheckBox.CheckedChanged
+        If 成績書OnlyCheckBox.Checked Then
+            FolderNameCheckBox1.Visible = True
+            FolderNameCheckBox1.Checked = True
+        Else
+            FolderNameCheckBox1.Visible = False
+            FolderNameCheckBox1.Checked = False
+        End If
+    End Sub
+
+    Private Sub スキャンデータOnlyCheckBox_CheckedChanged(sender As Object, e As EventArgs) Handles スキャンデータOnlyCheckBox.CheckedChanged
+        If スキャンデータOnlyCheckBox.Checked Then
+            FolderNameCheckBox2.Visible = True
+            FolderNameCheckBox2.Checked = True
+        Else
+            FolderNameCheckBox2.Visible = False
+            FolderNameCheckBox2.Checked = False
+        End If
     End Sub
 
     Private Sub pdfModeChange(ByVal flag As String)

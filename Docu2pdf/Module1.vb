@@ -8,5 +8,16 @@
     Public Const PdfSaveFolder = "\\192.168.0.173\disk1\報告書（耐火＿PDF）"
     Public Const CmdFile = "C:\CMD\cmd.txt"
     Public DataKind As String
+    Public Ndrive As String(,) = {{"W:\", "\\192.168.37.242\fire\"},
+                                  {"X:\", "\\192.168.37.240\fire\"},
+                                  {"V:\", "\\192.168.37.241\fire\"},
+                                  {"Y:\", "\\192.168.0.173\disk1\"}}
+
     'Public Const PdfSaveFolder = "\\192.168.32.90\Win共有\PDF"
+
+    ' 文字の出現回数をカウント
+    Public Function CountChar(ByVal s As String, ByVal c As Char) As Integer
+        Return s.Length - s.Replace(c.ToString(), "").Length
+    End Function
+
 End Module

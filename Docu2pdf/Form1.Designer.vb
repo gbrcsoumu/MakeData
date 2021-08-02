@@ -52,6 +52,8 @@ Partial Class Form1
         Me.CheckBox_hyouteika = New System.Windows.Forms.CheckBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.FolderNameCheckBox1 = New System.Windows.Forms.CheckBox()
+        Me.成績書OnlyCheckBox = New System.Windows.Forms.CheckBox()
         Me.xdwFileRadioButton = New System.Windows.Forms.RadioButton()
         Me.xdwFolderRadioButton = New System.Windows.Forms.RadioButton()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -73,6 +75,8 @@ Partial Class Form1
         Me.DocuReadButton = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
+        Me.FolderNameCheckBox2 = New System.Windows.Forms.CheckBox()
+        Me.スキャンデータOnlyCheckBox = New System.Windows.Forms.CheckBox()
         Me.Label14 = New System.Windows.Forms.Label()
         Me.pdfFileRadioButton = New System.Windows.Forms.RadioButton()
         Me.pdfFolderRadioButton = New System.Windows.Forms.RadioButton()
@@ -97,8 +101,6 @@ Partial Class Form1
         Me.TextBox_FileMakerServer = New System.Windows.Forms.TextBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.成績書OnlyCheckBox = New System.Windows.Forms.CheckBox()
-        Me.スキャンデータOnlyCheckBox = New System.Windows.Forms.CheckBox()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -422,6 +424,7 @@ Partial Class Form1
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.FolderNameCheckBox1)
         Me.TabPage1.Controls.Add(Me.成績書OnlyCheckBox)
         Me.TabPage1.Controls.Add(Me.xdwFileRadioButton)
         Me.TabPage1.Controls.Add(Me.xdwFolderRadioButton)
@@ -453,6 +456,28 @@ Partial Class Form1
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "　［　報告書ファイルを登録　］　"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'FolderNameCheckBox1
+        '
+        Me.FolderNameCheckBox1.AutoSize = True
+        Me.FolderNameCheckBox1.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderNameCheckBox1.Location = New System.Drawing.Point(635, 69)
+        Me.FolderNameCheckBox1.Name = "FolderNameCheckBox1"
+        Me.FolderNameCheckBox1.Size = New System.Drawing.Size(168, 16)
+        Me.FolderNameCheckBox1.TabIndex = 33
+        Me.FolderNameCheckBox1.Text = "会社名をフォルダー名から取得"
+        Me.FolderNameCheckBox1.UseVisualStyleBackColor = True
+        '
+        '成績書OnlyCheckBox
+        '
+        Me.成績書OnlyCheckBox.AutoSize = True
+        Me.成績書OnlyCheckBox.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.成績書OnlyCheckBox.Location = New System.Drawing.Point(411, 69)
+        Me.成績書OnlyCheckBox.Name = "成績書OnlyCheckBox"
+        Me.成績書OnlyCheckBox.Size = New System.Drawing.Size(171, 16)
+        Me.成績書OnlyCheckBox.TabIndex = 33
+        Me.成績書OnlyCheckBox.Text = """成績書""フォルダーのみを検索"
+        Me.成績書OnlyCheckBox.UseVisualStyleBackColor = True
         '
         'xdwFileRadioButton
         '
@@ -583,19 +608,23 @@ Partial Class Form1
         'CheckBox_Convert
         '
         Me.CheckBox_Convert.AutoSize = True
-        Me.CheckBox_Convert.Location = New System.Drawing.Point(873, 33)
+        Me.CheckBox_Convert.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CheckBox_Convert.Location = New System.Drawing.Point(862, 118)
         Me.CheckBox_Convert.Name = "CheckBox_Convert"
-        Me.CheckBox_Convert.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Convert.Size = New System.Drawing.Size(44, 16)
         Me.CheckBox_Convert.TabIndex = 15
+        Me.CheckBox_Convert.Text = "ALL"
         Me.CheckBox_Convert.UseVisualStyleBackColor = True
         '
         'CheckBox_Input
         '
         Me.CheckBox_Input.AutoSize = True
-        Me.CheckBox_Input.Location = New System.Drawing.Point(729, 33)
+        Me.CheckBox_Input.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CheckBox_Input.Location = New System.Drawing.Point(794, 118)
         Me.CheckBox_Input.Name = "CheckBox_Input"
-        Me.CheckBox_Input.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input.Size = New System.Drawing.Size(44, 16)
         Me.CheckBox_Input.TabIndex = 14
+        Me.CheckBox_Input.Text = "ALL"
         Me.CheckBox_Input.UseVisualStyleBackColor = True
         '
         'PDF_Convert_Button
@@ -651,14 +680,15 @@ Partial Class Form1
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(9, 118)
+        Me.DataGridView1.Location = New System.Drawing.Point(9, 140)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowTemplate.Height = 21
-        Me.DataGridView1.Size = New System.Drawing.Size(900, 278)
+        Me.DataGridView1.Size = New System.Drawing.Size(900, 256)
         Me.DataGridView1.TabIndex = 8
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.FolderNameCheckBox2)
         Me.TabPage3.Controls.Add(Me.スキャンデータOnlyCheckBox)
         Me.TabPage3.Controls.Add(Me.Label14)
         Me.TabPage3.Controls.Add(Me.pdfFileRadioButton)
@@ -687,6 +717,28 @@ Partial Class Form1
         Me.TabPage3.TabIndex = 2
         Me.TabPage3.Text = "　［　資料ファイルを登録　］　"
         Me.TabPage3.UseVisualStyleBackColor = True
+        '
+        'FolderNameCheckBox2
+        '
+        Me.FolderNameCheckBox2.AutoSize = True
+        Me.FolderNameCheckBox2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.FolderNameCheckBox2.Location = New System.Drawing.Point(700, 68)
+        Me.FolderNameCheckBox2.Name = "FolderNameCheckBox2"
+        Me.FolderNameCheckBox2.Size = New System.Drawing.Size(168, 16)
+        Me.FolderNameCheckBox2.TabIndex = 39
+        Me.FolderNameCheckBox2.Text = "会社名をフォルダー名から取得"
+        Me.FolderNameCheckBox2.UseVisualStyleBackColor = True
+        '
+        'スキャンデータOnlyCheckBox
+        '
+        Me.スキャンデータOnlyCheckBox.AutoSize = True
+        Me.スキャンデータOnlyCheckBox.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.スキャンデータOnlyCheckBox.Location = New System.Drawing.Point(409, 68)
+        Me.スキャンデータOnlyCheckBox.Name = "スキャンデータOnlyCheckBox"
+        Me.スキャンデータOnlyCheckBox.Size = New System.Drawing.Size(199, 16)
+        Me.スキャンデータOnlyCheckBox.TabIndex = 38
+        Me.スキャンデータOnlyCheckBox.Text = """スキャンデータ""フォルダーのみを検索"
+        Me.スキャンデータOnlyCheckBox.UseVisualStyleBackColor = True
         '
         'Label14
         '
@@ -817,10 +869,12 @@ Partial Class Form1
         'CheckBox_Input2
         '
         Me.CheckBox_Input2.AutoSize = True
-        Me.CheckBox_Input2.Location = New System.Drawing.Point(800, 33)
+        Me.CheckBox_Input2.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
+        Me.CheckBox_Input2.Location = New System.Drawing.Point(827, 117)
         Me.CheckBox_Input2.Name = "CheckBox_Input2"
-        Me.CheckBox_Input2.Size = New System.Drawing.Size(15, 14)
+        Me.CheckBox_Input2.Size = New System.Drawing.Size(44, 16)
         Me.CheckBox_Input2.TabIndex = 25
+        Me.CheckBox_Input2.Text = "ALL"
         Me.CheckBox_Input2.UseVisualStyleBackColor = True
         '
         'Data_Input_Button2
@@ -856,10 +910,10 @@ Partial Class Form1
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(9, 117)
+        Me.DataGridView2.Location = New System.Drawing.Point(9, 134)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowTemplate.Height = 21
-        Me.DataGridView2.Size = New System.Drawing.Size(900, 279)
+        Me.DataGridView2.Size = New System.Drawing.Size(900, 262)
         Me.DataGridView2.TabIndex = 19
         '
         'TextBox_FolderName2
@@ -947,28 +1001,6 @@ Partial Class Form1
         Me.Label3.Size = New System.Drawing.Size(187, 12)
         Me.Label3.TabIndex = 17
         Me.Label3.Text = "チェックされた分野だけが検索されます。"
-        '
-        '成績書OnlyCheckBox
-        '
-        Me.成績書OnlyCheckBox.AutoSize = True
-        Me.成績書OnlyCheckBox.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.成績書OnlyCheckBox.Location = New System.Drawing.Point(411, 69)
-        Me.成績書OnlyCheckBox.Name = "成績書OnlyCheckBox"
-        Me.成績書OnlyCheckBox.Size = New System.Drawing.Size(171, 16)
-        Me.成績書OnlyCheckBox.TabIndex = 33
-        Me.成績書OnlyCheckBox.Text = """成績書""フォルダーのみを検索"
-        Me.成績書OnlyCheckBox.UseVisualStyleBackColor = True
-        '
-        'スキャンデータOnlyCheckBox
-        '
-        Me.スキャンデータOnlyCheckBox.AutoSize = True
-        Me.スキャンデータOnlyCheckBox.Font = New System.Drawing.Font("MS UI Gothic", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(128, Byte))
-        Me.スキャンデータOnlyCheckBox.Location = New System.Drawing.Point(409, 68)
-        Me.スキャンデータOnlyCheckBox.Name = "スキャンデータOnlyCheckBox"
-        Me.スキャンデータOnlyCheckBox.Size = New System.Drawing.Size(199, 16)
-        Me.スキャンデータOnlyCheckBox.TabIndex = 38
-        Me.スキャンデータOnlyCheckBox.Text = """スキャンデータ""フォルダーのみを検索"
-        Me.スキャンデータOnlyCheckBox.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -1074,4 +1106,6 @@ Partial Class Form1
     Friend WithEvents Label14 As Label
     Friend WithEvents 成績書OnlyCheckBox As CheckBox
     Friend WithEvents スキャンデータOnlyCheckBox As CheckBox
+    Friend WithEvents FolderNameCheckBox1 As CheckBox
+    Friend WithEvents FolderNameCheckBox2 As CheckBox
 End Class
